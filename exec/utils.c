@@ -6,11 +6,11 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 09:50:47 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/06 07:26:46 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/19 17:16:35 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 void	get_params(t_param *param, char **argv, char **env)
 {

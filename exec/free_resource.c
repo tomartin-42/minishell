@@ -6,11 +6,11 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 12:08:03 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/04 19:07:31 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/19 17:15:26 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 void	free_aux(char **aux_path)
 {

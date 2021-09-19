@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 19:34:33 by tommy             #+#    #+#             */
-/*   Updated: 2021/09/19 16:33:02 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/19 21:07:48 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,6 @@ void	free_param(t_param *param);
 void	open_and_read(t_param param, int *pp);
 void	open_and_write(t_param param, int *pp);
 
-void	ft_putstr_fd(char *s, int fd);
-char	**ft_split(char const *s, char c);
-char	*ft_strdup(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
-int		ft_strlen(const char *str);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strtrim(char const *s1, char const *set);
+void	execut(int argc, char **argv, char **env);
 
 #endif

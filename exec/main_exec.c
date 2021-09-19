@@ -6,11 +6,11 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 19:34:29 by tommy             #+#    #+#             */
-/*   Updated: 2021/09/08 07:41:17 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/19 21:07:05 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 static void	child1_proces(t_param param, int *pp, char **env)
 {
@@ -70,7 +70,7 @@ static void	parent_proces(t_param param, int *pp, char **env)
 	waitpid(pid, NULL, 0);
 }
 
-int	main(int argc, char **argv, char **envp)
+void	execut(int argc, char **argv, char **envp)
 {
 	t_param	param;
 	int		pp[2];

@@ -6,11 +6,11 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 20:37:21 by tommy             #+#    #+#             */
-/*   Updated: 2021/09/07 11:30:40 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/19 17:11:40 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 void	check(int argc, char **argv, char **env)
 {

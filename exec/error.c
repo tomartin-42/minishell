@@ -6,11 +6,11 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 20:39:40 by tommy             #+#    #+#             */
-/*   Updated: 2021/09/04 19:08:03 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/19 17:13:23 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 void	execut_error(char *text, int numerror)
 {
