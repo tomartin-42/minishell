@@ -6,12 +6,12 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 19:34:33 by tommy             #+#    #+#             */
-/*   Updated: 2021/09/06 07:52:14 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/19 16:33:02 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef EXEC_H
+# define EXEC_H
 
 # include <stdio.h>
 # include <stdlib.h>

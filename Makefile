@@ -6,7 +6,7 @@
 #    By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/09/18 20:36:02 by tomartin         ###   ########.fr        #
+#    Updated: 2021/09/19 17:07:13 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,15 +20,19 @@ F_RL = -I ~/.brew/opt/readline/include -I ~/.brew/opt/readline/lib -lreadline
 # Folders
 SRC_DIR = ./src/
 OBJ_DIR = ./obj/
+EXEC_DIR = ./exec/
 INC_DIR = ./includes/
+
 
 # Source files and object files
 SRC_FILES = main.c
+EXEC_FILES = check.c error.c free_resource.c main.c utils.c utils_2.c utils_3.c
 
-OBJ_FILES = $(SRC_FILES:.c=.o)
+OBJ_FILES = $(SRC_FILES:.c=.o) $(EXEC_FILES:.c=.o)
 
 # Paths
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
+EXE = $(addprefix $(EXEC_DIR), $(EXEC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 # Libft linkers
