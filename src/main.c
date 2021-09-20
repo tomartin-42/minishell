@@ -23,8 +23,6 @@ while (1)
 {
 	str = readline(BEGIN(49, 34)"Myshell $ "CLOSE);
 	printf("%s", str);
-	ft_strlen(str);
 	free(str);
-	printf("HOLA2\n");
 }
 }
