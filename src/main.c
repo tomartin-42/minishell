@@ -29,7 +29,7 @@ int main(int argc, char **argv, char **env)
 		if(ft_strlen(line) != 0)
 		{
 		add_history(line);
-		printf("%s", line);
+		execut(argc, argv, env, line);
 		printf("%d - %s - %s\n", argc, argv[0], env[0]);
 		}
 

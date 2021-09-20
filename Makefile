@@ -27,7 +27,7 @@ LIBFT_DIR = ./libft/
 
 # Source files and object files
 SRC_FILES = main.c
-EXEC_FILES = check.c error.c free_resource.c main_exec.c utils.c 
+EXEC_FILES = check.c error.c free_resource.c main_exec.c utils.c parse.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 OBJ_FILES := $(OBJ_FILES) $(EXEC_FILES:.c=.o)

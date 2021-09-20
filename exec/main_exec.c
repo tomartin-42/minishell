@@ -70,12 +70,16 @@ static void	parent_proces(t_param param, int *pp, char **env)
 	waitpid(pid, NULL, 0);
 }
 
-void	execut(int argc, char **argv, char **envp)
+void	execut(int argc, char **argv, char **envp, char *str)
 {
 	t_param	param;
 	int		pp[2];
 	pid_t	pid;
 
+	param.n_comand = 1;
+	param.n_inputf = 0;
+	param.n_outputf = 0;
+	fast_parse(str, &param);
 	check(argc, argv, envp);
 	get_params(&param, argv, envp);
 	pipe(pp);
