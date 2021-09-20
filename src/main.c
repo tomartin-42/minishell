@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/19 13:23:24 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/20 12:15:29 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ while (1)
 {
 	str = readline(BEGIN(49, 34)"Myshell $ "CLOSE);
 	printf("%s", str);
-	ft_strlen(str);
 	free(str);
 	printf("HOLA2\n");
 }
