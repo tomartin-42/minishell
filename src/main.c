@@ -16,13 +16,22 @@
 #define BLOD  "\001\033[1m\002"                 // enfatizar, negrita, resaltar
 #define BEGIN(x,y) "\001\033["#x";"#y"m\002"    // x: fondo, y: primer plano
 
-int main(void)
+int main(int argc, char **argv, char **env)
 {
 	char *str;
-while (1)
-{
-	str = readline(BEGIN(49, 34)"Myshell $ "CLOSE);
-	printf("%s", str);
-	free(str);
-}
+	char *line;
+	
+	while (1)
+	{
+		str = readline(BEGIN(49, 34)"ShellFromHell: > "CLOSE);
+		line = ft_strdup(str);
+		free(str);
+		if(ft_strlen(line) != 0)
+		{
+		add_history(line);
+		printf("%s", line);
+		printf("%d - %s - %s\n", argc, argv[0], env[0]);
+		}
+
+	}
 }
