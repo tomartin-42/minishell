@@ -6,7 +6,7 @@
 #    By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/09/19 21:10:18 by tomartin         ###   ########.fr        #
+#    Updated: 2021/09/19 21:20:19 by tomartin         ###   ########.fr        #
 #    Updated: 2021/09/19 13:35:25 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -27,7 +27,7 @@ LIBFT_DIR = ./libft/
 
 # Source files and object files
 SRC_FILES = main.c
-EXEC_FILES = check.c error.c free_resource.c main_exec.c utils.c 
+EXEC_FILES = check.c error.c free_resource.c main_exec.c utils.c parse.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 OBJ_FILES := $(OBJ_FILES) $(EXEC_FILES:.c=.o)

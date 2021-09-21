@@ -26,6 +26,9 @@ typedef struct s_param{
 	char	*cmd[2];
 	char	**cmd1;
 	char	**cmd2;
+	int		n_comand;
+	int		n_inputf;
+	int		n_outputf;
 }	t_param;
 
 void	check(int argc, char **argv, char **env);
@@ -42,6 +45,10 @@ void	free_param(t_param *param);
 void	open_and_read(t_param param, int *pp);
 void	open_and_write(t_param param, int *pp);
 
-void	execut(int argc, char **argv, char **env);
+void	execut(int argc, char **argv, char **env, char *str);
+
+///---------------------------------------------------/
+
+void	fast_parse(char *str, t_param *param);
 
 #endif

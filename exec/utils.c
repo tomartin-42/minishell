@@ -40,7 +40,7 @@ char	*get_path(char *argv, char **env)
 	char	*path;
 
 	i = 0;
-	while (ft_strncmp(env[i], "PATH=", 5) && env[i])
+	while (ft_strncmp(env[i], "PATH=", 5) && env[i] != NULL)
 		i++;
 	tem_p = ft_strtrim(env[i], "PATH=");
 	aux_path = ft_split(tem_p, ':');
