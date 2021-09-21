@@ -18,7 +18,6 @@
 #include <stdbool.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include "exec.h"
 #include "libft.h"
 #include "parse.h"
 
@@ -29,5 +28,10 @@ typedef struct s_element{
 	struct t_element	*next;
 	struct t_element	*prev;
 }	t_element;
+
+void main_parse(char *str, t_element *element);
+t_element		*ft_lstlast(t_element *lst);
+void		ft_lstadd_back(t_element **lst, t_element *new);
+
 
 #endif
