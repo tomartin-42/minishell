@@ -18,11 +18,13 @@
 
 int main(void)
 {
-	char *str;
-while (1)
-{
-	str = readline(BEGIN(49, 34)"Myshell $ "CLOSE);
-	printf("%s", str);
-	free(str);
-}
+	t_input	*input;
+
+	input = malloc(sizeof(t_input));;
+	while (1)
+	{
+		input->str = readline(BEGIN(49, 34)"Myshell $ "CLOSE);
+		printf("%s\n", input->str);
+		free(input->str);
+	}
 }

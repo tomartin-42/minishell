@@ -20,4 +20,19 @@
 #include "exec.h"
 #include "libft.h"
 
+typedef	struct	s_string
+{
+	char	*arg;
+	struct	s_string	*next;
+	struct	s_string	*prev;
+}		t_string;
+
+typedef	struct	s_input
+{
+	int		argc;
+	char		*str;
+	t_string	string;
+}		t_input;
+
+
 #endif
