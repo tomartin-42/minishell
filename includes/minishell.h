@@ -15,9 +15,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "exec.h"
 #include "libft.h"
+#include "parse.h"
+
+typedef struct s_element{
+	char				*str;
+	char				*arg;
+	char				type;
+	struct t_element	*next;
+	struct t_element	*prev;
+}	t_element;
 
 #endif

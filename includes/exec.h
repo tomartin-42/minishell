@@ -47,8 +47,4 @@ void	open_and_write(t_param param, int *pp);
 
 void	execut(int argc, char **argv, char **env, char *str);
 
-///---------------------------------------------------/
-
-void	fast_parse(char *str, t_param *param);
-
 #endif
