@@ -5,7 +5,9 @@ t_element	*ft_lstlast(t_element *lst)
 	if (!lst)
 		return (NULL);
 	while (lst->next)
+	{
 		lst = lst->next;
+	}
 	return (lst);
 }
 
@@ -26,8 +28,7 @@ void	print_list(t_element *element)
 	while (element->next)
 	{
 		printf("%s\n", element->str);
-	printf("HOLA2\n");
 		element = element->next;
 	}
+		printf("%s\n", element->str);
 }
-

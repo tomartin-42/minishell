@@ -27,6 +27,7 @@ int main(int argc, char **argv, char **env)
 		{
 			element = malloc(sizeof(t_element));
 			element->next = NULL;
+			element->str = ft_strdup(line);
 		//	add_history(line);
 			main_parse(line, element);
 			print_list(element);
