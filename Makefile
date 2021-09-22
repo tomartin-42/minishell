@@ -19,24 +19,24 @@ FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 F_RL = -I ~/.brew/opt/readline/include -I ~/.brew/opt/readline/lib 
 
 # Folders
+LIBFT_DIR = ./libft/
 SRC_DIR = ./src/
-EXEC_DIR = ./exec/
 OBJ_DIR = ./obj/
 INC_DIR = ./includes/
-LIBFT_DIR = ./libft/
+PARSE_DIR= ./parse/
 
 # Source files and object files
 SRC_FILES = main.c
-EXEC_FILES = check.c error.c free_resource.c main_exec.c utils.c parse.c
+PARSE_FILES = main_parse.c utils_list.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
-OBJ_FILES := $(OBJ_FILES) $(EXEC_FILES:.c=.o)
+OBJ_FILES := $(OBJ_FILES) $(PARSE_FILES:.c=.o)
 
 # Paths
-SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
-EXE = $(addprefix $(EXEC_DIR), $(EXEC_FILES))
-OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
+SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
+PARSE = $(addprefix $(PARSE_DIR), $(PARSE_FILES))
+OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 # Libft linkers
 LNK = -L $(LIBFT_DIR) -lft
@@ -46,10 +46,10 @@ all: obj $(LIBFT) $(NAME)
 
 obj:
 	@mkdir -p $(OBJ_DIR)
-
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c 
+ 
+$(OBJ_DIR)%.o: $(PARSE_DIR)%.c 
 	@gcc $(FLAGS) $(F_RL) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ -c $<
-$(OBJ_DIR)%.o: $(EXEC_DIR)%.c 
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c 
 	@gcc $(FLAGS) $(F_RL) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ -c $<
 
 $(LIBFT):
