@@ -21,3 +21,13 @@ void	ft_lstadd_back(t_element **lst, t_element *new)
 	(ft_lstlast(*lst))->next = new;
 }
 
+void	print_list(t_element *element)
+{
+	while (element->next)
+	{
+		printf("%s\n", element->str);
+	printf("HOLA2\n");
+		element = element->next;
+	}
+}
+

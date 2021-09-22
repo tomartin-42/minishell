@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/20 12:15:29 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/22 12:53:25 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int main(int argc, char **argv, char **env)
 {
-	char *str;
-	char *line;
-	t_element	element;
+	char 		*str;
+	char 		*line;
+	t_element	*element;
 	
 	while (1)
 	{
@@ -25,8 +25,11 @@ int main(int argc, char **argv, char **env)
 		free(str);
 		if(ft_strlen(line) != 0)
 		{
-			add_history(line);
-			main_parse(line, &element);
+			element = malloc(sizeof(t_element));
+			element->next = NULL;
+		//	add_history(line);
+			main_parse(line, element);
+			print_list(element);
 			//execut(argc, argv, env, line);
 			printf("%d - %s - %s\n", argc, argv[0], env[0]);
 		}
