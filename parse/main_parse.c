@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_parse.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/23 12:35:23 by tomartin          #+#    #+#             */
+/*   Updated: 2021/09/23 12:35:54 by tomartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
+//gestion single mark
 static void	copy_to_word_d(char *str, int *i, int *j, t_element *element)
 {
 	t_element	*new;
@@ -21,8 +34,9 @@ static void	copy_to_word_d(char *str, int *i, int *j, t_element *element)
 	new->next = NULL;
 	ft_lstadd_back(&element, new);
 
-	}	
+	}
 
+//gestion single mark
 static void	copy_to_word_s(char *str, int *i, int *j, t_element *element)
 {
 	t_element	*new;
