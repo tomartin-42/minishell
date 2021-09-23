@@ -85,7 +85,7 @@ void	main_parse(char *str, t_element *element)
 
 	i = 0;
 	j = 0;
-	while (i <= (int)ft_strlen(str))
+	while (i <= (int)ft_strlen(str) && str[i] != 0)
 	{
 		if (str[i] == '"')
 		{
@@ -97,7 +97,7 @@ void	main_parse(char *str, t_element *element)
 			//recoger hasta proxima ' 
 			copy_to_word_s(str, &i, &j, element);
 		}
-		if ((str[i] == '\0' || str[i] != ' '))  
+		if (str[i] != ' ')  
 			copy_to_word(str, &i, &j, element);
 		i++;
 	}
