@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 12:35:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/23 19:35:32 by tommy            ###   ########.fr       */
+/*   Updated: 2021/09/23 20:31:36 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static void	copy_to_word_s(char *str, int *i, int *j, t_element *element)
 }	
 
 //in this function check and set the mark (" or ')
-//return any value diferent to 'f' if some mark is open
 static char	check_marks(char *str, int *i)
 {
 	char	mark;
@@ -85,8 +84,7 @@ static char	check_marks(char *str, int *i)
 }
 
 
-//copy the word in new node in the list. Check mark, if mark is not equal
-//to 'f' (when return check_marks()) some marks is open
+//copy the word in new node in the list.
 static	void	copy_to_word(char *str, int *i, int *j, t_element *element)
 {
 	t_element	*new;
@@ -97,8 +95,6 @@ static	void	copy_to_word(char *str, int *i, int *j, t_element *element)
 	new = malloc(sizeof(t_element));
 	*i = *i + 1;
 	mark = check_marks(str, i);
-	if (marks != 'f')
-		printf("Error\n");
 	new->str = malloc(*i - *j + 2);
 	while(*j <= *i) 
 	{
