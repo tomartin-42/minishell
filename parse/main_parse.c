@@ -9,10 +9,9 @@ static void	copy_to_word_d(char *str, int *i, int *j, t_element *element)
 	new = malloc(sizeof(t_element));
 	*i = *i + 1;
 	while(str[*i] != '"' && str[*i] != '\0')
-		*i = *i + 1;
-	*i = *i + 1;
-	new->str = malloc(*i - *j + 1);
-	while(*j < *i) 
+		*i += 1;
+	new->str = malloc(*i - *j + 2);
+	while(*j <= *i) 
 	{
 		new->str[aux_i] = str[*j];
 		aux_i++;
@@ -21,7 +20,8 @@ static void	copy_to_word_d(char *str, int *i, int *j, t_element *element)
 	new->str[aux_i] = '\0';
 	new->next = NULL;
 	ft_lstadd_back(&element, new);
-}	
+
+	}	
 
 static void	copy_to_word_s(char *str, int *i, int *j, t_element *element)
 {
@@ -33,9 +33,8 @@ static void	copy_to_word_s(char *str, int *i, int *j, t_element *element)
 	*i = *i + 1;
 	while(str[*i] != 39 && str[*i] != '\0')
 		*i += 1;
-	*i = *i + 1;
-	new->str = malloc(*i - *j + 1);
-	while(*j < *i) 
+	new->str = malloc(*i - *j + 2);
+	while(*j <= *i) 
 	{
 		new->str[aux_i] = str[*j];
 		aux_i++;
@@ -53,21 +52,28 @@ static void	copy_to_word(char *str, int *i, int *j, t_element *element)
 	int			aux_i;
 	char		mark;
 
-	mark = ' ';
+	mark = 'f';
 	aux_i = 0;
 	new = malloc(sizeof(t_element));
 	*i = *i + 1;
-	while(str[*i] != mark && str[*i] != '\0')
+	while((str[*i] != ' ' && str[*i] != '\0') && mark == 'f')
 	{
-		if (str[*i] == '"' && mark != 39)
-			mark = '"';
-		if (str[*i] == 39 && mark != '"')
-			mark = 39;
+		if (str[*i] == '"')
+			mark = 'd';
+		if (str[*i] == 39)
+			mark = 's';
+		*i += 1;
+	}
+	while  (mark != 'f')
+	{
+		if (mark == 'd' && str[*i] == '"')
+			mark = 'f';
+		if (mark == 's' && str[*i] == 39)
+			mark = 'f';
 		*i = *i + 1;
 	}
-	*i = *i + 1;
-	new->str = malloc(*i - *j + 1);
-	while(*j < *i) 
+	new->str = malloc(*i - *j + 2);
+	while(*j <= *i) 
 	{
 		new->str[aux_i] = str[*j];
 		aux_i++;
@@ -91,11 +97,13 @@ void	main_parse(char *str, t_element *element)
 		{
 			//recoger hasta proxima "
 			copy_to_word_d(str, &i, &j, element);
+			i++;
 		}
 		if (str[i] == 39)
 		{
 			//recoger hasta proxima ' 
 			copy_to_word_s(str, &i, &j, element);
+			i++;
 		}
 		if (str[i] != ' ')  
 			copy_to_word(str, &i, &j, element);
