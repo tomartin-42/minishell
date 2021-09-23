@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 12:35:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/23 13:23:04 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/09/23 19:35:32 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,13 @@ static void	copy_to_word_s(char *str, int *i, int *j, t_element *element)
 	ft_lstadd_back(&element, new);
 }	
 
-
-static char	check_marks(
-
-//copy the word in new node in the list
-static	void	copy_to_word(char *str, int *i, int *j, t_element *element)
+//in this function check and set the mark (" or ')
+//return any value diferent to 'f' if some mark is open
+static char	check_marks(char *str, int *i)
 {
-	t_element	*new;
-	int			aux_i;
-	char		mark;
+	char	mark;
 
 	mark = 'f';
-	aux_i = 0;
-	new = malloc(sizeof(t_element));
-	*i = *i + 1;
 	while((str[*i] != ' ' && str[*i] != '\0') && mark == 'f')
 	{
 		if (str[*i] == '"')
@@ -88,6 +81,24 @@ static	void	copy_to_word(char *str, int *i, int *j, t_element *element)
 			mark = 'f';
 		*i = *i + 1;
 	}
+	return (mark);
+}
+
+
+//copy the word in new node in the list. Check mark, if mark is not equal
+//to 'f' (when return check_marks()) some marks is open
+static	void	copy_to_word(char *str, int *i, int *j, t_element *element)
+{
+	t_element	*new;
+	int			aux_i;
+	char		mark;
+
+	aux_i = 0;
+	new = malloc(sizeof(t_element));
+	*i = *i + 1;
+	mark = check_marks(str, i);
+	if (marks != 'f')
+		printf("Error\n");
 	new->str = malloc(*i - *j + 2);
 	while(*j <= *i) 
 	{
@@ -110,19 +121,11 @@ void	main_parse(char *str, t_element *element)
 	while (i <= (int)ft_strlen(str) && str[i] != 0)
 	{
 		if (str[i] != '\0' && str[i] == 39)
-		{
-			//recoger hasta proxima "
 			copy_to_word_s(str, &i, &j, element);
-		}
 		if (str[i] != '\0' && str[i] == '"')
-		{
-			//recoger hasta proxima '
 			copy_to_word_d(str, &i, &j, element);
-		}
 		if (str[i] != ' ' && str[i] != '"' && str[i] != 39 && str[i] != '\0')
-		{
 			copy_to_word(str, &i, &j, element);
-		}
 		i++;
 	}
-}// porque crear en main int j
+}
