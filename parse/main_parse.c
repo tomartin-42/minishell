@@ -58,6 +58,9 @@ static void	copy_to_word_s(char *str, int *i, int *j, t_element *element)
 	ft_lstadd_back(&element, new);
 }	
 
+
+static char	check_marks(
+
 //copy the word in new node in the list
 static	void	copy_to_word(char *str, int *i, int *j, t_element *element)
 {
@@ -77,7 +80,7 @@ static	void	copy_to_word(char *str, int *i, int *j, t_element *element)
 			mark = 's';
 		*i += 1;
 	}
-	while (mark != 'f')
+	while (mark != 'f' && str[*i] != '\0')
 	{
 		if (mark == 'd' && str[*i] == '"')
 			mark = 'f';
