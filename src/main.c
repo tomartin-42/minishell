@@ -3,28 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/19 13:23:24 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/23 11:08:21 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"							
 
-#define CLOSE "\001\033[0m\002"                 // cierra todas las propiedades
-#define BLOD  "\001\033[1m\002"                 // enfatizar, negrita, resaltar
-#define BEGIN(x,y) "\001\033["#x";"#y"m\002"    // x: fondo, y: primer plano
-
-int main(void)
+int	main(int argc, char **argv, char **env)
 {
-	t_input	*input;
+	char		*str;
+	char		*line;
+	t_element	*element;
 
-	input = malloc(sizeof(t_input));;
 	while (1)
 	{
-		input->str = readline(BEGIN(49, 34)"Myshell $ "CLOSE);
-		printf("%s\n", input->str);
-		free(input->str);
+		str = readline("ShellFromHell: > ");
+		line = ft_strdup(str);
+		free(str);
+		if (ft_strlen(line) != 0)
+		{
+			element = malloc(sizeof(t_element));
+			element->next = NULL;// we might need to use a prev pointer
+			element->str = ft_strdup(line);
+		//	add_history(line);
+			main_parse(line, element);
+			print_list(element);
+			//execut(argc, argv, env, line);
+			printf("%d - %s - %s\n", argc, argv[0], env[0]);
+		}
 	}
 }
