@@ -3,6 +3,7 @@
 
 #include "minishell.h"
 
-//ºvoid	main_parse(char *str, t_element *element);
+void	clean_element(t_element *element);
+void	split_pipes(t_element *element);
 
 #endif

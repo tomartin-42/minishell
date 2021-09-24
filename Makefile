@@ -6,7 +6,7 @@
 #    By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/09/23 12:05:15 by dpuente-         ###   ########.fr        #
+#    Updated: 2021/09/24 10:27:54 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ INC_DIR = ./includes/
 PARSE_DIR= ./parse/
 
 # Source files and object files
-SRC_FILES = main.c
-PARSE_FILES = main_parse.c utils_list.c
+SRC_FILES = main.c utils_list.c
+PARSE_FILES = main_parse.c procesing_parse.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 OBJ_FILES := $(OBJ_FILES) $(PARSE_FILES:.c=.o)

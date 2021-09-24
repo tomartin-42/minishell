@@ -6,11 +6,12 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 12:35:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/23 20:31:36 by tommy            ###   ########.fr       */
+/*   Updated: 2021/09/24 13:06:40 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "parse.h"
 
 //gestion single mark
 static void	copy_to_word_d(char *str, int *i, int *j, t_element *element)
@@ -45,7 +46,10 @@ static void	copy_to_word_s(char *str, int *i, int *j, t_element *element)
 	new = malloc(sizeof(t_element));
 	*i = *i + 1;
 	while (str[*i] != 39 && str[*i] != '\0')
-		*i += 1;
+	{
+		while (str[*i] != ' ' && str[*i] != '\0')
+			*i += 1;
+	}
 	new->str = malloc(*i - *j + 2);
 	while(*j <= *i) 
 	{
@@ -124,4 +128,5 @@ void	main_parse(char *str, t_element *element)
 			copy_to_word(str, &i, &j, element);
 		i++;
 	}
+	clean_element(element);
 }
