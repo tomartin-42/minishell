@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 15:12:24 by tommy             #+#    #+#             */
-/*   Updated: 2021/09/24 18:05:23 by tommy            ###   ########.fr       */
+/*   Updated: 2021/09/24 18:46:43 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,15 @@ static void	copy_to_word(char *str, int *i, int *j, t_element *element)
 	}
 	new->str[aux_i] = '\0';
 	new->next = NULL;
-	if(new->str[0] != ' ') 
-		ft_lstadd_back(&element, new);
-	else
+	if (new->str[0] != ' ')
 	{
-		free(new->next);
-		free(new);
+		if(ft_strlen(new->str) != 0)
+			ft_lstadd_back(&element, new);
+		else
+		{
+			free(new->next);
+			free(new);
+		}
 	}
 }
 

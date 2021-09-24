@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   procesing_parse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/24 12:58:40 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/24 18:41:50 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
+
+/*static void	clean_empy_nodes(t_element *element)
+{
+	t_element *p_aux;
+	
+	p_aux = element;
+	while (p_aux)
+	{
+		if (ft_strlen(p_aux->str) == 0);
+
+		free(p_elem->str);
+		p_elem->str = ft_strdup(aux);
+		free(aux);
+		p_aux = p_aux->next;
+	}
+	
+
+}*/
 
 //clean up spaces of element
 void	clean_element(t_element *element)
@@ -27,10 +45,10 @@ void	clean_element(t_element *element)
 		free(aux);
 		p_elem = p_elem->next;
 	}
-	split_pipes(element);
+	//split_pipes(element);
 }
 
-void	split_pipes(t_element *element)
+/*void	split_pipes(t_element *element)
 {
 	char	mark;
 	int		i;
@@ -75,4 +93,4 @@ void	split_pipes(t_element *element)
 		}
 		p_elem = p_elem->next;
 	}
-}	
+}*/	
