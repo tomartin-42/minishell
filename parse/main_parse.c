@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 15:12:24 by tommy             #+#    #+#             */
-/*   Updated: 2021/09/24 19:40:38 by tommy            ###   ########.fr       */
+/*   Updated: 2021/09/24 19:53:11 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,14 @@ void	main_parse(char *str, t_element *element)
 			i++;
 		}		
 
-		if (ft_strchr("|<> ", str[i]) && mark_d == false && mark_s == false)
-		{	
-			if(ft_strchr("|<>", str[i]))
-			{
-				i--;
-				copy_to_word(str, &i, &j, element);
-				i++;
-			}
+		if (ft_strchr(" ", str[i]) && mark_d == false && mark_s == false)
 			copy_to_word(str, &i, &j, element);
-		}
+		if(ft_strchr("|<>", str[i]))
+		{
+			i--;
+			copy_to_word(str, &i, &j, element);
+			i++;
+		}	
 		if (str[i] != '\0')
 			i++;
 		if (str[i] == '\0')
