@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/23 11:08:21 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/09/23 20:34:40 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ int	main(int argc, char **argv, char **env)
 			element = malloc(sizeof(t_element));
 			element->next = NULL;// we might need to use a prev pointer
 			element->str = ft_strdup(line);
-		//	add_history(line);
+			add_history(line);
 			main_parse(line, element);
 			print_list(element);
-			//execut(argc, argv, env, line);
 			printf("%d - %s - %s\n", argc, argv[0], env[0]);
 		}
 	}

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_list.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/23 21:08:34 by tommy             #+#    #+#             */
+/*   Updated: 2021/09/24 18:01:50 by tommy            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 t_element	*ft_lstlast(t_element *lst)
@@ -27,8 +39,8 @@ void	print_list(t_element *element)
 {
 	while (element->next)
 	{
-		printf("%s\n", element->str);
+		printf("[%s]\n", element->str);
 		element = element->next;
 	}
-		printf("%s\n", element->str);
+		printf("[%s]\n", element->str);
 }
