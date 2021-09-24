@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 15:12:24 by tommy             #+#    #+#             */
-/*   Updated: 2021/09/24 19:53:11 by tommy            ###   ########.fr       */
+/*   Updated: 2021/09/24 20:12:07 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,15 @@ void	main_parse(char *str, t_element *element)
 	i = 0;
 	j = 0;
 	while (str[i])
-	{	
-		if (mark_d == true && mark_s == false && str[i] == '"')
-		{
-			mark_d = false;
-			i++;
-		}
-		if (mark_s == true && mark_d == false && str[i] == 39)
-		{	
-			mark_s = false;
-			i++;
-		}
+	{
 		if ( mark_d == false && mark_s == false && str[i] == '"')
 		{
 			mark_d = true;
+			i++;
+		}		
+		if (mark_d == true && mark_s == false && str[i] == '"')
+		{
+			mark_d = false;
 			i++;
 		}
 		if (mark_s == false && mark_d == false && str[i] == 39)
@@ -73,15 +68,21 @@ void	main_parse(char *str, t_element *element)
 			mark_s = true;
 			i++;
 		}		
-
-		if (ft_strchr(" ", str[i]) && mark_d == false && mark_s == false)
-			copy_to_word(str, &i, &j, element);
-		if(ft_strchr("|<>", str[i]))
-		{
-			i--;
-			copy_to_word(str, &i, &j, element);
+		if (mark_s == true && mark_d == false && str[i] == 39)
+		{	
+			mark_s = false;
 			i++;
-		}	
+		}
+		if (ft_strchr("|<> ", str[i]) && mark_d == false && mark_s == false)
+		{	
+			if(ft_strchr("|<>", str[i]))
+			{
+				i--;
+				copy_to_word(str, &i, &j, element);
+				i++;
+			}
+			copy_to_word(str, &i, &j, element);
+		}
 		if (str[i] != '\0')
 			i++;
 		if (str[i] == '\0')
