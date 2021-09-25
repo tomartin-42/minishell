@@ -12,4 +12,6 @@ typedef struct s_mark{
 
 void	clean_element(t_element *element);
 void	pre_procesing(t_element *element);
+void	post_procesing(t_element *element);
+
 #endif

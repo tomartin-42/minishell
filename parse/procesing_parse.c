@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/25 17:09:48 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/25 19:51:08 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,9 @@ void	pre_procesing(t_element *element)
 		else if (p_elem->str[0] == 39)
 			p_elem->type = 'S';
 		else if (p_elem->str[0] == '<')
-		{
-			if (p_elem->next != NULL && p_elem->next->str[0] == '<')
-				p_elem->type = 'H';
-			else
-				p_elem->type = 'I';
-		}
+			p_elem->type = 'I';
 		else if (p_elem->str[0] == '>')
-		{
-			if (p_elem->next != NULL && p_elem->next->str[0] == '>')
-				p_elem->type = 'T';
-			else	
-				p_elem->type = 'O';
-		}
+			p_elem->type = 'T';
 		else if (p_elem->str[0] == '|')
 			p_elem->type = 'P';
 		else  
@@ -92,6 +82,8 @@ void	post_procesing(t_element *element)
 	{
 		if (p_elem->prev != NULL && p_elem->prev->type == 'T')
 		{
+		printf("%c\n",p_elem->prev->type); 
+			printf("HOLA\n");
 			if (p_elem->type == '>')
 				p_elem->type = 'X';
 		}
