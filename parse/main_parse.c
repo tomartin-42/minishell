@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 15:12:24 by tommy             #+#    #+#             */
-/*   Updated: 2021/09/25 00:09:49 by tommy            ###   ########.fr       */
+/*   Updated: 2021/09/25 11:18:51 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	copy_to_word(char *str, int *i, int *j, t_element *element)
 	aux_i = 0;
 	new = malloc(sizeof(t_element));
 	new->str = malloc(*i - *j + 2);
-	while(*j <= *i) 
+	while (*j <= *i)
 	{
 		new->str[aux_i] = str[*j];
 		aux_i++;
@@ -30,13 +30,35 @@ static void	copy_to_word(char *str, int *i, int *j, t_element *element)
 	new->next = NULL;
 	if (new->str[0] != ' ')
 	{
-		if(ft_strlen(new->str) != 0)
+		if (ft_strlen(new->str) != 0)
 			ft_lstadd_back(&element, new);
 		else
 		{
 			free(new->next);
 			free(new);
 		}
+	}
+}
+
+static void	check_open_mark(char *str, bool *mark_s, bool *mark_d, int *i)
+{
+	if (*mark_d == false && *mark_s == false && str[*i] == '"')
+		*mark_d = true;
+	if ((*mark_s == false && *mark_d == false) && str[*i] == 39)
+		*mark_s = true;
+}
+
+static void	check_close_mark(char *str, bool *mark_s, bool *mark_d, int *i)
+{
+	if (*mark_d == true && *mark_s == false && str[*i] == '"')
+	{
+		*mark_d = false;
+		*i += 1;
+	}
+	if (*mark_s == true && *mark_d == false && str[*i] == 39)
+	{	
+		*mark_s = false;
+		*i += 1;
 	}
 }
 
@@ -53,19 +75,10 @@ void	main_parse(char *str, t_element *element)
 	j = 0;
 	while (str[i])
 	{
-		if ( mark_d == false && mark_s == false && str[i] == '"')
-		{
-			mark_d = true;
-		}		
-
-		if ((mark_s == false && mark_d == false) && str[i] == 39)
-		{	
-			mark_s = true;
-		}		
-
+		check_open_mark(str, &mark_s, &mark_d, &i);
 		if (ft_strchr("|<> ", str[i]) && mark_d == false && mark_s == false)
 		{	
-			if(ft_strchr("|<>", str[i]))
+			if (ft_strchr("|<>", str[i]))
 			{
 				i--;
 				copy_to_word(str, &i, &j, element);
@@ -75,16 +88,7 @@ void	main_parse(char *str, t_element *element)
 		}
 		if (str[i] != '\0')
 			i++;
-		if (mark_d == true && mark_s == false && str[i] == '"')
-		{
-			mark_d = false;
-			i++;
-		}
-		if (mark_s == true && mark_d == false && str[i] == 39)
-		{	
-			mark_s = false;
-			i++;
-		}
+		check_close_mark(str, &mark_s, &mark_d, &i);
 		if (str[i] == '\0')
 			copy_to_word(str, &i, &j, element);
 	}
