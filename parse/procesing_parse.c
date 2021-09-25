@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/24 18:53:19 by tommy            ###   ########.fr       */
+/*   Updated: 2021/09/25 17:09:48 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,62 @@ void	clean_element(t_element *element)
 		p_elem = p_elem->next;
 	}
 	//split_pipes(element);
+}
+//asig value to t_element->type in function of type bash's element
+//need reevaluate list becouse some type depend of previos valude in the list
+//(ej. <,< <<
+void	pre_procesing(t_element *element)
+{
+	t_element	*p_elem;
+
+	p_elem = element;
+	while (p_elem)
+	{
+		if (p_elem->str[0] == '"')
+			p_elem->type = 'S';
+		else if (p_elem->str[0] == 39)
+			p_elem->type = 'S';
+		else if (p_elem->str[0] == '<')
+		{
+			if (p_elem->next != NULL && p_elem->next->str[0] == '<')
+				p_elem->type = 'H';
+			else
+				p_elem->type = 'I';
+		}
+		else if (p_elem->str[0] == '>')
+		{
+			if (p_elem->next != NULL && p_elem->next->str[0] == '>')
+				p_elem->type = 'T';
+			else	
+				p_elem->type = 'O';
+		}
+		else if (p_elem->str[0] == '|')
+			p_elem->type = 'P';
+		else  
+			p_elem->type = 'C';
+		p_elem = p_elem->next;
+	}
+}
+
+void	post_procesing(t_element *element)
+{
+	t_element	*p_elem;
+
+	p_elem = element;
+	while (p_elem)
+	{
+		if (p_elem->prev != NULL && p_elem->prev->type == 'T')
+		{
+			if (p_elem->type == '>')
+				p_elem->type = 'X';
+		}
+		if (p_elem->prev != NULL && p_elem->prev->type == 'H')
+		{
+			if (p_elem->type == '<')
+				p_elem->type = 'X';
+		}
+		p_elem = p_elem->next;
+	}
 }
 
 /*void	split_pipes(t_element *element)

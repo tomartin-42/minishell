@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 15:12:24 by tommy             #+#    #+#             */
-/*   Updated: 2021/09/25 11:30:42 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/25 16:46:15 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,5 @@ void	main_parse(char *str, t_element *element)
 			copy_to_word(str, &mk.i, &mk.j, element);
 	}
 	clean_element(element);
+	pre_procesing(element);
 }

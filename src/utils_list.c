@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 21:08:34 by tommy             #+#    #+#             */
-/*   Updated: 2021/09/24 18:01:50 by tommy            ###   ########.fr       */
+/*   Updated: 2021/09/25 16:49:34 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_lstadd_back(t_element **lst, t_element *new)
 	if (!lst)
 		return ;
 	(ft_lstlast(*lst))->next = new;
+	new->prev = (ft_lstlast(*lst));
 }
 
 void	print_list(t_element *element)
@@ -40,7 +41,11 @@ void	print_list(t_element *element)
 	while (element->next)
 	{
 		printf("[%s]\n", element->str);
+		printf("type -> [%c]\n", element->type);
+		printf("==================================\n");
 		element = element->next;
 	}
 		printf("[%s]\n", element->str);
+		printf("type -> [%c]\n", element->type);
+		printf("==================================\n");
 }

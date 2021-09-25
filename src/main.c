@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/25 12:58:21 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/25 16:50:24 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	main(int argc, char **argv, char **env)
 		if (ft_strlen(line) != 0)
 		{
 			element = malloc(sizeof(t_element));
-			element->next = NULL;// we might need to use a prev pointer
+			element->next = NULL;
+			element->prev = NULL;
 			element->str = ft_strdup(line);
 			add_history(line);
 			copy_to_g_env(env);
