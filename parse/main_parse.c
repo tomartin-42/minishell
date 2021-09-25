@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 15:12:24 by tommy             #+#    #+#             */
-/*   Updated: 2021/09/25 11:18:51 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/25 11:30:42 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,35 +62,38 @@ static void	check_close_mark(char *str, bool *mark_s, bool *mark_d, int *i)
 	}
 }
 
+static void	ini_var(t_mark *mark)
+{
+	mark->mark_s = false;
+	mark->mark_d = false;
+	mark->i = 0;
+	mark->j = 0;
+}
+
 void	main_parse(char *str, t_element *element)
 {
-	bool	mark_s;
-	bool	mark_d;
-	int		i;
-	int		j;
+	t_mark	mk;
 
-	mark_s = false;
-	mark_d = false;
-	i = 0;
-	j = 0;
-	while (str[i])
+	ini_var(&mk);
+	while (str[mk.i])
 	{
-		check_open_mark(str, &mark_s, &mark_d, &i);
-		if (ft_strchr("|<> ", str[i]) && mark_d == false && mark_s == false)
+		check_open_mark(str, &mk.mark_s, &mk.mark_d, &mk.i);
+		if (ft_strchr("|<> ", str[mk.i]) && mk.mark_d == false
+			&& mk.mark_s == false)
 		{	
-			if (ft_strchr("|<>", str[i]))
+			if (ft_strchr("|<>", str[mk.i]))
 			{
-				i--;
-				copy_to_word(str, &i, &j, element);
-				i++;
+				mk.i--;
+				copy_to_word(str, &mk.i, &mk.j, element);
+				mk.i++;
 			}
-			copy_to_word(str, &i, &j, element);
+			copy_to_word(str, &mk.i, &mk.j, element);
 		}
-		if (str[i] != '\0')
-			i++;
-		check_close_mark(str, &mark_s, &mark_d, &i);
-		if (str[i] == '\0')
-			copy_to_word(str, &i, &j, element);
+		if (str[mk.i] != '\0')
+			mk.i++;
+		check_close_mark(str, &mk.mark_s, &mk.mark_d, &mk.i);
+		if (str[mk.i] == '\0')
+			copy_to_word(str, &mk.i, &mk.j, element);
 	}
 	clean_element(element);
 }
