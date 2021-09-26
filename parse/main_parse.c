@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 15:12:24 by tommy             #+#    #+#             */
-/*   Updated: 2021/09/25 20:52:26 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/26 13:33:06 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	check_close_mark(char *str, bool *mark_s, bool *mark_d, int *i)
 		*i += 1;
 	}
 }
-
+/*
 static void	add_trunc(t_element *element, int *i, int *j)
 {	
 	t_element	*new;
@@ -90,7 +90,7 @@ static void	add_herd(t_element *element, int *i, int *j)
 	*j += 2;
 	*i += 2;
 	ft_lstadd_back(&element, new);
-}
+}*/
 
 static void	ini_var(t_mark *mark)
 {
@@ -113,7 +113,7 @@ void	main_parse(char *str, t_element *element)
 		{	
 			if (ft_strchr("|<>", str[mk.i]))
 			{
-				if (str[mk.i + 1] != '\0' && str[mk.i] == '<' && str[mk.i + 1] == '<')
+		/*		if (str[mk.i + 1] != '\0' && str[mk.i] == '<' && str[mk.i + 1] == '<')
 				{
 					copy_to_word(str, &mk.i, &mk.j, element);
 					add_trunc(element, &mk.i, &mk.j);//añade <<
@@ -122,7 +122,7 @@ void	main_parse(char *str, t_element *element)
 				{
 					copy_to_word(str, &mk.i, &mk.j, element);
 					add_herd(element, &mk.i, &mk.j);
-				}
+				}*/
 				mk.i--;
 				copy_to_word(str, &mk.i, &mk.j, element);
 				mk.i++;
@@ -137,5 +137,6 @@ void	main_parse(char *str, t_element *element)
 	}
 	clean_element(element);
 	pre_procesing(element);
-	post_procesing(element);
+//	post_procesing(element);
+	ft_lst_del_all_x(element);
 }

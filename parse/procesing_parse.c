@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/25 19:51:08 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/26 14:02:53 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 	while (p_aux)
 	{
 		if (ft_strlen(p_aux->str) == 0);
-
 		free(p_elem->str);
 		p_elem->str = ft_strdup(aux);
 		free(aux);
@@ -57,14 +56,36 @@ void	pre_procesing(t_element *element)
 	p_elem = element;
 	while (p_elem)
 	{
-		if (p_elem->str[0] == '"')
+		if (p_elem->type == 'X' || p_elem->type == 'G')
+			;
+		else if (p_elem->str[0] == '"')
 			p_elem->type = 'S';
 		else if (p_elem->str[0] == 39)
 			p_elem->type = 'S';
 		else if (p_elem->str[0] == '<')
-			p_elem->type = 'I';
+		{
+			if (p_elem->next != NULL && p_elem->next->str[0] == '<')
+			{
+				free(p_elem->str);
+				p_elem->str = ft_strdup("<<");
+				p_elem->type = 'H';
+				p_elem->next->type = 'X';
+			}
+			else
+				p_elem->type = 'I';
+		}
 		else if (p_elem->str[0] == '>')
-			p_elem->type = 'T';
+		{
+			if (p_elem->next != NULL && p_elem->next->str[0] == '>')
+			{
+				free(p_elem->str);
+				p_elem->str = ft_strdup(">>");
+				p_elem->type = 'T';
+				p_elem->next->type = 'X';
+			}
+			else
+				p_elem->type = 'I';
+		}
 		else if (p_elem->str[0] == '|')
 			p_elem->type = 'P';
 		else  
@@ -73,7 +94,7 @@ void	pre_procesing(t_element *element)
 	}
 }
 
-void	post_procesing(t_element *element)
+/*void	post_procesing(t_element *element)
 {
 	t_element	*p_elem;
 
@@ -83,7 +104,6 @@ void	post_procesing(t_element *element)
 		if (p_elem->prev != NULL && p_elem->prev->type == 'T')
 		{
 		printf("%c\n",p_elem->prev->type); 
-			printf("HOLA\n");
 			if (p_elem->type == '>')
 				p_elem->type = 'X';
 		}
@@ -94,7 +114,7 @@ void	post_procesing(t_element *element)
 		}
 		p_elem = p_elem->next;
 	}
-}
+}*/
 
 /*void	split_pipes(t_element *element)
 {

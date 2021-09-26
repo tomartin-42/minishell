@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/25 20:30:32 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/26 13:33:29 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
  * T = Trunc
  * H = HereDoc
  * X = Delete Node
+ * G = All line
  * ======================================================================*/
 
 #ifndef MINISHELL_H
@@ -45,6 +46,7 @@ void		main_parse(char *str, t_element *element);
 t_element	*ft_lstlast(t_element *lst);
 void		ft_lstadd_back(t_element **lst, t_element *new);
 void		print_list(t_element *element);
+void		ft_lst_del_all_x(t_element *elemnt);
 
 typedef struct s_string
 {
