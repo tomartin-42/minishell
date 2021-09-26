@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 21:08:34 by tommy             #+#    #+#             */
-/*   Updated: 2021/09/26 13:20:45 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/26 15:23:09 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ void	ft_lstadd_back(t_element **lst, t_element *new)
 	(ft_lstlast(*lst))->next = new;
 }
 
+static void	reorder_list(t_element *p_elem)
+{
+	p_elem->next->prev = p_elem->prev;
+	p_elem->prev->next = p_elem->next;
+}
+
 void	ft_lst_del_all_x(t_element *element)
 {
 	t_element	*p_elem;
@@ -43,7 +49,7 @@ void	ft_lst_del_all_x(t_element *element)
 
 	p_elem = element;
 	p_aux = NULL;
-	while(p_elem)
+	while (p_elem)
 	{
 		if (p_elem->type == 'X')
 		{
@@ -51,10 +57,7 @@ void	ft_lst_del_all_x(t_element *element)
 			if (p_elem->next == NULL)
 				p_elem->prev->next = NULL;
 			else
-			{
-				p_elem->next->prev = p_elem->prev;
-				p_elem->prev->next = p_elem->next;
-			}
+				reorder_list(p_elem);
 		}
 		p_elem = p_elem->next;
 		if (p_aux != NULL)
@@ -75,7 +78,7 @@ void	print_list(t_element *element)
 		printf("==================================\n");
 		element = element->next;
 	}
-		printf("[%s]\n", element->str);
-		printf("type -> [%c]\n", element->type);
-		printf("==================================\n");
+	printf("[%s]\n", element->str);
+	printf("type -> [%c]\n", element->type);
+	printf("==================================\n");
 }

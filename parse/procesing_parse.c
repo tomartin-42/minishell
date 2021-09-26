@@ -3,31 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   procesing_parse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/26 14:06:56 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/26 15:44:57 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
-
-/*static void	clean_empy_nodes(t_element *element)
-{
-	t_element *p_aux;
-	
-	p_aux = element;
-	while (p_aux)
-	{
-		if (ft_strlen(p_aux->str) == 0);
-		free(p_elem->str);
-		p_elem->str = ft_strdup(aux);
-		free(aux);
-		p_aux = p_aux->next;
-	}
-	
-
-}*/
 
 //clean up spaces of element
 void	clean_element(t_element *element)
@@ -44,11 +27,37 @@ void	clean_element(t_element *element)
 		free(aux);
 		p_elem = p_elem->next;
 	}
-	//split_pipes(element);
 }
+
+static void	change_heredoc(t_element *p_elem)
+{
+	if (p_elem->next != NULL && p_elem->next->str[0] == '<')
+	{
+		free(p_elem->str);
+		p_elem->str = ft_strdup("<<");
+		p_elem->type = 'H';
+		p_elem->next->type = 'X';
+	}			
+	else
+		p_elem->type = 'I';
+}
+
+static void	change_truck(t_element *p_elem)
+{
+	if (p_elem->next != NULL && p_elem->next->str[0] == '>')
+	{	
+		free(p_elem->str);
+		p_elem->str = ft_strdup(">>");
+		p_elem->type = 'T';
+		p_elem->next->type = 'X';
+	}
+	else
+		p_elem->type = 'O';
+}
+
 //asig value to t_element->type in function of type bash's element
-//need reevaluate list becouse some type depend of previos valude in the list
-//(ej. <,< <<
+//need reevaluate list because some type depend of previos valude in the list
+//(ej. <,< <<)
 void	pre_procesing(t_element *element)
 {
 	t_element	*p_elem;
@@ -63,102 +72,13 @@ void	pre_procesing(t_element *element)
 		else if (p_elem->str[0] == 39)
 			p_elem->type = 'S';
 		else if (p_elem->str[0] == '<')
-		{
-			if (p_elem->next != NULL && p_elem->next->str[0] == '<')
-			{
-				free(p_elem->str);
-				p_elem->str = ft_strdup("<<");
-				p_elem->type = 'H';
-				p_elem->next->type = 'X';
-			}
-			else
-				p_elem->type = 'I';
-		}
+			change_heredoc(p_elem);
 		else if (p_elem->str[0] == '>')
-		{
-			if (p_elem->next != NULL && p_elem->next->str[0] == '>')
-			{
-				free(p_elem->str);
-				p_elem->str = ft_strdup(">>");
-				p_elem->type = 'T';
-				p_elem->next->type = 'X';
-			}
-			else
-				p_elem->type = 'O';
-		}
+			change_truck(p_elem);
 		else if (p_elem->str[0] == '|')
 			p_elem->type = 'P';
-		else  
+		else
 			p_elem->type = 'C';
 		p_elem = p_elem->next;
 	}
 }
-
-/*void	post_procesing(t_element *element)
-{
-	t_element	*p_elem;
-
-	p_elem = element;
-	while (p_elem)
-	{
-		if (p_elem->prev != NULL && p_elem->prev->type == 'T')
-		{
-		printf("%c\n",p_elem->prev->type); 
-			if (p_elem->type == '>')
-				p_elem->type = 'X';
-		}
-		if (p_elem->prev != NULL && p_elem->prev->type == 'H')
-		{
-			if (p_elem->type == '<')
-				p_elem->type = 'X';
-		}
-		p_elem = p_elem->next;
-	}
-}*/
-
-/*void	split_pipes(t_element *element)
-{
-	char	mark;
-	int		i;
-	t_element	*p_elem;
-
-	i = 0;
-	mark = 'f';
-	p_elem = element;
-	while (p_elem)
-	{
-		//while (p_elem->str[i] != '\0')
-		while (i < (int)ft_strlen(p_elem->str))
-		{
-			if ((mark == 'f') && p_elem->str[i] == '"')
-			{
-				mark = 'd';
-				i++;
-			}
-			else if ((mark == 'f') && p_elem->str[i] == 39)
-			{
-				mark = 's';
-				i++;
-			}
-			//if (p_elem->str[i] == '|' && mark == 'f')
-			//	printf("pipe %d\n", i);	
-			if (p_elem->str[i] !='\0')
-			{
-				i++;
-			//	printf("%d**%c [%c]\n", i, mark, p_elem->str[i]);
-			}
-			if ((mark == 'd') && p_elem->str[i] == '"')
-			{
-				mark = 'f';
-				i++;
-			}
-			else if ((mark == 's') && p_elem->str[i] == 39)
-			{
-				mark = 'f';
-				i++;
-			}
-		//	printf("*  %d**%c\n", i, mark);
-		}
-		p_elem = p_elem->next;
-	}
-}*/	
