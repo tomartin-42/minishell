@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/26 14:02:53 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/26 14:06:56 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	pre_procesing(t_element *element)
 				p_elem->next->type = 'X';
 			}
 			else
-				p_elem->type = 'I';
+				p_elem->type = 'O';
 		}
 		else if (p_elem->str[0] == '|')
 			p_elem->type = 'P';
