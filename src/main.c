@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/26 13:34:11 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/26 17:50:57 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	main(int argc, char **argv, char **env)
 		free(str);
 		if (ft_strlen(line) != 0)
 		{
+			check_fault_marks(line);
 			element = malloc(sizeof(t_element));
 			element->next = NULL;
 			element->prev = NULL;
