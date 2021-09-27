@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+         #
+#    By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/09/26 16:28:53 by tomartin         ###   ########.fr        #
+#    Updated: 2021/09/27 10:12:12 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ PARSE_DIR= ./parse/
 
 # Source files and object files
 SRC_FILES = main.c utils_list.c
-PARSE_FILES = main_parse.c procesing_parse.c check_error.c
+PARSE_FILES = main_parse.c procesing_parse.c check_error.c parse_operation.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 OBJ_FILES := $(OBJ_FILES) $(PARSE_FILES:.c=.o)

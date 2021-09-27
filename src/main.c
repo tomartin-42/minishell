@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/26 17:50:57 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/27 09:11:39 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, char **argv, char **env)
 			element->type = 'G';
 			add_history(line);
 			copy_to_g_env(env);
-			main_parse(line, element);
+			rutine_parse(line, element);
 			print_list(element);
 			printf("%d - %s - %s\n", argc, argv[0], env[0]);
 		}
