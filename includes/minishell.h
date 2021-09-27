@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/27 10:08:15 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/27 11:29:28 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "libft.h"
-# include "parse.h"
 
 char	**g_env;
 
@@ -44,6 +43,7 @@ typedef struct s_element{
 }	t_element;
 
 void		rutine_parse(char *str, t_element *element);
+int			check_fault_marks(char *str);
 t_element	*ft_lstlast(t_element *lst);
 void		ft_lstadd_back(t_element **lst, t_element *new);
 void		print_list(t_element *element);
