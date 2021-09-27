@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 16:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/26 17:49:57 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/27 11:30:25 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	check_fault_marks(char *str)
 	if (chk.mark_s == true || chk.mark_d == true)
 	{
 		printf("ERROR comillas abiertas\n");
+		//free(str);
 		return (-1);
 	}
 	return (0);
