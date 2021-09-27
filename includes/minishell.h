@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/27 11:29:28 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/27 11:53:55 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,6 @@ t_element	*ft_lstlast(t_element *lst);
 void		ft_lstadd_back(t_element **lst, t_element *new);
 void		print_list(t_element *element);
 void		ft_lst_del_all_x(t_element *elemnt);
+int			ft_access(char *fname);
 
-typedef struct s_string
-{
-	char			*arg;
-	struct s_string	*next;
-	struct s_string	*prev;
-}		t_string;
-
-typedef struct s_input
-{
-	int			argc;
-	char		*str;
-	t_string	string;
-}		t_input;
 #endif
