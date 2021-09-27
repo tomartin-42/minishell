@@ -14,7 +14,8 @@
 
 static void	copy_to_g_env(char **env)
 {
-	int	i;
+	int		i;
+	char	**g_env;
 
 	i = 0;
 	while (env[i])
@@ -53,6 +54,7 @@ int	main(int argc, char **argv, char **env)
 			add_history(line);
 			copy_to_g_env(env);
 			rutine_parse(line, element);
+			hered_main(element);
 			print_list(element);
 			printf("%d - %s - %s\n", argc, argv[0], env[0]);
 		}

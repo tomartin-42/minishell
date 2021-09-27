@@ -32,8 +32,6 @@
 # include <readline/history.h>
 # include "libft.h"
 
-char	**g_env;
-
 typedef struct s_element{
 	char				*str;
 	char				*arg;
@@ -50,4 +48,5 @@ void		print_list(t_element *element);
 void		ft_lst_del_all_x(t_element *elemnt);
 int			ft_access(char *fname);
 
+int			hered_main(t_element *element);
 #endif
