@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_super_strjoin.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 19:39:22 by tomartin          #+#    #+#             */
-/*   Updated: 2021/05/30 19:39:25 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/28 18:35:55 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static void	free_str_join(const char *s1, const char *s2, int str_free)
+static void	gestion_free(char *s1, char *s2, int str_free)
 {
-	if (free == 0)
+	if (str_free == 0)
 		;
 	else if (str_free == 1)
 		free(s1);
@@ -26,10 +25,12 @@ static void	free_str_join(const char *s1, const char *s2, int str_free)
 		free(s2);
 	}
 }
-
-//strjoin modified add funtion free. if free param is
-//0 (not free), 1 (free s1), 2 (free s2), 3 (free s1 and s2)
-char	*ft_super_strjoin(char const *s1, char const *s2, int str_free)
+// Implementation ft_split plus add free()
+// if str_free = 0 (no free)
+// str_free = 1 (free s1)
+// str_free = 2 (free s2)
+// str_free = 3 (free s1 and s2)
+char	*ft_super_strjoin(char *s1, char *s2, int str_free)
 {
 	int		i;
 	int		j;
@@ -51,6 +52,6 @@ char	*ft_super_strjoin(char const *s1, char const *s2, int str_free)
 	while (s2[i] != '\0')
 		p[j++] = s2[i++];
 	p[j] = '\0';
-	free_str_join(s1, s2, str_free);
+	gestion_free(s1, s2, str_free);
 	return (p);
 }

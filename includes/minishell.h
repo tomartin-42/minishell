@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/27 11:53:55 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/28 10:29:05 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "libft.h"
@@ -36,6 +37,7 @@ typedef struct s_element{
 	char				*str;
 	char				*arg;
 	char				type;
+	int					fd;
 	struct s_element	*next;
 	struct s_element	*prev;
 }	t_element;
