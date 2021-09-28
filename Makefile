@@ -6,7 +6,7 @@
 #    By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/09/27 10:12:12 by tomartin         ###   ########.fr        #
+#    Updated: 2021/09/28 07:37:52 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,18 +24,22 @@ SRC_DIR = ./src/
 OBJ_DIR = ./obj/
 INC_DIR = ./includes/
 PARSE_DIR= ./parse/
+HERED_DIR= ./hered/
 
 # Source files and object files
 SRC_FILES = main.c utils_list.c
 PARSE_FILES = main_parse.c procesing_parse.c check_error.c parse_operation.c
+HERED_FILES = main_hered.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 OBJ_FILES := $(OBJ_FILES) $(PARSE_FILES:.c=.o)
+OBJ_FILES := $(OBJ_FILES) $(HERED_FILES:.c=.o)
 
 # Paths
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 PARSE = $(addprefix $(PARSE_DIR), $(PARSE_FILES))
+HERED = $(addprefix $(HERED_DIR), $(HERED_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 # Libft linkers
@@ -47,9 +51,11 @@ all: obj $(LIBFT) $(NAME)
 obj:
 	@mkdir -p $(OBJ_DIR)
  
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c 
+	@gcc $(FLAGS) $(F_RL) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ -c $<
 $(OBJ_DIR)%.o: $(PARSE_DIR)%.c 
 	@gcc $(FLAGS) $(F_RL) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ -c $<
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c 
+$(OBJ_DIR)%.o: $(HERED_DIR)%.c 
 	@gcc $(FLAGS) $(F_RL) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ -c $<
 
 $(LIBFT):

@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 18:42:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/08/08 18:42:18 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/28 08:29:59 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int			ft_tolower(int c);
 char		*ft_strdup(const char *s);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_super_strjoin(char *s1, char *s2, int str_free);
 char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(char const *s, char c);
 char		**ft_super_split(char const *s, char c);
