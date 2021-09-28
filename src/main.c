@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/28 07:38:29 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/28 20:55:57 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"							
+#include "minishell.h"
+#include "hered.h"
+#include "parse.h"
 
 static void	copy_to_g_env(char **env)
 {
@@ -54,7 +56,7 @@ int	main(int argc, char **argv, char **env)
 			add_history(line);
 			copy_to_g_env(env);
 			rutine_parse(line, element);
-			hered_main(element);
+			main_hered(element);
 			print_list(element);
 			printf("%d - %s - %s\n", argc, argv[0], env[0]);
 		}
