@@ -32,6 +32,7 @@ SRC = ft_memset.c \
 		ft_strtrim.c \
 		ft_split.c \
 		ft_super_split.c \
+		ft_super_split.c \
 		ft_itoa.c \
 		ft_strmapi.c \
 		ft_putchar_fd.c \

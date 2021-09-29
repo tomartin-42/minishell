@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hered.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 07:39:50 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/28 08:05:56 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/28 20:53:52 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 
 # include "minishell.h"
 
+void	main_hered(t_element *element);
 
 #endif

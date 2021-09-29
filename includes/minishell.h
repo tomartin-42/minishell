@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/28 10:29:05 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/28 20:55:26 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@
 # include <readline/history.h>
 # include "libft.h"
 
-char	**g_env;
-
 typedef struct s_element{
 	char				*str;
 	char				*arg;
@@ -44,8 +42,6 @@ typedef struct s_element{
 	struct s_element	*prev;
 }	t_element;
 
-void		rutine_parse(char *str, t_element *element);
-int			check_fault_marks(char *str);
 t_element	*ft_lstlast(t_element *lst);
 void		ft_lstadd_back(t_element **lst, t_element *new);
 void		print_list(t_element *element);
