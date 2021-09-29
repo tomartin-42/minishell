@@ -1,0 +1,3 @@
+command "string" > "File"
+buenas "'hola'que " > fil"e"
+buenas "'hola'que " >> fil"e"
