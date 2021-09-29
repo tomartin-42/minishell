@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/28 20:55:26 by tommy            ###   ########.fr       */
+/*   Updated: 2021/09/29 10:23:30 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 
 typedef struct s_element{
 	char				*str;
-	char				*arg;
+	char				**arg;
 	char				type;
 	int					fd;
 	struct s_element	*next;

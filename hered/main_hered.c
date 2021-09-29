@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 08:12:14 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/28 20:52:21 by tommy            ###   ########.fr       */
+/*   Updated: 2021/09/29 07:34:51 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void main_hered(t_element *element)
 		{
 			printf("HOLA\n");
 			write (h_fd[1], h_str, ft_strlen(h_str));
+			write (h_fd[1], "\n", 1);
 			free(h_str);
 		}
 	}
