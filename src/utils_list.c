@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
+/*   by: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/23 21:08:34 by tommy             #+#    #+#             */
-/*   Updated: 2021/09/26 15:23:09 by tomartin         ###   ########.fr       */
+/*   created: 2021/09/23 21:08:34 by tommy             #+#    #+#             */
+/*   updated: 2021/09/26 15:23:09 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_lst_del_all_x(t_element *element)
 	p_aux = NULL;
 	while (p_elem)
 	{
-		if (p_elem->type == 'X')
+		if (p_elem->type == 'x')
 		{
 			p_aux = p_elem;
 			if (p_elem->next == NULL)

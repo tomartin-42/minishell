@@ -13,25 +13,15 @@
 #include "minishell.h"
 #include "hered.h"
 #include "parse.h"
-
+//This function initialice and copy the env var to list 
+//(m_env)
 static void	copy_to_g_env(char **env)
 {
-	int		i;
-	char	**g_env;
+	t_env	*m_env;
 
-	i = 0;
-	while (env[i])
-		i++;
-	i++;
-	g_env = (char **)malloc(sizeof(char *) * i);
-	i = 0;
-	while (env[i])
-	{
-		g_env[i] = ft_strdup(env[i]);
-		i++;
-	}
-	g_env[i] = NULL;
-	i = 0;
+	m_env = malloc (sizeof(t_env));
+	init_env_list(m_env);
+	copy_env_to_list(m_env, env);
 }
 
 int	main(int argc, char **argv, char **env)

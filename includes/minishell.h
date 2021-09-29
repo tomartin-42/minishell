@@ -34,9 +34,10 @@
 # include "libft.h"
 
 typedef struct s_env{
-	char			**g_env;
-	char			**l_env;
+	char			*v_env;
+	bool			global;
 	struct s_env	*next;
+	struct s_env	*prev;
 } t_env;
 
 typedef struct s_element{
@@ -58,5 +59,10 @@ void		ft_lstadd_back(t_element **lst, t_element *new);
 void		print_list(t_element *element);
 void		ft_lst_del_all_x(t_element *elemnt);
 int			ft_access(char *fname);
+void		init_env_list(t_env *m_env);
+t_env		*ft_lstlast_env(t_env *lst);
+void		ft_lstadd_back_env(t_env **env, t_env *new);
+void		copy_env_to_list(t_env *m_env, char **env);
 
+void print_env(t_env *env);
 #endif
