@@ -56,7 +56,6 @@ int	main(int argc, char **argv, char **env)
 			add_history(line);
 			copy_to_g_env(env);
 			rutine_parse(line, element);
-			main_hered(element);
 			print_list(element);
 			printf("%d - %s - %s\n", argc, argv[0], env[0]);
 		}

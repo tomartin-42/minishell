@@ -33,13 +33,10 @@
 # include <readline/history.h>
 # include "libft.h"
 
-struct	s_env;
-struct	s_element;
-struct	s_plist;
-
 typedef struct s_env{
-	char	**g_env;
-	char	**l_env;
+	char			**g_env;
+	char			**l_env;
+	struct s_env	*next;
 } t_env;
 
 typedef struct s_element{
@@ -52,11 +49,9 @@ typedef struct s_element{
 }	t_element;
 
 typedef struct	s_plist{
-	t_env	*p_env;
+	t_env		*p_env;
 	t_element	*p_element;
 }	t_plist;
-
-t_list	*g_list;
 
 t_element	*ft_lstlast(t_element *lst);
 void		ft_lstadd_back(t_element **lst, t_element *new);

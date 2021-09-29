@@ -50,7 +50,7 @@ OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 LNK = -L $(LIBFT_DIR) -lft
 
 # all rule
-ll: obj $(LIBFT) $(NAME)
+all: obj $(LIBFT) $(NAME)
 
 obj:
 	@mkdir -p $(OBJ_DIR)

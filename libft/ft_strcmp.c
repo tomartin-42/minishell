@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_export.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 11:14:34 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/29 11:42:52 by tomartin         ###   ########.fr       */
+/*   Created: 2021/04/24 09:05:17 by tomartin          #+#    #+#             */
+/*   Updated: 2021/05/27 11:03:40 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "minishell.h"
-
-void	ft_export(t_env *env, t_element *element)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	env = env;
+	int	res;
 
-	if (ft_strlen(element->arg[0]))
-		printf(" "); // codigo para pasar una variable statica a global
-	else
-		printf(" ");
-
+	res = 0;
+	while ((*s1 || *s2))
+	{
+		res = (unsigned char)*s1 - (unsigned char)*s2;
+		if (res != 0)
+			return (res);
+		s1++;
+		s2++;
+	}
+	return (res);
 }
 
