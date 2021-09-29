@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 08:32:00 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/29 10:40:56 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/29 11:14:18 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_env(char **g_env)
 		i++;
 	}
 }
-
+// Build echo
 void	ft_echo(t_element *element)
 {
 	int		i;

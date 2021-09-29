@@ -6,7 +6,7 @@
 #    By: tommy <tommy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/09/29 08:42:46 by tomartin         ###   ########.fr        #
+#    Updated: 2021/09/29 11:19:43 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ BUILD_DIR = ./build/
 SRC_FILES = main.c utils_list.c
 PARSE_FILES = main_parse.c procesing_parse.c check_error.c parse_operation.c
 HERED_FILES = main_hered.c
-BUILD_FILES = main_build.c
+BUILD_FILES = main_build.c ft_export.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 OBJ_FILES := $(OBJ_FILES) $(PARSE_FILES:.c=.o)

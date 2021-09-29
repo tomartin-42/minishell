@@ -1,5 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
+/* ************************************************************************** */ /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main_hered.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -13,16 +12,15 @@
 #include "hered.h"
 
 void main_hered(t_element *element)
-{
-	char	*h_str;
+{ char	*h_str;
 	int		h_fd[2];
 
 	pipe (h_fd);
 	while (1)
 	{
 		h_str = readline("> ");
-		if (!ft_strncmp(element->arg, h_str, ft_strlen(element->arg)) &&
-			ft_strlen(element->arg) == ft_strlen(h_str))
+		if (!ft_strncmp(*element->arg, h_str, ft_strlen(*element->arg)) &&
+			ft_strlen(*element->arg) == ft_strlen(h_str))
 		{
 			free(h_str);
 			break ;

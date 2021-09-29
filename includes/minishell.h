@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/29 10:23:30 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/29 11:34:19 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@
 # include <readline/history.h>
 # include "libft.h"
 
+struct	s_env;
+struct	s_element;
+struct	s_plist;
+
+typedef struct s_env{
+	char	**g_env;
+	char	**l_env;
+} t_env;
+
 typedef struct s_element{
 	char				*str;
 	char				**arg;
@@ -41,6 +50,13 @@ typedef struct s_element{
 	struct s_element	*next;
 	struct s_element	*prev;
 }	t_element;
+
+typedef struct	s_plist{
+	t_env	*p_env;
+	t_element	*p_element;
+}	t_plist;
+
+t_list	*g_list;
 
 t_element	*ft_lstlast(t_element *lst);
 void		ft_lstadd_back(t_element **lst, t_element *new);
