@@ -22,6 +22,7 @@ static void	copy_to_g_env(char **env)
 	m_env = malloc (sizeof(t_env));
 	init_env_list(m_env);
 	copy_env_to_list(m_env, env);
+//	print_env(m_env);
 }
 
 int	main(int argc, char **argv, char **env)

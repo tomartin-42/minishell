@@ -29,30 +29,30 @@ void	ft_lstadd_back_env(t_env **env, t_env *new)
 		return ;
 	new->prev = (ft_lstlast_env(*env));
 	(ft_lstlast_env(*env))->next = new;
+	printf ("%p\n", new->next);
+	printf ("%p\n", new->prev);
 }
 
 // Copy env var and add nodes to the m_emv list 
-void	copy_env_to_list(t_env *m_emv, char **env)
+void	copy_env_to_list(t_env *m_env, char **env)
 {
 	int		i;
 	t_env	*new;
 	
+	m_env = m_env,
 	i = 0;
 	while (env[i] != NULL)
 	{
 		new = malloc(sizeof(t_env));
+	//	printf("-----%s-----\n", env[i]);
 		new->v_env = ft_strdup(env[i]);
-		printf("**%s**\n", new->v_env);
 		new->global = true;
 		new->next = NULL;
-		ft_lstadd_back_env(&m_emv, new);
+		ft_lstadd_back_env(&m_env, new);
+		free(new->v_env);
+	//	free(new);
+		new = NULL;
 		i++;
-		if (new != NULL)
-		{
-			free(new->v_env);
-			//free(new);
-			new = NULL;
-		}
 	}
 }
 
@@ -60,7 +60,6 @@ void print_env(t_env *env)
 {
 	while (env->next != NULL)
 	{
-		printf("HOLA\n");
 		printf("[%s]\n", env->v_env);
 		printf("==================================\n");
 		env = env->next;
