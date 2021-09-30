@@ -18,7 +18,7 @@
 void	ft_pwd(char **g_env);
 void	ft_env(char **g_env);
 void	ft_echo(t_element *element);
-void	ft_export(t_env *env);
-
+//void	ft_export(t_env *env);
+void	prueba(t_env *env);
 #endif
 

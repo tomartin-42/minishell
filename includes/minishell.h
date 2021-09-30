@@ -57,7 +57,7 @@ typedef struct	s_plist{
 	t_element	*p_element;
 }	t_plist;
 
-extern t_plist	g_plist;
+extern t_plist	*g_plist;
 
 t_element	*ft_lstlast(t_element *lst);
 void		ft_lstadd_back(t_element **lst, t_element *new);
@@ -65,5 +65,4 @@ void		print_list(t_element *element);
 void		ft_lst_del_all_x(t_element *elemnt);
 int			ft_access(char *fname);
 
-void print_env(t_env *env);
 #endif

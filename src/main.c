@@ -24,6 +24,7 @@ static void	copy_env(char **env)
 	while(env[i])
 		i++;
 	m_env = malloc(sizeof(t_env) * i);
+//	g_plist->p_env = m_env;
 	i = 0;
 	while (env[i])
 	{
@@ -50,6 +51,7 @@ int	main(int argc, char **argv, char **env)
 		{
 			check_fault_marks(line);
 			element = malloc(sizeof(t_element));
+			//g_plist->p_element = element;
 			element->next = NULL;
 			element->prev = NULL;
 			element->str = ft_strdup(line);
