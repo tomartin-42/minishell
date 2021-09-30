@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 17:19:00 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/09/30 17:28:51 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/09/30 18:01:01 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	check_env(t_element *element)
 void	arg_token(t_element *element)
 {
 	if (element->type != 'T' && element->type != 'O' && element->type != 'I'
-		&& element->type != 'H')
+		&& element->type != 'H' && element->type != 'P')
 	{
 		element->type = 'A';
 	}
