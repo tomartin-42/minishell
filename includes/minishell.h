@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/27 11:29:28 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/30 16:51:12 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
  * H = HereDoc
  * X = Delete Node
  * G = All line
+ * F = File
+ * A = Argument
+ * E = ENV VARIABLE
  * ======================================================================*/
 
 #ifndef MINISHELL_H

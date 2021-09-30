@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+         #
+#    By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/09/27 10:12:12 by tomartin         ###   ########.fr        #
+#    Updated: 2021/09/30 17:26:04 by dpuente-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,19 +24,22 @@ SRC_DIR = ./src/
 OBJ_DIR = ./obj/
 INC_DIR = ./includes/
 PARSE_DIR= ./parse/
+ERRORS_DIR=./errors/
 
 # Source files and object files
 SRC_FILES = main.c utils_list.c
-PARSE_FILES = main_parse.c procesing_parse.c check_error.c parse_operation.c
+PARSE_FILES = main_parse.c procesing_parse.c parse_operation.c sec_parse_proc.c
+ERRORS_FILES = check_error.c errors.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
-OBJ_FILES := $(OBJ_FILES) $(PARSE_FILES:.c=.o)
+OBJ_FILES := $(OBJ_FILES) $(PARSE_FILES:.c=.o) $(ERRORS_FILES:.c=.o)
 
 # Paths
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 PARSE = $(addprefix $(PARSE_DIR), $(PARSE_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
+ERROR = $(addprefix $(ERRORS_FILES), $(ERRORS_FILES))
 
 # Libft linkers
 LNK = -L $(LIBFT_DIR) -lft
@@ -46,7 +49,9 @@ all: obj $(LIBFT) $(NAME)
 
 obj:
 	@mkdir -p $(OBJ_DIR)
- 
+
+$(OBJ_DIR)%.o: $(ERRORS_DIR)%.c 
+	@gcc $(FLAGS) $(F_RL) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ -c $<
 $(OBJ_DIR)%.o: $(PARSE_DIR)%.c 
 	@gcc $(FLAGS) $(F_RL) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ -c $<
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c 
