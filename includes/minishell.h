@@ -37,8 +37,7 @@ typedef struct s_env{
 	char			*v_env;
 	bool			global;
 	bool			visible;
-	struct s_env	*next;
-	struct s_env	*prev;
+	bool			del;
 } t_env;
 
 typedef struct s_element{
@@ -55,15 +54,13 @@ typedef struct	s_plist{
 	t_element	*p_element;
 }	t_plist;
 
+extern t_plist	g_plist;
+
 t_element	*ft_lstlast(t_element *lst);
 void		ft_lstadd_back(t_element **lst, t_element *new);
 void		print_list(t_element *element);
 void		ft_lst_del_all_x(t_element *elemnt);
 int			ft_access(char *fname);
-t_env		*ft_lstlast_env(t_env *lst);
-void		ft_lstadd_back_env(t_env **env, t_env *new);
-void		copy_env_to_list(t_env *m_env, char **env);
-void		free_first_node_env(t_env *m_env);
 
 void print_env(t_env *env);
 #endif

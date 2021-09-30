@@ -28,7 +28,7 @@ HERED_DIR= ./hered/
 BUILD_DIR = ./build/
 
 # Source files and object files
-SRC_FILES = main.c utils_list.c util_list_env.c
+SRC_FILES = main.c utils_list.c util_env.c
 PARSE_FILES = main_parse.c procesing_parse.c check_error.c parse_operation.c
 HERED_FILES = main_hered.c
 BUILD_FILES = main_build.c ft_export.c

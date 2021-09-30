@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static chat	**cont_visible_v_env(t_env *m_envi, chat **env_list)
+/*static chat	**cont_visible_v_env(t_env *m_envi, chat **env_list)
 {
 	int		i;
 	i = 0;
@@ -44,4 +44,4 @@ void	ft_export(t_env *env, t_element *element)
 		printf(" ");
 	}
 }
-
+*/

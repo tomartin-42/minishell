@@ -15,13 +15,24 @@
 #include "parse.h"
 //This function initialice and copy the env var to list 
 //(m_env)
-static void	copy_to_g_env(char **env)
+static void	copy_env(char **env)
 {
 	t_env	*m_env;
+	int		i;
 
-	m_env = malloc (sizeof(t_env));
-	copy_env_to_list(m_env, env);
-	print_env(m_env);
+	i = 0;
+	while(env[i])
+		i++;
+	m_env = malloc(sizeof(t_env) * i);
+	i = 0;
+	while (env[i])
+	{
+		m_env[i].v_env= ft_strdup(env[i]);
+		m_env[i].global = true;
+		m_env[i].visible = true;
+		m_env[i].del = false;
+		i++;
+	}	
 }
 
 int	main(int argc, char **argv, char **env)
@@ -44,8 +55,8 @@ int	main(int argc, char **argv, char **env)
 			element->str = ft_strdup(line);
 			element->type = 'G';
 			add_history(line);
-			copy_to_g_env(env);
 			rutine_parse(line, element);
+			copy_env(env);
 			print_list(element);
 			printf("%d - %s - %s\n", argc, argv[0], env[0]);
 		}
