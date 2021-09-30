@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/30 08:56:28 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/30 10:15:51 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 typedef struct s_env{
 	char			*v_env;
 	bool			global;
+	bool			visible;
 	struct s_env	*next;
 	struct s_env	*prev;
 } t_env;
@@ -59,7 +60,6 @@ void		ft_lstadd_back(t_element **lst, t_element *new);
 void		print_list(t_element *element);
 void		ft_lst_del_all_x(t_element *elemnt);
 int			ft_access(char *fname);
-//void		init_env_list(t_env *m_env);
 t_env		*ft_lstlast_env(t_env *lst);
 void		ft_lstadd_back_env(t_env **env, t_env *new);
 void		copy_env_to_list(t_env *m_env, char **env);

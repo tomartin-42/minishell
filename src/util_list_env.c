@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 09:51:06 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/30 09:51:09 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/30 12:21:52 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@ void	copy_env_to_list(t_env *m_env, char **env)
 	m_env->prev = NULL;
 	m_env->v_env = ft_strdup(env[0]);
 	m_env->global = true;
+	m_env->visible = true;
 	i++;
 	while (env[i] != NULL)
 	{
 		new = malloc(sizeof(t_env));
 		new->v_env = ft_strdup(env[i]);
 		new->global = true;
+		new->visible = true;
 		new->next = NULL;
 		ft_lstadd_back_env(&m_env, new);
 		new = NULL;
@@ -62,10 +64,10 @@ void	copy_env_to_list(t_env *m_env, char **env)
 
 void print_env(t_env *env)
 {
-	while (env->next) 
+	while (env != NULL) 
 	{
-		printf("[%s]\n", env->v_env);
+		if (env->visible == true)
+			printf("[%s]\n", env->v_env);
 		env = env->next;
 	}
-	printf("[%s]\n", env->v_env);
 }

@@ -6,7 +6,7 @@
 /*   by: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2021/09/23 21:08:34 by tommy             #+#    #+#             */
-/*   updated: 2021/09/26 15:23:09 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/30 10:48:10 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	reorder_list(t_element *p_elem)
 	p_elem->prev->next = p_elem->next;
 }
 
+//Clear all X types of the list.
 void	ft_lst_del_all_x(t_element *element)
 {
 	t_element	*p_elem;
@@ -51,7 +52,7 @@ void	ft_lst_del_all_x(t_element *element)
 	p_aux = NULL;
 	while (p_elem)
 	{
-		if (p_elem->type == 'x')
+		if (p_elem->type == 'X')
 		{
 			p_aux = p_elem;
 			if (p_elem->next == NULL)

@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/30 09:15:26 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/30 10:49:38 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ static void	copy_to_g_env(char **env)
 	t_env	*m_env;
 
 	m_env = malloc (sizeof(t_env));
-//	init_env_list(m_env);
 	copy_env_to_list(m_env, env);
-//	free_first_node_env(m_env);
 	print_env(m_env);
 }
 
@@ -48,7 +46,7 @@ int	main(int argc, char **argv, char **env)
 			add_history(line);
 			copy_to_g_env(env);
 			rutine_parse(line, element);
-			//print_list(element);
+			print_list(element);
 			printf("%d - %s - %s\n", argc, argv[0], env[0]);
 		}
 	}
