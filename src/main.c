@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/27 09:11:39 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/30 17:36:10 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv, char **env)
 
 	while (1)
 	{
-		str = readline("ShellFromHell: > ");
+		str = readline("🔥ShellFromHell🔥: > ");
 		line = ft_strdup(str);
 		free(str);
 		if (ft_strlen(line) != 0)

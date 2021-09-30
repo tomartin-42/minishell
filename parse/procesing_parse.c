@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   procesing_parse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/26 15:44:57 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/30 17:27:15 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void	change_truck(t_element *p_elem)
 //asig value to t_element->type in function of type bash's element
 //need reevaluate list because some type depend of previos valude in the list
 //(ej. <,< <<)
+
 void	pre_procesing(t_element *element)
 {
 	t_element	*p_elem;
@@ -79,6 +80,8 @@ void	pre_procesing(t_element *element)
 			p_elem->type = 'P';
 		else
 			p_elem->type = 'C';
+		sec_procesing(p_elem);
+		check_env(p_elem);
 		p_elem = p_elem->next;
 	}
 }
