@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/30 10:49:38 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/30 19:02:08 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv, char **env)
 
 	while (1)
 	{
-		str = readline("ShellFromHell: > ");
+		str = readline("🔥ShellFromHell🔥: > ");
 		line = ft_strdup(str);
 		free(str);
 		if (ft_strlen(line) != 0)

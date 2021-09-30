@@ -9,7 +9,11 @@ typedef struct s_mark{
 	int		i;
 	int		j;
 }	t_mark;
-
+//sec_parse_proc.c//
+void	check_env(t_element *element);
+void	arg_token(t_element *element);
+void	sec_procesing(t_element *element);
+////////////////////
 void	clean_element(t_element *element);
 void	pre_procesing(t_element *element);
 void	post_procesing(t_element *element);
