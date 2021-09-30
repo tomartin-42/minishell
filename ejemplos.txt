@@ -1,3 +1,11 @@
 command "string" > "File"
-buenas "'hola'que " > fil"e"
-buenas "'hola'que " >> fil"e"
+command "'ar'g " arg > fil"e"
+command "'ar'g " arg >> fil"e"
+hola arg arg "arg" arg > filr
+"comm"and arg "arg" 'arg' >> file || command "arg" arg
+$echo hola
+command arg $env arg
+******************
+pepe=echo
+pepe "hola" -----------------> hola
+******************

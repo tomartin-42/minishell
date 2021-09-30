@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/29 19:19:45 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/09/30 17:27:15 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,6 @@ static void	change_truck(t_element *p_elem)
 //asig value to t_element->type in function of type bash's element
 //need reevaluate list because some type depend of previos valude in the list
 //(ej. <,< <<)
-void	sec_procesing(t_element *element)
-{
-	if (element->prev != NULL)
-	{
-		if (element->prev->type == 'O' && element->type == 'C')
-			element->type = 'F';
-		else if (element->prev->type == 'O' && element->type == 'S')
-			element->type = 'F';
-		else if (element->prev->type == 'T' && element->type == 'C')
-			element->type = 'F';
-		else if (element->prev->type == 'C' && element->type != 'A')
-			element->type = 'A';
-	}
-}
 
 void	pre_procesing(t_element *element)
 {
@@ -95,6 +81,7 @@ void	pre_procesing(t_element *element)
 		else
 			p_elem->type = 'C';
 		sec_procesing(p_elem);
+		check_env(p_elem);
 		p_elem = p_elem->next;
 	}
 }
