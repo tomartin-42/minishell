@@ -1,17 +1,22 @@
-#include "minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   util_list_env.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/30 09:51:06 by tomartin          #+#    #+#             */
+/*   Updated: 2021/09/30 09:51:09 by tomartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	init_env_list(t_env *m_env)
-{
-	m_env->next = NULL;
-	m_env->prev = NULL;
-	m_env->global = true;
-}
+#include "minishell.h"
 
 t_env	*ft_lstlast_env(t_env *lst)
 {
 	if (!lst)
 		return (NULL);
-	while (lst->next)
+	while (lst->next != NULL)
 	{
 		lst = lst->next;
 	}
@@ -29,8 +34,6 @@ void	ft_lstadd_back_env(t_env **env, t_env *new)
 		return ;
 	new->prev = (ft_lstlast_env(*env));
 	(ft_lstlast_env(*env))->next = new;
-	printf ("%p\n", new->next);
-	printf ("%p\n", new->prev);
 }
 
 // Copy env var and add nodes to the m_emv list 
@@ -39,18 +42,19 @@ void	copy_env_to_list(t_env *m_env, char **env)
 	int		i;
 	t_env	*new;
 	
-	m_env = m_env,
 	i = 0;
+	m_env->next = NULL;
+	m_env->prev = NULL;
+	m_env->v_env = ft_strdup(env[0]);
+	m_env->global = true;
+	i++;
 	while (env[i] != NULL)
 	{
 		new = malloc(sizeof(t_env));
-	//	printf("-----%s-----\n", env[i]);
 		new->v_env = ft_strdup(env[i]);
 		new->global = true;
 		new->next = NULL;
 		ft_lstadd_back_env(&m_env, new);
-		free(new->v_env);
-	//	free(new);
 		new = NULL;
 		i++;
 	}
@@ -58,12 +62,10 @@ void	copy_env_to_list(t_env *m_env, char **env)
 
 void print_env(t_env *env)
 {
-	while (env->next != NULL)
+	while (env->next) 
 	{
 		printf("[%s]\n", env->v_env);
-		printf("==================================\n");
 		env = env->next;
 	}
 	printf("[%s]\n", env->v_env);
-	printf("==================================\n");
 }
