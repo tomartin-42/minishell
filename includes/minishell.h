@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/30 19:01:47 by tommy            ###   ########.fr       */
+/*   Updated: 2021/10/01 12:41:25 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,12 @@
 # include "libft.h"
 
 typedef struct s_env{
-	char			*v_env;
-	bool			global;
-	bool			visible;
-	bool			del;
+	char	*v_env;
+	char	**var;	
+	bool	global;
+	bool	visible;
+	bool	end;
+	bool	del;
 } t_env;
 
 typedef struct s_element{
@@ -64,6 +66,7 @@ void		ft_lstadd_back(t_element **lst, t_element *new);
 void		print_list(t_element *element);
 void		ft_lst_del_all_x(t_element *elemnt);
 int			ft_access(char *fname);
+void		add_local_to_env(t_env **m_env, char *new_var);
 
 void print_env(t_env *env);
 #endif
