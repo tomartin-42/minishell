@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/30 17:27:15 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/01 13:55:24 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,42 @@ static void	change_truck(t_element *p_elem)
 //asig value to t_element->type in function of type bash's element
 //need reevaluate list because some type depend of previos valude in the list
 //(ej. <,< <<)
+///////////////////////////////////////////////////////////////
+int	count_args(t_element *element)
+{
+	int	n;
 
+	n = 0;
+	element = element->next;
+	while ((element->type == 'A' || element->type == 'E'
+			|| element->type == '$') && element)
+	{
+		element = element->next;
+		n++;
+	}
+	return (n);
+}
+
+void	add_args(t_element *element)
+{
+	t_element	*p_elem;
+	int			size_arg;
+
+	p_elem = element;
+	size_arg = 0;
+	while (p_elem)
+	{
+		if (p_elem->type == 'C')
+		{
+			size_arg = count_args(element);
+			element->arg = malloc(sizeof(char) * size_arg);
+			printf("--%d--\n\n", size_arg);
+			free(element->arg);
+		}
+		p_elem = p_elem->next;
+	}
+}
+///////////////////////////////////////////////////////////////
 void	pre_procesing(t_element *element)
 {
 	t_element	*p_elem;
@@ -84,4 +119,5 @@ void	pre_procesing(t_element *element)
 		check_env(p_elem);
 		p_elem = p_elem->next;
 	}
+	add_args(element); ///////move to oder function, just temporal
 }

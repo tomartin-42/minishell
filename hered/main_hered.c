@@ -11,7 +11,7 @@
 
 #include "hered.h"
 
-void main_hered(t_element *element)
+void	main_hered(t_element *element)
 { char	*h_str;
 	int		h_fd[2];
 

@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 17:19:00 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/09/30 18:01:01 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/01 11:36:54 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,17 @@ void	check_env(t_element *element)
 	{
 		while (element->str[n] != '\0')
 		{
-			if (element->str[n] == '$' || element->str[n] == '=')
+			if (element->str[n] == '$')
 				value = 1;
+			if (element->str[n] == '=')
+				value = 2;
 			if ((element->type != 'A' || element->type != 'S'
-					|| element->type != 'G') && value == 1)
+					|| element->type != 'G') && value > 0)
 			{
-				if (element->prev->type != 'G')
+				if (element->prev->type != 'G' && value == 2)
 					element->type = 'E';
+				if (element->prev->type != 'G' && value == 1)
+					element->type = '$';
 			}
 			n++;
 		}	
@@ -56,7 +60,7 @@ void	sec_procesing(t_element *element)
 		else if (element->prev->type == 'G' && element->type != 'C')
 			element->type = 'C';
 		else if (element->prev->type == 'C' || element->prev->type == 'A'
-			|| element->prev->type == 'E')
+			|| element->prev->type == 'E' || element->prev->type == '$')
 		{
 			arg_token(element);
 		}

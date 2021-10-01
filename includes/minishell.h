@@ -3,26 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/30 19:01:47 by tommy            ###   ########.fr       */
+/*   Updated: 2021/10/01 11:38:13 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* Table of type char ==================================================
- * C = Comand
+//cambiar env, anadir arg, empezar expandir
+ * C = Comand--
  * P = Pipe
  * S = String
- * I = InputFile
- * O = OutputFile
- * T = Trunc
- * H = HereDoc
+ * I = InputFile--
+ * O = OutputFile--
+ * T = Trunc--
+ * H = HereDoc--
  * X = Delete Node
  * G = All line
  * F = File
  * A = Argument
- * E = ENV VARIABLE
+ * E = ADD VAR
+ * $ = CALL VAR
  * ======================================================================*/
 
 #ifndef MINISHELL_H
@@ -41,7 +43,7 @@ typedef struct s_env{
 	bool			global;
 	bool			visible;
 	bool			del;
-} t_env;
+}	t_env;
 
 typedef struct s_element{
 	char				*str;
@@ -52,7 +54,7 @@ typedef struct s_element{
 	struct s_element	*prev;
 }	t_element;
 
-typedef struct	s_plist{
+typedef struct s_plist{
 	t_env		*p_env;
 	t_element	*p_element;
 }	t_plist;
@@ -65,5 +67,5 @@ void		print_list(t_element *element);
 void		ft_lst_del_all_x(t_element *elemnt);
 int			ft_access(char *fname);
 
-void print_env(t_env *env);
+void		print_env(t_env *env);
 #endif
