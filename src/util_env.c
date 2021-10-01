@@ -54,10 +54,29 @@ void	print_env(t_env *m_env)
 	int	i;
 
 	i = 0;
-	while (m_env[i]->end == false)
+	while (m_env[i].end == false)
 	{
-		printf("%s\n", m_env[i]->v_env);
+		printf("%s\n", m_env[i].v_env);
 		i++;
 	}
 }
+//Copy t_env struc to a double pointer, Them can use
+//to past to exectve or ft_expor...
+char	**copy_env_to_double_point(t_env *m_env)
+{
+	int		i;
+	char	**dp_env;
 
+	i = 0;
+	while (m_env[i].end == false)
+		i++;
+	dp_env = malloc(sizeof(char *) * i + 1);
+	i = 0;
+	while (m_env[i].end == false)
+	{
+		dp_env[i] = ft_strdup(m_env[i].v_env);
+		i++;
+	}
+	dp_env[i] = ft_strdup("\0");
+	return (dp_env);
+}
