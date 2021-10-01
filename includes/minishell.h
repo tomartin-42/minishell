@@ -66,6 +66,8 @@ void		ft_lstadd_back(t_element **lst, t_element *new);
 void		print_list(t_element *element);
 void		ft_lst_del_all_x(t_element *elemnt);
 int			ft_access(char *fname);
-void		add_local_to_env(t_env *m_env, char *new_var);
+void		add_var_to_env(t_env *m_env, char *new_var);
+void		free_old_env(t_env *m_env);
+void		print_env(t_env *m_env);
 
 #endif

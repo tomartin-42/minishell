@@ -12,7 +12,23 @@
 
 #include "minishell.h"
 
-void	add_local_to_env(t_env *m_env, char *new_var)
+//Free all env 
+void	free_old_env(t_env *m_env)
+{
+	int	i;
+
+	i = 0;
+	while (m_env[i].end != true)
+	{
+		free(m_env[i].v_env);
+		free(m_env[i].var[0]);
+		free(m_env[i].var[1]);
+		i++;
+	}
+	free(m_env);
+}
+//Add new var to env var list. The new var status is NOT VISIBLE
+void	add_var_to_env(t_env *m_env, char *new_var)
 {
 	int	i;
 	t_env	*aux_env;
@@ -22,13 +38,26 @@ void	add_local_to_env(t_env *m_env, char *new_var)
 		i++;
 	aux_env = malloc(sizeof(t_env) * (i + 2));
 	aux_env[i].v_env = ft_strdup(new_var);
-	//aux_env[i].var = ft_split(aux_env[i + 1].v_env, '=');
+	aux_env[i].var = ft_split(aux_env[i].v_env, '=');
 	aux_env[i].global = false;
 	aux_env[i].visible = false;
 	aux_env[i].del = false;
 	aux_env[i].end = false;
 	aux_env[i + 1].end = true;
 	ft_memcpy(aux_env, m_env, sizeof(t_env) * i);
+	free_old_env(m_env);
+}
+
+// Print enviroment var (only visible values);
+void	print_env(t_env *m_env)
+{
+	int	i;
+
 	i = 0;
+	while (m_env[i]->end == false)
+	{
+		printf("%s\n", m_env[i]->v_env);
+		i++;
+	}
 }
 

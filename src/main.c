@@ -36,7 +36,6 @@ static void	copy_env(char **env)
 		i++;
 	}
 	m_env[i].end = true;
-	add_local_to_env(m_env, "hola");
 }
 
 int	main(int argc, char **argv, char **env)
