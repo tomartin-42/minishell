@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 19:45:05 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/02 19:45:49 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/02 19:49:05 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_export(t_env *m_env, char **args)
 
 	if (!args)
 	{
-		env_lst = copy_env_to_double_pointer(m_env);
+		env_lst = copy_env_to_double_point(m_env);
 		order_env(env_lst);
 	}
 }

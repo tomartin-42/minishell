@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/02 19:41:29 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/02 19:49:28 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ int			ft_access(char *fname);
 void		add_var_to_env(t_env *m_env, char *new_var);
 void		free_old_env(t_env *m_env);
 void		print_env(t_env *m_env);
-char		**copy_env_to_double_pointer(t_env *m_env);
+char		**copy_env_to_double_point(t_env *m_env);
 
 #endif
