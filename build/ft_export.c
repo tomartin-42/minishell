@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 19:45:05 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/02 19:49:05 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/02 20:01:53 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	order_env(char **env_lst)
 		j = i + 1;
 		while (env_lst[j])
 		{
-			if (ft_strcmp(env_lst[i], env_lst[j]) < 0)
+			if (ft_strcmp(env_lst[i], env_lst[j]) > 0)
 			{
 				aux = env_lst[i];
 				env_lst[i] = env_lst[j];
@@ -34,9 +34,9 @@ static void	order_env(char **env_lst)
 		}
 		i++;
 	}
-	i = 0;
+	/*i = 0;
 	while (env_lst[i])
-		printf("%s\n", env_lst[i++]);
+		printf("%s\n", env_lst[i++]);*/
 }
 
 void	ft_export(t_env *m_env, char **args)
