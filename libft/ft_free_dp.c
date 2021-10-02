@@ -1,6 +1,6 @@
 #include "libft.h"
 
-void	ft_free_db(char **dp)
+void	ft_free_dp(char **dp)
 {
 	int	i;
 

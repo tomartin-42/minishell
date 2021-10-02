@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 19:45:05 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/02 20:01:53 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/02 20:04:02 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ static void	order_env(char **env_lst)
 		}
 		i++;
 	}
-	/*i = 0;
+	i = 0;
 	while (env_lst[i])
-		printf("%s\n", env_lst[i++]);*/
+		printf("%s\n", env_lst[i++]);
+	ft_free_dp(env_lst);
 }
 
 void	ft_export(t_env *m_env, char **args)
