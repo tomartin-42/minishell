@@ -3,55 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 11:14:34 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/01 08:08:26 by tomartin         ###   ########.fr       */
+/*   Created: 2021/10/02 19:45:05 by tomartin          #+#    #+#             */
+/*   Updated: 2021/10/02 19:45:49 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "build.h"
 
-/*void	ft_export(t_env *m_env, t_element *element)
+static void	order_env(char **env_lst)
 {
 	int		i;
-	t_env	*aux;
+	int		j;
+	char	*aux;
 
 	i = 0;
-	while(m_env[i])
-		i++;
-	aux = malloc(sizeof(t_env) * (i + 1));
-	aux[i + 1]->v_env = ft_strdup(element->arg[0]);
-	aux[i + 1]->globla = false;
-	aux[i + 1]->visible = false;
-	aux[i + 1]->del = false;
-	i = 0;
-	while(m_env[i])
+	while (env_lst[i])
 	{
-		ft_memcpy(aux[i], m_env[i], sizeof(t_env);
-		i++;			
+		j = i + 1;
+		while (env_lst[j])
+		{
+			if (ft_strcmp(env_lst[i], env_lst[j]) < 0)
+			{
+				aux = env_lst[i];
+				env_lst[i] = env_lst[j];
+				env_lst[j] = aux;
+			}
+			j++;
+		}
+		i++;
 	}
-}*/
-
-/*
-static chat	**cont_visible_v_env(t_env *m_env, chat **env_list)
-{
+	i = 0;
+	while (env_lst[i])
+		printf("%s\n", env_lst[i++]);
 }
 
-statuc void	copy_env_list(char **env_list)
+void	ft_export(t_env *m_env, char **args)
 {
+	char	**env_lst;
 
-
-void	ft_export(t_env *env, t_element *element)
-{
-	char	**env_list;
-	if (ft_strlen(element->arg[0]))
-		printf(" "); // codigo para pasar una variable statica a global
-	else
+	if (!args)
 	{
-		cont_visible_v_env(env, env_list)
-		copy_env_list(env_list);
-		printf(" ");
+		env_lst = copy_env_to_double_pointer(m_env);
+		order_env(env_lst);
 	}
-}*/	
-
+}

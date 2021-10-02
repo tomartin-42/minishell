@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 09:51:06 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/01 16:18:48 by tommy            ###   ########.fr       */
+/*   Updated: 2021/10/02 19:46:25 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,15 @@ void	free_old_env(t_env *m_env)
 	}
 	free(m_env);
 }
+
 //Add new var to env var list. The new var status is NOT VISIBLE
 void	add_var_to_env(t_env *m_env, char *new_var)
 {
-	int	i;
+	int		i;
 	t_env	*aux_env;
 
 	i = 0;
-	while(m_env[i].end == false)
+	while (m_env[i].end == false)
 		i++;
 	aux_env = malloc(sizeof(t_env) * (i + 2));
 	aux_env[i].v_env = ft_strdup(new_var);
@@ -60,7 +61,8 @@ void	print_env(t_env *m_env)
 		i++;
 	}
 }
-//Copy t_env struc to a double pointer, Them can use
+
+//Copy t_env struc to a double pointer only visible env_var, Them can use
 //to past to exectve or ft_expor...
 char	**copy_env_to_double_point(t_env *m_env)
 {
@@ -69,14 +71,18 @@ char	**copy_env_to_double_point(t_env *m_env)
 
 	i = 0;
 	while (m_env[i].end == false)
-		i++;
+	{
+		if (m_env[i].visible == true)
+			i++;
+	}
 	dp_env = malloc(sizeof(char *) * i + 1);
 	i = 0;
 	while (m_env[i].end == false)
 	{
-		dp_env[i] = ft_strdup(m_env[i].v_env);
+		if (m_env[i].visible == true)
+			dp_env[i] = ft_strdup(m_env[i].v_env);
 		i++;
 	}
-	dp_env[i] = ft_strdup("\0");
+	dp_env[i] = NULL;
 	return (dp_env);
 }
