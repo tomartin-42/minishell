@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   procesing_parse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/01 13:55:24 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/02 20:15:08 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,38 @@ static void	change_truck(t_element *p_elem)
 //need reevaluate list because some type depend of previos valude in the list
 //(ej. <,< <<)
 ///////////////////////////////////////////////////////////////
-int	count_args(t_element *element)
+/*void	expand_str(t_element * p_elem)
+{
+	
+}*/
+
+void	arg_input(t_element *p_elem, int	size_arg)
+{
+	int n;
+	t_element *p_elem_arg;
+
+	n = 0;
+	p_elem_arg = p_elem;
+	while(n < size_arg)
+	{
+		if (p_elem_arg != NULL)
+			p_elem_arg = p_elem_arg->next;
+		p_elem->arg[n] = p_elem_arg->str;
+		n++;
+	}
+}
+
+int	count_args(t_element *p_elem)
 {
 	int	n;
 
 	n = 0;
-	element = element->next;
-	while ((element->type == 'A' || element->type == 'E'
-			|| element->type == '$') && element)
+	if (p_elem)
+		p_elem = p_elem->next;
+	while (p_elem && (p_elem->type == 'A' || p_elem->type == 'E'
+			|| p_elem->type == '$'))
 	{
-		element = element->next;
+		p_elem = p_elem->next;
 		n++;
 	}
 	return (n);
@@ -85,10 +107,14 @@ void	add_args(t_element *element)
 	{
 		if (p_elem->type == 'C')
 		{
-			size_arg = count_args(element);
-			element->arg = malloc(sizeof(char) * size_arg);
-			printf("--%d--\n\n", size_arg);
-			free(element->arg);
+			size_arg = count_args(p_elem);
+			if (size_arg > 0)
+			{
+				//printf("|-%d-|", size_arg);
+				p_elem->arg = malloc(sizeof(char *) * size_arg);
+				arg_input(p_elem, size_arg);
+				//printf("%s", p_elem->arg[0]);
+			}
 		}
 		p_elem = p_elem->next;
 	}
