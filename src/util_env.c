@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 09:51:06 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/02 20:00:38 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/03 15:45:16 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,32 @@ void	free_old_env(t_env *m_env)
 	}
 	free(m_env);
 }
-//Add new var to env var list. The new var status is NOT VISIBLE
-void	add_var_to_env(t_env *m_env, char *new_var)
+
+//Add new var to env var list. The new var status is VISIBLE and 
+//GOBAL
+void	add_var_to_env_global(t_env *m_env, char *new_var)
+{
+	int	i;
+	t_env	*aux_env;
+
+	i = 0;
+	while(m_env[i].end == false)
+		i++;
+	aux_env = malloc(sizeof(t_env) * (i + 2));
+	aux_env[i].v_env = ft_strdup(new_var);
+	aux_env[i].var = ft_split(aux_env[i].v_env, '=');
+	aux_env[i].global = true;
+	aux_env[i].visible = true;
+	aux_env[i].del = false;
+	aux_env[i].end = false;
+	aux_env[i + 1].end = true;
+	ft_memcpy(aux_env, m_env, sizeof(t_env) * i);
+	free_old_env(m_env);7
+}
+
+//Add new var to env var list. The new var status is NOT VISIBLE and 
+//LOCAL
+void	add_var_to_env_local(t_env *m_env, char *new_var)
 {
 	int	i;
 	t_env	*aux_env;
@@ -60,6 +84,7 @@ void	print_env(t_env *m_env)
 		i++;
 	}
 }
+
 //Copy t_env struc to a double pointer only visible env_var, Them can use
 //to past to exectve or ft_expor...
 char	**copy_env_to_double_point(t_env *m_env)
