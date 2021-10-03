@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/02 20:00:42 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/03 19:42:11 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	copy_env(char **env)
 		i++;
 	}
 	m_env[i].end = true;
-	ft_export(m_env, NULL);
+	ft_export(m_env, (char **)"A");
 }
 
 int	main(int argc, char **argv, char **env)

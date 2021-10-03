@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 19:45:05 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/03 18:15:34 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/03 19:44:00 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	ft_export(t_env *m_env, char **args)
 	}
 	else
 	{
-		while (args[i] == NULL)
+		while (args[i] != NULL)
 		{
 			if (ft_isdigit(args[i][0]))
 				printf("ERROR !!!!!!!! No puede empezar por num\n");
