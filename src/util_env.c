@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 09:51:06 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/03 15:45:16 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/03 18:00:32 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	add_var_to_env_global(t_env *m_env, char *new_var)
 	aux_env[i].end = false;
 	aux_env[i + 1].end = true;
 	ft_memcpy(aux_env, m_env, sizeof(t_env) * i);
-	free_old_env(m_env);7
+	free_old_env(m_env);
 }
 
 //Add new var to env var list. The new var status is NOT VISIBLE and 

@@ -6,23 +6,29 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 19:45:05 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/03 17:58:19 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/03 18:15:34 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
 
+void	promotion_local_to_global(t_env *m_env, int position)
+{
+	m_env[position].global = true;
+	m_env[position].visible = true;
+}
+
 //Cange the value of a env var. j indicate the podition of
 //env var
-void	change_env_var_value(t_env *m_env, char *var, int position);
+void	change_env_var_value(t_env *m_env, char *var, int position)
 {
-	free(m_env[position]->v_env);
-	free(m_env[position]->var[0]);
-	free(m_env[position]->var[1]);
-	m_env[position]->v_env = ft_strdup(var);
-	m_env[position]->var = ft_split(var, '=');
-	m_env[position]->global = true;
-	m_env[position]->visible = true;
+	free(m_env[position].v_env);
+	free(m_env[position].var[0]);
+	free(m_env[position].var[1]);
+	m_env[position].v_env = ft_strdup(var);
+	m_env[position].var = ft_split(var, '=');
+	m_env[position].global = true;
+	m_env[position].visible = true;
 }
 
 //Search if exist de env var and return the locating the var
@@ -34,9 +40,9 @@ int	locate_env_var(t_env *m_env, char *var)
 
 	v_search = ft_split(var, '=');
 	i = 0;
-	while (m_env[i]->end == false)
+	while (m_env[i].end == false)
 	{
-		if (ft_strcmp(m_env[i]->var[0], v_search[0]) == 0)
+		if (ft_strcmp(m_env[i].var[0], v_search[0]) == 0)
 		{
 			free(v_search[0]);
 			free(v_search[1]);
@@ -94,10 +100,10 @@ void	ft_export(t_env *m_env, char **args)
 	}
 	else
 	{
-		while (args[i] = NULL)
+		while (args[i] == NULL)
 		{
 			if (ft_isdigit(args[i][0]))
-				printd("ERROR !!!!!!!! No puede empezar por num\n");
+				printf("ERROR !!!!!!!! No puede empezar por num\n");
 			else
 			{
 				if (ft_strchr(args[i], '='))
@@ -108,9 +114,16 @@ void	ft_export(t_env *m_env, char **args)
 					{
 						j = locate_env_var(m_env, args[i]);
 						change_env_var_value(m_env, args[i], j);
-					}	//cambia el valor de la variable
+					}
+				}
 				else
-					//Promociona var local
+				{
+					if ((locate_env_var(m_env, args[i])) >= 0)
+					{
+						j = locate_env_var(m_env, args[i]);
+						promotion_local_to_global(m_env, j);
+					}
+				}
 			}
 			i++;
 		}
