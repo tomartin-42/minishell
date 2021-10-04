@@ -31,7 +31,7 @@ static void	copy_env(char **env)
 			init_env_list(&m_env, env[i]);
 		else
 		{
-			new = new_env_node(new, env[i]);
+			new = new_env_node_global(new, env[i]);
 			ft_lstadd_back_env(&m_env, new);
 		}
 		i++;

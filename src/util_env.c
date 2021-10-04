@@ -16,7 +16,13 @@ void	init_env_list(t_env **m_env, char *var)
 {
 	(*m_env) = malloc(sizeof(t_env));
 	(*m_env)->v_env = ft_strdup(var);
-	(*m_env)->var = ft_split(var, '=');
+	if (ft_strchr(var, '='))
+		(*m_env)->var = ft_split(var, '=');
+	else
+	{
+		(*m_env)->var[0] = ft_strdup(var);
+		(*m_env)->var[1] = NULL; 
+	}
 	(*m_env)->global = true;
 	(*m_env)->visible = true;
 	(*m_env)->next = NULL;
@@ -33,11 +39,34 @@ t_env	*ft_lstlast_env(t_env *env_lst)
 	return (env_lst);
 }
 
-t_env	*new_env_node(t_env *new, char *var)
+t_env	*new_env_node_local(t_env *new, char *var)
 {
 	new = malloc(sizeof(t_env));
 	new->v_env = ft_strdup(var);
-	new->var = ft_split(var, '=');
+	if (ft_strchr(var, '='))
+		new->var = ft_split(var, '=');
+	else
+	{
+		new->var[0] = ft_strdup(var);
+		new->var[1] = NULL;
+	}
+	new->global = false; 
+	new->visible = false;
+	new->next = NULL;
+	return (new);
+}
+
+t_env	*new_env_node_global(t_env *new, char *var)
+{
+	new = malloc(sizeof(t_env));
+	new->v_env = ft_strdup(var);
+	if (ft_strchr(var, '='))
+		new->var = ft_split(var, '=');
+	else
+	{
+		new->var[0] = ft_strdup(var);
+		new->var[1] = NULL;
+	}
 	new->global = true;
 	new->visible = true;
 	new->next = NULL;
