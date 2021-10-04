@@ -35,8 +35,6 @@ char	**extract_env_list(t_env *env)
 		if (p_env->global == true)
 			list[i++] = ft_strdup(p_env->v_env);
 		p_env = p_env->next;
-		printf("%s\n",list[i-1]);
 	}
 	return (list);
 }
-
