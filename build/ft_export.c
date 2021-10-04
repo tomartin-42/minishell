@@ -3,55 +3,125 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 11:14:34 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/01 08:08:26 by tomartin         ###   ########.fr       */
+/*   Created: 2021/10/02 19:45:05 by tomartin          #+#    #+#             */
+/*   Updated: 2021/10/04 10:44:11 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "build.h"
 
-/*void	ft_export(t_env *m_env, t_element *element)
+void	promotion_local_to_global(t_env *m_env, int position)
 {
-	int		i;
-	t_env	*aux;
-
-	i = 0;
-	while(m_env[i])
-		i++;
-	aux = malloc(sizeof(t_env) * (i + 1));
-	aux[i + 1]->v_env = ft_strdup(element->arg[0]);
-	aux[i + 1]->globla = false;
-	aux[i + 1]->visible = false;
-	aux[i + 1]->del = false;
-	i = 0;
-	while(m_env[i])
-	{
-		ft_memcpy(aux[i], m_env[i], sizeof(t_env);
-		i++;			
-	}
-}*/
-
-/*
-static chat	**cont_visible_v_env(t_env *m_env, chat **env_list)
-{
+	m_env[position].global = true;
+	m_env[position].visible = true;
 }
 
-statuc void	copy_env_list(char **env_list)
+//Cange the value of a env var. j indicate the podition of
+//env var
+void	change_env_var_value(t_env *m_env, char *var, int position)
 {
+	free(m_env[position].v_env);
+	free(m_env[position].var[0]);
+	free(m_env[position].var[1]);
+	m_env[position].v_env = ft_strdup(var);
+	m_env[position].var = ft_split(var, '=');
+	m_env[position].global = true;
+	m_env[position].visible = true;
+}
 
-
-void	ft_export(t_env *env, t_element *element)
+//Search if exist de env var and return the locating the var
+//in t_env in other case and don't found the var return -1 
+int	locate_env_var(t_env *m_env, char *var)
 {
-	char	**env_list;
-	if (ft_strlen(element->arg[0]))
-		printf(" "); // codigo para pasar una variable statica a global
+	int		i;
+	char	**v_search;
+
+	v_search = ft_split(var, '=');
+	i = 0;
+	while (m_env[i].end == false)
+	{
+		if (ft_strcmp(m_env[i].var[0], v_search[0]) == 0)
+		{
+			ft_free_dp(v_search);
+			return (i) ;
+		}
+		i++;
+	}
+	ft_free_dp(v_search);
+	return (-1);
+}
+
+//Order and print env var list in alphber order
+static void	order_env(char **env_lst)
+{
+	int		i;
+	int		j;
+	char	*aux;
+
+	i = 0;
+	while (env_lst[i])
+	{
+		j = i + 1;
+		while (env_lst[j] != NULL)
+		{
+			if (ft_strcmp(env_lst[i], env_lst[j]) > 0)
+			{
+				aux = env_lst[i];
+				env_lst[i] = env_lst[j];
+				env_lst[j] = aux;
+			}
+			j++;
+		}
+		i++;
+	}
+	i = 0;
+	while (env_lst[i])
+		printf("%s\n", env_lst[i++]);
+	ft_free_dp(env_lst);
+}
+
+void	ft_export(t_env *m_env, char **args)
+{
+	char	**env_lst;
+	int	i;
+	int	j;
+
+	i = 0;
+	if (!args)
+	{
+		env_lst = copy_env_to_double_point(m_env);
+		order_env(env_lst);
+	}
 	else
 	{
-		cont_visible_v_env(env, env_list)
-		copy_env_list(env_list);
-		printf(" ");
-	}
-}*/	
-
+		while (args[i] != NULL)
+		{
+			if (ft_isdigit(args[i][0]))
+				printf("ERROR !!!!!!!! No puede empezar por num\n");
+			else
+			{
+				if (ft_strchr(args[i], '='))
+				{
+					if ((locate_env_var(m_env, args[i])) < 0)
+						add_var_to_env_global(m_env, args[i]);
+					else
+					{
+						j = locate_env_var(m_env, args[i]);
+						change_env_var_value(m_env, args[i], j);
+					}
+				}
+				else
+				{
+					if ((locate_env_var(m_env, args[i])) >= 0)
+					{
+						j = locate_env_var(m_env, args[i]);
+						promotion_local_to_global(m_env, j);
+					}
+				}
+			}
+			i++;
+		}
+	}			
+}

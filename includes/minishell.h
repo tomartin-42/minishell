@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/04 11:36:34 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/04 11:39:04 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,11 @@ void		ft_lstadd_back(t_element **lst, t_element *new);
 void		print_list(t_element *element);
 void		ft_lst_del_all_x(t_element *elemnt);
 int			ft_access(char *fname);
-void		add_var_to_env(t_env *m_env, char *new_var);
+void		add_var_to_env_local(t_env *m_env, char *new_var);
+void		add_var_to_env_global(t_env *m_env, char *new_var);
 void		free_old_env(t_env *m_env);
 void		print_env(t_env *m_env);
-char		**copy_env_to_double_pointer(t_env *m_env);
+char		**copy_env_to_double_point(t_env *m_env);
 
 void		print_env(t_env *env);
 #endif
