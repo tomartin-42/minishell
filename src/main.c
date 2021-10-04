@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/30 19:02:08 by tommy            ###   ########.fr       */
+/*   Updated: 2021/10/01 16:18:50 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,19 @@ static void	copy_env(char **env)
 	i = 0;
 	while(env[i])
 		i++;
-	m_env = malloc(sizeof(t_env) * i);
+	m_env = malloc(sizeof(t_env) * (i + 1));
 	i = 0;
-	while (env[i])
+	while (env[i] != NULL)
 	{
-		m_env[i].v_env= ft_strdup(env[i]);
+		m_env[i].v_env = ft_strdup(env[i]);
+		m_env[i].var = ft_split(m_env[i].v_env, '='); 
 		m_env[i].global = true;
 		m_env[i].visible = true;
 		m_env[i].del = false;
+		m_env[i].end = false;
 		i++;
-	}	
+	}
+	m_env[i].end = true;
 }
 
 int	main(int argc, char **argv, char **env)
@@ -50,6 +53,7 @@ int	main(int argc, char **argv, char **env)
 		{
 			check_fault_marks(line);
 			element = malloc(sizeof(t_element));
+			//g_plist->p_element = element;
 			element->next = NULL;
 			element->prev = NULL;
 			element->str = ft_strdup(line);

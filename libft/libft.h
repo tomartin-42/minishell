@@ -60,6 +60,7 @@ void		ft_putnbr_fd(int n, int fd);
 void		*ft_calloc(size_t nmemb, size_t size);
 char		*ft_strdup(const char *s);
 int			get_next_line(int fd, char **line);
+void		ft_free_dp(char **dp);
 
 typedef struct s_list
 {
