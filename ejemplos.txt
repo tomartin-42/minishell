@@ -11,3 +11,7 @@ command | wc -l
 pepe=echo
 pepe "hola" -----------------> hola
 ******************
+echo hola <a adios <b kk
+echo hola >a adios
+echo hola "'$a'"
+echo hola '"$a"'

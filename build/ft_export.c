@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 19:45:05 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/04 10:44:11 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/04 16:06:16 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	locate_env_var(t_env *m_env, char *var)
 		if (ft_strcmp(m_env[i].var[0], v_search[0]) == 0)
 		{
 			ft_free_dp(v_search);
-			return (i) ;
+			return (i);
 		}
 		i++;
 	}

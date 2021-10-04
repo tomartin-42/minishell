@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 17:19:00 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/01 11:36:54 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/04 16:10:25 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,13 @@ void	sec_procesing(t_element *element)
 		else if (element->prev->type == 'G' && element->type != 'C')
 			element->type = 'C';
 		else if (element->prev->type == 'C' || element->prev->type == 'A'
-			|| element->prev->type == 'E' || element->prev->type == '$')
+			|| element->prev->type == 'E' || element->prev->type == '$'
+			|| element->prev->type == 'F')
 		{
 			arg_token(element);
 		}
 		else if ((element->prev->type == 'T' && element->type == 'C')
-			|| element->prev->type == 'X')
+			|| element->prev->type == 'X' || element->prev->type == 'I')
 		{
 			element->type = 'F';
 		}

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+         #
+#    By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/10/04 11:39:06 by tomartin         ###   ########.fr        #
+#    Updated: 2021/10/04 19:38:28 by dpuente-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ PARSE_DIR= ./parse/
 HERED_DIR= ./hered/
 BUILD_DIR = ./build/
 ERRORS_DIR=./errors/
+EXPANSION_DIR=./expansion/
 
 # Source files and object files
 SRC_FILES = main.c utils_list.c util_env.c
@@ -34,12 +35,14 @@ PARSE_FILES = main_parse.c procesing_parse.c parse_operation.c sec_parse_proc.c 
 HERED_FILES = main_hered.c
 BUILD_FILES = main_build.c ft_export.c
 ERRORS_FILES = check_error.c errors.c
+EXPANSION_FILES = env_ex.c str_ex.c 
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 OBJ_FILES := $(OBJ_FILES) $(PARSE_FILES:.c=.o)
 OBJ_FILES := $(OBJ_FILES) $(HERED_FILES:.c=.o)
 OBJ_FILES := $(OBJ_FILES) $(BUILD_FILES:.c=.o)
 OBJ_FILES := $(OBJ_FILES) $(ERRORS_FILES:.c=.o)
+OBJ_FILES := $(OBJ_FILES) $(EXPANSION_FILES:.c=.o)
 
 # Paths
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
@@ -48,13 +51,14 @@ PARSE = $(addprefix $(PARSE_DIR), $(PARSE_FILES))
 HERED = $(addprefix $(HERED_DIR), $(HERED_FILES))
 BUILD = $(addprefix $(BUILD_DIR), $(BUILD_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
-ERROR = $(addprefix $(ERRORS_FILES), $(ERRORS_FILES))
+ERROR = $(addprefix $(ERRORS_DIR), $(ERRORS_FILES))
+EXPAND = $(addprefix $(EXPANSION_DIR), $(EXPANSION_FILES))
 
 # Libft linkers
 LNK = -L $(LIBFT_DIR) -lft
 
 # all rule
-all: obj $(LIBFT) $(NAME)
+all: obj $(LIBFT) $(NAME) 
 
 obj:
 	@mkdir -p $(OBJ_DIR)
@@ -68,6 +72,8 @@ $(OBJ_DIR)%.o: $(PARSE_DIR)%.c
 $(OBJ_DIR)%.o: $(HERED_DIR)%.c 
 	@gcc $(FLAGS) $(F_RL) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ -c $<
 $(OBJ_DIR)%.o: $(BUILD_DIR)%.c 
+	@gcc $(FLAGS) $(F_RL) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ -c $<
+$(OBJ_DIR)%.o: $(EXPANSION_DIR)%.c 
 	@gcc $(FLAGS) $(F_RL) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ -c $<
 
 $(LIBFT):

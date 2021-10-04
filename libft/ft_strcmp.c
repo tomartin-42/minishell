@@ -1,15 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 09:05:17 by tomartin          #+#    #+#             */
-/*   Updated: 2021/05/27 11:03:40 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/04 17:50:08 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
@@ -26,4 +26,3 @@ int	ft_strcmp(const char *s1, const char *s2)
 	}
 	return (res);
 }
-
