@@ -36,7 +36,7 @@ static void	copy_env(char **env)
 		}
 		i++;
 	}
-	extract_env_list(m_env);
+	ft_export(m_env, NULL);
 }
 
 int	main(int argc, char **argv, char **env)

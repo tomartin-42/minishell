@@ -38,3 +38,48 @@ char	**extract_env_list(t_env *env)
 	}
 	return (list);
 }
+
+static void	order_alphabet(char **list)
+{
+	char	*aux;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (list[i] != NULL)
+	{
+		j = 1 + i;
+		while (list[j] != NULL)
+		{
+			if (ft_strcmp(list[i], list[j]) > 0)
+			{
+				aux = list[i];
+				list[i] = list[j];
+				list[j] = aux;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+static void print_env_alphabet_order(t_env *m_env)
+{
+	char	**list;
+	int		i;
+
+	i = 0;
+	list = extract_env_list(m_env);
+	order_alphabet(list);
+	while (list[i] != NULL)
+		printf("%s\n", list[i++]);
+	ft_free_dp(list);
+}
+
+
+
+void	ft_export(t_env *m_env, char **args)
+{
+	if (!args)
+		print_env_alphabet_order(m_env);
+}
