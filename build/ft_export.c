@@ -76,10 +76,22 @@ static void print_env_alphabet_order(t_env *m_env)
 	ft_free_dp(list);
 }
 
-
-
-void	ft_export(t_env *m_env, char **args)
+int	ft_export(t_env *m_env, char **args)
 {
+	int	i;
+
+	i = 0;
 	if (!args)
+	{
 		print_env_alphabet_order(m_env);
+		return (0);
+	}
+	while (args[i] != NULL)
+	{
+		if (ft_strchar(args[i], '=')
+			//con igual
+		else 
+			//sin igual
+		i++;
+	}
 }

@@ -19,7 +19,8 @@ void	ft_pwd(char **g_env);
 void	ft_env(char **g_env);
 void	ft_echo(t_element *element);
 char	**extract_env_list(t_env *env);
-void	ft_export(t_env *m_env, char **args);
+int		ft_export(t_env *m_env, char **args);
+void	without_equal_export(t_env *env, char *arg);
 
 #endif
 
