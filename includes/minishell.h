@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/03 20:37:53 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/04 18:06:12 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@
 # include "libft.h"
 
 typedef struct s_env{
-	char	*v_env;
-	char	**var;	
-	bool	global;
-	bool	visible;
-	bool	end;
-	bool	del;
+	char			*v_env;
+	char			**var;	
+	bool			global;
+	bool			visible;
+	struct s_env	*next;
 } t_env;
 
 typedef struct s_element{
@@ -59,17 +58,14 @@ typedef struct	s_plist{
 	t_element	*p_element;
 }	t_plist;
 
-extern t_plist	*g_plist;
-
 t_element	*ft_lstlast(t_element *lst);
 void		ft_lstadd_back(t_element **lst, t_element *new);
 void		print_list(t_element *element);
 void		ft_lst_del_all_x(t_element *elemnt);
 int			ft_access(char *fname);
-void		add_var_to_env_local(t_env *m_env, char *new_var);
-void		add_var_to_env_global(t_env *m_env, char *new_var);
-void		free_old_env(t_env *m_env);
-void		print_env(t_env *m_env);
-char		**copy_env_to_double_point(t_env *m_env);
 
+void		init_env_list(t_env **m_env, char *var);
+void		ft_lstadd_back_env(t_env **lst, t_env *new);
+t_env		*new_env_node(t_env *new, char *var);
+t_env		*ft_lstlast_env(t_env *lst);
 #endif

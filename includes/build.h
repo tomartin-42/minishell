@@ -18,10 +18,7 @@
 void	ft_pwd(char **g_env);
 void	ft_env(char **g_env);
 void	ft_echo(t_element *element);
-void	ft_export(t_env *m_env, char **args);
-int		locate_env_var(t_env *m_env, char *var);
-void	add_var_to_env_local(t_env *m_env, char *new_var);				
-void	promotion_local_to_global(t_env *m_env, int position);
+char	**extract_env_list(t_env *env);
 
 #endif
 
