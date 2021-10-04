@@ -6,11 +6,12 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 09:51:06 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/03 18:00:32 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/04 11:04:56 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "build.h"
 
 //Free all env 
 void	free_old_env(t_env *m_env)
@@ -35,6 +36,7 @@ void	add_var_to_env_global(t_env *m_env, char *new_var)
 	int	i;
 	t_env	*aux_env;
 
+	//printf("****%s*****\n", new_var);
 	i = 0;
 	while(m_env[i].end == false)
 		i++;
@@ -46,8 +48,10 @@ void	add_var_to_env_global(t_env *m_env, char *new_var)
 	aux_env[i].del = false;
 	aux_env[i].end = false;
 	aux_env[i + 1].end = true;
-	ft_memcpy(aux_env, m_env, sizeof(t_env) * i);
-	free_old_env(m_env);
+	ft_memcpy(aux_env, m_env, sizeof(t_env) * (i));
+//	free_old_env(m_env);
+	m_env = aux_env;
+	ft_export(aux_env, NULL);
 }
 
 //Add new var to env var list. The new var status is NOT VISIBLE and 
@@ -72,7 +76,7 @@ void	add_var_to_env_local(t_env *m_env, char *new_var)
 	free_old_env(m_env);
 }
 
-// Print enviroment var (only visible values);
+// Print enviroment var (only visible var);
 void	print_env(t_env *m_env)
 {
 	int	i;

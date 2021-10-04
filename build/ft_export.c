@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 19:45:05 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/03 19:44:00 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/04 10:44:11 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,12 @@ int	locate_env_var(t_env *m_env, char *var)
 	{
 		if (ft_strcmp(m_env[i].var[0], v_search[0]) == 0)
 		{
-			free(v_search[0]);
-			free(v_search[1]);
-			free(v_search);
+			ft_free_dp(v_search);
 			return (i) ;
 		}
 		i++;
 	}
-	free(v_search[0]);
-	free(v_search[1]);
-	free(v_search);
+	ft_free_dp(v_search);
 	return (-1);
 }
 
@@ -82,7 +78,7 @@ static void	order_env(char **env_lst)
 	}
 	i = 0;
 	while (env_lst[i])
-		printf("\"%s\"\n", env_lst[i++]);
+		printf("%s\n", env_lst[i++]);
 	ft_free_dp(env_lst);
 }
 
