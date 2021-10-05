@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 19:45:05 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/04 16:06:16 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/05 16:59:32 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	promotion_local_to_global(t_env *m_env, int position)
 	m_env[position].visible = true;
 }
 
-//Cange the value of a env var. j indicate the podition of
+//Change the value of a env var. j indicate the podition of
 //env var
 void	change_env_var_value(t_env *m_env, char *var, int position)
 {
@@ -85,8 +85,8 @@ static void	order_env(char **env_lst)
 void	ft_export(t_env *m_env, char **args)
 {
 	char	**env_lst;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	if (!args)
