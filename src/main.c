@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/04 11:49:25 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/05 21:24:08 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	copy_env(char **env)
 	ft_export(m_env, aux);*/
 	//print_env(m_env);
 	//ft_export(m_env, NULL);
+	find_env(m_env);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -71,7 +72,12 @@ int	main(int argc, char **argv, char **env)
 			rutine_parse(line, element);
 			copy_env(env);
 			print_list(element);
-			printf("%d - %s - %s\n", argc, argv[0], env[0]);
+			////////////////////
+			argc = argc + 1 - 1;
+			argv[0] = argv[0];
+			env[0] = env[0];
+			////////////////////
+			//printf("%d - %s - %s\n", argc, argv[0], env[0]);
 		}
 	}
 }
