@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 19:45:05 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/05 09:22:45 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/05 12:18:24 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	ft_export(t_env *m_env, char **args)
 	while (args[i] != NULL)
 	{
 		if (ft_strchr(args[i], '='))
-			printf("export con igual en arg\n");
+			with_equal_export(m_env, args[i]);
 		else 
 			without_equal_export(m_env, args[i]);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 08:30:08 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/05 09:29:45 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/05 11:45:13 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char	**extract_env_list(t_env *env);
 char	**extract_all_env_list(t_env *env);
 int		ft_export(t_env *m_env, char **args);
 void	without_equal_export(t_env *env, char *arg);
+void	with_equal_export(t_env *env, char *arg);
 
 #endif
 
