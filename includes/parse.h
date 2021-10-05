@@ -21,6 +21,7 @@ typedef struct s_mark{
 	int		i;
 	int		j;
 }	t_mark;
+
 //sec_parse_proc.c//
 void	check_env(t_element *element);
 void	arg_token(t_element *element);

@@ -21,30 +21,22 @@ static void	copy_env(char **env)
 {
 	t_env	*m_env;
 	int		i;
+	t_env	*new;
 
 	i = 0;
+	m_env = NULL;
 	while (env[i])
-		i++;
-	m_env = malloc(sizeof(t_env) * (i + 1));
-	i = 0;
-	while (env[i] != NULL)
 	{
-		m_env[i].v_env = ft_strdup(env[i]);
-		m_env[i].var = ft_split(m_env[i].v_env, '=');
-		m_env[i].global = true;
-		m_env[i].visible = true;
-		m_env[i].del = false;
-		m_env[i].end = false;
+		if (!m_env)
+			init_env_list(&m_env, env[i]);
+		else
+		{
+			new = new_env_node_global(new, env[i]);
+			ft_lstadd_back_env(&m_env, new);
+		}
 		i++;
 	}
-	m_env[i].end = true;
-	char	**aux;
-	aux = (char **)malloc(sizeof(char *) * 2);
-	aux[0] = ft_strdup("ABC=AAA");
-	aux[1] = NULL;
-	ft_export(m_env, aux);
-	//print_env(m_env);
-	//ft_export(m_env, NULL);
+	ft_export(m_env, NULL);
 }
 
 int	main(int argc, char **argv, char **env)
