@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/04 20:11:41 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/05 10:36:34 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,5 @@ void	pre_procesing(t_element *element)
 		p_elem = p_elem->next;
 	}
 	add_args(element);
-	env_ex(element);
-	str_ex(element);///////
+	expand_all(element);
 }

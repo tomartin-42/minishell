@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:50:17 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/04 19:42:03 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/05 13:05:14 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,14 @@ void	add_args(t_element *element);
 //env_ex.c//
 void	env_ex(t_element *element);
 int		search_marks(t_element *p_elem);
+int		search_env(t_element *p_elem);
 ////////////////////
 //str_ex.c//
+void	remove_marks(t_element *p_elem);
 void	str_ex(t_element *element);
+////////////////////
+//expansion.c//
+void	expand_all(t_element *element);
 ////////////////////
 void	clean_element(t_element *element);
 void	pre_procesing(t_element *element);

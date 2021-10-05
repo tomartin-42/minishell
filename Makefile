@@ -6,7 +6,7 @@
 #    By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/10/04 19:38:28 by dpuente-         ###   ########.fr        #
+#    Updated: 2021/10/05 10:37:43 by dpuente-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ PARSE_FILES = main_parse.c procesing_parse.c parse_operation.c sec_parse_proc.c 
 HERED_FILES = main_hered.c
 BUILD_FILES = main_build.c ft_export.c
 ERRORS_FILES = check_error.c errors.c
-EXPANSION_FILES = env_ex.c str_ex.c 
+EXPANSION_FILES = env_ex.c str_ex.c expansion.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 OBJ_FILES := $(OBJ_FILES) $(PARSE_FILES:.c=.o)

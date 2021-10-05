@@ -6,13 +6,13 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:12:15 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/04 20:16:56 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/05 16:38:19 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-int	not_ex(t_element *p_elem)
+int	dont_ex(t_element *p_elem)
 {
 	int	n;
 	int	d_com;
@@ -37,8 +37,12 @@ int	search_env(t_element *p_elem)
 	n = 0;
 	while (p_elem->str[n] != '\0')
 	{
-		if (p_elem->str[n] == '$' && p_elem->str[n] != ' ')
+		if (p_elem->str[n] == '$')
+		{
+			if (p_elem->str[n + 1] == ' ')
+				return (-1);
 			return (1);
+		}	
 		n++;
 	}
 	return (0);
@@ -60,33 +64,6 @@ int	search_marks(t_element *p_elem)
 	return (0);
 }
 
-void	remove_marks(t_element *p_elem)
-{
-	int		n;
-	int		x;
-	char	mark;
-	char	*new_str;
-
-	n = 0;
-	x = 0;
-	mark = '"';
-	new_str = malloc(sizeof(char) * ft_strlen(p_elem->str) - 1);
-	if (search_marks(p_elem) == 2)
-		mark = 39;
-	while (p_elem->str[n] != '\0')
-	{
-		if (p_elem->str[n] == mark)
-			n++;
-		new_str[x] = p_elem->str[n];
-		x++;
-		if (p_elem->str[n] != '\0')
-			n++;
-	}
-	p_elem->str = realloc(p_elem->str, ft_strlen(p_elem->str) - 1);
-	ft_strlcpy(p_elem->str, new_str, ft_strlen(p_elem->str) + 1);
-	free(new_str);
-}
-
 void	env_ex(t_element *element)
 {
 	t_element	*p_elem;
@@ -100,7 +77,7 @@ void	env_ex(t_element *element)
 		{
 			if (search_env(p_elem) == 1)
 			{
-				not_expand = not_ex(p_elem);
+				not_expand = dont_ex(p_elem);
 				if (not_expand == 0)
 					printf("\nExpando->%s\n\n", p_elem->str);
 				else if (not_expand == 1)

@@ -15,3 +15,5 @@ echo hola <a adios <b kk
 echo hola >a adios
 echo hola "'$a'"
 echo hola '"$a"'
+
+"sdfsf" "$ env" "sfdfs"
