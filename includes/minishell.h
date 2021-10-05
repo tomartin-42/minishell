@@ -73,4 +73,6 @@ void		ft_lstadd_back_env(t_env **lst, t_env *new);
 t_env		*new_env_node_global(t_env *new, char *var);
 t_env		*new_env_node_local(t_env *new, char *var);
 t_env		*ft_lstlast_env(t_env *lst);
+
+char		*ft_expand(t_env *m_env, char *str);
 #endif
