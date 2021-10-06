@@ -6,122 +6,118 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 19:45:05 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/05 16:59:32 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/06 10:57:18 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
 
-void	promotion_local_to_global(t_env *m_env, int position)
+char	**extract_all_env_list(t_env *env)
 {
-	m_env[position].global = true;
-	m_env[position].visible = true;
-}
-
-//Change the value of a env var. j indicate the podition of
-//env var
-void	change_env_var_value(t_env *m_env, char *var, int position)
-{
-	free(m_env[position].v_env);
-	free(m_env[position].var[0]);
-	free(m_env[position].var[1]);
-	m_env[position].v_env = ft_strdup(var);
-	m_env[position].var = ft_split(var, '=');
-	m_env[position].global = true;
-	m_env[position].visible = true;
-}
-
-//Search if exist de env var and return the locating the var
-//in t_env in other case and don't found the var return -1 
-int	locate_env_var(t_env *m_env, char *var)
-{
+	t_env	*p_env;
 	int		i;
-	char	**v_search;
+	char	**list;
 
-	v_search = ft_split(var, '=');
 	i = 0;
-	while (m_env[i].end == false)
+	p_env = env;
+	while (p_env)
 	{
-		if (ft_strcmp(m_env[i].var[0], v_search[0]) == 0)
-		{
-			ft_free_dp(v_search);
-			return (i);
-		}
 		i++;
+		p_env = p_env->next;
 	}
-	ft_free_dp(v_search);
-	return (-1);
+	list = malloc (sizeof(char *) * (i + 1));
+	list[i] = NULL;
+	i = 0;
+	p_env = env;
+	while (p_env)
+	{
+		list[i++] = ft_strdup(p_env->v_env);
+		p_env = p_env->next;
+	}
+	return (list);
 }
 
-//Order and print env var list in alphber order
-static void	order_env(char **env_lst)
+char	**extract_env_list(t_env *env)
 {
+	t_env	*p_env;
+	int		i;
+	char	**list;
+
+	i = 0;
+	p_env = env;
+	while (p_env)
+	{
+		if (p_env->global == true)
+			i++;
+		p_env = p_env->next;
+	}
+	list = malloc (sizeof(char *) * (i + 1));
+	list[i] = NULL;
+	i = 0;
+	p_env = env;
+	while (p_env)
+	{
+		if (p_env->global == true)
+			list[i++] = ft_strdup(p_env->v_env);
+		p_env = p_env->next;
+	}
+	return (list);
+}
+
+static void	order_alphabet(char **list)
+{
+	char	*aux;
 	int		i;
 	int		j;
-	char	*aux;
 
 	i = 0;
-	while (env_lst[i])
+	while (list[i] != NULL)
 	{
-		j = i + 1;
-		while (env_lst[j] != NULL)
+		j = 1 + i;
+		while (list[j] != NULL)
 		{
-			if (ft_strcmp(env_lst[i], env_lst[j]) > 0)
+			if (ft_strcmp(list[i], list[j]) > 0)
 			{
-				aux = env_lst[i];
-				env_lst[i] = env_lst[j];
-				env_lst[j] = aux;
+				aux = list[i];
+				list[i] = list[j];
+				list[j] = aux;
 			}
 			j++;
 		}
 		i++;
 	}
-	i = 0;
-	while (env_lst[i])
-		printf("%s\n", env_lst[i++]);
-	ft_free_dp(env_lst);
 }
 
-void	ft_export(t_env *m_env, char **args)
+static void print_env_alphabet_order(t_env *m_env)
 {
-	char	**env_lst;
+	char	**list;
 	int		i;
-	int		j;
+
+	i = 0;
+	list = extract_env_list(m_env);
+	order_alphabet(list);
+	while (list[i] != NULL)
+		printf("%s\n", list[i++]);
+	ft_free_dp(list);
+}
+
+int	ft_export(t_env *m_env, char **args)
+{
+	int	i;
 
 	i = 0;
 	if (!args)
 	{
-		env_lst = copy_env_to_double_point(m_env);
-		order_env(env_lst);
+		print_env_alphabet_order(m_env);
+		return (0);
 	}
-	else
+	while (args[i] != NULL)
 	{
-		while (args[i] != NULL)
-		{
-			if (ft_isdigit(args[i][0]))
-				printf("ERROR !!!!!!!! No puede empezar por num\n");
-			else
-			{
-				if (ft_strchr(args[i], '='))
-				{
-					if ((locate_env_var(m_env, args[i])) < 0)
-						add_var_to_env_global(m_env, args[i]);
-					else
-					{
-						j = locate_env_var(m_env, args[i]);
-						change_env_var_value(m_env, args[i], j);
-					}
-				}
-				else
-				{
-					if ((locate_env_var(m_env, args[i])) >= 0)
-					{
-						j = locate_env_var(m_env, args[i]);
-						promotion_local_to_global(m_env, j);
-					}
-				}
-			}
-			i++;
-		}
-	}			
+		if (ft_strchr(args[i], '='))
+			with_equal_export(m_env, args[i]);
+		else 
+			without_equal_export(m_env, args[i]);
+		i++;
+	}
+	return (0);
 }

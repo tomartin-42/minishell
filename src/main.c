@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/05 21:24:08 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/06 10:57:32 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,27 @@
 
 //This function initialice and copy the env var to list 
 //(m_env)
-static void	copy_env(char **env)
+static t_env	*copy_env(char **env)
 {
 	t_env	*m_env;
 	int		i;
+	t_env	*new;
 
 	i = 0;
+	m_env = NULL;
 	while (env[i])
-		i++;
-	m_env = malloc(sizeof(t_env) * (i + 1));
-	i = 0;
-	while (env[i] != NULL)
 	{
-		m_env[i].v_env = ft_strdup(env[i]);
-		m_env[i].var = ft_split(m_env[i].v_env, '=');
-		m_env[i].global = true;
-		m_env[i].visible = true;
-		m_env[i].del = false;
-		m_env[i].end = false;
+		if (!m_env)
+			init_env_list(&m_env, env[i]);
+		else
+		{
+			new = new_env_node_global(new, env[i]);
+			ft_lstadd_back_env(&m_env, new);
+		}
 		i++;
 	}
-	m_env[i].end = true;
-	/*char	**aux;
-	aux = (char **)malloc(sizeof(char *) * 2);
-	aux[0] = ft_strdup("ABC=AAA");
-	aux[1] = NULL;
-	ft_export(m_env, aux);*/
-	//print_env(m_env);
-	//ft_export(m_env, NULL);
-	find_env(m_env);
+	return (m_env);
+	//ft_expand(m_env, "hola$PWDxx la 2hola $");
 }
 
 int	main(int argc, char **argv, char **env)
@@ -53,6 +45,7 @@ int	main(int argc, char **argv, char **env)
 	char		*str;
 	char		*line;
 	t_element	*element;
+	t_env		*m_env;
 
 	while (1)
 	{
@@ -61,16 +54,19 @@ int	main(int argc, char **argv, char **env)
 		free(str);
 		if (ft_strlen(line) != 0)
 		{
+			add_history(line);
+			m_env = copy_env(env);
 			check_fault_marks(line);
+			printf("***%s***\n", line);
+			line = ft_expand(m_env, line);
+			printf("***%s***\n", line);
 			element = malloc(sizeof(t_element));
 			//g_plist->p_element = element;
 			element->next = NULL;
 			element->prev = NULL;
 			element->str = ft_strdup(line);
 			element->type = 'G';
-			add_history(line);
 			rutine_parse(line, element);
-			copy_env(env);
 			print_list(element);
 			////////////////////
 			argc = argc + 1 - 1;
