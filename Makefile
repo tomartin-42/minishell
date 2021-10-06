@@ -28,6 +28,7 @@ HERED_DIR= ./hered/
 BUILD_DIR = ./build/
 ERRORS_DIR=./errors/
 EXPANSION_DIR=./expansion/
+EXEC_DIR= ./exec/
 
 # Source files and object files
 SRC_FILES = main.c utils_list.c util_env.c expand.c
@@ -36,6 +37,7 @@ HERED_FILES = main_hered.c
 BUILD_FILES = main_build.c ft_export.c ft_export2.c ft_export3.c
 ERRORS_FILES = check_error.c errors.c
 EXPANSION_FILES = env_ex.c str_ex.c expansion.c env_ex2.c
+EXEC_FILES = main_exec.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 OBJ_FILES := $(OBJ_FILES) $(PARSE_FILES:.c=.o)
@@ -43,6 +45,7 @@ OBJ_FILES := $(OBJ_FILES) $(HERED_FILES:.c=.o)
 OBJ_FILES := $(OBJ_FILES) $(BUILD_FILES:.c=.o)
 OBJ_FILES := $(OBJ_FILES) $(ERRORS_FILES:.c=.o)
 OBJ_FILES := $(OBJ_FILES) $(EXPANSION_FILES:.c=.o)
+OBJ_FILES := $(OBJ_FILES) $(EXEC_FILES:.c=.o)
 
 # Paths
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
@@ -53,6 +56,7 @@ BUILD = $(addprefix $(BUILD_DIR), $(BUILD_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 ERROR = $(addprefix $(ERRORS_DIR), $(ERRORS_FILES))
 EXPAND = $(addprefix $(EXPANSION_DIR), $(EXPANSION_FILES))
+ERROR = $(addprefix $(EXEC_DIR), $(EXEC_FILES))
 
 # Libft linkers
 LNK = -L $(LIBFT_DIR) -lft
@@ -74,6 +78,8 @@ $(OBJ_DIR)%.o: $(HERED_DIR)%.c
 $(OBJ_DIR)%.o: $(BUILD_DIR)%.c 
 	@gcc $(FLAGS) $(F_RL) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ -c $<
 $(OBJ_DIR)%.o: $(EXPANSION_DIR)%.c 
+	@gcc $(FLAGS) $(F_RL) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ -c $<
+$(OBJ_DIR)%.o: $(EXEC_DIR)%.c 
 	@gcc $(FLAGS) $(F_RL) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ -c $<
 
 $(LIBFT):
