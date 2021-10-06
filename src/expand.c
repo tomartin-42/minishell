@@ -32,7 +32,8 @@ static int	check_valid_dollar(char *str)
 	dollar = false;
 	while (str[i + 1] != '\0')
 	{
-		if ((str[i] == '$') && (str[i + 1] != ' ' && str[i + 1] != '\0')) 
+		if ((str[i] == '$') && (str[i + 1] != ' ' && str[i + 1] != '\0')
+			&& (str[i + 1] != '"' && str[i + 1] != 39)) 
 			dollar = true;
 		i++;
 	}
@@ -48,11 +49,12 @@ static char *change_expand(t_env *env, char *str)
 	char	*var_value;
 
 	i = 0;
-	while ((str[i] != '$') && (str[i + 1] != ' ' || str[i + 1] != '\0')) 
+	while ((str[i] != '$') && (str[i + 1] != ' ' || str[i + 1] != '\0'
+		|| str[i + 1] != '"' || str[i + 1] != 39)) 
 		i++;
 	i++;
 	j = i;
-	while (str[j] != ' ' && str[j] != '\0')
+	while (str[j] != ' ' && str[j] != '\0' && str[j] != '"' && str[i] != 39)
 		j++;
 	varx = ft_substr(str, i, (j - i));
 //	var_value = getenv(varx);
@@ -74,11 +76,12 @@ static char	*remplace_str(char *str, char *var_value)
 	char	*aux2;
 
 	i = 0;
-	while ((str[i] != '$') && (str[i + 1] != ' ' || str[i + 1] != '\0')) 
+	while ((str[i] != '$') && (str[i + 1] != ' ' || str[i + 1] != '\0'
+		|| str[i + 1] != '"' || str[i + 1] != 39)) 
 		i++;
 	aux = ft_substr(str, 0, i);
 	aux = ft_super_strjoin(aux, var_value, 1);
-	while (str[i] != ' ' && str[i] != '\0')
+	while (str[i] != ' ' && str[i] != '\0' && str[i] != '"' && str[i] != 39)
 		i++;
 	j = i;
 	while (str[j] != '\0')
@@ -106,6 +109,5 @@ char *ft_expand(t_env *m_env, char *str)
 	}
 	str = ft_strdup(str_exp);
 	free(str_exp);
-	printf("[[%s]]\n", str);
 	return (str);
 }

@@ -58,25 +58,25 @@ OBJ_B = $(SRC_B:.c=.o)
 all: $(NAME)
 
 $(OBJ): $(SRC)
-	gcc $(FLAGS) -c $(SRC)
+	@gcc $(FLAGS) -c $(SRC)
 
 $(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+	@ar rcs $(NAME) $(OBJ)
 
 bonus: $(OBJ_B)
-	ar rcs $(NAME) $(OBJ_B)
+	@ar rcs $(NAME) $(OBJ_B)
 
 so:
-	gcc -shared -o libft.so *.c
+	@gcc -shared -o libft.so *.c
 
 $(OBJ_B): $(SRC_B)
-	gcc $(FLAGS) -c $(SRC_B)
+	@gcc $(FLAGS) -c $(SRC_B)
 
 clean:
-	rm -f $(OBJ) $(OBJ_B)
+	@rm -f $(OBJ) $(OBJ_B)
 
 fclean: clean
-	rm -f $(NAME) $(OBJ) $(OBJ_B)
+	@rm -f $(NAME) $(OBJ) $(OBJ_B)
 
 re: fclean all bonus
 
