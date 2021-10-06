@@ -1,6 +1,26 @@
 
 #include "minishell.h"
 
+static char	*ft_get_env(t_env *m_env, char *var_name)
+{
+	char	*value;
+	t_env 	*p_env;
+
+	p_env = m_env;
+	value = ft_strdup("");
+	while (p_env)
+	{
+		if (ft_strcmp(p_env->var[0], var_name) == 0)
+		{
+			free(value);
+			value = ft_strdup(p_env->var[1]);
+		}
+		p_env = p_env->next;
+	}
+	return (value);
+}
+
+
 //check if the string get some $ form make the change for 
 //env var
 static int	check_valid_dollar(char *str)
@@ -35,10 +55,11 @@ static char *change_expand(t_env *env, char *str)
 	while (str[j] != ' ' && str[j] != '\0')
 		j++;
 	varx = ft_substr(str, i, (j - i));
-	var_value = getenv(varx);
+//	var_value = getenv(varx);
+	var_value = ft_get_env(env, varx);
 	if (var_value == NULL)
 		return (ft_strdup(""));
-	env = env;
+//	env = env;
 	free(varx);
 	return (var_value);
 }

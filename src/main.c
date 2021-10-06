@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/05 20:47:29 by tommy            ###   ########.fr       */
+/*   Updated: 2021/10/06 09:04:40 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	copy_env(char **env)
 		}
 		i++;
 	}
-	ft_expand(m_env, "1ho$PWDla 2hola $");
+	ft_expand(m_env, "hola$PWDxx la 2hola $");
 }
 
 int	main(int argc, char **argv, char **env)
