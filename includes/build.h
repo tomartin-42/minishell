@@ -23,6 +23,7 @@ char	**extract_all_env_list(t_env *env);
 int		ft_export(t_env *m_env, char **args);
 void	without_equal_export(t_env *env, char *arg);
 void	with_equal_export(t_env *env, char *arg);
+char	**separate_env_var(char *var);
 
 #endif
 

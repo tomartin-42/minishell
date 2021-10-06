@@ -33,7 +33,7 @@ EXPANSION_DIR=./expansion/
 SRC_FILES = main.c utils_list.c util_env.c expand.c
 PARSE_FILES = main_parse.c procesing_parse.c parse_operation.c sec_parse_proc.c in_args.c
 HERED_FILES = main_hered.c
-BUILD_FILES = main_build.c ft_export.c ft_export2.c
+BUILD_FILES = main_build.c ft_export.c ft_export2.c ft_export3.c
 ERRORS_FILES = check_error.c errors.c
 EXPANSION_FILES = env_ex.c str_ex.c expansion.c env_ex2.c
 
