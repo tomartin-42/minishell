@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/06 13:17:04 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/06 10:57:32 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,12 @@ int	main(int argc, char **argv, char **env)
 			element->type = 'G';
 			rutine_parse(line, element);
 			print_list(element);
-			printf("%d - %s - %s\n", argc, argv[0], env[0]);
+			////////////////////
+			argc = argc + 1 - 1;
+			argv[0] = argv[0];
+			env[0] = env[0];
+			////////////////////
+			//printf("%d - %s - %s\n", argc, argv[0], env[0]);
 		}
 	}
 }

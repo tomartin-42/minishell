@@ -60,7 +60,7 @@ static char *change_expand(t_env *env, char *str)
 //	var_value = getenv(varx);
 	printf("XXX%sXXX\n", varx);
 	var_value = ft_get_env(env, varx);
-	if (var_value == '\0')
+	if (var_value == NULL)
 		return (ft_strdup(""));
 //	env = env;
 	free(varx);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   procesing_parse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/03 19:03:23 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/05 10:36:34 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ void	pre_procesing(t_element *element)
 		check_env(p_elem);
 		p_elem = p_elem->next;
 	}
-	add_args(element); ///////move to oder function, just temporal
+	add_args(element);
+	expand_all(element);
 }

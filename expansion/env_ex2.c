@@ -1,28 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   env_ex2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/24 09:05:17 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/04 17:50:08 by dpuente-         ###   ########.fr       */
+/*   Created: 2021/10/05 19:41:22 by dpuente-          #+#    #+#             */
+/*   Updated: 2021/10/05 21:24:30 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	int	res;
-
-	res = 0;
-	while ((*s1 || *s2))
-	{
-		res = (unsigned char)*s1 - (unsigned char)*s2;
-		if (res != 0)
-			return (res);
-		s1++;
-		s2++;
-	}
-	return (res);
-}
+#include "parse.h"

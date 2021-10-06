@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:50:17 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/03 19:04:10 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/05 19:49:20 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,21 @@ void	sec_procesing(t_element *element);
 ////////////////////
 //in_args.c//
 void	add_args(t_element *element);
+////////////////////
+//env_ex.c//
+void	env_ex(t_element *element);
+int		search_marks(t_element *p_elem);
+int		search_env(t_element *p_elem);
+////////////////////
+//env_ex2.c//
+void	find_env(t_env *p_env);
+////////////////////
+//str_ex.c//
+void	remove_marks(t_element *p_elem);
+void	str_ex(t_element *element);
+////////////////////
+//expansion.c//
+void	expand_all(t_element *element);
 ////////////////////
 void	clean_element(t_element *element);
 void	pre_procesing(t_element *element);
