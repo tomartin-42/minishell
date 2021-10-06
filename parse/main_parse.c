@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 15:12:24 by tommy             #+#    #+#             */
-/*   Updated: 2021/09/27 20:05:47 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/06 18:04:01 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-void	rutine_parse(char *str, t_element *element)
+void	rutine_parse(char *str, t_element *element, t_env *m_env)
 {
 	main_parse(str, element);
+	expand_all(element, m_env, 1);
 	clean_element(element);
 	pre_procesing(element);
 	ft_lst_del_all_x(element);
