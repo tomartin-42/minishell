@@ -40,7 +40,7 @@ static int	check_valid_dollar(char *str)
 	return (dollar);
 }
 
-//Get de valuo of env var or it's dont exits return empy string 
+//Get de value of env var or it's dont exits return empy string 
 static char *change_expand(t_env *env, char *str)
 {
 	int		i;
@@ -49,15 +49,16 @@ static char *change_expand(t_env *env, char *str)
 	char	*var_value;
 
 	i = 0;
-	while ((str[i] != '$') && (str[i + 1] != ' ' || str[i + 1] != '\0'
-		|| str[i + 1] != '"' || str[i + 1] != 39)) 
+	while (str[i] != '$' && str[i] != '\0')
 		i++;
 	i++;
 	j = i;
-	while (str[j] != ' ' && str[j] != '\0' && (str[j] != '"' || str[i] != 39))
+	while (str[j] != 39 && str[j] != '"' && str[j] != ' ' && str[j] != '\0')
 		j++;
-	varx = ft_substr(str, i, (j - (i + 1)));
+	printf("%d - %d\n", i, j);
+	varx = ft_substr(str, i, (j - i));
 //	var_value = getenv(varx);
+	printf("XXX%sXXX\n", varx);
 	var_value = ft_get_env(env, varx);
 	if (var_value == '\0')
 		return (ft_strdup(""));
