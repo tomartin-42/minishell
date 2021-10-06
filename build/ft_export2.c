@@ -71,7 +71,7 @@ static void	change_env_value(t_env **env, char *arg)
 	char	**values;
 
 	p_env = (*env);
-	values = ft_split(arg, '=');
+	values = separate_env_var(arg);
 	while (p_env)
 	{
 		if (ft_strcmp(values[0], p_env->var[0]) == 0)
@@ -80,7 +80,7 @@ static void	change_env_value(t_env **env, char *arg)
 			p_env->v_env = ft_strdup(arg);
 			free(p_env->var[0]);
 			free(p_env->var[1]);
-			p_env->var = ft_split(arg, '=');
+			p_env->var = separate_env_var(arg);
 			p_env = p_env->next;
 		}
 	}

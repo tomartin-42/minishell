@@ -11,13 +11,14 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "build.h"
 
 void	init_env_list(t_env **m_env, char *var)
 {
 	(*m_env) = malloc(sizeof(t_env));
 	(*m_env)->v_env = ft_strdup(var);
 	if (ft_strchr(var, '='))
-		(*m_env)->var = ft_split(var, '=');
+		(*m_env)->var = separate_env_var(var);
 	else
 	{
 		(*m_env)->var[0] = ft_strdup(var);
@@ -33,9 +34,7 @@ t_env	*ft_lstlast_env(t_env *env_lst)
 	if (!env_lst)
 		return (NULL);
 	while (env_lst->next)
-	{
 		env_lst = env_lst->next;
-	}
 	return (env_lst);
 }
 
@@ -44,7 +43,7 @@ t_env	*new_env_node_local(t_env *new, char *var)
 	new = malloc(sizeof(t_env));
 	new->v_env = ft_strdup(var);
 	if (ft_strchr(var, '='))
-		new->var = ft_split(var, '=');
+		new->var = separate_env_var(var);
 	else
 	{
 		new->var[0] = ft_strdup(var);
@@ -61,7 +60,7 @@ t_env	*new_env_node_global(t_env *new, char *var)
 	new = malloc(sizeof(t_env));
 	new->v_env = ft_strdup(var);
 	if (ft_strchr(var, '='))
-		new->var = ft_split(var, '=');
+		new->var = separate_env_var(var);
 	else
 	{
 		new->var[0] = ft_strdup(var);
