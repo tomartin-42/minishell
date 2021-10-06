@@ -30,10 +30,10 @@ static int	check_valid_dollar(char *str)
 
 	i = 0;
 	dollar = false;
-	while (str[i + 1] != '\0')
+	while (str[i] != '\0')
 	{
-		if ((str[i] == '$') && (str[i + 1] != ' ' && str[i + 1] != '\0')
-			&& (str[i + 1] != '"' && str[i + 1] != 39)) 
+		if ((str[i] == '$') && (str[i + 1] != ' ' && str[i + 1] != '\0'
+			&& str[i + 1] != '"' && str[i + 1] != 39)) 
 			dollar = true;
 		i++;
 	}
@@ -54,12 +54,12 @@ static char *change_expand(t_env *env, char *str)
 		i++;
 	i++;
 	j = i;
-	while (str[j] != ' ' && str[j] != '\0' && str[j] != '"' && str[i] != 39)
+	while (str[j] != ' ' && str[j] != '\0' && (str[j] != '"' || str[i] != 39))
 		j++;
-	varx = ft_substr(str, i, (j - i));
+	varx = ft_substr(str, i, (j - (i + 1)));
 //	var_value = getenv(varx);
 	var_value = ft_get_env(env, varx);
-	if (var_value == NULL)
+	if (var_value == '\0')
 		return (ft_strdup(""));
 //	env = env;
 	free(varx);
