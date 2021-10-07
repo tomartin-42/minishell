@@ -14,6 +14,7 @@
 #include "hered.h"
 #include "parse.h"
 #include "build.h"
+#include "exec.h"
 
 //This function initialice and copy the env var to list 
 //(m_env)
@@ -67,6 +68,7 @@ int	main(int argc, char **argv, char **env)
 			rutine_parse(line, element);
 			print_list(element);
 			////////////////////
+			main_exec(element, m_env);
 			argc = argc + 1 - 1;
 			argv[0] = argv[0];
 			env[0] = env[0];

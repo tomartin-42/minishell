@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 //This function sustitute access();
 int	ft_access(char *fname)
 {
@@ -28,3 +29,4 @@ int	ft_access(char *fname)
 	close (fd);
 	return (fd);
 }
+
