@@ -10,7 +10,6 @@ static void	start_hered(t_element *element)
 	{
 		if (aux_ele->type == 'H')
 			main_hered(aux_ele);
-		printf("HERED FD = %d\n", aux_ele->fd);
 		aux_ele = aux_ele->prev;
 	}
 }

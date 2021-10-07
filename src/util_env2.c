@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 #include "build.h"
-/*
+
 static void	add_shlvl(t_env **env)
 {
 	t_env	*p_env;
@@ -22,7 +22,19 @@ static void	add_shlvl(t_env **env)
 	while (p_env)
 	{
 		if (ft_strcmp(p_env, "SHLVL") == 0)
-			i = ft_atoi(p_env->
+		{
+			i = ft_atoi(p_env->var[1])
+			i++;
+			free(p_env->str);
+			p_env->str = ft_strdup("SHLVL");
+			p_env->str = ft_super_join(p_env->str, ft_itoa(i), 1);
+			free(p_env->var[1]);
+			p_env->var[1] = ft_strdup(ft_itoa(i));
+		}
+		p_env = p_env->next;
+	}
+}
+
 
 void	change_shlvl(t_env *env)
 {
@@ -32,10 +44,10 @@ void	change_shlvl(t_env *env)
 
 	check = search_if_var(env, "SHLVL");
 	if (check == 1)
-		//suma uno al valor
+		add_shlvl(&env);
 	else if (check == -1)
 	{
 		new_env_node_global(aux_node, ft_strdup("SHLVL=1"));
 		ft_lstadd_back_env(*env, aux_node);
 	}
-}*/
+}

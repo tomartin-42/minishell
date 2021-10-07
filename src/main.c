@@ -76,7 +76,7 @@ int	main(int argc, char **argv, char **env)
 			element->str = ft_strdup(line);
 			element->type = 'G';
 			element->arg = NULL;
-			rutine_parse(line, element);
+			rutine_parse(line, element, m_env);
 			print_list(element);
 			////////////////////
 			main_exec(element, m_env);

@@ -16,13 +16,14 @@ void	main_hered(t_element *element)
 	char	*h_str;
 	int		h_fd[2];
 
+	*element = *element;
 	pipe (h_fd);
-	printf("[[[[[[[[%s]]]]]]]]\n", element->arg[0]);
+	printf("[[[[[[[[%s]]]]]]]]\n", element->next->str);
 	while (1)
 	{
 		h_str = readline("> ");
-		if (!ft_strncmp(element->arg[0], h_str, ft_strlen(element->arg[0])) &&
-			ft_strlen(element->arg[0]) == ft_strlen(h_str))
+		if (!ft_strncmp(element->next->str, h_str, ft_strlen(element->next->str)) &&
+			ft_strlen(element->next->str) == ft_strlen(h_str))
 		{
 			free(h_str);
 			break ;
@@ -34,5 +35,6 @@ void	main_hered(t_element *element)
 			free(h_str);
 		}
 	}
+	element->fd = dup(h_fd[0]);
 	close(h_fd[1]);
 }
