@@ -1,0 +1,108 @@
+Mmain	src/main.c	/^int	main(int argc, char **argv, char **env)$/
+add_args	parse/add_args.c	/^void	add_args(t_element *element)$/
+arg_input	parse/in_args.c	/^void	arg_input(t_element *p_elem, int	size_arg)$/
+arg_token	parse/sec_parse_proc.c	/^void	arg_token(t_element *element)$/
+change_heredoc	parse/procesing_parse.c	/^static void	change_heredoc(t_element *p_elem)$/
+change_truck	parse/procesing_parse.c	/^static void	change_truck(t_element *p_elem)$/
+check	exec/check.c	/^void	check(int argc, char **argv, char **env)$/
+check_close_mark	parse/parse_operation.c	/^void	check_close_mark(char *str, bool *mark_s, boo/
+check_env	parse/sec_parse_proc.c	/^void	check_env(t_element *element)$/
+check_fault_marks	errors/check_error.c	/^int	check_fault_marks(char *str)$/
+check_open_mark	parse/parse_operation.c	/^void	check_open_mark(char *str, bool *mark_s, bool/
+check_valid_dollar	src/expand.c	/^static int	check_valid_dollar(char *str)$/
+child1_proces	exec/main_exec.c	/^static void	child1_proces(t_param param, int *pp, /
+child2_proces	exec/main_exec.c	/^static void	child2_proces(t_param param, int *pp, /
+clean_element	parse/procesing_parse.c	/^void	clean_element(t_element *element)$/
+command_not_found_error	exec/check.c	/^void	command_not_found_error(char **cmd)$/
+copy_env	src/main.c	/^static t_env	*copy_env(char **env)$/
+copy_to_word	parse/parse_operation.c	/^void	copy_to_word(char *str, int *i, int *j, t_ele/
+count_args	parse/add_args.c	/^void	count_args()$/
+execut	exec/main_exec.c	/^void	execut(int argc, char **argv, char **envp)$/
+execut_error	exec/error.c	/^void	execut_error(char *text, int numerror)$/
+extract_all_env_list	build/ft_export.c	/^char	**extract_all_env_list(t_env *env)$/
+extract_env_list	build/ft_export.c	/^char	**extract_env_list(t_env *env)$/
+file_input	parse/in_args.c	/^int	file_input(t_element *p_elem)$/
+free_aux	exec/free_resource.c	/^void	free_aux(char **aux_path)$/
+free_param	exec/free_resource.c	/^void	free_param(t_param *param)$/
+ft_access	src/utils_src.c	/^int	ft_access(char *fname)$/
+ft_atoi	libft/ft_atoi.c	/^int	ft_atoi(char *str)$/
+ft_bzero	libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/
+ft_calloc	libft/ft_calloc.c	/^void	*ft_calloc(size_t nmemb, size_t size)$/
+ft_checking	libft/ft_strtrim.c	/^static int	ft_checking(char a, char const *set)$/
+ft_cpy_to_buff_r	libft/get_next_line.c	/^static char	*ft_cpy_to_buff_r(char *read_f, char */
+ft_echo	build/main_build.c	/^void	ft_echo(t_element *element)$/
+ft_env	build/main_build.c	/^void	ft_env(char **g_env)$/
+ft_export	build/ft_export.c	/^int	ft_export(t_env *m_env, char **args)$/
+ft_extract_line	libft/get_next_line.c	/^static int	ft_extract_line(char **buff, char **lin/
+ft_free_dp	libft/ft_free_dp.c	/^void	ft_free_dp(char **dp)$/
+ft_get_env	src/expand.c	/^static char	*ft_get_env(t_env *m_env, char *var_na/
+ft_insert_table	libft/ft_split.c	/^static void	ft_insert_table(char **table, char con/
+ft_isalnum	libft/ft_isalnum.c	/^int	ft_isalnum(int c)$/
+ft_isalpha	libft/ft_isalpha.c	/^int	ft_isalpha(int c)$/
+ft_isascii	libft/ft_isascii.c	/^int	ft_isascii(int c)$/
+ft_isdigit	libft/ft_isdigit.c	/^int	ft_isdigit(int c)$/
+ft_isprint	libft/ft_isprint.c	/^int	ft_isprint(int c)$/
+ft_itoa	libft/ft_itoa.c	/^char	*ft_itoa(int n)$/
+ft_lenitoa	libft/ft_itoa.c	/^static int	ft_lenitoa(long n)$/
+ft_lst_del_all_x	src/utils_list.c	/^void	ft_lst_del_all_x(t_element *element)$/
+ft_lstadd_back	libft/ft_lstadd_back.c	/^void	ft_lstadd_back(t_element **lst, t_element *ne/
+ft_lstadd_back_env	src/util_env.c	/^void	ft_lstadd_back_env(t_env **env_lst, t_env *ne/
+ft_lstadd_front	libft/ft_lstadd_front.c	/^void	ft_lstadd_front(t_list **alst, t_list *new)$/
+ft_lstclear	libft/ft_lstclear.c	/^void	ft_lstclear(t_list **lst, void (*del)(void *)/
+ft_lstdelone	libft/ft_lstdelone.c	/^void	ft_lstdelone(t_list *lst, void (*del)(void *)/
+ft_lstiter	libft/ft_lstiter.c	/^void	ft_lstiter(t_list *lst, void (*f)(void *))$/
+ft_lstlast	libft/ft_lstlast.c	/^t_list	*ft_lstlast(t_element *lst)$/
+ft_lstlast_env	src/util_env.c	/^t_env	*ft_lstlast_env(t_env *env_lst)$/
+ft_lstmap	libft/ft_lstmap.c	/^t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),/
+ft_lstnew	libft/ft_lstnew.c	/^t_list	*ft_lstnew(void *content)$/
+ft_lstsize	libft/ft_lstsize.c	/^int	ft_lstsize(t_list *lst)$/
+ft_memccpy	libft/ft_memccpy.c	/^void	*ft_memccpy(void *dest, const void *src, int /
+ft_memchr	libft/ft_memchr.c	/^void	*ft_memchr(const void *s, int c, size_t n)$/
+ft_memcmp	libft/ft_memcmp.c	/^int	ft_memcmp(const void *s1, const void *s2, size/
+ft_memcpy	libft/ft_memcpy.c	/^void	*ft_memcpy(void *dest, const void *src, size_/
+ft_memmove	libft/ft_memmove.c	/^void	*ft_memmove(void *dest, const void *src, size/
+ft_memset	libft/ft_memset.c	/^void	*ft_memset(void *s, int c, size_t n)$/
+ft_putchar_fd	libft/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, int fd)$/
+ft_putendl_fd	libft/ft_putendl_fd.c	/^void	ft_putendl_fd(char *s, int fd)$/
+ft_putnbr_fd	libft/ft_putnbr_fd.c	/^void	ft_putnbr_fd(int n, int fd)$/
+ft_putstr_fd	libft/ft_putstr_fd.c	/^void	ft_putstr_fd(char *s, int fd)$/
+ft_pwd	build/main_build.c	/^void	ft_pwd(char **g_env)$/
+ft_resize_buff	libft/get_next_line.c	/^static void	ft_resize_buff(char **buff)$/
+ft_reverse	libft/ft_itoa.c	/^static char	*ft_reverse(char *str)$/
+ft_split	libft/ft_split.c	/^char	**ft_split(char const *s, char c)$/
+ft_strchr	libft/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/
+ft_strcmp	libft/ft_strcmp.c	/^int	ft_strcmp(const char *s1, const char *s2)$/
+ft_strdup	libft/ft_strdup.c	/^char	*ft_strdup(const char *s)$/
+ft_strjoin	exec/check.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/
+ft_strlcat	libft/ft_strlcat.c	/^size_t	ft_strlcat(char *dest, const char *src, siz/
+ft_strlcpy	libft/ft_strlcpy.c	/^size_t	ft_strlcpy(char *dest, const char *src, siz/
+ft_strlen	libft/ft_strlen.c	/^size_t	ft_strlen(const char *str)$/
+ft_strmapi	libft/ft_strmapi.c	/^char	*ft_strmapi(char const *s, char (*f)(unsigned/
+ft_strncmp	libft/ft_strncmp.c	/^int	ft_strncmp(const char *s1, const char *s2, siz/
+ft_strnstr	libft/ft_strnstr.c	/^char	*ft_strnstr(const char *haystack, const char /
+ft_strrchr	libft/ft_strrchr.c	/^char	*ft_strrchr(const char *s, int c)$/
+ft_strtrim	libft/ft_strtrim.c	/^char	*ft_strtrim(char const *s1, char const *set)$/
+ft_substr	libft/ft_substr.c	/^char	*ft_substr(char const *s, unsigned int start,/
+ft_super_strjoin	libft/ft_super_strjoin.c	/^char	*ft_super_strjoin(char *s1, char *s2, int str/
+ft_tableword	libft/ft_split.c	/^static int	ft_tableword(const char *s, char c)$/
+ft_tolower	libft/ft_tolower.c	/^int	ft_tolower(int c)$/
+ft_toupper	libft/ft_toupper.c	/^int	ft_toupper(int c)$/
+gestion_free	libft/ft_super_strjoin.c	/^static void	gestion_free(char *s1, char *s2, int s/
+get_correct_path	exec/utils.c	/^char	*get_correct_path(char **aux_path, char *argv/
+get_next_line	libft/get_next_line.c	/^int	get_next_line(int fd, char **line)$/
+get_params	exec/utils.c	/^void	get_params(t_param *param, char **argv, char /
+get_path	exec/utils.c	/^char	*get_path(char *argv, char **env)$/
+id_expand	parse/expand_str.c	/^void	id_expand(t_element *element)$/
+ini_var	parse/parse_operation.c	/^void	ini_var(t_mark *mark)$/
+init_env_list	src/util_env.c	/^void	init_env_list(t_env **m_env, char *var)$/
+main_hered	hered/main_hered.c	/^void	main_hered(t_element *element)$/
+main_parse	parse/main_parse.c	/^void	main_parse(char *str, t_element *element)$/
+new_env_node_global	src/util_env.c	/^t_env	*new_env_node_global(t_env *new, char *var)$/
+new_env_node_local	src/util_env.c	/^t_env	*new_env_node_local(t_env *new, char *var)$/
+order_alphabet	build/ft_export.c	/^static void	order_alphabet(char **list)$/
+parent_proces	exec/main_exec.c	/^static void	parent_proces(t_param param, int *pp, /
+print_env_alphabet_order	build/ft_export.c	/^static void print_env_alphabet_order(t_env *m_env)/
+print_list	src/utils_list.c	/^void	print_list(t_element *element)$/
+reorder_list	src/utils_list.c	/^static void	reorder_list(t_element *p_elem)$/
+rutine_parse	parse/main_parse.c	/^void	rutine_parse(char *str, t_element *element)$/
+sec_procesing	parse/sec_parse_proc.c	/^void	sec_procesing(t_element *element)$/

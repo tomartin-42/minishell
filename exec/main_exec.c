@@ -18,7 +18,7 @@ static void	start_hered(t_element *element)
 void	main_exec(t_element *element, t_env *env)
 {
 	start_hered(element);
-	env = env;
-	element = element;
+	*env = *env;
+	*element = *element;
 }
 

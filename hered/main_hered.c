@@ -12,22 +12,23 @@
 #include "hered.h"
 
 void	main_hered(t_element *element)
-{ char	*h_str;
+{ 
+	char	*h_str;
 	int		h_fd[2];
 
 	pipe (h_fd);
+	printf("[[[[[[[[%s]]]]]]]]\n", element->arg[0]);
 	while (1)
 	{
 		h_str = readline("> ");
-		if (!ft_strncmp(*element->arg, h_str, ft_strlen(*element->arg)) &&
-			ft_strlen(*element->arg) == ft_strlen(h_str))
+		if (!ft_strncmp(element->arg[0], h_str, ft_strlen(element->arg[0])) &&
+			ft_strlen(element->arg[0]) == ft_strlen(h_str))
 		{
 			free(h_str);
 			break ;
 		}
 		else
 		{
-			printf("HOLA\n");
 			write (h_fd[1], h_str, ft_strlen(h_str));
 			write (h_fd[1], "\n", 1);
 			free(h_str);
