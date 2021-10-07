@@ -6,7 +6,7 @@
 /*   by: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2021/09/23 21:08:34 by tommy             #+#    #+#             */
-/*   Updated: 2021/09/30 10:48:10 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/07 12:01:08 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,12 @@ void	ft_lst_del_all_x(t_element *element)
 
 void	print_list(t_element *element)
 {
-	while (element->next)
+	while (element)
 	{
 		printf("[%s]\n", element->str);
 		printf("type -> [%c]\n", element->type);
+		//printf("arg[0] -> [%s]\n", element->arg[0]);
 		printf("==================================\n");
 		element = element->next;
 	}
-	printf("[%s]\n", element->str);
-	printf("type -> [%c]\n", element->type);
-	printf("==================================\n");
 }
