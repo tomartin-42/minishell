@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 19:37:34 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/05 16:44:02 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/06 18:18:03 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,8 @@ void	str_ex(t_element *element)
 			}
 			if (not_expand == 1 && p_elem->type != 'C')
 				not_expand = 0;
-			if (not_expand == 0)
+			if (not_expand == 0 || not_expand == 1)
 			{
-				printf("\nExpando->%s", p_elem->str);
-				remove_marks(p_elem);
-				printf("\nExpandido->%s\n\n", p_elem->str);
-			}
-			else if (not_expand == 1)
-			{
-				printf("\nNO expando, pero lo hago->%s\n\n", p_elem->str);
 				remove_marks(p_elem);
 			}
 		}

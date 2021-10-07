@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/06 10:57:25 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/06 13:10:20 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_env{
 	bool			global;
 	bool			visible;
 	struct s_env	*next;
-} t_env;
+}	t_env;
 
 typedef struct s_element{
 	char				*str;

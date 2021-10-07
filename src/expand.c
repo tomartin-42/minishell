@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/06 18:33:34 by dpuente-          #+#    #+#             */
+/*   Updated: 2021/10/07 12:09:45 by dpuente-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
 static char	*ft_get_env(t_env *m_env, char *var_name)
 {
 	char	*value;
-	t_env 	*p_env;
+	t_env	*p_env;
 
 	p_env = m_env;
 	value = ft_strdup("");
@@ -20,7 +31,6 @@ static char	*ft_get_env(t_env *m_env, char *var_name)
 	return (value);
 }
 
-
 //check if the string get some $ form make the change for 
 //env var
 static int	check_valid_dollar(char *str)
@@ -33,7 +43,7 @@ static int	check_valid_dollar(char *str)
 	while (str[i] != '\0')
 	{
 		if ((str[i] == '$') && (str[i + 1] != ' ' && str[i + 1] != '\0'
-			&& str[i + 1] != '"' && str[i + 1] != 39)) 
+				&& str[i + 1] != '"' && str[i + 1] != 39))
 			dollar = true;
 		i++;
 	}
@@ -41,7 +51,7 @@ static int	check_valid_dollar(char *str)
 }
 
 //Get de value of env var or it's dont exits return empy string 
-static char *change_expand(t_env *env, char *str)
+static char	*change_expand(t_env *env, char *str)
 {
 	int		i;
 	int		j;
@@ -55,10 +65,10 @@ static char *change_expand(t_env *env, char *str)
 	j = i;
 	while (str[j] != 39 && str[j] != '"' && str[j] != ' ' && str[j] != '\0')
 		j++;
-	printf("%d - %d\n", i, j);
+	//printf("%d - %d\n", i, j);
 	varx = ft_substr(str, i, (j - i));
 //	var_value = getenv(varx);
-	printf("XXX%sXXX\n", varx);
+	//printf("XXX%sXXX\n", varx);
 	var_value = ft_get_env(env, varx);
 	if (var_value == NULL)
 		return (ft_strdup(""));
@@ -78,7 +88,7 @@ static char	*remplace_str(char *str, char *var_value)
 
 	i = 0;
 	while ((str[i] != '$') && (str[i + 1] != ' ' || str[i + 1] != '\0'
-		|| str[i + 1] != '"' || str[i + 1] != 39)) 
+			|| str[i + 1] != '"' || str[i + 1] != 39))
 		i++;
 	aux = ft_substr(str, 0, i);
 	aux = ft_super_strjoin(aux, var_value, 1);
@@ -96,7 +106,7 @@ static char	*remplace_str(char *str, char *var_value)
 }
 
 //This function get a string and expand it with env var
-char *ft_expand(t_env *m_env, char *str)
+char	*ft_expand(t_env *m_env, char *str)
 {
 	char	*str_exp;
 	char	*var_value;

@@ -6,69 +6,85 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 17:19:00 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/04 16:10:25 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/07 11:04:38 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-void	check_env(t_element *element)
+void	is_direct(t_element *element)
+{
+	t_element	*p_elem;
+
+	p_elem = element;
+	while (p_elem)
+	{
+		if (p_elem->type == 'C')
+		{
+			if (p_elem->str[0] == '/')
+				printf("🔥ShellFromHell🔥: > %s: is a directory\n", p_elem->str);
+		}
+		p_elem = p_elem->next;
+	}
+}
+
+void	check_env(t_element *p_elem)
 {
 	int	n;
 	int	value;
 
 	value = 0;
 	n = 0;
-	if (element->prev != NULL)
+	if (p_elem->prev != NULL)
 	{
-		while (element->str[n] != '\0')
+		while (p_elem->str[n] != '\0')
 		{
-			if (element->str[n] == '$')
+			if (p_elem->str[n] == '$')
 				value = 1;
-			if (element->str[n] == '=')
+			if (p_elem->str[n] == '=')
 				value = 2;
-			if ((element->type != 'A' || element->type != 'S'
-					|| element->type != 'G') && value > 0)
+			if ((p_elem->type != 'A' || p_elem->type != 'S'
+					|| p_elem->type != 'G') && value > 0)
 			{
-				if (element->prev->type != 'G' && value == 2)
-					element->type = 'E';
-				if (element->prev->type != 'G' && value == 1)
-					element->type = '$';
+				if (p_elem->prev->type != 'G' && value == 2)
+					p_elem->type = 'E';
+				if (p_elem->prev->type != 'G' && value == 1)
+					p_elem->type = '$';
 			}
 			n++;
 		}	
 	}
 }
 
-void	arg_token(t_element *element)
+void	arg_token(t_element *p_elem)
 {
-	if (element->type != 'T' && element->type != 'O' && element->type != 'I'
-		&& element->type != 'H' && element->type != 'P')
+	if (p_elem->type != 'T' && p_elem->type != 'O' && p_elem->type != 'I'
+		&& p_elem->type != 'H' && p_elem->type != 'P')
 	{
-		element->type = 'A';
+		p_elem->type = 'A';
 	}
 }
 
-void	sec_procesing(t_element *element)
+void	sec_procesing(t_element *p_elem)
 {
-	if (element->prev != NULL)
+	if (p_elem->prev != NULL)
 	{
-		if (element->prev->type == 'O' && element->type == 'C')
-			element->type = 'F';
-		else if (element->prev->type == 'O' && element->type == 'S')
-			element->type = 'F';
-		else if (element->prev->type == 'G' && element->type != 'C')
-			element->type = 'C';
-		else if (element->prev->type == 'C' || element->prev->type == 'A'
-			|| element->prev->type == 'E' || element->prev->type == '$'
-			|| element->prev->type == 'F')
+		if (p_elem->prev->type == 'O' && p_elem->type == 'C')
+			p_elem->type = 'F';
+		else if (p_elem->prev->type == 'O' && p_elem->type == 'S')
+			p_elem->type = 'F';
+		else if (p_elem->prev->type == 'G' && p_elem->type != 'C')
+			p_elem->type = 'C';
+		else if (p_elem->prev->type == 'C' || p_elem->prev->type == 'A'
+			|| p_elem->prev->type == 'E' || p_elem->prev->type == '$'
+			|| p_elem->prev->type == 'F')
 		{
-			arg_token(element);
+			arg_token(p_elem);
 		}
-		else if ((element->prev->type == 'T' && element->type == 'C')
-			|| element->prev->type == 'X' || element->prev->type == 'I')
+		else if ((p_elem->prev->type == 'T' && p_elem->type == 'C')
+			|| p_elem->prev->type == 'X' || p_elem->prev->type == 'I')
 		{
-			element->type = 'F';
+			p_elem->type = 'F';
 		}
 	}
 }
