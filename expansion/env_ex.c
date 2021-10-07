@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:12:15 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/07 12:05:02 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/07 13:12:27 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	env_ex(t_element *element, t_env *m_env)
 			}
 			if (search_marks(p_elem) > 0)
 				remove_marks(p_elem);
+			//special_cases(p_elem);
 		}
 		p_elem = p_elem->next;
 	}

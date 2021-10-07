@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/07 11:29:54 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/07 12:35:37 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ int	main(int argc, char **argv, char **env)
 			add_history(line);
 			m_env = copy_env(env);
 			check_fault_marks(line);
-			printf("***%s***\n", line);
+			//printf("***%s***\n", line);
 			//line = ft_expand(m_env, line);///////////////////////////////////////////////////
-			printf("***%s***\n", line);
+			//printf("***%s***\n", line);
 			element = malloc(sizeof(t_element));
 			//g_plist->p_element = element;
 			element->next = NULL;
