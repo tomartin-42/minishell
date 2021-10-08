@@ -27,6 +27,7 @@ static void	add_shlvl(t_env *env)
 			i++;
 			free(p_env->v_env);
 			p_env->v_env = ft_strdup("SHLVL");
+			p_env->v_env = ft_super_strjoin(p_env->v_env, "=", 1);
 			p_env->v_env = ft_super_strjoin(p_env->v_env, ft_itoa(i), 1);
 			free(p_env->var[1]);
 			p_env->var[1] = ft_strdup(ft_itoa(i));
@@ -48,15 +49,14 @@ void	change_shlvl(t_env *env)
 	{
 		aux = ft_strdup("SHLVL=1");
 		new_env_node_global(&aux_node, aux);
-//		ft_lstadd_back_env(&env, aux_node);
 		free(aux);
 	}
 }
 
-//This function get a env var name and change the value
+//This function get a env_var name and change the value
 void	change_single_env_var(t_env *env, char *var, char *n_value)
 {
-	t_env	p_env;
+	t_env	*p_env;
 
 	p_env = env;
 	while (p_env)
@@ -66,7 +66,8 @@ void	change_single_env_var(t_env *env, char *var, char *n_value)
 			free(p_env->var[1]);
 			p_env->var[1] = ft_strdup(n_value);
 			free(p_env->v_env);
-			ft_super_strjoin(p_env->var[0], p_env->var[1], 0);	
+			p_env->v_env = ft_super_strjoin(p_env->var[0], "=", 1);	
+			p_env->v_env = ft_super_strjoin(p_env->var[0], p_env->var[1], 0);	
 		}
 		p_env = p_env->next;
 	}
