@@ -6,14 +6,12 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:50:17 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/07 13:12:39 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/07 18:33:29 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
-//argumentos segfaul
-//echo $"PWD"
 # include "minishell.h"
 
 typedef struct s_mark{

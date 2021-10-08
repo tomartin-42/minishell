@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:02:31 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/07 18:21:19 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/08 11:05:07 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,17 @@ void	add_args(t_element *element)
 				arg_input(p_elem, size_arg);
 			}
 			else
-				p_elem->arg = NULL;
-			//file_input(p_elem);
+			{
+				p_elem->arg = malloc(sizeof(char *) * 1);
+				p_elem->arg[0] = NULL;
+			}
 		}
+		else
+		{
+			p_elem->arg = malloc(sizeof(char *) * 1);
+			p_elem->arg[0] = NULL;
+		}
+		///printf("%s", p_elem->arg[0]);
 		p_elem = p_elem->next;
 	}
 }
