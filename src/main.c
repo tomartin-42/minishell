@@ -6,11 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/10/08 11:02:41 by tomartin         ###   ########.fr       */
-=======
-/*   Updated: 2021/10/07 11:29:54 by dpuente-         ###   ########.fr       */
->>>>>>> 1108f725ad55259276d1fee86cb4cf7a405e65a1
+/*   Updated: 2021/10/08 12:04:13 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,32 +67,19 @@ int	main(int argc, char **argv, char **env)
 			m_env = copy_env(env);
 			change_shlvl(m_env);
 			check_fault_marks(line);
-			printf("***%s***\n", line);
+			//printf("***%s***\n", line);
 			//line = ft_expand(m_env, line);///////////////////////////////////////////////////
-			printf("***%s***\n", line);
+			//printf("***%s***\n", line);
 			element = malloc(sizeof(t_element));
 			//g_plist->p_element = element;
 			element->next = NULL;
 			element->prev = NULL;
 			element->str = ft_strdup(line);
 			element->type = 'G';
-<<<<<<< HEAD
 			rutine_parse(line, element, m_env);
 			main_exec(element, m_env);
 			//rutine_parse(line, element);
 			print_list(element);
-=======
-			element->arg = NULL;
-			rutine_parse(line, element, m_env);
-			print_list(element);
-			////////////////////
-			main_exec(element, m_env);
-			argc = argc + 1 - 1;
-			argv[0] = argv[0];
-			env[0] = env[0];
-			////////////////////
-			//printf("%d - %s - %s\n", argc, argv[0], env[0]);
->>>>>>> 1108f725ad55259276d1fee86cb4cf7a405e65a1
 		}
 	}
 }

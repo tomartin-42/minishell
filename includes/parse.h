@@ -6,14 +6,12 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:50:17 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/07 12:19:52 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/07 18:33:29 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
-//argumentos segfaul
-//echo $"PWD"
 # include "minishell.h"
 
 typedef struct s_mark{
@@ -38,6 +36,7 @@ int		search_marks(t_element *p_elem);
 int		search_env(t_element *p_elem);
 ////////////////////
 //env_ex2.c//
+//void	special_cases(t_element *p_elem);
 void	dollar_mark(t_element *p_elem);
 //void	find_env(t_env *p_env);
 ////////////////////
