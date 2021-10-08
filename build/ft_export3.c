@@ -3,7 +3,7 @@
 //Separate the env var in doble pointer name and value
 char	**separate_env_var(char *var)
 {
-}	char	**var_dual;
+	char	**var_dual;
 	int		i;
 	char	*aux;
 	

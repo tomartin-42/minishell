@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 08:42:04 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/05 12:24:09 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:33:23 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Search in env list and return 1 if had a global var, 0 locat var
 // and -1 if don't had
-static int	search_if_var(t_env *env, char *arg)
+int	search_if_var(t_env *env, char *arg)
 {
 	t_env	*p_env;
 
@@ -64,7 +64,8 @@ void	without_equal_export(t_env *env, char *arg)
 	}
 }
 
-//Funtion to chang value in global env var
+//Funtion to chang value in global env var. Need past the line
+//with equal, search and sustitute the value
 static void	change_env_value(t_env **env, char *arg)
 {
 	t_env	*p_env;

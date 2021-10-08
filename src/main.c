@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/07 12:35:37 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:04:13 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	main(int argc, char **argv, char **env)
 		{
 			add_history(line);
 			m_env = copy_env(env);
+			change_shlvl(m_env);
 			check_fault_marks(line);
 			//printf("***%s***\n", line);
 			//line = ft_expand(m_env, line);///////////////////////////////////////////////////
@@ -75,16 +76,10 @@ int	main(int argc, char **argv, char **env)
 			element->prev = NULL;
 			element->str = ft_strdup(line);
 			element->type = 'G';
-			element->arg = NULL;
 			rutine_parse(line, element, m_env);
-			print_list(element);
-			////////////////////
 			main_exec(element, m_env);
-			argc = argc + 1 - 1;
-			argv[0] = argv[0];
-			env[0] = env[0];
-			////////////////////
-			//printf("%d - %s - %s\n", argc, argv[0], env[0]);
+			//rutine_parse(line, element);
+			print_list(element);
 		}
 	}
 }

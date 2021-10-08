@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/06 13:10:20 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:48:29 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void		ft_lstadd_back_env(t_env **lst, t_env *new);
 t_env		*new_env_node_global(t_env *new, char *var);
 t_env		*new_env_node_local(t_env *new, char *var);
 t_env		*ft_lstlast_env(t_env *lst);
+void		change_shlvl(t_env *env);
+void		change_sigle_env_var(t_env *env, char *var, char *n_value);
 
 char		*ft_expand(t_env *m_env, char *str);
 #endif

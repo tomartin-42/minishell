@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 15:12:24 by tommy             #+#    #+#             */
-/*   Updated: 2021/10/06 18:04:01 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/08 11:05:43 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	rutine_parse(char *str, t_element *element, t_env *m_env)
 	clean_element(element);
 	pre_procesing(element);
 	ft_lst_del_all_x(element);
+	expand_all(element, m_env, 2);
 }
 
 void	main_parse(char *str, t_element *element)
