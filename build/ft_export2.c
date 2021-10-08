@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 08:42:04 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/08 11:25:22 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:33:23 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	without_equal_export(t_env *env, char *arg)
 	}
 }
 
-//Funtion to chang value in global env var
+//Funtion to chang value in global env var. Need past the line
+//with equal, search and sustitute the value
 static void	change_env_value(t_env **env, char *arg)
 {
 	t_env	*p_env;
