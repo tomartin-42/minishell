@@ -6,7 +6,11 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/10/08 11:02:41 by tomartin         ###   ########.fr       */
+=======
+/*   Updated: 2021/10/07 11:29:54 by dpuente-         ###   ########.fr       */
+>>>>>>> 1108f725ad55259276d1fee86cb4cf7a405e65a1
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +80,23 @@ int	main(int argc, char **argv, char **env)
 			element->prev = NULL;
 			element->str = ft_strdup(line);
 			element->type = 'G';
+<<<<<<< HEAD
 			rutine_parse(line, element, m_env);
 			main_exec(element, m_env);
 			//rutine_parse(line, element);
 			print_list(element);
+=======
+			element->arg = NULL;
+			rutine_parse(line, element, m_env);
+			print_list(element);
+			////////////////////
+			main_exec(element, m_env);
+			argc = argc + 1 - 1;
+			argv[0] = argv[0];
+			env[0] = env[0];
+			////////////////////
+			//printf("%d - %s - %s\n", argc, argv[0], env[0]);
+>>>>>>> 1108f725ad55259276d1fee86cb4cf7a405e65a1
 		}
 	}
 }
