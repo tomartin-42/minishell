@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 08:30:08 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/05 11:45:13 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/08 11:25:20 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		ft_export(t_env *m_env, char **args);
 void	without_equal_export(t_env *env, char *arg);
 void	with_equal_export(t_env *env, char *arg);
 char	**separate_env_var(char *var);
+int		search_if_var(t_env *env, char *arg);
 
 #endif
 

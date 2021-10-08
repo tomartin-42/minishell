@@ -11,6 +11,7 @@
 
 #include "hered.h"
 
+//Generate and asing hered and fd. The fd is add to the elelment list
 void	main_hered(t_element *element)
 { 
 	char	*h_str;
@@ -35,4 +36,5 @@ void	main_hered(t_element *element)
 		}
 	}
 	close(h_fd[1]);
+	element->fd = dup(h_fd[0]);
 }

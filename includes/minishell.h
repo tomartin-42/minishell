@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/06 10:57:25 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/08 11:25:13 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_env{
 	bool			global;
 	bool			visible;
 	struct s_env	*next;
-} t_env;
+}	t_env;
 
 typedef struct s_element{
 	char				*str;
@@ -73,6 +73,7 @@ void		ft_lstadd_back_env(t_env **lst, t_env *new);
 t_env		*new_env_node_global(t_env *new, char *var);
 t_env		*new_env_node_local(t_env *new, char *var);
 t_env		*ft_lstlast_env(t_env *lst);
+void		change_shlvl(t_env *env);
 
 char		*ft_expand(t_env *m_env, char *str);
 #endif

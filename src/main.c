@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/07 12:00:23 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/08 11:02:41 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 
 //This function initialice and copy the env var to list 
 //(m_env)
+void	mute_unused(int argc, char **argv)
+{
+	argc = argc + 1 - 1;
+	argv[0] = argv[0];
+	//env[0] = env[0];
+}
+
 static t_env	*copy_env(char **env)
 {
 	t_env	*m_env;
@@ -48,6 +55,7 @@ int	main(int argc, char **argv, char **env)
 	t_element	*element;
 	t_env		*m_env;
 
+	mute_unused(argc, argv);//Mute unused variales, argv and argc
 	while (1)
 	{
 		str = readline("🔥ShellFromHell🔥: > ");
@@ -57,24 +65,21 @@ int	main(int argc, char **argv, char **env)
 		{
 			add_history(line);
 			m_env = copy_env(env);
+			change_shlvl(m_env);
 			check_fault_marks(line);
-			line = ft_expand(m_env, line);
+			printf("***%s***\n", line);
+			//line = ft_expand(m_env, line);///////////////////////////////////////////////////
+			printf("***%s***\n", line);
 			element = malloc(sizeof(t_element));
 			//g_plist->p_element = element;
 			element->next = NULL;
 			element->prev = NULL;
 			element->str = ft_strdup(line);
 			element->type = 'G';
-			element->arg = NULL;
-			rutine_parse(line, element);
-			print_list(element);
-			////////////////////
+			rutine_parse(line, element, m_env);
 			main_exec(element, m_env);
-			argc = argc + 1 - 1;
-			argv[0] = argv[0];
-			env[0] = env[0];
-			////////////////////
-			//printf("%d - %s - %s\n", argc, argv[0], env[0]);
+			//rutine_parse(line, element);
+			print_list(element);
 		}
 	}
 }
