@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/08 12:48:29 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/09 19:30:57 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <unistd.h>
+# include <errno.h>
 # include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -59,6 +61,8 @@ typedef struct s_plist{
 	t_env		*p_env;
 	t_element	*p_element;
 }	t_plist;
+
+struct s_plist	g_list;
 
 t_element	*ft_lstlast(t_element *lst);
 void		ft_lstadd_back(t_element **lst, t_element *new);
