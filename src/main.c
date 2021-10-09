@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/08 12:04:13 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/09 16:28:46 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main(int argc, char **argv, char **env)
 			rutine_parse(line, element, m_env);
 			main_exec(element, m_env);
 			//rutine_parse(line, element);
-			print_list(element);
+			//print_list(element);
 		}
 	}
 }

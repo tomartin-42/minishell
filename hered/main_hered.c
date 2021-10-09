@@ -17,7 +17,6 @@ void	main_hered(t_element *element)
 	char	*h_str;
 	int		h_fd[2];
 
-	*element = *element;
 	pipe (h_fd);
 	printf("[[[[[[[[%s]]]]]]]]\n", element->arg[0]);
 	while (1)

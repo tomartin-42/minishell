@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   procesing_parse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/07 11:03:54 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/09 15:46:17 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	pre_procesing(t_element *element)
 		check_env(p_elem);
 		p_elem = p_elem->next;
 	}
+	ft_lst_del_all_x(element);
 	add_args(element);
 	is_direct(element);
 	//expand_all(element);

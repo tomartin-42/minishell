@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:35:27 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/08 12:48:26 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/09 15:37:50 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	change_shlvl(t_env *env)
 //This function get a env var name and change the value
 void	change_single_env_var(t_env *env, char *var, char *n_value)
 {
-	t_env	p_env;
+	t_env	*p_env;
 
 	p_env = env;
 	while (p_env)

@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:02:31 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/08 12:48:31 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/09 16:36:43 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	arg_input(t_element *p_elem, int size_arg)
 	{
 		if (p_elem_arg != NULL)
 			p_elem_arg = p_elem_arg->next;
-		p_elem->arg[n] = p_elem_arg->str;
+		p_elem->arg[n] = ft_strdup(p_elem_arg->str);
 		n++;
 	}
 	p_elem->arg[n] = NULL;
