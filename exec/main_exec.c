@@ -1,7 +1,7 @@
 #include "exec.h"
 #include "hered.h"
 
-static void	start_hered(t_element *element)
+void	start_hered(t_element *element)
 {
 	t_element	*aux_ele;
 
@@ -42,7 +42,7 @@ static void	open_to_write(t_element *element)
 
 static void	open_to_trunk(t_element *element)
 {
-	element->fd = open(element->arg[0], O_APPEN, 0644);
+	element->fd = open(element->arg[0], O_APPEND, 0644);
 	if (element->fd < 0)
 	{
 		printf("error %d\n", errno);
@@ -59,10 +59,9 @@ static void redir_hered(t_element *element)
 	close(element->fd);
 }
 
-static t_element	*redir_files(t_element *element)
+void	*redir_files(t_element *element)
 {
 	t_element	*p_elem;
-	t_element	*p_end;
 
 	p_elem = element;
 	while (p_elem && p_elem->type != 'P')
@@ -77,21 +76,19 @@ static t_element	*redir_files(t_element *element)
 			redir_hered(element);
 	p_elem = p_elem->next;
 	}
-	if (p_elem->type == 'P')
-		p_end = p_elem;
-	else 
-		p_end = NULL;
-	return (p_end);
 }
 
 void	main_exec(t_element *element, t_env *env)
 {
-	int	fd_stdin;
-	int fd_stdout;
+	t_command	*command;
 
-	fd_stdin = dup(STDIN_FILENO);
-	fd_stdout = dup(STDOUT_FILENO);	
-	start_hered(element);
-	redir_files(element);
-	*env = *env;
+	command.fd_stdin = dup(STDIN_FILENO);
+	command.fd_stdout = dup(STDOUT_FILENO);
+	command.multi_cmd = element;
+	command.pid_num = 0;
+
+	while (command.multi_cmd != NULL)
+	{
+		rutine_command(element, env, command);
+	}
 }

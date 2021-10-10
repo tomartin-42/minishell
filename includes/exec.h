@@ -3,7 +3,18 @@
 
 #include "minishell.h"
 
-void	main_exec(t_element *element, t_env *env);
+typedef struct	s_command{
+	char		**command;
+	char		**env;
+	t_element 	*multi_cmd;
+	int			fd_stdin;
+	int			fd_stdout;
+	int			pid_num;
+}	t_command;
 
+void		main_exec(t_element *element, t_env *env);
+void		rutine_command(t_element *element, t_env *env, t_command *command);
+void		*redir_files(t_element *element);
+void		start_hered(t_element *element);
 
 #endif
