@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 09:51:06 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/04 18:11:15 by tommy            ###   ########.fr       */
+/*   Updated: 2021/10/11 10:14:55 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_env_list(t_env **m_env, char *var)
 	else
 	{
 		(*m_env)->var[0] = ft_strdup(var);
-		(*m_env)->var[1] = NULL; 
+		(*m_env)->var[1] = NULL;
 	}
 	(*m_env)->global = true;
 	(*m_env)->visible = true;
@@ -49,7 +49,7 @@ t_env	*new_env_node_local(t_env *new, char *var)
 		new->var[0] = ft_strdup(var);
 		new->var[1] = NULL;
 	}
-	new->global = false; 
+	new->global = false;
 	new->visible = false;
 	new->next = NULL;
 	return (new);
@@ -83,4 +83,3 @@ void	ft_lstadd_back_env(t_env **env_lst, t_env *new)
 		return ;
 	(ft_lstlast_env(*env_lst))->next = new;
 }
-

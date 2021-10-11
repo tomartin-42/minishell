@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/02 19:45:05 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/06 10:57:18 by dpuente-         ###   ########.fr       */
+/*   Created: 2021/10/11 10:19:48 by tomartin          #+#    #+#             */
+/*   Updated: 2021/10/11 12:00:05 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,15 @@ char	**extract_all_env_list(t_env *env)
 		p_env = p_env->next;
 	}
 	list = malloc (sizeof(char *) * (i + 1));
-	list[i] = NULL;
 	i = 0;
 	p_env = env;
 	while (p_env)
 	{
-		list[i++] = ft_strdup(p_env->v_env);
+		list[i] = ft_strdup(p_env->v_env);
+		i++;
 		p_env = p_env->next;
 	}
+	list[i] = NULL;
 	return (list);
 }
 
@@ -88,7 +89,7 @@ static void	order_alphabet(char **list)
 	}
 }
 
-static void print_env_alphabet_order(t_env *m_env)
+static void	print_env_alphabet_order(t_env *m_env)
 {
 	char	**list;
 	int		i;
@@ -115,7 +116,7 @@ int	ft_export(t_env *m_env, char **args)
 	{
 		if (ft_strchr(args[i], '='))
 			with_equal_export(m_env, args[i]);
-		else 
+		else
 			without_equal_export(m_env, args[i]);
 		i++;
 	}

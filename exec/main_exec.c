@@ -59,7 +59,7 @@ static void redir_hered(t_element *element)
 	close(element->fd);
 }
 
-void	*redir_files(t_element *element)
+void	redir_files(t_element *element)
 {
 	t_element	*p_elem;
 
@@ -74,7 +74,7 @@ void	*redir_files(t_element *element)
 			open_to_trunk(element);
 		else if (p_elem->type == 'H')
 			redir_hered(element);
-	p_elem = p_elem->next;
+		p_elem = p_elem->next;
 	}
 }
 
@@ -82,13 +82,12 @@ void	main_exec(t_element *element, t_env *env)
 {
 	t_command	*command;
 
-	command.fd_stdin = dup(STDIN_FILENO);
-	command.fd_stdout = dup(STDOUT_FILENO);
-	command.multi_cmd = element;
-	command.pid_num = 0;
-
-	while (command.multi_cmd != NULL)
-	{
-		rutine_command(element, env, command);
-	}
+	command = malloc(sizeof(t_command));	
+	command->fd_stdin = dup(STDIN_FILENO);
+	command->fd_stdout = dup(STDOUT_FILENO);
+	command->multi_cmd = element;
+	command->pid_num = 0;
+	start_hered(element);
+	rutine_command(element, env, command);
 }
+

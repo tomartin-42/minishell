@@ -13,7 +13,7 @@
 
 //Generate and asing hered and fd. The fd is add to the elelment list
 void	main_hered(t_element *element)
-{ 
+{
 	char	*h_str;
 	int		h_fd[2];
 
@@ -21,8 +21,8 @@ void	main_hered(t_element *element)
 	while (1)
 	{
 		h_str = readline("> ");
-		if (!ft_strncmp(element->arg[0], h_str, ft_strlen(element->arg[0])) &&
-			ft_strlen(element->arg[0]) == ft_strlen(h_str))
+		if (!ft_strncmp(element->arg[0], h_str, ft_strlen(element->arg[0]))
+			&& ft_strlen(element->arg[0]) == ft_strlen(h_str))
 		{
 			free(h_str);
 			break ;
