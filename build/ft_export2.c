@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 08:42:04 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/08 12:33:23 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/11 10:21:05 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,3 @@ void	with_equal_export(t_env *env, char *arg)
 	else if (i == 0)
 		change_env_value(&env, arg);
 }
-

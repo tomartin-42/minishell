@@ -6,7 +6,7 @@
 /*   by: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2021/09/23 21:08:34 by tommy             #+#    #+#             */
-/*   Updated: 2021/10/07 12:01:08 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/09 16:43:55 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ void	print_list(t_element *element)
 	{
 		printf("[%s]\n", element->str);
 		printf("type -> [%c]\n", element->type);
-		//printf("arg[0] -> [%s]\n", element->arg[0]);
+		if (element->type == 'H')
+			printf("arg[0] -> [%s]\n", element->arg[0]);
+	//	printf("arg[1] -> [%s]\n", element->arg[1]);
 		printf("==================================\n");
 		element = element->next;
 	}

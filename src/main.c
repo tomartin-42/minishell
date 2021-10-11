@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/08 12:04:13 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/11 11:30:53 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,14 @@ int	main(int argc, char **argv, char **env)
 		{
 			add_history(line);
 			m_env = copy_env(env);
+			g_list.p_env = m_env;
 			change_shlvl(m_env);
 			check_fault_marks(line);
 			//printf("***%s***\n", line);
 			//line = ft_expand(m_env, line);///////////////////////////////////////////////////
 			//printf("***%s***\n", line);
 			element = malloc(sizeof(t_element));
+			g_list.p_element = element;
 			//g_plist->p_element = element;
 			element->next = NULL;
 			element->prev = NULL;
@@ -79,7 +81,7 @@ int	main(int argc, char **argv, char **env)
 			rutine_parse(line, element, m_env);
 			main_exec(element, m_env);
 			//rutine_parse(line, element);
-			print_list(element);
+			//print_list(element);
 		}
 	}
 }
