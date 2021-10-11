@@ -6,7 +6,7 @@
 #    By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/10/11 11:27:41 by tomartin         ###   ########.fr        #
+#    Updated: 2021/10/11 17:54:00 by dpuente-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ HERED_FILES = main_hered.c
 BUILD_FILES = main_build.c ft_export.c ft_export2.c ft_export3.c
 ERRORS_FILES = check_error.c errors.c
 EXPANSION_FILES = env_ex.c str_ex.c expansion.c env_ex2.c
-EXEC_FILES = main_exec.c rutine.c path_find.c
+EXEC_FILES = main_exec.c rutine.c path_find.c builds_filter.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 OBJ_FILES := $(OBJ_FILES) $(PARSE_FILES:.c=.o)
