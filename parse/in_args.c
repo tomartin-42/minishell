@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   in_args.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:02:31 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/09 16:36:43 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/12 18:47:08 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ void	arg_input(t_element *p_elem, int size_arg)
 	int			n;
 	t_element	*p_elem_arg;
 
-	n = 0;
+	n = 1;
 	p_elem_arg = p_elem;
-	while (n < size_arg)
+	p_elem->arg[0] = ft_strdup(p_elem->str);//anade cmd al arg[0] para ejecuccion
+	while (n <= size_arg)//para quitar cmd from arg quitar =
 	{
 		if (p_elem_arg != NULL)
 			p_elem_arg = p_elem_arg->next;
@@ -71,7 +72,7 @@ void	add_args(t_element *element)
 			size_arg = count_args(p_elem);
 			if (size_arg > 0)
 			{
-				p_elem->arg = malloc(sizeof(char *) * (size_arg + 1));
+				p_elem->arg = malloc(sizeof(char *) * (size_arg + 2));
 				arg_input(p_elem, size_arg);
 			}
 			else
@@ -83,7 +84,7 @@ void	add_args(t_element *element)
 			size_arg = count_args(p_elem);
 			if (size_arg > 0)
 			{
-				p_elem->arg = malloc(sizeof(char *) * (size_arg + 1));
+				p_elem->arg = malloc(sizeof(char *) * (size_arg + 2));
 				arg_input(p_elem, size_arg);
 			}
 			else

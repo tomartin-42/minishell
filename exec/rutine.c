@@ -6,7 +6,7 @@
 /*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/11 23:47:20 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/12 19:15:54 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,30 +72,14 @@ static void	execut_cmd(char **cmd, char **env)
 
 void	rutine_command(t_element *element, t_env *env, t_command *command)
 {
-	int not_build;/////borrar
-
-	not_build = 0;/////borrar
 	redir_files(element);
 	command->env = extract_all_env_list(env);
 	extract_cmd_and_arg(element, command);
-	//add compare to builds
-	///////////////////////
-	not_build = is_build(element, command);
+	////////////////
+	main_build_filt(element);//filtra si es build y marca los args a borrar
+	ft_lst_del_all_x(element);//elimina 'X' arg
 	command->command[0] = find_exec_path(command->command, command->env);
-	for (int i = 0; command->command[i]; i++)
+	for (int i = 0; command->command[i]; i++)//print a todos los args y command// borrar despues
 		printf("%s\n", command->command[i]);
-	if (not_build == 0)/////borrar
-	{
-		printf("HOLA");
-		execut_cmd(command->command, command->env);
-	}
-	/////////////////////////
+	execut_cmd(command->command, command->env);//TO DO:filtrar con la lista y ver si comand is 'B'
 }
-/*
-desde is_build hasta el final, meter en funcion.
--	recorrer todo element->str , identificar cuales son commands
-si son build cambiar a B
-(cambiar command->... a element->str y a element->arg)
--	funcion para poder ejecutar execut_cmd si no es build y si no accede
-a funcion para ejecutar build
-*/
