@@ -6,7 +6,7 @@
 /*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:02:31 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/12 19:25:49 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/12 19:28:17 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ void	add_args(t_element *element)
 	t_element	*p_elem;
 	int size_arg;
 
-	size_arg = 0;
 	p_elem = element;
 	while (p_elem->next)
 	{
+		size_arg = 0;
 		if (p_elem->type == 'I' || p_elem->type == 'O' || p_elem->type == 'T'
 			|| p_elem->type == 'H')
 		{
