@@ -6,11 +6,7 @@
 /*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:02:31 by davyd11           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/10/11 22:54:24 by davyd11          ###   ########.fr       */
-=======
-/*   Updated: 2021/10/12 18:47:08 by davyd11          ###   ########.fr       */
->>>>>>> david
+/*   Updated: 2021/10/12 19:25:49 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +61,9 @@ int	count_args(t_element *p_elem)
 void	add_args(t_element *element)
 {
 	t_element	*p_elem;
+	int size_arg;
 
+	size_arg = 0;
 	p_elem = element;
 	while (p_elem->next)
 	{
