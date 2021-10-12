@@ -18,5 +18,8 @@ void		redir_files(t_element *element);
 void		start_hered(t_element *element);
 
 char		*find_exec_path(char **cmd, char **env);
-
+//build_filter.c//
+int		is_build(t_element *p_elem);
+void	main_build_filt(t_element *element);
+////////////////////
 #endif

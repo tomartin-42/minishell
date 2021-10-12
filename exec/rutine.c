@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rutine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/11 12:32:10 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/12 19:15:54 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	**create_command_dp(t_element *element, int i)
 	int			j;
 	t_element	*p_elem;
 
-	j =	1;
+	j = 1;
 	cmd = malloc((sizeof(char *) * (i + 1)));
 	p_elem = element;
 	while (p_elem && p_elem->type != 'P')
@@ -41,7 +41,7 @@ static char	**create_command_dp(t_element *element, int i)
 static void	extract_cmd_and_arg(t_element *element, t_command *command)
 {
 	t_element	*p_elem;
-	int	i;
+	int			i;
 
 	i = 1;
 	p_elem = element;
@@ -72,11 +72,14 @@ static void	execut_cmd(char **cmd, char **env)
 
 void	rutine_command(t_element *element, t_env *env, t_command *command)
 {
-		redir_files(element);
-		command->env = extract_all_env_list(env);	
-		extract_cmd_and_arg(element, command);
-		command->command[0] = find_exec_path(command->command, command->env);
-		for (int i=0; command->command[i]; i++)
-			printf("%s\n", command->command[i]);
-		execut_cmd(command->command, command->env);
+	redir_files(element);
+	command->env = extract_all_env_list(env);
+	extract_cmd_and_arg(element, command);
+	////////////////
+	main_build_filt(element);//filtra si es build y marca los args a borrar
+	ft_lst_del_all_x(element);//elimina 'X' arg
+	command->command[0] = find_exec_path(command->command, command->env);
+	for (int i = 0; command->command[i]; i++)//print a todos los args y command// borrar despues
+		printf("%s\n", command->command[i]);
+	execut_cmd(command->command, command->env);//TO DO:filtrar con la lista y ver si comand is 'B'
 }
