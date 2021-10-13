@@ -6,11 +6,30 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 10:39:03 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/13 12:31:38 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/13 20:23:16 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
+
+int	infinity_n(char *args)
+{
+	int	pos;
+
+	pos = 2;
+	printf("-->%s<--", args);
+	if (args[0] == '-' && args[1] == 'n')
+	{
+		while (args[pos] != '\0' && args[pos] == 'n')
+		{
+			pos++;
+		}
+		if (args[pos] != '\0' && args[pos] != 'n')
+			return (1);
+		return (1);
+	}
+	return (0);
+}
 
 int	echo_out(char *string)
 {
@@ -22,21 +41,26 @@ int	echo_out(char *string)
 
 int	ft_echo(char **args)
 {
-	int	pos;
+	int		pos;
+	bool	flag;
 
+	flag = false;
 	pos = 0;
-	/*if (!args[1]) //si hay argumentos aparte de echo que se encuentra en args[0]
-	{
-		write(1, "\n", 1);
-		return (-1);
-	}*/
 	while (args[pos])
 	{
-		if (!echo_out(args[pos]))
-			echo_out("ERROR");
+		if (!ft_strncmp(args[pos], "-n", 2))// cambiar por infinity_n para saber si -n esta bien puesto y no entrear siempre que las dos primeras son -n
+			printf("CABESHAAAA");
+			//flag = true;
+		else
+		{
+			//printf("[%s]\n", args[pos]);
+			if (!echo_out(args[pos]))
+				echo_out("ERROR");
+		}
 		pos++;
 	}
-	write(1, "\n", 1);
+	if (flag == false)
+		write(1, "\n", 1);
 	return (0);
 }
 /*

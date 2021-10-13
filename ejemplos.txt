@@ -17,3 +17,6 @@ echo hola "'$a'"
 echo hola '"$a"'
 
 "sdfsf" "$ env" "sfdfs"
+
+echo -nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn a
+echo -na
