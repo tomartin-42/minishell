@@ -19,9 +19,6 @@ void	exec_build(char **command, char **env)
 
 int	is_build(t_element *p_elem)
 {
-	int	n;
-
-	n = 0;
 	if (ft_strcmp(p_elem->str, "echo") == 0
 		|| ft_strcmp(p_elem->str, "cd") == 0)
 	{
