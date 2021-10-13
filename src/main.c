@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/11 11:30:53 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:25:36 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,10 @@ int	main(int argc, char **argv, char **env)
 			element->type = 'G';
 			rutine_parse(line, element, m_env);
 			main_exec(element, m_env);
+
+			//////borrar
+			//ft_echo(element->next->arg);
+			//////borrar
 			//rutine_parse(line, element);
 			//print_list(element);
 		}

@@ -6,7 +6,7 @@
 #    By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/10/11 17:54:00 by dpuente-         ###   ########.fr        #
+#    Updated: 2021/10/13 12:16:32 by dpuente-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ EXEC_DIR= ./exec/
 SRC_FILES = main.c utils_list.c util_env.c expand.c util_env2.c utils_src.c
 PARSE_FILES = main_parse.c procesing_parse.c parse_operation.c sec_parse_proc.c in_args.c
 HERED_FILES = main_hered.c
-BUILD_FILES = main_build.c ft_export.c ft_export2.c ft_export3.c
+BUILD_FILES = main_build.c ft_export.c ft_export2.c ft_export3.c ft_echo.c
 ERRORS_FILES = check_error.c errors.c
 EXPANSION_FILES = env_ex.c str_ex.c expansion.c env_ex2.c
 EXEC_FILES = main_exec.c rutine.c path_find.c builds_filter.c

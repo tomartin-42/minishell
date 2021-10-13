@@ -1,45 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_build.c                                       :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 08:32:00 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/13 11:27:32 by dpuente-         ###   ########.fr       */
+/*   Created: 2021/10/13 10:39:03 by dpuente-          #+#    #+#             */
+/*   Updated: 2021/10/13 12:31:38 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
 
-// Build pwd
-
-void	ft_pwd(char **g_env)
+int	echo_out(char *string)
 {
-	char	*pwd;
-	int		i;
-
-	i = 0;
-	while (ft_strncmp(g_env[i], "PWD=", 4) && g_env[i])
-		i++;
-	pwd = g_env[i];
-	pwd += 4;
-	printf("%s\n", pwd);
+	ft_putstr_fd(string, 1);
+	if (!string)
+		return (-1);
+	return (0);
 }
-// Build env
 
-void	ft_env(char **g_env)
+int	ft_echo(char **args)
 {
-	int	i;
+	int	pos;
 
-	i = 0;
-	while (g_env[i])
+	pos = 0;
+	/*if (!args[1]) //si hay argumentos aparte de echo que se encuentra en args[0]
 	{
-		printf("%s\n", g_env[i]);
-		i++;
+		write(1, "\n", 1);
+		return (-1);
+	}*/
+	while (args[pos])
+	{
+		if (!echo_out(args[pos]))
+			echo_out("ERROR");
+		pos++;
 	}
+	write(1, "\n", 1);
+	return (0);
 }
-// Build echo
 /*
 void	ft_echo(t_element *element)
 {

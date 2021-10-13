@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   in_args.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:02:31 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/12 18:47:08 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/13 18:59:51 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	add_args(t_element *element)
 	while (p_elem)
 	{
 		size_arg = 0;
-		if (p_elem->type == 'C' && p_elem->next != NULL)
+		if (p_elem->type == 'C' || p_elem->type == 'B')
 		{
 			size_arg = count_args(p_elem);
 			if (size_arg > 0)
@@ -76,7 +76,11 @@ void	add_args(t_element *element)
 				arg_input(p_elem, size_arg);
 			}
 			else
-				p_elem->arg = NULL;
+			{
+				p_elem->arg = malloc(sizeof(char *) * 2);
+				p_elem->arg[0] = ft_strdup(p_elem->str);
+				p_elem->arg[1] = NULL;
+			}
 		}
 		else if (p_elem->type == 'I' || p_elem->type == 'H'
 			|| p_elem->type == 'T' || p_elem->type == 'O')
@@ -98,7 +102,6 @@ void	add_args(t_element *element)
 			p_elem->arg = malloc(sizeof(char *) * 1);
 			p_elem->arg[0] = NULL;
 		}
-		///printf("%s", p_elem->arg[0]);
 		p_elem = p_elem->next;
 	}
 }
