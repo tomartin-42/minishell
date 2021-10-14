@@ -6,7 +6,7 @@
 typedef struct s_command{
 	char		**command;
 	char		**env;
-	t_element	*multi_cmd;
+	t_element	*multi_cmd[2];
 	int			fd_stdin;
 	int			fd_stdout;
 	int			pid_num;

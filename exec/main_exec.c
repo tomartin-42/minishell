@@ -78,13 +78,26 @@ void	redir_files(t_element *element)
 	}
 }
 
+static void  get_fd_pipes(t_element *element)
+{
+	t_element	*p_elem;
+
+	p_elem = element;
+	while (p_elem)
+	{
+		if (p_elem->type == 'P')
+			pipe(p_elem->p_fd);
+		p_elem = p_elem->next;
+	}
+}
+
 void	main_exec(t_element *element, t_env *env)
 {
 	t_command	command;
 
+	get_fd_pipes(element);
 	command.fd_stdin = dup(0);
 	command.fd_stdout = dup(1);
-	command.multi_cmd = element;
 	command.pid_num = 0;
 	start_hered(element);
 	rutine_command(element, env, &command);
