@@ -65,14 +65,12 @@ int	main(int argc, char **argv, char **env)
 		{
 			add_history(line);
 			m_env = copy_env(env);
-			g_list.p_env = m_env;
 			change_shlvl(m_env);
 			check_fault_marks(line);
 			//printf("***%s***\n", line);
 			//line = ft_expand(m_env, line);///////////////////////////////////////////////////
 			//printf("***%s***\n", line);
 			element = malloc(sizeof(t_element));
-			g_list.p_element = element;
 			//g_plist->p_element = element;
 			element->next = NULL;
 			element->prev = NULL;
