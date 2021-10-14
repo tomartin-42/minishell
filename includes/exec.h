@@ -1,12 +1,12 @@
 #ifndef EXEC_H
 # define EXEC_H
 
-#include "minishell.h"
+# include "minishell.h"
 
-typedef struct	s_command{
+typedef struct s_command{
 	char		**command;
 	char		**env;
-	t_element 	*multi_cmd;
+	t_element	*multi_cmd;
 	int			fd_stdin;
 	int			fd_stdout;
 	int			pid_num;
@@ -19,7 +19,7 @@ void		start_hered(t_element *element);
 
 char		*find_exec_path(char **cmd, char **env);
 //build_filter.c//
-int		is_build(t_element *p_elem);
-void	main_build_filt(t_element *element);
+int			is_build(t_element *p_elem);
+void		main_build_filt(t_element *element);
 ////////////////////
 #endif

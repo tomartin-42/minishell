@@ -1,41 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_build.c                                       :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 08:32:00 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/14 11:44:33 by dpuente-         ###   ########.fr       */
+/*   Created: 2021/10/14 11:27:59 by dpuente-          #+#    #+#             */
+/*   Updated: 2021/10/14 11:50:53 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
 
-// Build pwd
-
-/*void	ft_pwd(char **g_env)
+void	ft_pwd(char **envs)
 {
-	char	*pwd;
-	int		i;
+	int	pos;
+	int	n;
 
-	i = 0;
-	while (ft_strncmp(g_env[i], "PWD=", 4) && g_env[i])
-		i++;
-	pwd = g_env[i];
-	pwd += 4;
-	printf("%s\n", pwd);
-}
-// Build env
-
-void	ft_env(char **g_env)
-{
-	int	i;
-
-	i = 0;
-	while (g_env[i])
+	pos = 0;
+	n = 4;
+	while (envs[pos]
+		&& (envs[pos][0] != 'P' && envs[pos][1] != 'W' && envs[pos][2] != 'D'))
 	{
-		printf("%s\n", g_env[i]);
-		i++;
+		pos++;
 	}
-}*/
+	if (envs[pos])
+	{
+		if (envs[pos][0] == 'P' && envs[pos][1] == 'W' && envs[pos][2] == 'D')
+		{
+			while (envs[pos][n] != '\0')
+			{
+				write (1, &envs[pos][n], 1);
+				n++;
+			}
+			write(1, "\n", 1);
+		}
+	}
+}

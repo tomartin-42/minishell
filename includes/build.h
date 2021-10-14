@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 08:30:08 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/13 11:27:18 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/14 11:18:09 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "minishell.h"
 
 void	ft_pwd(char **g_env);
-void	ft_env(char **g_env);
+//void	ft_env(char **g_env);
 //void	ft_echo(t_element *element);
 char	**extract_env_list(t_env *env);
 char	**extract_all_env_list(t_env *env);
@@ -29,6 +29,9 @@ int		search_if_var(t_env *env, char *arg);
 
 //ft_echo.c//
 int		ft_echo(char **args);
+/////////////
+//ft_env.c//
+void	ft_env(char **envs);
 /////////////
 #endif
 
