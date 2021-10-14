@@ -13,51 +13,31 @@
 #include "exec.h"
 #include "build.h"
 
-// create dp with comand and all arg. Return the dp 
-static char	**create_command_dp(t_element *element, int i)
+static void	extract_cmd_and_arg(t_command *command)
 {
-	char		**cmd;
-	int			j;
 	t_element	*p_elem;
 
-	j = 1;
-	cmd = malloc((sizeof(char *) * (i + 1)));
-	p_elem = element;
-	while (p_elem && p_elem->type != 'P')
+	p_elem = command->multi_cmd[0];
+	while (p_elem != command->multi_cmd[1])
 	{
 		if (p_elem->type == 'C')
-			cmd[0] = ft_strdup(p_elem->str);
-		else if (p_elem->type == 'A')
 		{
-			cmd[j] = ft_strdup(p_elem->str);
-			j++;
+			command->cmd = p_elem;
+			break ;
 		}
 		p_elem = p_elem->next;
-	}
-	cmd[j] = NULL;
-	return (cmd);
-}
-
-static void	extract_cmd_and_arg(t_element *element, t_command *command)
-{
-	t_element	*p_elem;
-	int			i;
-
-	i = 1;
-	p_elem = element;
-	while (p_elem && p_elem->type != 'P')
-	{
-		if (p_elem->type == 'A')
-			i++;
-		p_elem = p_elem->next;
 	}	
-	command->command = create_command_dp(element, i);
 }
 
 static void	execut_cmd(char **cmd, char **env, t_command *command)
 {
 	pid_t	pid;
 
+	if (command->multi_cmd[0]->type == 'P')
+	{
+		dup2(command->multi_cmd[0]->p_fd[0], STDIN_FILENO);
+		close(command->multi_cmd[0]->p_fd[1]);
+	}
 	pid = fork();
 	if (pid == 0)
 	{
@@ -65,29 +45,58 @@ static void	execut_cmd(char **cmd, char **env, t_command *command)
 		{
 			printf("Error N= %d\n", errno);
 			exit(errno);
+			if (command->multi_cmd[1]->type == 'P')
+			{
+				dup2(command->multi_cmd[1]->p_fd[1], STDOUT_FILENO);
+				close(command->multi_cmd[1]->p_fd[0]);
+			}
 		}
+		
 	}
 	else
+	{
 		waitpid(-1, NULL, 0);
-	dup2(command->fd_stdin, STDIN_FILENO);
-	dup2(command->fd_stdout, STDOUT_FILENO);
+		waitpid(-1, NULL, 0);
+		waitpid(-1, NULL, 0);
+	}
+}
+
+static t_element *get_last_pipe(t_command *command)
+{
+	t_element	*aux_elem;
+
+	aux_elem = command->multi_cmd[0];
+	aux_elem = aux_elem->next;
+	while (aux_elem && aux_elem->type != 'P')
+		aux_elem = aux_elem->next;
+	return (aux_elem);
 }
 
 void	rutine_command(t_element *element, t_env *env, t_command *command)
 {
-	command->env = extract_all_env_list(env);
-	extract_cmd_and_arg(element, command);
+	start_hered(element);
+	while(command->multi_cmd[0])
+	{
+		command->multi_cmd[1] = get_last_pipe(command);
+		command->env = extract_all_env_list(env);
+	/// EMPIEZA LA FIESTA ///////////////////////////////////////////////777
+	
+		extract_cmd_and_arg(command);
 	////////////////
-	main_build_filt(element);//filtra si es build y marca los args a borrar
-	ft_lst_del_all_x(element);//elimina 'X' arg
+		main_build_filt(element);//filtra si es build y marca los args a borrar
+		ft_lst_del_all_x(element);//elimina 'X' arg
 	//////////////////////////////////////////////////////////////
 	//ft_pwd(command->env);//////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////
-	command->command[0] = find_exec_path(command->command, command->env);
-	for (int i = 0; command->command[i]; i++)//print a todos los args y command// borrar despues
-		printf("%s\n", command->command[i]);
-	redir_files(element);
-	execut_cmd(command->command, command->env, command);//TO DO:filtrar con la lista y ver si comand is 'B'
+		command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
+		for (int i = 0; command->cmd->arg[i]; i++)//print a todos los args y command// borrar despues
+			printf("%s\n", command->cmd->arg[i]);
+		redir_files(command);
+		execut_cmd(command->cmd->arg, command->env, command);//TO DO:filtrar con la lista y ver si comand is 'B'
+		command->multi_cmd[0] = command->multi_cmd[1];
+	}
+	dup2(command->fd_stdin, STDIN_FILENO);
+	dup2(command->fd_stdout, STDOUT_FILENO);
 	close(command->fd_stdin);
 	close(command->fd_stdout);
 }

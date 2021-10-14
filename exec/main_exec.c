@@ -59,12 +59,12 @@ static void redir_hered(t_element *element)
 	close(element->fd);
 }
 
-void	redir_files(t_element *element)
+void	redir_files(t_command *command)
 {
 	t_element	*p_elem;
 
-	p_elem = element;
-	while (p_elem && p_elem->type != 'P')
+	p_elem = command->multi_cmd[0];
+	while (p_elem != command->multi_cmd[1])
 	{
 		if (p_elem->type == 'I')
 			open_to_read(p_elem);
@@ -96,10 +96,10 @@ void	main_exec(t_element *element, t_env *env)
 	t_command	command;
 
 	get_fd_pipes(element);
+	command.multi_cmd[0] = element;
 	command.fd_stdin = dup(0);
 	command.fd_stdout = dup(1);
 	command.pid_num = 0;
-	start_hered(element);
 	rutine_command(element, env, &command);
 }
 
