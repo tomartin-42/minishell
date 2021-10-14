@@ -6,12 +6,11 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/14 10:56:10 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/14 19:04:43 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* Table of type char ==================================================
-//cambiar env, anadir arg, empezar expandir
  * C = Comand--
  * P = Pipe
  * S = String
@@ -31,6 +30,7 @@
 # define MINISHELL_H
 
 # include <stdio.h>
+# include <dirent.h>
 # include <stdlib.h>
 # include <sys/types.h>
 # include <sys/wait.h>
@@ -86,4 +86,8 @@ void		change_shlvl(t_env *env);
 void		change_sigle_env_var(t_env *env, char *var, char *n_value);
 
 char		*ft_expand(t_env *m_env, char *str);
+
+//src/get_env.c//
+char		*get_env(char **envs, char *var);
+/////////////////
 #endif

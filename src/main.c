@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/14 10:46:38 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/14 19:41:25 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,10 @@ int	main(int argc, char **argv, char **env)
 			element->type = 'G';
 			rutine_parse(line, element, m_env);
 			main_exec(element, m_env);
-
+			///////////////////////////////////
+			//printf("++%s++\n", get_env(env, ""));//saca la variable de entorno que indíques
+			ft_cd(element->next->arg, env);
+			///////////////////////////////////
 			//////borrar
 			//ft_echo(element->next->arg);
 			//////borrar

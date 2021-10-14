@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/14 11:49:38 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/14 17:55:09 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	extract_cmd_and_arg(t_element *element, t_command *command)
 	command->command = create_command_dp(element, i);
 }
 
-static void	execut_cmd(char **cmd, char **env, t_command *command)
+/*static void	execut_cmd(char **cmd, char **env, t_command *command)
 {
 	pid_t	pid;
 
@@ -71,7 +71,7 @@ static void	execut_cmd(char **cmd, char **env, t_command *command)
 		waitpid(-1, NULL, 0);
 	dup2(command->fd_stdin, STDIN_FILENO);
 	dup2(command->fd_stdout, STDOUT_FILENO);
-}
+}*/
 
 void	rutine_command(t_element *element, t_env *env, t_command *command)
 {
@@ -81,13 +81,13 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 	main_build_filt(element);//filtra si es build y marca los args a borrar
 	ft_lst_del_all_x(element);//elimina 'X' arg
 	//////////////////////////////////////////////////////////////
-	//ft_pwd(command->env);//////////////////////////////////////////////////////////////
+	//ft_cd(command->);//////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////
 	command->command[0] = find_exec_path(command->command, command->env);
 	for (int i = 0; command->command[i]; i++)//print a todos los args y command// borrar despues
 		printf("%s\n", command->command[i]);
 	redir_files(element);
-	execut_cmd(command->command, command->env, command);//TO DO:filtrar con la lista y ver si comand is 'B'
+	//execut_cmd(command->command, command->env, command);//TO DO:filtrar con la lista y ver si comand is 'B'
 	close(command->fd_stdin);
 	close(command->fd_stdout);
 }
