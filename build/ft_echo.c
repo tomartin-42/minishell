@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 10:39:03 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/13 20:23:16 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/14 10:52:22 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,18 @@ int	infinity_n(char *args)
 	int	pos;
 
 	pos = 2;
-	printf("-->%s<--", args);
+	//printf("-->%s<--", args);
 	if (args[0] == '-' && args[1] == 'n')
 	{
+		//printf("Entro pepote");
 		while (args[pos] != '\0' && args[pos] == 'n')
 		{
 			pos++;
 		}
 		if (args[pos] != '\0' && args[pos] != 'n')
+			return (0);
+		else if (args[pos] == '\0')
 			return (1);
-		return (1);
 	}
 	return (0);
 }
@@ -42,20 +44,22 @@ int	echo_out(char *string)
 int	ft_echo(char **args)
 {
 	int		pos;
+	int		space;
 	bool	flag;
 
+	space = 0;
 	flag = false;
-	pos = 0;
+	pos = 1;
 	while (args[pos])
 	{
-		if (!ft_strncmp(args[pos], "-n", 2))// cambiar por infinity_n para saber si -n esta bien puesto y no entrear siempre que las dos primeras son -n
-			printf("CABESHAAAA");
-			//flag = true;
+		if (infinity_n(args[pos]))
+			flag = true;
 		else
 		{
-			//printf("[%s]\n", args[pos]);
-			if (!echo_out(args[pos]))
-				echo_out("ERROR");
+			if (space != 0)
+				write(1, " ", 1);
+			echo_out(args[pos]);
+			space++;
 		}
 		pos++;
 	}

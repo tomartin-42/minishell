@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 08:32:00 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/13 11:27:32 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/14 10:52:01 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,28 +39,3 @@ void	ft_env(char **g_env)
 		i++;
 	}
 }
-// Build echo
-/*
-void	ft_echo(t_element *element)
-{
-	int		i;
-	bool	flag;
-
-	i = 0;
-	flag = false;
-	if (!ft_strncmp(element->arg[0], "-n", 2))
-	{
-		flag = true;
-		i++;
-	}
-	while (element->arg[i])
-	{
-		printf("%s", element->arg[i]);
-		if (element->arg[i + 1])
-			printf(" ");
-		i++;
-	}
-	if (flag == false)
-		printf("\n");
-}
-*/
