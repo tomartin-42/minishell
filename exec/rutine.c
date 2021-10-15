@@ -46,11 +46,16 @@ static void	execut_cmd(char **cmd, char **env, t_command *command)
 			dup2(command->multi_cmd[1]->p_fd[1], STDOUT_FILENO);
 			close(command->multi_cmd[1]->p_fd[0]);
 		}
+		redir_files(command);
 		if (execve(cmd[0], cmd, env) == -1)
 		{
 			printf("Error N= %d\n", errno);
 			exit(errno);
 		}
+	}
+	else
+	{
+		waitpid(-1, NULL, 0);
 	}
 }
 
@@ -86,15 +91,13 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 		command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
 		for (int i = 0; command->cmd->arg[i]; i++)//print a todos los args y command// borrar despues
 			printf("%s\n", command->cmd->arg[i]);
-		redir_files(command);
 		execut_cmd(command->cmd->arg, command->env, command);//TO DO:filtrar con la lista y ver si comand is 'B'
+		dup2(command->fd_stdin, STDIN_FILENO);
+		dup2(command->fd_stdout, STDOUT_FILENO);
 		command->multi_cmd[0] = command->multi_cmd[1];
 	}
-		waitpid(-1, NULL, 0);
-		waitpid(-1, NULL, 0);
-		waitpid(-1, NULL, 0);
-	dup2(command->fd_stdin, STDIN_FILENO);
-	dup2(command->fd_stdout, STDOUT_FILENO);
-	close(command->fd_stdin);
-	close(command->fd_stdout);
+		//waitpid(-1, NULL, 0);
+		//waitpid(-1, NULL, 0);
+		close(command->fd_stdin);
+		close(command->fd_stdout);
 }
