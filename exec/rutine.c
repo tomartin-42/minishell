@@ -51,7 +51,6 @@ static void	execut_cmd(char **cmd, char **env, t_command *command)
 			printf("Error N= %d\n", errno);
 			exit(errno);
 		}
-		
 	}
 }
 
