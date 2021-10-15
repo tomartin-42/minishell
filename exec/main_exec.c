@@ -95,6 +95,7 @@ void	main_exec(t_element *element, t_env *env)
 {
 	t_command	command;
 
+	element = element->next;
 	get_fd_pipes(element);
 	command.multi_cmd[0] = element;
 	command.fd_stdin = dup(0);

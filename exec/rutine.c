@@ -35,9 +35,8 @@ static void	execut_cmd(char **cmd, char **env, t_command *command)
 
 	if (command->multi_cmd[0]->type == 'P')
 	{
-		printf("HOLA1\n");
-		close(command->multi_cmd[0]->p_fd[1]);
-		dup2(command->multi_cmd[0]->p_fd[0], STDIN_FILENO);
+		dup2(command->multi_cmd[0]->p_fd[1], STDIN_FILENO);
+		close(command->multi_cmd[0]->p_fd[0]);
 	}
 	pid = fork();
 	if (pid == 0)
@@ -48,15 +47,12 @@ static void	execut_cmd(char **cmd, char **env, t_command *command)
 			exit(errno);
 			if (command->multi_cmd[1]->type == 'P')
 			{
-				printf("HOLA2\n");
 				dup2(command->multi_cmd[1]->p_fd[1], STDOUT_FILENO);
 				close(command->multi_cmd[1]->p_fd[0]);
+				printf("HOLA2\n");
 			}
 		}
 		
-	}
-	else
-	{
 	}
 }
 
