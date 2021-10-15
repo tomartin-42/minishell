@@ -35,22 +35,21 @@ static void	execut_cmd(char **cmd, char **env, t_command *command)
 
 	if (command->multi_cmd[0]->type == 'P')
 	{
-		dup2(command->multi_cmd[0]->p_fd[1], STDIN_FILENO);
-		close(command->multi_cmd[0]->p_fd[0]);
+		dup2(command->multi_cmd[0]->p_fd[0], STDIN_FILENO);
+		close(command->multi_cmd[0]->p_fd[1]);
 	}
 	pid = fork();
 	if (pid == 0)
 	{
+		if (command->multi_cmd[1] && command->multi_cmd[1]->type == 'P')
+		{
+			dup2(command->multi_cmd[1]->p_fd[1], STDOUT_FILENO);
+			close(command->multi_cmd[1]->p_fd[0]);
+		}
 		if (execve(cmd[0], cmd, env) == -1)
 		{
 			printf("Error N= %d\n", errno);
 			exit(errno);
-			if (command->multi_cmd[1]->type == 'P')
-			{
-				dup2(command->multi_cmd[1]->p_fd[1], STDOUT_FILENO);
-				close(command->multi_cmd[1]->p_fd[0]);
-				printf("HOLA2\n");
-			}
 		}
 		
 	}
