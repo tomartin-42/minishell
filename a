@@ -1,5 +1,5 @@
+Makefile
 a
-aحؽؽ
 build
 ejemplos.txt
 errors
@@ -8,7 +8,6 @@ expansion
 hered
 includes
 libft
-Makefile
 minishell
 obj
 parse

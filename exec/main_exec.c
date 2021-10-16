@@ -1,3 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_exec.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/16 13:22:59 by tomartin          #+#    #+#             */
+/*   Updated: 2021/10/16 13:23:04 by tomartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_exec.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/16 13:22:54 by tomartin          #+#    #+#             */
+/*   Updated: 2021/10/16 13:22:54 by tomartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "exec.h"
 #include "hered.h"
 
@@ -94,13 +118,14 @@ static void  get_fd_pipes(t_element *element)
 void	main_exec(t_element *element, t_env *env)
 {
 	t_command	command;
+	t_element	*next_elem;
 
-	element = element->next;
-	get_fd_pipes(element);
-	command.multi_cmd[0] = element;
+	next_elem = element->next;
+	get_fd_pipes(next_elem);
+	command.multi_cmd[0] = next_elem;
 	command.fd_stdin = dup(0);
 	command.fd_stdout = dup(1);
 	command.pid_num = 0;
-	rutine_command(element, env, &command);
+	rutine_command(next_elem, env, &command);
 }
 
