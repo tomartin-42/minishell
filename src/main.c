@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/14 19:41:25 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/14 21:27:53 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	main(int argc, char **argv, char **env)
 			main_exec(element, m_env);
 			///////////////////////////////////
 			//printf("++%s++\n", get_env(env, ""));//saca la variable de entorno que indíques
-			ft_cd(element->next->arg, env);
+			ft_cd(element->next->arg, env);////
 			///////////////////////////////////
 			//////borrar
 			//ft_echo(element->next->arg);

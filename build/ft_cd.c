@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:18:27 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/14 19:44:49 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/14 21:19:01 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,11 @@ void	ft_cd(char **args, char **envs)
 		//printf("-->%s<--\n", dir_content->d_name);
 		if (pdir)
 			closedir(pdir);
+	}
+	if (pos == 1)
+	{
+		chdir(get_env(envs, "HOME"));
+		//printf("**%s**\n", getcwd(get_env(envs, "PWD"), 100));
+		//getcwd(char *donde_alamcenar_ruta, buffer_size_char);
 	}
 }
