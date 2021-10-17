@@ -6,6 +6,7 @@
 typedef struct s_command{
 	char		**env;
 	t_element	*multi_cmd[2];
+	t_element	*special_cmd[2];
 	t_element	*cmd;
 	int			fd_stdin;
 	int			fd_stdout;
@@ -22,4 +23,5 @@ char		*find_exec_path(char **cmd, char **env);
 int			is_build(t_element *p_elem);
 void		main_build_filt(t_element *element);
 ////////////////////
+void		get_fd_pipes(t_element *element);
 #endif

@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/16 21:00:10 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/17 19:42:44 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static void	execut_cmd(char **cmd, char **env, t_command *command)
 		close(command->multi_cmd[0]->p_fd[1]);
 	}
 	pid = fork();
-	command->pid_num = pid;
 	if (pid == 0)
 	{
 		if (command->multi_cmd[1] && command->multi_cmd[1]->type == 'P')
@@ -75,9 +74,8 @@ static void	execut_cmd(char **cmd, char **env, t_command *command)
 			exit(errno);
 		}
 	}
-/*	else
-	{
-	}*/
+	else
+		close(command->multi_cmd[0]->p_fd[0]);
 }
 
 static t_element *get_last_pipe(t_command *command)
@@ -97,34 +95,21 @@ static t_element *get_last_pipe(t_command *command)
 void	rutine_command(t_element *element, t_env *env, t_command *command)
 {
 	start_hered(element);
+
 	while(command->multi_cmd[0])
 	{
-	/// EMPIEZA LA FIESTA ///////////////////////////////////////////////
 		command->multi_cmd[1] = get_last_pipe(command);
 		command->env = extract_all_env_list(env);
-	
+		//Buscar building
 		extract_cmd_and_arg(command);
-	////////////////
-		main_build_filt(element);//filtra si es build y marca los args a borrar
-		ft_lst_del_all_x(element);//elimina 'X' arg
-	//////////////////////////////////////////////////////////////
-	//ft_pwd(command->env);//////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////
+		main_build_filt(element);
+		ft_lst_del_all_x(element);
 		command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
-	//	for (int i = 0; command->cmd->arg[i]; i++)//print a todos los args y command// borrar despues
-	//		printf("%s\n", command->cmd->arg[i]);
-		execut_cmd(command->cmd->arg, command->env, command);//TO DO:filtrar con la lista y ver si comand is 'B'
+		execut_cmd(command->cmd->arg, command->env, command);
 		dup2(command->fd_stdin, STDIN_FILENO);
 		dup2(command->fd_stdout, STDOUT_FILENO);
 		command->multi_cmd[0] = command->multi_cmd[1];
 	}
-		//waitpid(-1, NULL, 0);
-	//	waitpid(command->pid_num, NULL, 0);
-			//	======================+=================
-		close(command->multi_cmd[0]->p_fd[0]);
-		close(command->multi_cmd[0]->p_fd[1]);
-			//	======================+=================
-
 		close_forks(element);
 		close(command->fd_stdin);
 		close(command->fd_stdout);
