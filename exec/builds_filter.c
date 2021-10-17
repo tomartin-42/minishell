@@ -3,40 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   builds_filter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:48:31 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/13 10:07:24 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/17 19:25:02 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
-
-void	exec_build(char **command, char **env)
-{
-	printf("ES BUILD->%s, %s", command[0], env[0]);
-}
 
 int	is_build(t_element *p_elem)
 {
 	if (ft_strcmp(p_elem->str, "echo") == 0
 		|| ft_strcmp(p_elem->str, "cd") == 0)
 	{
-		printf("\nES BUILD->%s\n\n", p_elem->str);
 		p_elem->type = 'B';
 		return (1);
 	}
 	else if (ft_strcmp(p_elem->str, "export") == 0
 		|| ft_strcmp(p_elem->str, "unset") == 0)
 	{
-		printf("\nES BUILD->%s\n\n", p_elem->str);
 		p_elem->type = 'B';
 		return (1);
 	}
 	else if (ft_strcmp(p_elem->str, "env") == 0
 		|| ft_strcmp(p_elem->str, "exit") == 0)
 	{
-		printf("\nES BUILD->%s\n\n", p_elem->str);
 		p_elem->type = 'B';
 		return (1);
 	}

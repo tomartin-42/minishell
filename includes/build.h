@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 08:30:08 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/14 18:15:05 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/17 19:28:17 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define BUILD_H
 
 # include "minishell.h"
+# include "exec.h"
 
 void	ft_pwd(char **g_env);
 //void	ft_env(char **g_env);
@@ -34,6 +35,6 @@ int		ft_echo(char **args);
 void	ft_env(char **envs);
 /////////////
 //ft_cd.c//
-void	ft_cd(char **args, char **envs);
+void	ft_cd(t_command *command);
 /////////////
 #endif

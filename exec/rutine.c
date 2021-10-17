@@ -6,7 +6,7 @@
 /*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/17 18:26:24 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/17 19:00:33 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	extract_cmd_and_arg(t_command *command)
 	}	
 }
 
-static void	execut_cmd(char **cmd, char **env, t_command *command)
+void	execut_cmd(char **cmd, char **env, t_command *command)
 {
 	pid_t	pid;
 
@@ -83,11 +83,14 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 	//////////////////////////////////////////////////////////////
 	//ft_cd(command->);//////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////
+	if (command->cmd->type != 'B')// quita el path para los build y asi hacer el filtro mas simple
 		command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
-		for (int i = 0; command->cmd->arg[i]; i++)//print a todos los args y command// borrar despues
-			printf("%s\n", command->cmd->arg[i]);
+		//for (int i = 0; command->cmd->arg[i]; i++)//print a todos los args y command// borrar despues
+		//	printf("%s\n", command->cmd->arg[i]);
+		//printf("\nComando-> %s\nTipo-> %c\n", command->cmd->arg[0], command->cmd->type);
 		redir_files(command);
-		execut_cmd(command->cmd->arg, command->env, command);//TO DO:filtrar con la lista y ver si comand is 'B'
+		cmd_execution(command);
+		//execut_cmd(command->cmd->arg, command->env, command);//TO DO:filtrar con la lista y ver si comand is 'B'
 		command->multi_cmd[0] = command->multi_cmd[1];
 	}
 		waitpid(-1, NULL, 0);
