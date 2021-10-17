@@ -6,7 +6,7 @@
 #    By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/10/14 11:44:58 by dpuente-         ###   ########.fr        #
+#    Updated: 2021/10/14 19:04:57 by dpuente-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,10 @@ EXPANSION_DIR=./expansion/
 EXEC_DIR= ./exec/
 
 # Source files and object files
-SRC_FILES = main.c utils_list.c util_env.c expand.c util_env2.c utils_src.c
+SRC_FILES = main.c utils_list.c util_env.c expand.c util_env2.c utils_src.c get_env.c
 PARSE_FILES = main_parse.c procesing_parse.c parse_operation.c sec_parse_proc.c in_args.c
 HERED_FILES = main_hered.c
-BUILD_FILES = main_build.c ft_export.c ft_export2.c ft_export3.c ft_echo.c ft_env.c ft_pwd.c
+BUILD_FILES = ft_export.c ft_export2.c ft_export3.c ft_echo.c ft_env.c ft_pwd.c ft_cd.c
 ERRORS_FILES = check_error.c errors.c
 EXPANSION_FILES = env_ex.c str_ex.c expansion.c env_ex2.c
 EXEC_FILES = main_exec.c rutine.c path_find.c builds_filter.c

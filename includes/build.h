@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 08:30:08 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/14 11:18:09 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/14 18:15:05 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ int		ft_echo(char **args);
 //ft_env.c//
 void	ft_env(char **envs);
 /////////////
+//ft_cd.c//
+void	ft_cd(char **args, char **envs);
+/////////////
 #endif
-

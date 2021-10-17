@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rutine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/14 11:49:38 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/17 18:26:24 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 		main_build_filt(element);//filtra si es build y marca los args a borrar
 		ft_lst_del_all_x(element);//elimina 'X' arg
 	//////////////////////////////////////////////////////////////
-	//ft_pwd(command->env);//////////////////////////////////////////////////////////////
+	//ft_cd(command->);//////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////
 		command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
 		for (int i = 0; command->cmd->arg[i]; i++)//print a todos los args y command// borrar despues
