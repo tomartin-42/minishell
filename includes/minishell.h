@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/14 19:04:43 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/18 18:54:01 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_element{
 typedef struct s_plist{
 	t_env		*p_env;
 	t_element	*p_element;
+	char		*env;
 }	t_plist;
 
 t_element	*ft_lstlast(t_element *lst);

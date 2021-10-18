@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rutine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/17 19:00:33 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/18 13:14:40 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,54 @@ static void	extract_cmd_and_arg(t_command *command)
 	}	
 }
 
+static void	close_forks(t_element *element)
+{
+	int			i;
+	t_element	*p_elem;
+
+	p_elem = element;
+	i = 1;
+	while (p_elem)
+	{
+		if (p_elem->type == 'P')
+			i++;
+		p_elem = p_elem->next;
+	}
+	while (i != 0)
+	{
+		waitpid(-1, NULL, 0);
+		i--;
+	}
+}
+
+//The motor of execut comand (Buildings)
+void	execut_cmd_build(char **cmd, t_env *env, t_command *command)
+{
+	pid_t	pid;
+
+	if (cmd)//IMPORTANTE!!! antes de entregar borrar cmd si no se usa
+	;
+	if (command->multi_cmd[0]->type == 'P')
+	{
+		dup2(command->multi_cmd[0]->p_fd[0], STDIN_FILENO);
+		close(command->multi_cmd[0]->p_fd[1]);
+	}
+	pid = fork();
+	if (pid == 0)
+	{
+		if (command->multi_cmd[1] && command->multi_cmd[1]->type == 'P')
+		{
+			dup2(command->multi_cmd[1]->p_fd[1], STDOUT_FILENO);
+			close(command->multi_cmd[1]->p_fd[0]);
+		}
+		redir_files(command);
+		build_filt(command, env);
+	}
+	else
+		close(command->multi_cmd[0]->p_fd[0]);
+}
+
+//The motor of execut comand (No Buildings)
 void	execut_cmd(char **cmd, char **env, t_command *command)
 {
 	pid_t	pid;
@@ -46,12 +94,15 @@ void	execut_cmd(char **cmd, char **env, t_command *command)
 			dup2(command->multi_cmd[1]->p_fd[1], STDOUT_FILENO);
 			close(command->multi_cmd[1]->p_fd[0]);
 		}
+		redir_files(command);
 		if (execve(cmd[0], cmd, env) == -1)
 		{
 			printf("Error N= %d\n", errno);
 			exit(errno);
 		}
 	}
+	else
+		close(command->multi_cmd[0]->p_fd[0]);
 }
 
 static t_element *get_last_pipe(t_command *command)
@@ -67,37 +118,43 @@ static t_element *get_last_pipe(t_command *command)
 	return (aux_elem);
 }
 
+
 void	rutine_command(t_element *element, t_env *env, t_command *command)
 {
+//	void	(*p_build)(char *);
+
+//	p_build = NULL;
 	start_hered(element);
 	while(command->multi_cmd[0])
 	{
-	/// EMPIEZA LA FIESTA ///////////////////////////////////////////////
 		command->multi_cmd[1] = get_last_pipe(command);
+		if (command->multi_cmd[1] != NULL)
+			pipe(command->multi_cmd[1]->p_fd);
 		command->env = extract_all_env_list(env);
-	
+		//Buscar building
+		//p_build = return_p_function_build(command->arg[0])
 		extract_cmd_and_arg(command);
-	////////////////
-		main_build_filt(element);//filtra si es build y marca los args a borrar
-		ft_lst_del_all_x(element);//elimina 'X' arg
-	//////////////////////////////////////////////////////////////
-	//ft_cd(command->);//////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////
-	if (command->cmd->type != 'B')// quita el path para los build y asi hacer el filtro mas simple
-		command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
-		//for (int i = 0; command->cmd->arg[i]; i++)//print a todos los args y command// borrar despues
-		//	printf("%s\n", command->cmd->arg[i]);
-		//printf("\nComando-> %s\nTipo-> %c\n", command->cmd->arg[0], command->cmd->type);
-		redir_files(command);
-		cmd_execution(command);
-		//execut_cmd(command->cmd->arg, command->env, command);//TO DO:filtrar con la lista y ver si comand is 'B'
+		main_build_filt(element);
+		ft_lst_del_all_x(element);
+		//if (p_build != NULL)
+			//ejecuto build
+		//else
+		//{
+		if (command->cmd->type != 'B')// quita el path para los build y asi hacer el filtro mas simple
+			command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
+		//execut_cmd(command->cmd->arg, command->env, command);
+		//}
+		cmd_execution(command, env);
+		dup2(command->fd_stdin, STDIN_FILENO);
+		dup2(command->fd_stdout, STDOUT_FILENO);
 		command->multi_cmd[0] = command->multi_cmd[1];
 	}
-		waitpid(-1, NULL, 0);
-		waitpid(-1, NULL, 0);
-		waitpid(-1, NULL, 0);
-	dup2(command->fd_stdin, STDIN_FILENO);
-	dup2(command->fd_stdout, STDOUT_FILENO);
-	close(command->fd_stdin);
-	close(command->fd_stdout);
+		close_forks(element);
+		close(command->fd_stdin);
+		close(command->fd_stdout);
 }
+
+
+/*
+		redir_files(command);
+		cmd_execution(command);*/

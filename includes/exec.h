@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 12:17:24 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/17 18:50:28 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/18 18:53:30 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct s_command{
 	char		**env;
 	t_element	*multi_cmd[2];
+	t_element	*special_cmd[2];
 	t_element	*cmd;
 	int			fd_stdin;
 	int			fd_stdout;
@@ -35,9 +36,13 @@ int			is_build(t_element *p_elem);
 void		main_build_filt(t_element *element);
 ////////////////////
 //cmd_exwcution.c//
-void    	cmd_execution(t_command *command);
+void		cmd_execution(t_command *command, t_env *env);
+int			build_filt(t_command *command, t_env *env);
 ////////////////////
 //rutine.c//
-void	execut_cmd(char **cmd, char **env, t_command *command);
-////////////////////
+void		execut_cmd_build(char **cmd, t_env *env, t_command *command);
+void		execut_cmd(char **cmd, char **env, t_command *command);
+///////////////////
+void		get_fd_pipes(t_element *element);
+void		*return_p_function_build(char *elem);
 #endif
