@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/18 08:34:42 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/18 10:03:53 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,36 @@ static void	close_forks(t_element *element)
 		i--;
 	}
 }
+
+/*
+//The motor of execut comand (Buildings)
+static void	execut_cmd_build(char **cmd, char **env, t_command *command)
+{
+	pid_t	pid;
+
+	if (command->multi_cmd[0]->type == 'P')
+	{
+		dup2(command->multi_cmd[0]->p_fd[0], STDIN_FILENO);
+		close(command->multi_cmd[0]->p_fd[1]);
+	}
+	pid = fork();
+	if (pid == 0)
+	{
+		if (command->multi_cmd[1] && command->multi_cmd[1]->type == 'P')
+		{
+			dup2(command->multi_cmd[1]->p_fd[1], STDOUT_FILENO);
+			close(command->multi_cmd[1]->p_fd[0]);
+		}
+		redir_files(command);
+		if (execve(cmd[0], cmd, env) == -1)
+		{
+			printf("Error N= %d\n", errno);
+			exit(errno);
+		}
+	}
+	else
+		close(command->multi_cmd[0]->p_fd[0]);
+}*/
 
 //The motor of execut comand (No Buildings)
 static void	execut_cmd(char **cmd, char **env, t_command *command)
@@ -94,8 +124,10 @@ static t_element *get_last_pipe(t_command *command)
 
 void	rutine_command(t_element *element, t_env *env, t_command *command)
 {
-	start_hered(element);
+//	void	(*p_build)(char *);
 
+//	p_build = NULL;
+	start_hered(element);
 	while(command->multi_cmd[0])
 	{
 		command->multi_cmd[1] = get_last_pipe(command);
@@ -103,11 +135,17 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 			pipe(command->multi_cmd[1]->p_fd);
 		command->env = extract_all_env_list(env);
 		//Buscar building
+		//p_build = return_p_function_build(command->arg[0])
 		extract_cmd_and_arg(command);
 		main_build_filt(element);
 		ft_lst_del_all_x(element);
-		command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
-		execut_cmd(command->cmd->arg, command->env, command);
+		//if (p_build != NULL)
+			//ejecuto build
+		//else
+		//{
+			command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
+			execut_cmd(command->cmd->arg, command->env, command);
+		//}
 		dup2(command->fd_stdin, STDIN_FILENO);
 		dup2(command->fd_stdout, STDOUT_FILENO);
 		command->multi_cmd[0] = command->multi_cmd[1];

@@ -24,4 +24,5 @@ int			is_build(t_element *p_elem);
 void		main_build_filt(t_element *element);
 ////////////////////
 void		get_fd_pipes(t_element *element);
+void		*return_p_function_build(char *elem);
 #endif
