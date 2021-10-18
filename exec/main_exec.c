@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 13:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/17 19:41:40 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/18 08:32:14 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	redir_files(t_command *command)
 		p_elem = p_elem->next;
 	}
 }
-
+/*
 void  get_fd_pipes(t_element *element)
 {
 	t_element	*p_elem;
@@ -113,7 +113,7 @@ void  get_fd_pipes(t_element *element)
 			pipe(p_elem->p_fd);
 		p_elem = p_elem->next;
 	}
-}
+}*/
 
 static void	get_special_pipes(t_element *element, t_command *command)
 {
@@ -147,7 +147,7 @@ void	main_exec(t_element *element, t_env *env)
 	t_element	*next_elem;
 
 	next_elem = element->next;
-	get_fd_pipes(next_elem);
+//	get_fd_pipes(next_elem);
 	get_special_pipes(next_elem, &command);
 	command.multi_cmd[0] = next_elem;
 	command.fd_stdin = dup(0);

@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/17 19:42:44 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/18 08:34:42 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 	while(command->multi_cmd[0])
 	{
 		command->multi_cmd[1] = get_last_pipe(command);
+		if (command->multi_cmd[1] != NULL)
+			pipe(command->multi_cmd[1]->p_fd);
 		command->env = extract_all_env_list(env);
 		//Buscar building
 		extract_cmd_and_arg(command);
