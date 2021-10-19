@@ -6,7 +6,7 @@
 /*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 12:17:24 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/17 18:50:28 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/19 13:29:24 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,7 @@ void    	cmd_execution(t_command *command);
 //rutine.c//
 void	execut_cmd(char **cmd, char **env, t_command *command);
 ////////////////////
+//super_tolower.c//
+char	*super_tolower(char *str);
+/////////////
 #endif

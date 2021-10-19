@@ -6,7 +6,7 @@
 /*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:43:43 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/17 19:25:46 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/19 13:35:04 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 void	build_filt(t_command *command) 
 {
 	//printf("Cmd-> %s", command->cmd->arg[0]);
+	command->cmd->arg[0] = super_tolower(command->cmd->arg[0]);
 	if (!ft_strcmp(command->cmd->arg[0], "echo"))
 		ft_echo(command->cmd->arg);
 	else if (!ft_strcmp(command->cmd->arg[0], "env"))
