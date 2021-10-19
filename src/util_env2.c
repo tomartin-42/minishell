@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_env2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:35:27 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/11 22:54:36 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/18 19:28:47 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,16 @@ void	change_single_env_var(t_env *env, char *var, char *n_value)
 	p_env = env;
 	while (p_env)
 	{
+		//printf("%s<-->%s\n", p_env->var[0], var);
 		if (ft_strcmp(p_env->var[0], var) == 0)
 		{
+			printf("%s<-->%s\n", p_env->var[0], var);
 			free(p_env->var[1]);
 			p_env->var[1] = ft_strdup(n_value);
 			free(p_env->v_env);
 			ft_super_strjoin(p_env->var[0], p_env->var[1], 0);
 		}
+		//printf("++%s--%s++\n", p_env->var[0], p_env->var[1]);
 		p_env = p_env->next;
 	}
 }

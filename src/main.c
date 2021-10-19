@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/17 19:28:41 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/18 11:39:08 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	mute_unused(int argc, char **argv)
 {
 	argc = argc + 1 - 1;
 	argv[0] = argv[0];
-	//env[0] = env[0];
 }
 
 static t_env	*copy_env(char **env)

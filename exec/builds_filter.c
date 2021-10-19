@@ -6,7 +6,7 @@
 /*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:48:31 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/19 13:35:44 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/19 13:38:35 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ int	is_build(t_element *p_elem)
 	}
 	else if (ft_strcmp(p_elem->str, "env") == 0
 		|| ft_strcmp(p_elem->str, "exit") == 0)
+	{
+		p_elem->type = 'B';
+		return (1);
+	}
+	else if (ft_strcmp(p_elem->str, "pwd") == 0)
 	{
 		p_elem->type = 'B';
 		return (1);
