@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/18 13:14:40 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/20 18:22:21 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	close_forks(t_element *element)
 }
 
 //The motor of execut comand (Buildings)
-void	execut_cmd_build(char **cmd, t_env *env, t_command *command)
+void	execut_cmd_build(char **cmd, t_env *env, t_command *command)// si quitamos el forl al realizar un buil in cierra programa 
 {
 	pid_t	pid;
 

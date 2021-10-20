@@ -6,11 +6,25 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 18:32:38 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/14 19:17:32 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:51:10 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*get_t_env(t_env *env, char *var)
+{
+	t_env	*p_env;
+
+	p_env = env;
+	while (p_env)
+	{
+		if (!ft_strcmp(var, p_env->var[0]))
+			return (p_env->var[1]);
+		p_env = p_env->next;
+	}
+	return (NULL);
+}
 
 char	*get_env(char **envs, char *var)
 {

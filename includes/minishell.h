@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/18 18:54:01 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:50:02 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ char		*ft_expand(t_env *m_env, char *str);
 
 //src/get_env.c//
 char		*get_env(char **envs, char *var);
+char		*get_t_env(t_env *env, char *var);
 /////////////////
 #endif

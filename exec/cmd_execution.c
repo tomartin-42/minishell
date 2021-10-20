@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_execution.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:43:43 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/19 13:39:06 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/20 11:22:13 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	build_filt(t_command *command, t_env *env)
 		ft_export(env, command->cmd->arg);
 	else if (!ft_strcmp(command->cmd->arg[0], "cd"))
 		error_num = ft_cd(command, env);
-	exit (error_num);
+	//exit (error_num);
+	return (0);
 }
 
 void	cmd_execution(t_command *command, t_env *env)
