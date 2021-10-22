@@ -46,7 +46,8 @@ static void	close_forks(t_element *element)
 	while (i != 0)
 	{
 		waitpid(-1, &error, 0);
-		errno = error;
+		errno = WEXITSTATUS(error);
+		printf("[[[%d]]]\n", errno);
 		i--;
 	}
 }
