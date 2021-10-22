@@ -54,6 +54,7 @@ int	main(int argc, char **argv, char **env)
 	t_element	*element;
 	t_env		*m_env;
 
+	select_signal();
 	mute_unused(argc, argv);//Mute unused variales, argv and argc
 	m_env = copy_env(env);
 	while (1)

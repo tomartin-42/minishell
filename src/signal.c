@@ -12,20 +12,19 @@
 
 #include "minishell.h"
 
-/*static void	exit_proces(int sig)
+static void	exit_proces(int sig)
 {
 	printf("SEÑAL SISGINT %d\n", sig);
 }
 
 static void	quit_proces(int sig)
 {
-	sig = 0;
+	printf("SEÑAL SISGINT %d\n", sig);
 }
 
 void	select_signal(void)
 {
 	signal(SIGINT, &exit_proces);
 	signal(SIGQUIT, &quit_proces);
-	//signal()
-}*/
+}
 

@@ -67,7 +67,10 @@ void	change_single_env_var(t_env *env, char *var, char *n_value)
 			//printf("%s<-->%s\n", p_env->var[0], var);
 			free(env->var[1]);
 			env->var[1] = ft_strdup(n_value);
-			//free(env->v_env);
+			free(env->v_env);
+			ft_super_strjoin(env->v_env, env->var[0], 0);
+			ft_super_strjoin(env->v_env, "=", 1);
+			ft_super_strjoin(env->v_env, env_var[1], 1);
 			ft_super_strjoin(env->var[0], env->var[1], 0);
 		//	printf("++%s--%s++\n", p_env->var[0], p_env->var[1]);////////////////
 		}

@@ -40,7 +40,7 @@ void		cmd_execution(t_element *element, t_command *command, t_env *env);
 int			build_filt(t_command *command, t_env *env);
 ////////////////////
 //rutine.c//
-void		execut_cmd_build(char **cmd, t_env *env, t_command *command);
+void		execut_cmd_build(t_env *env, t_command *command);
 void		execut_cmd_build_np(t_env *env, t_command *command);
 void		execut_cmd(char **cmd, char **env, t_command *command);
 ///////////////////

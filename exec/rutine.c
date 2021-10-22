@@ -51,18 +51,15 @@ static void	close_forks(t_element *element)
 
 void	execut_cmd_build_np(t_env *env, t_command *command)// si quitamos el forl al realizar un buil in cierra programa 
 {
-		printf("HOLLLLLAAAAAAAAA\n");
 		redir_files(command);
 		build_filt(command, env);
 }
 
 //The motor of execut comand (Buildings)
-void	execut_cmd_build(char **cmd, t_env *env, t_command *command)// si quitamos el forl al realizar un buil in cierra programa 
+void	execut_cmd_build(t_env *env, t_command *command)// si quitamos el forl al realizar un buil in cierra programa 
 {
 	pid_t	pid;
 
-	if (cmd)//IMPORTANTE!!! antes de entregar borrar cmd si no se usa
-	;
 	if (command->multi_cmd[0]->type == 'P')
 	{
 		dup2(command->multi_cmd[0]->p_fd[0], STDIN_FILENO);
