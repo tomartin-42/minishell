@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:35:27 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/22 10:51:40 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/22 12:27:54 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	change_single_env_var(t_env *env, char *var, char *n_value)
 			//printf("%s<-->%s\n", p_env->var[0], var);
 			free(env->var[1]);
 			env->var[1] = ft_strdup(n_value);
-			free(env->v_env);
+			//free(env->v_env);
 			ft_super_strjoin(env->var[0], env->var[1], 0);
 		//	printf("++%s--%s++\n", p_env->var[0], p_env->var[1]);////////////////
 		}
