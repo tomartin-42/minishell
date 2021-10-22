@@ -15,3 +15,17 @@ void	free_element(t_element *element)
 	}
 }
 
+void	free_env_list(t_env *env)
+{
+	t_env	*aux;
+
+	while (env)
+	{
+		aux = env;
+		env = env->next;
+		free(aux->v_env);
+		free(aux->var[0]);
+		free(aux->var[1]);
+		free(aux);
+	}
+}

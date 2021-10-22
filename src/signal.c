@@ -19,7 +19,7 @@ static void	exit_proces(int sig)
 
 static void	quit_proces(int sig)
 {
-	printf("SEÑAL SISGINT %d\n", sig);
+	printf("SEÑAL SISQUIT %d\n", sig);
 }
 
 void	select_signal(void)

@@ -59,7 +59,13 @@ int	main(int argc, char **argv, char **env)
 	m_env = copy_env(env);
 	while (1)
 	{
-		str = readline("🔥ShellFromHell🔥: > ");
+		str = readline("\n🔥ShellFromHell🔥: > ");
+		if (str == NULL)
+		{
+			free_env_list(m_env);
+			printf("exit\n");
+			exit (0);
+		}
 		line = ft_strdup(str);
 		free(str);
 		if (ft_strlen(line) != 0)

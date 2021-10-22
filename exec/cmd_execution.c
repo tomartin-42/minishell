@@ -17,7 +17,6 @@ int	build_filt(t_command *command, t_env *env)
 {
 	int	error_num;
 	
-	print_env_vars(env);
 	error_num = 0;
 	//Funcion para hacer que comando sea minusculas
 	printf("%s\n", command->cmd->arg[0]);
