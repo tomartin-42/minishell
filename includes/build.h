@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 08:30:08 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/18 19:09:54 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/22 11:02:54 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ int		ft_cd(t_command *command, t_env	*env);
 //util_env2.c//
 void	change_single_env_var(t_env *env, char *var, char *n_value);
 /////////////
+void	print_env_vars(t_env *env);
 #endif

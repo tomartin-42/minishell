@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:18:27 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/20 18:39:27 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/21 11:45:38 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,19 @@ int	ft_cd(t_command *command, t_env *env)
 			change_single_env_var(env, "PWD", join_paths(env, command->cmd->arg[1]));
 		else
 			change_single_env_var(env, "PWD", command->cmd->arg[1]);
+		chdir(command->cmd->arg[1]);
 	}
 	else if (pos == 1)
 	{
 		if (o_pwd == true)
 			change_single_env_var(env, "OLDPWD", get_t_env(env, "PWD"));
-		change_single_env_var(env, "PWD", command->cmd->arg[1]);
+		change_single_env_var(env, "PWD", home_path);
 		chdir(home_path);
 	}
-	return (0);
+	if (command->multi_cmd[1] == NULL) 
+		return (0);
+	else
+		exit (0);
 }
 
 	//DIR			*pdir;
