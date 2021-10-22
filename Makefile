@@ -31,7 +31,8 @@ EXPANSION_DIR=./expansion/
 EXEC_DIR= ./exec/
 
 # Source files and object files
-SRC_FILES = main.c utils_list.c util_env.c expand.c util_env2.c utils_src.c get_env.c
+SRC_FILES = main.c utils_list.c util_env.c expand.c util_env2.c utils_src.c \
+			get_env.c signal.c free_resources.c
 PARSE_FILES = main_parse.c procesing_parse.c parse_operation.c sec_parse_proc.c in_args.c
 HERED_FILES = main_hered.c
 BUILD_FILES = ft_export.c ft_export2.c ft_export3.c ft_echo.c ft_env.c ft_pwd.c ft_cd.c super_tolower.c

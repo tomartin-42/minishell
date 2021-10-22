@@ -82,8 +82,9 @@ char	*find_exec_path(char **cmd, char **env)
 	path = *cmd;
 	if (check_if_path_absolute(path))
 	{
-		free(*cmd);
-		return (ft_strdup(path));
+		;
+		//free(*cmd);
+		//return (ft_strdup(path));
 	}
 	exec_paths = get_paths(path, env);
 	i = 0;

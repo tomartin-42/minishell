@@ -17,7 +17,6 @@ int	build_filt(t_command *command, t_env *env)
 {
 	int	error_num;
 	
-	print_env_vars(env);
 	error_num = 0;
 	//Funcion para hacer que comando sea minusculas
 	printf("%s\n", command->cmd->arg[0]);
@@ -33,7 +32,7 @@ int	build_filt(t_command *command, t_env *env)
 	else if (!ft_strcmp(command->cmd->arg[0], "cd"))
 		error_num = ft_cd(command, env);
 	//exit (error_num);
-	return (0);
+	return (error_num);
 }
 
 static bool	check_pipes_in_line(t_element *element)
@@ -59,7 +58,7 @@ void	cmd_execution(t_element *element, t_command *command, t_env *env)
 
 	pipe = check_pipes_in_line(element);
 	if (command->cmd->type == 'B' && pipe == true)
-		execut_cmd_build(command->cmd->arg, env, command);
+		execut_cmd_build(env, command);
 	else if (command->cmd->type == 'B' && pipe == false)
 		execut_cmd_build_np(env, command);
 	else if (command->cmd->type == 'C')

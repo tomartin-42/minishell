@@ -14,11 +14,11 @@
 
 char	*super_tolower(char *str)
 {
-	int size_str;
+//	int size_str;
 	int	pos;
 	//new_str;
 
-	size_str = ft_strlen(str);
+//	size_str = ft_strlen(str);
 	
 	pos = 0;
 	while (str[pos] != '\0')

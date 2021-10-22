@@ -92,4 +92,8 @@ char		*ft_expand(t_env *m_env, char *str);
 char		*get_env(char **envs, char *var);
 char		*get_t_env(t_env *env, char *var);
 /////////////////
+void		select_signal(void);
+
+void		free_element(t_element *element);
+void		free_env_list(t_env *env);
 #endif

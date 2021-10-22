@@ -17,7 +17,7 @@ void	*return_p_function_build(char *elem)
 {
 	void	(*funct_build)(char **);
 
-		if (ft_strlen(arg[0]) == 3 && ft_strncmp(arg[0], "pwd", 3))
+	if (ft_strlen(arg[0]) == 3 && ft_strncmp(arg[0], "pwd", 3))
 		return (func_build = ft_pwd);
 	else if (ft_strlen(arg[0]) == 2 && ft_strncmp(arg[0], "cd", 2))
 		return (func_build = ft_cd);
