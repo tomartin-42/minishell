@@ -33,6 +33,7 @@ static void	close_forks(t_element *element)
 {
 	int			i;
 	t_element	*p_elem;
+	int			error;
 
 	p_elem = element;
 	i = 1;
@@ -44,7 +45,8 @@ static void	close_forks(t_element *element)
 	}
 	while (i != 0)
 	{
-		waitpid(-1, NULL, 0);
+		waitpid(-1, &error, 0);
+		errno = error;
 		i--;
 	}
 }
