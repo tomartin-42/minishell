@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:35:27 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/22 12:28:00 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/22 19:28:23 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	change_shlvl(t_env *env)
 void	change_single_env_var(t_env *env, char *var, char *n_value)
 {
 	t_env	*p_env;
+	char	*aux;
 
 	p_env = env;
 	while (env)
@@ -65,8 +66,12 @@ void	change_single_env_var(t_env *env, char *var, char *n_value)
 		{
 			free(env->var[1]);
 			env->var[1] = ft_strdup(n_value);
-			//free(env->v_env);Mirar en un futuro, descomentar 
-			ft_super_strjoin(env->var[0], env->var[1], 0);
+			free(env->v_env);
+			env->v_env = ft_strdup(env->var[0]);
+			aux = ft_strdup("=");
+			env->v_env = ft_super_strjoin(env->v_env, aux, 3);
+			env->v_env = ft_super_strjoin(env->v_env, env->var[1], 1);
+		//	printf("++%s--%s++\n", p_env->var[0], p_env->var[1]);////////////////
 		}
 		env = env->next;
 	}

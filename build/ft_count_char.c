@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   super_tolower.c                                    :+:      :+:    :+:   */
+/*   ft_count_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 13:18:55 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/19 13:30:15 by davyd11          ###   ########.fr       */
+/*   Created: 2021/10/22 20:00:11 by dpuente-          #+#    #+#             */
+/*   Updated: 2021/10/22 20:03:45 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-char	*super_tolower(char *str)
+int	ft_count_char(char *str, char	caracter)
 {
-//	int size_str;
 	int	pos;
-	//new_str;
+	int	count;
 
-//	size_str = ft_strlen(str);
-	
+	count = 0;
 	pos = 0;
 	while (str[pos] != '\0')
 	{
-		if (str[pos] >= 65 && str[pos] <= 90)
-			str[pos] = str[pos] + 32;
+		if (str[pos] == caracter)
+			count++;
 		pos++;
 	}
-	return (str);
+	return (count);
 }

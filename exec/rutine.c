@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/22 11:43:31 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/22 20:10:57 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,17 @@ static void	close_forks(t_element *element)
 	}
 }
 
-void	execut_cmd_build_np(t_env *env, t_command *command)// si quitamos el forl al realizar un buil in cierra programa 
+void	execut_cmd_build_np(t_env *env, t_command *command)
 {
-		//printf("HOLLLLLAAAAAAAAA\n");
-		redir_files(command);
-		build_filt(command, env);
+	redir_files(command);
+	build_filt(command, env);
 }
 
 //The motor of execut comand (Buildings)
-void	execut_cmd_build(char **cmd, t_env *env, t_command *command)// si quitamos el forl al realizar un buil in cierra programa 
+void	execut_cmd_build(t_env *env, t_command *command)
 {
 	pid_t	pid;
 
-	if (cmd)//IMPORTANTE!!! antes de entregar borrar cmd si no se usa
-	;
 	if (command->multi_cmd[0]->type == 'P')
 	{
 		dup2(command->multi_cmd[0]->p_fd[0], STDIN_FILENO);

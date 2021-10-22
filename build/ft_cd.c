@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:18:27 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/22 13:18:21 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/22 20:50:03 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,24 @@ char	*join_paths(t_env *env, char *new_path)
 
 char	*back_path(int times, t_env *env)
 {
-	char	*new_path;
-	int		size_pwd;
+	char	*new_path;		// 
+	int		pos;			// 
+	char	*current_path;	// pwd para manejarlo mejor
+	int		size_pwd;		// size para reservar memoria del nuevo path mas reducido
+	int		number_paths;	// cantidad de / que hay en el PWD
 
-	size_pwd = ft_strlen() get_t_env(env, "PWD")
+	new_path = NULL;
+	pos = 0;
+	current_path = get_t_env(env, "PWD");
+	if (new_path && times)
+	;
+	size_pwd = ft_strlen(current_path);
+	while (current_path[pos] != '\0')
+	{
+		printf("%c", current_path[pos]);
+		pos++;
+	}
+	return (NULL);
 }
 
 static int	move_back(t_command *command, t_env *env)

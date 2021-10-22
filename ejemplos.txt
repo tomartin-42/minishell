@@ -39,6 +39,7 @@ echo -na
 /////////////////////////////////////////
 cd -> david
 exit-> david
+eliminar ultima barra : cd buidl/<-
 <a wc ->david
 signals->tomas
 $? ->tomas
