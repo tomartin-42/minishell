@@ -14,13 +14,18 @@
 
 static void	exit_proces(int sig)
 {
-	printf("SEÑAL SISGINT %d\n", sig);
+	(void)sig;
+	write(2, "\n\n", 2);
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
 }
 
 static void	quit_proces(int sig)
 {
-	printf("SEÑAL SISQUIT %d\n", sig);
+	(void)sig;
 }
+
 
 void	select_signal(void)
 {
