@@ -57,6 +57,7 @@ int	main(int argc, char **argv, char **env)
 	select_signal();
 	mute_unused(argc, argv);//Mute unused variales, argv and argc
 	m_env = copy_env(env);
+//	change_shlvl(m_env);
 	while (1)
 	{
 		str = readline("🔥ShellFromHell🔥: > ");
@@ -70,7 +71,6 @@ int	main(int argc, char **argv, char **env)
 		if (ft_strlen(line) != 0)
 		{
 			add_history(line);
-			change_shlvl(m_env);
 			check_fault_marks(line);
 			//printf("***%s***\n", line);
 			//line = ft_expand(m_env, line);///////////////////////////////////////////////////

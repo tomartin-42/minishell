@@ -21,7 +21,7 @@ static void	add_shlvl(t_env *env)
 	p_env = env;
 	while (p_env)
 	{
-		if (search_if_var(p_env, "SHLVL") == 0)
+		if (search_if_var(p_env, "SHLVL") == 1)
 		{
 			i = ft_atoi(p_env->var[1]);
 			i++;
