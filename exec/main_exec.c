@@ -142,5 +142,6 @@ void	main_exec(t_element *element, t_env *env)
 	command.fd_stdout = dup(1);
 	command.pid_num = 0;
 	rutine_command(next_elem, env, &command);
+	free_element(element);
 }
 
