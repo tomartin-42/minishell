@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/20 18:22:21 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/22 11:04:30 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ static void	close_forks(t_element *element)
 		waitpid(-1, NULL, 0);
 		i--;
 	}
+}
+
+void	execut_cmd_build_np(t_env *env, t_command *command)// si quitamos el forl al realizar un buil in cierra programa 
+{
+		printf("HOLLLLLAAAAAAAAA\n");
+		redir_files(command);
+		build_filt(command, env);
 }
 
 //The motor of execut comand (Buildings)
@@ -97,7 +104,7 @@ void	execut_cmd(char **cmd, char **env, t_command *command)
 		redir_files(command);
 		if (execve(cmd[0], cmd, env) == -1)
 		{
-			printf("Error N= %d\n", errno);
+			perror("Error"); 
 			exit(errno);
 		}
 	}
@@ -144,7 +151,7 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 			command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
 		//execut_cmd(command->cmd->arg, command->env, command);
 		//}
-		cmd_execution(command, env);
+		cmd_execution(element, command, env);
 		dup2(command->fd_stdin, STDIN_FILENO);
 		dup2(command->fd_stdout, STDOUT_FILENO);
 		command->multi_cmd[0] = command->multi_cmd[1];

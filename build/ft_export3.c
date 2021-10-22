@@ -18,3 +18,15 @@ char	**separate_env_var(char *var)
 	return (var_dual);
 }
 
+void	print_env_vars(t_env *env)
+{
+	t_env	*aux;
+
+	aux = env;
+	while (aux)
+	{
+		printf("%s", aux->var[0]);
+		printf("%s\n", aux->var[1]);
+		aux = aux->next;
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/18 11:39:08 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/22 11:10:15 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	main(int argc, char **argv, char **env)
 	t_env		*m_env;
 
 	mute_unused(argc, argv);//Mute unused variales, argv and argc
+	m_env = copy_env(env);
 	while (1)
 	{
 		str = readline("🔥ShellFromHell🔥: > ");
@@ -63,7 +64,6 @@ int	main(int argc, char **argv, char **env)
 		if (ft_strlen(line) != 0)
 		{
 			add_history(line);
-			m_env = copy_env(env);
 			change_shlvl(m_env);
 			check_fault_marks(line);
 			//printf("***%s***\n", line);
