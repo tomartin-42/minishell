@@ -152,6 +152,7 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 		dup2(command->fd_stdin, STDIN_FILENO);
 		dup2(command->fd_stdout, STDOUT_FILENO);
 		command->multi_cmd[0] = command->multi_cmd[1];
+		ft_free_dp(command->env);
 	}
 		close_forks(element);
 		close(command->fd_stdin);

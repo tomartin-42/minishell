@@ -12,8 +12,8 @@
 
 #include "minishell.h"
 #include "build.h"
-
-void	init_env_list(t_env **m_env, char *var)
+///////ES POSIBLE NO SER NECESARIA//////////////////////
+/*void	init_env_list(t_env **m_env, char *var)
 {
 	(*m_env) = malloc(sizeof(t_env));
 	(*m_env)->v_env = ft_strdup(var);
@@ -27,7 +27,7 @@ void	init_env_list(t_env **m_env, char *var)
 	(*m_env)->global = true;
 	(*m_env)->visible = true;
 	(*m_env)->next = NULL;
-}
+}*/
 
 t_env	*ft_lstlast_env(t_env *env_lst)
 {
@@ -63,6 +63,7 @@ t_env	*new_env_node_global(t_env *new, char *var)
 		new->var = separate_env_var(var);
 	else
 	{
+		new->var = malloc(sizeof(char *) * 2);
 		new->var[0] = ft_strdup(var);
 		new->var[1] = NULL;
 	}
@@ -80,6 +81,8 @@ void	ft_lstadd_back_env(t_env **env_lst, t_env *new)
 		return ;
 	}
 	if (!env_lst)
+	{
 		return ;
+	}
 	(ft_lstlast_env(*env_lst))->next = new;
 }

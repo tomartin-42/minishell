@@ -23,7 +23,7 @@ void	mute_unused(int argc, char **argv)
 	argc = argc + 1 - 1;
 	argv[0] = argv[0];
 }
-
+/////RESTAURAR init_env_list SI SE DESCOMENTA LAS PARTES DE ESTA FUNCION//////////////
 static t_env	*copy_env(char **env)
 {
 	t_env	*m_env;
@@ -34,13 +34,13 @@ static t_env	*copy_env(char **env)
 	m_env = NULL;
 	while (env[i])
 	{
-		if (!m_env)
-			init_env_list(&m_env, env[i]);
-		else
-		{
+//		if (!m_env)
+//			init_env_list(&m_env, env[i]);
+//		else
+//		{
 			new = new_env_node_global(new, env[i]);
 			ft_lstadd_back_env(&m_env, new);
-		}
+//		}
 		i++;
 	}
 	return (m_env);
@@ -59,10 +59,9 @@ int	main(int argc, char **argv, char **env)
 	m_env = copy_env(env);
 	while (1)
 	{
-		str = readline("\n🔥ShellFromHell🔥: > ");
+		str = readline("🔥ShellFromHell🔥: > ");
 		if (str == NULL)
 		{
-			free_env_list(m_env);
 			printf("exit\n");
 			exit (0);
 		}

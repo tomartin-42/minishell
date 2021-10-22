@@ -16,7 +16,7 @@ static void	exit_proces(int sig)
 {
 	(void)sig;
 	write(2, "\n\n", 2);
-	rl_replace_line("", 0);
+//	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
 }
