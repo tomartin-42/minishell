@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 11:50:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/11 08:57:28 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/23 19:30:42 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_access(char *fname)
 		fstat(fd, &s_stat);
 		if (!S_ISDIR(s_stat.st_mode))
 			is_file = 1;
-		close(*fname);
+		close(fd);
 	}
 	return (is_file);
 }
