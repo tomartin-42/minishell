@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/22 11:04:30 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/23 10:46:52 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ void	execut_cmd_build(t_env *env, t_command *command)// si quitamos el forl al r
 			close(command->multi_cmd[1]->p_fd[0]);
 		}
 		redir_files(command);
-		build_filt(command, env);
+		errno = build_filt(command, env);
+		exit (errno);
 	}
 	else
 		close(command->multi_cmd[0]->p_fd[0]);
@@ -157,7 +158,8 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 		command->multi_cmd[0] = command->multi_cmd[1];
 		ft_free_dp(command->env);
 	}
-		close_forks(element);
+		if (check_pipes_in_line(element))
+			close_forks(element);
 		close(command->fd_stdin);
 		close(command->fd_stdout);
 }

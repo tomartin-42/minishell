@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:43:43 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/22 11:04:27 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/23 10:46:34 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	build_filt(t_command *command, t_env *env)
 	return (error_num);
 }
 
-static bool	check_pipes_in_line(t_element *element)
+bool	check_pipes_in_line(t_element *element)
 {
 	t_element	*aux;
 
