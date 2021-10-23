@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/23 19:44:26 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/23 20:42:34 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,9 +129,6 @@ static t_element *get_last_pipe(t_command *command)
 
 void	rutine_command(t_element *element, t_env *env, t_command *command)
 {
-//	void	(*p_build)(char *);
-
-//	p_build = NULL;
 	start_hered(element);
 	while(command->multi_cmd[0])
 	{
@@ -139,34 +136,18 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 		if (command->multi_cmd[1] != NULL)
 			pipe(command->multi_cmd[1]->p_fd);
 		command->env = extract_all_env_list(env);
-		//Buscar building
-		//p_build = return_p_function_build(command->arg[0])
 		extract_cmd_and_arg(command);
 		main_build_filt(element);
 		ft_lst_del_all_x(element);
-		//if (p_build != NULL)
-			//ejecuto build
-		//else
-		//{
 		if (command->cmd->type != 'B')// quita el path para los build y asi hacer el filtro mas simple
 			command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
-		//execut_cmd(command->cmd->arg, command->env, command);
-		//}
 		cmd_execution(element, command, env);
-		//dup2(command->fd_stdin, STDIN_FILENO);
-		//dup2(command->fd_stdout, STDOUT_FILENO);
 		command->multi_cmd[0] = command->multi_cmd[1];
 		ft_free_dp(command->env);
 	}
 		dup2(command->fd_stdin, STDIN_FILENO);
 		dup2(command->fd_stdout, STDOUT_FILENO);
-	//	if (check_pipes_in_line(element))
 			close_forks(element);
 		close(command->fd_stdin);
 		close(command->fd_stdout);
 }
-
-
-/*
-		redir_files(command);
-		cmd_execution(command);*/
