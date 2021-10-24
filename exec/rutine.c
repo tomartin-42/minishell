@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/24 11:23:46 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/24 12:11:51 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	execut_cmd(char **cmd, char **env, t_command *command)
 		redir_files(command);
 		if (execve(cmd[0], cmd, env) == -1)
 		{
-			perror("Error"); 
+			//perror("Error"); 
 			exit(errno);
 		}
 	}
@@ -149,6 +149,7 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 	}
 		dup2(command->fd_stdin, STDIN_FILENO);
 		dup2(command->fd_stdout, STDOUT_FILENO);
+		if (check_pipes_or_cmd(element))
 			close_forks(element);
 		close(command->fd_stdin);
 		close(command->fd_stdout);

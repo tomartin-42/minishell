@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 08:41:08 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/23 19:57:30 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/24 12:03:36 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ char	*find_exec_path(char **cmd, char **env)
 	path = *cmd;
 	if (check_if_path_absolute(path))
 	{
-		;
 		//free(*cmd);
 		//return (ft_strdup(path));
 	}

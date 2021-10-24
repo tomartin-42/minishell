@@ -6,7 +6,7 @@
 /*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 12:17:24 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/23 10:46:37 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/24 12:10:20 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,5 @@ void		get_fd_pipes(t_element *element);
 void		*return_p_function_build(char *elem);
 
 bool		check_pipes_in_line(t_element *element);
+bool		check_pipes_or_cmd(t_element *element);
 #endif

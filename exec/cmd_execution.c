@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:43:43 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/24 11:25:15 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/24 12:11:02 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,21 @@ int	build_filt(t_command *command, t_env *env)
 		ft_export(env, command->cmd->arg);
 	else if (!ft_strcmp(command->cmd->arg[0], "cd"))
 		error_num = ft_cd(command, env);
-	//exit (error_num);
 	return (error_num);
+}
+
+bool	check_pipes_or_cmd(t_element *element)
+{
+	t_element	*aux;
+
+	aux = element;
+	while (aux)
+	{
+		if (aux->type == 'P' || aux->type == 'C')
+			return (true);
+		aux = aux->next;
+	}
+	return (false);
 }
 
 bool	check_pipes_in_line(t_element *element)
