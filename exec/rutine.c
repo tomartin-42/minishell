@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/24 15:45:18 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/24 16:03:19 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	execut_cmd_build(t_env *env, t_command *command)// si quitamos el forl al r
 }
 
 //The motor of execut comand (No Buildings)
-void	execut_cmd(char **cmd, char **env, t_command *command)
+void	execut_cmd(char **env, t_command *command)
 {
 	pid_t	pid;
 
@@ -104,11 +104,7 @@ void	execut_cmd(char **cmd, char **env, t_command *command)
 		}
 		command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
 		redir_files(command);
-		for (int i=0; cmd[i]; i++)
-			printf("***%s***\n",cmd[i]);
-		printf("***%s***\n",cmd[0]);
-		printf("HOLA\n");
-		if (execve(cmd[0], cmd, env) == -1)
+		if (execve(command->cmd->arg[0],command->cmd->arg, env) == -1)
 		{
 			//perror("Error"); 
 			exit(errno);

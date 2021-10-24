@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 10:19:48 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/24 15:07:55 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/24 15:57:06 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ int	ft_export(t_env *m_env, char **args)
 	int	i;
 
 	i = 0;
-	printf("HOLA\n");
 	if (!args[1])
 	{
 		print_env_alphabet_order(m_env);

@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:43:43 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/24 15:42:24 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/24 16:03:06 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,5 @@ void	cmd_execution(t_element *element, t_command *command, t_env *env)
 	else if (command->cmd->type == 'B' && pipe == false)
 		execut_cmd_build_np(env, command);
 	else if (command->cmd->type == 'C')
-		execut_cmd(command->cmd->arg, command->env, command);
+		execut_cmd(command->env, command);
 }
