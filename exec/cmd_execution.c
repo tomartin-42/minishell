@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:43:43 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/24 12:11:02 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/24 16:38:13 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	build_filt(t_command *command, t_env *env)
 	int	error_num;
 	
 	error_num = 0;
-	//Funcion para hacer que comando sea minusculas
 	command->cmd->arg[0] = super_tolower(command->cmd->arg[0]);
 	if (!ft_strcmp(command->cmd->arg[0], "echo"))
 		error_num = ft_echo(command->cmd->arg);
@@ -30,6 +29,8 @@ int	build_filt(t_command *command, t_env *env)
 		ft_export(env, command->cmd->arg);
 	else if (!ft_strcmp(command->cmd->arg[0], "cd"))
 		error_num = ft_cd(command, env);
+	else if (!ft_strcmp(command->cmd->arg[0], "unset"))
+		error_num = ft_unset(command, env);
 	return (error_num);
 }
 
@@ -68,11 +69,16 @@ void	cmd_execution(t_element *element, t_command *command, t_env *env)
 
 	pipe = false;
 
+/*	printf("cmd %s\n", command->cmd->str);
+	printf("arg1 %s\n", command->cmd->arg[0]);
+	printf("arg2 %s\n", command->cmd->arg[1]);
+	printf("type %c\n", command->cmd->type);
+*/
 	pipe = check_pipes_in_line(element);
 	if (command->cmd->type == 'B' && pipe == true)
 		execut_cmd_build(env, command);
 	else if (command->cmd->type == 'B' && pipe == false)
 		execut_cmd_build_np(env, command);
 	else if (command->cmd->type == 'C')
-		execut_cmd(command->cmd->arg, command->env, command);
+		execut_cmd(command->env, command);
 }
