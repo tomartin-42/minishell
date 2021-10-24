@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/23 20:42:34 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/24 11:23:46 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	extract_cmd_and_arg(t_command *command)
 	p_elem = command->multi_cmd[0];
 	while (p_elem != command->multi_cmd[1])
 	{
-		if (p_elem->type == 'C')
+		if (p_elem->type == 'C' || p_elem->type == 'B')
 		{
 			command->cmd = p_elem;
 			break ;
@@ -143,6 +143,8 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 			command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
 		cmd_execution(element, command, env);
 		command->multi_cmd[0] = command->multi_cmd[1];
+		//dup2(command->fd_stdin, STDIN_FILENO);
+		//dup2(command->fd_stdout, STDOUT_FILENO);
 		ft_free_dp(command->env);
 	}
 		dup2(command->fd_stdin, STDIN_FILENO);
