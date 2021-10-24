@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 10:19:48 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/11 12:00:05 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/24 15:07:55 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,20 @@ int	ft_export(t_env *m_env, char **args)
 	int	i;
 
 	i = 0;
-	if (!args)
+	printf("HOLA\n");
+	if (!args[1])
 	{
 		print_env_alphabet_order(m_env);
 		return (0);
 	}
 	while (args[i] != NULL)
 	{
+		if (ft_isdigit(args[i][0]))
+		{
+			perror("export");
+			perror("not an identifier");
+			ft_putstr_fd(args[1], 2);
+		}
 		if (ft_strchr(args[i], '='))
 			with_equal_export(m_env, args[i]);
 		else

@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:43:43 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/24 12:11:02 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/24 15:42:24 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	build_filt(t_command *command, t_env *env)
 	int	error_num;
 	
 	error_num = 0;
+	printf("HOLA BUILD\n");
 	//Funcion para hacer que comando sea minusculas
 	command->cmd->arg[0] = super_tolower(command->cmd->arg[0]);
 	if (!ft_strcmp(command->cmd->arg[0], "echo"))
@@ -68,6 +69,11 @@ void	cmd_execution(t_element *element, t_command *command, t_env *env)
 
 	pipe = false;
 
+/*	printf("cmd %s\n", command->cmd->str);
+	printf("arg1 %s\n", command->cmd->arg[0]);
+	printf("arg2 %s\n", command->cmd->arg[1]);
+	printf("type %c\n", command->cmd->type);
+*/
 	pipe = check_pipes_in_line(element);
 	if (command->cmd->type == 'B' && pipe == true)
 		execut_cmd_build(env, command);

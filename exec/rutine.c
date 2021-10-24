@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/24 12:11:51 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/24 15:45:18 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	close_forks(t_element *element)
 	{
 		waitpid(-1, &error, 0);
 		errno = WEXITSTATUS(error);
-		printf("[[[%d]]]\n", errno);
+	//	printf("[[[%d]]]\n", errno);
 		i--;
 	}
 }
@@ -102,7 +102,12 @@ void	execut_cmd(char **cmd, char **env, t_command *command)
 			dup2(command->multi_cmd[1]->p_fd[1], STDOUT_FILENO);
 			close(command->multi_cmd[1]->p_fd[0]);
 		}
+		command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
 		redir_files(command);
+		for (int i=0; cmd[i]; i++)
+			printf("***%s***\n",cmd[i]);
+		printf("***%s***\n",cmd[0]);
+		printf("HOLA\n");
 		if (execve(cmd[0], cmd, env) == -1)
 		{
 			//perror("Error"); 
@@ -139,8 +144,8 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 		extract_cmd_and_arg(command);
 		main_build_filt(element);
 		ft_lst_del_all_x(element);
-		if (command->cmd->type != 'B')// quita el path para los build y asi hacer el filtro mas simple
-			command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
+	//	if (command->cmd->type != 'B')// quita el path para los build y asi hacer el filtro mas simple
+//		command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
 		cmd_execution(element, command, env);
 		command->multi_cmd[0] = command->multi_cmd[1];
 		//dup2(command->fd_stdin, STDIN_FILENO);
