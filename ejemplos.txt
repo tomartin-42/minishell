@@ -37,13 +37,13 @@ echo -na
 
 
 /////////////////////////////////////////
-cd -> david
+/////////////////////////////////////////cd -> david
 exit-> david
-eliminar ultima barra : cd buidl/<-
+/////////////////////////////////////////eliminar ultima barra : cd buidl/<-
 <a wc ->david
 signals->tomas
 $? ->tomas
-Export up rmeove->david
+Export up remove->david
 
 export->futuro
 LEAKS ->futuro
