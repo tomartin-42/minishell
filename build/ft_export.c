@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 10:19:48 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/24 15:57:06 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/24 18:00:41 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ char	**extract_env_list(t_env *env)
 	int		i;
 	char	**list;
 
+	printf("EXTRAC ENV LIST\n");
 	i = 0;
 	p_env = env;
 	while (p_env)
 	{
-		if (p_env->global == true)
+		if (p_env->visible == true)
 			i++;
 		p_env = p_env->next;
 	}
@@ -58,7 +59,7 @@ char	**extract_env_list(t_env *env)
 	p_env = env;
 	while (p_env)
 	{
-		if (p_env->global == true)
+		if (p_env->visible == true)
 			list[i++] = ft_strdup(p_env->v_env);
 		p_env = p_env->next;
 	}
@@ -106,9 +107,10 @@ int	ft_export(t_env *m_env, char **args)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	if (!args[1])
 	{
+		printf("HOLA EXPORT\n");
 		print_env_alphabet_order(m_env);
 		return (0);
 	}
@@ -116,9 +118,7 @@ int	ft_export(t_env *m_env, char **args)
 	{
 		if (ft_isdigit(args[i][0]))
 		{
-			perror("export");
-			perror("not an identifier");
-			ft_putstr_fd(args[1], 2);
+			printf("ERROR EN EXPORT");
 		}
 		if (ft_strchr(args[i], '='))
 			with_equal_export(m_env, args[i]);

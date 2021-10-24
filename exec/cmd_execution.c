@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:43:43 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/24 16:03:06 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/24 16:38:13 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	build_filt(t_command *command, t_env *env)
 	int	error_num;
 	
 	error_num = 0;
-	printf("HOLA BUILD\n");
-	//Funcion para hacer que comando sea minusculas
 	command->cmd->arg[0] = super_tolower(command->cmd->arg[0]);
 	if (!ft_strcmp(command->cmd->arg[0], "echo"))
 		error_num = ft_echo(command->cmd->arg);
@@ -31,6 +29,8 @@ int	build_filt(t_command *command, t_env *env)
 		ft_export(env, command->cmd->arg);
 	else if (!ft_strcmp(command->cmd->arg[0], "cd"))
 		error_num = ft_cd(command, env);
+	else if (!ft_strcmp(command->cmd->arg[0], "unset"))
+		error_num = ft_unset(command, env);
 	return (error_num);
 }
 
