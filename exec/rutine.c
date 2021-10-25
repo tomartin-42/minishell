@@ -48,6 +48,7 @@ static void	close_forks(t_element *element)
 	{
 		waitpid(-1, &error, 0);
 		errno = WEXITSTATUS(error);
+		printf("[[%d]]", errno);
 		i--;
 	}
 }
@@ -107,6 +108,7 @@ void	execut_cmd(char **env, t_command *command)
 		if (execve(command->cmd->arg[0],command->cmd->arg, env) == -1)
 		{
 			perror("Error"); 
+			printf("**%d**\n", errno);
 			exit(errno);
 		}
 	}
