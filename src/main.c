@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/22 11:10:15 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/25 10:56:30 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int argc, char **argv, char **env)
 	m_env = copy_env(env);
 	while (1)
 	{
-		str = readline("\n🔥ShellFromHell🔥: > ");
+		str = readline("🔥ShellFromHell🔥: > ");
 		if (str == NULL)
 		{
 			free_env_list(m_env);

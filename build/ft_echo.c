@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 10:39:03 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/18 11:59:33 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/25 10:55:48 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ int	ft_echo(char **args)
 	}
 	if (flag == false)
 		write(1, "\n", 1);
-	exit (0);
+	//exit (0);
 	return (0);
 }
