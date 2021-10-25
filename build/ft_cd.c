@@ -104,13 +104,13 @@ void	back_path(int times, t_env *env)
 {
 	int		pos;			// 
 	char	*current_path;	// pwd para manejarlo mejor
-	int		size_pwd;		// size para reservar memoria del nuevo path mas reducido
+	//int		size_pwd;		// size para reservar memoria del nuevo path mas reducido
 	int		number_paths;	// cantidad de / que hay en el PWD
 
 	pos = 0;
 	number_paths = 0;
 	current_path = get_t_env(env, "PWD");
-	size_pwd = ft_strlen(current_path);
+	//size_pwd = ft_strlen(current_path);
 	while (current_path[pos] != '\0')
 	{
 		if (current_path[pos] == '/')
@@ -126,15 +126,15 @@ void	back_path(int times, t_env *env)
 
 static int	move_back(t_command *command, t_env *env)
 {
-	t_env		*p_env;
-	t_command	*p_command;
+	//t_env		*p_env;
+	//t_command	*p_command;
 	int			pos;
 	int			dots;
 
 	pos = 0;
 	dots = 0;
-	p_env = env;
-	p_command = command;
+	//p_env = env;
+	//p_command = command;
 	while (command->cmd->arg[1][pos] != '\0')
 	{
 		if (command->cmd->arg[1][pos] != '/')

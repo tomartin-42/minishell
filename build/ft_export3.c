@@ -14,7 +14,10 @@ char	**separate_env_var(char *var)
 	var_dual[0] = ft_substr(var, 0, i);
 	aux = ft_strchr(var, '=');
 	aux++;
-	var_dual[1] = ft_strdup(aux);
+	if (*aux == '\0')
+		var_dual[1] = ft_strdup("");
+	else
+		var_dual[1] = ft_strdup(aux);
 	return (var_dual);
 }
 

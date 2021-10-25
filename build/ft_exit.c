@@ -19,8 +19,9 @@ int	ft_exit(t_command *command, t_env *env)
 	
 	ret_error = 0;
 	pos = 0;
-	if (env)
-	;
+	(void)env;
+//	if (env)
+//		;
 	while (command->cmd->arg[1][pos])
 	{
 		if (command->cmd->arg[1][pos] < '0'
