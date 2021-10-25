@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   ft_count_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/14 10:57:35 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/25 11:01:37 by dpuente-         ###   ########.fr       */
+/*   Created: 2021/10/22 20:00:11 by dpuente-          #+#    #+#             */
+/*   Updated: 2021/10/22 20:03:45 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "build.h"
+#include "exec.h"
 
-int	ft_env(t_env *env)
+int	ft_count_char(char *str, char	caracter)
 {
-	if (!env)
-		return (-1);
-	while (env)
-	{
-		ft_putstr_fd(env->var[0], 1);
-		write (1, "=", 1);
-		ft_putstr_fd(env->var[1], 1);
-		write (1, "\n", 1);
-		env = env->next;
-	}
-	/*int	pos;
+	int	pos;
+	int	count;
 
+	count = 0;
 	pos = 0;
-	if (!envs)
-		return (-1);
-	while (envs[pos])
+	while (str[pos] != '\0')
 	{
-		ft_putstr_fd(envs[pos], 1);
-		write (1, "\n", 1);
+		if (str[pos] == caracter)
+			count++;
 		pos++;
-	}*/
-	//exit (0);
-	return (0);
+	}
+	return (count);
 }
