@@ -39,16 +39,18 @@ static void	add_shlvl(t_env *env)
 void	change_shlvl(t_env *env)
 {
 	int		check;
-	t_env	aux_node;
+	t_env	*aux_node;
 	char	*aux;
 
+	aux_node = NULL;
 	check = search_if_var(env, "SHLVL");
 	if (check == 1)
 		add_shlvl(env);
 	else if (check == -1)
 	{
 		aux = ft_strdup("SHLVL=1");
-		new_env_node_global(&aux_node, aux);
+		aux_node = new_env_node_global(aux_node, aux);
+		ft_lstadd_back_env(&env, aux_node);
 		free(aux);
 	}
 }

@@ -41,7 +41,7 @@ static void	open_to_read(t_element *element)
 
 static void	open_to_write(t_element *element)
 {
-	element->fd = open(element->arg[1], O_WRONLY | O_CREAT, 0644);	 
+	element->fd = open(element->arg[1], O_WRONLY | O_CREAT | O_TRUNC, 0644);	 
 	if (element->fd < 0)
 	{
 		printf("error %d\n", errno);
@@ -54,7 +54,7 @@ static void	open_to_write(t_element *element)
 
 static void	open_to_trunk(t_element *element)
 {
-	element->fd = open(element->arg[1], O_APPEND, 0644);
+	element->fd = open(element->arg[1], O_APPEND | O_RDWR | O_CREAT, 0644);
 	if (element->fd < 0)
 	{
 		printf("error %d\n", errno);

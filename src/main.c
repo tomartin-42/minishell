@@ -54,10 +54,11 @@ int	main(int argc, char **argv, char **env)
 	t_element	*element;
 	t_env		*m_env;
 
+	m_env = NULL;
 	select_signal();
 	mute_unused(argc, argv);//Mute unused variales, argv and argc
 	m_env = copy_env(env);
-//	change_shlvl(m_env);
+	change_shlvl(m_env);
 	while (1)
 	{
 		str = readline("🔥ShellFromHell🔥: > ");
