@@ -145,6 +145,6 @@ void	main_exec(t_element *element, t_env *env)
 	command.pid_num = 0;
 	rutine_command(next_elem, env, &command);
 	close_hered(element);
-	free_element(element);
+//	free_element(element);
 }
 

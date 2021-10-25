@@ -88,6 +88,6 @@ void	pre_procesing(t_element *element)
 	}
 	ft_lst_del_all_x(element);
 	add_args(element);
-	is_direct(element);
+	//is_direct(element);
 	//expand_all(element);
 }
