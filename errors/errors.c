@@ -6,7 +6,7 @@
 /*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 20:01:25 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/24 17:03:07 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/24 18:55:28 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,14 @@ int	error_unset_invalid_param(char *str)
 		ft_putstr_fd("\n", 2);	
 		return (1);
 }
+
+int	error_export_number(char *str)
+{
+		ft_putstr_fd("export: ", 2);
+		ft_putstr_fd("not an identifier: ", 2);
+		ft_putstr_fd(str, 2);
+		ft_putstr_fd("\n", 2);	
+		return (1);
+}
+
 
