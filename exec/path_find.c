@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "exec.h"
+#include "errorlib.h"
 
 static char	**put_bars_and_cmd_on_path(char **path, char *cmd)
 {
@@ -47,7 +48,7 @@ static char	**get_paths(char *path, char **env)
 		i++;
 	}
 	if (!env[i])
-		printf("command not foun error");
+		error_cmd_not_found(path);
 	aux = env[i];
 	while (*aux != '=')
 		aux++;
@@ -94,8 +95,10 @@ char	*find_exec_path(char **cmd, char **env)
 		}
 		i++;
 	}
+	if (exec_paths[i] == NULL)
+		error_cmd_not_found(path);
 	ft_free_dp(exec_paths);
 	if (!path)
-		printf("command not found error\n");
+		error_cmd_not_found("");
 	return (path);
 }
