@@ -20,3 +20,30 @@ echo hola '"$a"'
 
 echo -nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn a
 echo -na
+
+
+
+
+
+
+<a wc // coger wc como cmd y no a
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////
+/////////////////////////////////////////cd -> david
+/////////////////////////////////////////exit-> david
+/////////////////////////////////////////eliminar ultima barra : cd buidl/<-
+<a wc ->david
+signals->tomas
+$? ->tomas
+/////////////////////////////////////////Export up remove->david
+
+export->futuro
+LEAKS ->futuro
