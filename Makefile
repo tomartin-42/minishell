@@ -6,7 +6,7 @@
 #    By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/10/25 12:21:26 by tomartin         ###   ########.fr        #
+#    Updated: 2021/10/25 12:53:04 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ NAME = minishell
 # Compiling flags
 FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 F_RL = -I ~/.brew/opt/readline/include -I ~/.brew/opt/readline/lib 
+F_RL2 = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib \
+		-I /Users/$(USER)/.brew/opt/readline/include
 
 # Folders
 LIBFT_DIR = ./libft/
@@ -92,9 +94,7 @@ $(LIBFT):
 
 # Compiling
 $(NAME): $(OBJ)
-	@gcc $(OBJ) $(FLAGS) $(LNK) $(F_RL) -lm -o $(NAME) \
-		-lreadline -L /Users/$(USER)/.brew/opt/readline/lib \
-		-I /Users/$(USER)/.brew/opt/readline/include
+	@gcc $(OBJ) $(FLAGS) $(LNK) $(F_RL) -lm -o $(NAME) $(F_RL2)
 	@echo "Compilation OK!!"
 	@echo "$(NAME) ready!".
 
