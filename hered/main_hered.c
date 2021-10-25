@@ -36,4 +36,18 @@ void	main_hered(t_element *element)
 	}
 	close(h_fd[1]);
 	element->fd = dup(h_fd[0]);
+	close(h_fd[0]);
+}
+
+void	close_hered(t_element *element)
+{
+	t_element *aux;
+
+	aux = element;
+	while (aux)
+	{
+		if (aux->type == 'H')
+			close (aux->fd);
+		aux = aux->next;
+	}
 }

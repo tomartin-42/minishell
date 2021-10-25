@@ -16,5 +16,6 @@
 # include "minishell.h"
 
 void	main_hered(t_element *element);
+void	close_hered(t_element *element);
 
 #endif

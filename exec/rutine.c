@@ -12,6 +12,7 @@
 
 #include "exec.h"
 #include "build.h"
+#include "hered.h"
 
 static void	extract_cmd_and_arg(t_command *command)
 {

@@ -21,7 +21,9 @@ void	start_hered(t_element *element)
 	while(aux_ele)
 	{
 		if (aux_ele->type == 'H')
+		{
 			main_hered(aux_ele);
+		}
 		aux_ele = aux_ele->next;
 	}
 }
@@ -142,6 +144,7 @@ void	main_exec(t_element *element, t_env *env)
 	command.fd_stdout = dup(1);
 	command.pid_num = 0;
 	rutine_command(next_elem, env, &command);
+	close_hered(element);
 	free_element(element);
 }
 
