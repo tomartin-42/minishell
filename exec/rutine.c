@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/26 11:38:02 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/26 11:41:52 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,8 @@ void	execut_cmd(char **env, t_command *command)
 		if (execve(command->cmd->arg[0],command->cmd->arg, env) == -1)
 		{
 			perror("Error"); 
-			printf("**%d**\n", errno);
-			exit(errno);
+			g_state = errno;
+			exit(g_state);
 		}
 	}
 	else
