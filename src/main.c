@@ -61,7 +61,7 @@ int	main(int argc, char **argv, char **env)
 	mute_unused(argc, argv);//Mute unused variales, argv and argc
 	m_env = copy_env(env);
 	g_state = 0;
-	//change_shlvl(m_env);
+	change_shlvl(m_env);
 	while (1)
 	{
 		str = readline("🔥ShellFromHell🔥: > ");
