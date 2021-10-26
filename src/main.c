@@ -16,7 +16,7 @@
 #include "build.h"
 #include "exec.h"
 
-int	g_state;
+int	g_state; //VARIABLE GLOBAL para indicar el estado
 
 //This function initialice and copy the env var to list 
 //(m_env)
@@ -49,6 +49,14 @@ static t_env	*copy_env(char **env)
 	//ft_expand(m_env, "hola$PWDxx la 2hola $");
 }
 
+static void	init_element(t_element *element, char *line)
+{
+	element->next = NULL;
+	element->prev = NULL;
+	element->str = ft_strdup(line);
+	element->type = 'G';
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	char		*str;
@@ -76,17 +84,11 @@ int	main(int argc, char **argv, char **env)
 		{
 			add_history(line);
 			check_fault_marks(line);
-			//printf("***%s***\n", line);
-			//line = ft_expand(m_env, line);///////////////////////////////////////////////////
-			//printf("***%s***\n", line);
 			element = malloc(sizeof(t_element));
-			//g_plist->p_element = element;
-			element->next = NULL;
-			element->prev = NULL;
-			element->str = ft_strdup(line);
-			element->type = 'G';
+			init_element(element, line);
 			rutine_parse(line, element, m_env);
 			main_exec(element, m_env);
+			free (line);
 		}
 	}
 }
