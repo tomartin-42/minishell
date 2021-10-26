@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/25 11:03:16 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/26 11:38:02 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ static void	close_forks(t_element *element)
 	while (i != 0)
 	{
 		waitpid(-1, &error, 0);
-		errno = WEXITSTATUS(error);
-		printf("[[%d]]", errno);
+		g_state = WEXITSTATUS(error);
 		i--;
 	}
 }
