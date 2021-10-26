@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/26 11:41:52 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/26 11:44:33 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	execut_cmd_build(t_env *env, t_command *command)
 			close(command->multi_cmd[1]->p_fd[0]);
 		}
 		redir_files(command);
-		errno = build_filt(command, env);
-		exit (errno);
+		g_state = build_filt(command, env);
+		exit (g_state);
 	}
 	else
 		close(command->multi_cmd[0]->p_fd[0]);
