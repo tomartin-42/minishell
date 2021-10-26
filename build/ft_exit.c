@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 12:31:56 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/25 11:16:44 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/25 11:29:56 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_exit(t_command *command, t_env *env)
 	else
 	{
 		printf("exit\n");
-		exit (ret_error);	
+		exit (ret_error);
 	}
 	return (0);
 }

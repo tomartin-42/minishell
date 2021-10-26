@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/24 18:14:26 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/25 12:10:35 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
  * E = ADD VAR
  * $ = CALL VAR
  * ======================================================================*/
-
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -84,7 +83,7 @@ t_env		*new_env_node_global(t_env *new, char *var);
 t_env		*new_env_node_local(t_env *new, char *var);
 t_env		*ft_lstlast_env(t_env *lst);
 void		change_shlvl(t_env *env);
-void		change_sigle_env_var(t_env *env, char *var, char *n_value);
+void		chg_env_var(t_env *env, char *var, char *n_value);////change_single_env_var
 
 char		*ft_expand(t_env *m_env, char *str);
 
