@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 08:30:08 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/25 11:03:36 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/25 12:09:54 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,17 @@ int		ft_pwd(t_env *env);
 //ft_env.c//
 int		ft_env(t_env *env);
 /////////////
+///ft_cd_reverse.c/
+int		move_back(t_command *command, t_env *env);
+/////////////
+//ft_cd_utils.c//
+void	remove_end_trash(t_command *command);
+/////////////
 //ft_cd.c//
 int		ft_cd(t_command *command, t_env	*env);
 /////////////
 //util_env2.c//
-void	change_single_env_var(t_env *env, char *var, char *n_value);
+//void	change_single_env_var(t_env *env, char *var, char *n_value);
 /////////////
 //ft_exit.c//
 int		ft_exit(t_command *command, t_env *env);

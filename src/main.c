@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/25 10:56:30 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/26 13:24:19 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int argc, char **argv, char **env)
 	select_signal();
 	mute_unused(argc, argv);//Mute unused variales, argv and argc
 	m_env = copy_env(env);
-	change_shlvl(m_env);
+	//change_shlvl(m_env);
 	while (1)
 	{
 		str = readline("🔥ShellFromHell🔥: > ");
@@ -83,6 +83,7 @@ int	main(int argc, char **argv, char **env)
 			element->str = ft_strdup(line);
 			element->type = 'G';
 			rutine_parse(line, element, m_env);
+			change_order_cmds(element);///////////////////////////////////
 			main_exec(element, m_env);
 			///////////////////////////////////
 			//printf("++%s++\n", get_env(env, ""));//saca la variable de entorno que indíques
