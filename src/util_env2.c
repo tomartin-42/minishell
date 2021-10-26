@@ -51,7 +51,6 @@ void	change_shlvl(t_env *env)
 		add_shlvl(env);
 	else if (check == -1)
 	{
-		printf("HOLAAAAA\n");
 		aux = ft_strdup("SHLVL=1");
 		aux_node = new_env_node_global(aux_node, aux);
 		ft_lstadd_back_env(&env, aux_node);

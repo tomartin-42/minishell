@@ -9,3 +9,11 @@ int	error_cmd_not_found(char *str)
 	g_state = 127;
 	exit (g_state);
 }
+
+int	error_open_marks(void)
+{
+	ft_putstr_fd("SFH: ", 2);
+	ft_putstr_fd("unclosed commas in command line\n", 2);
+	g_state = 42;
+	return (g_state);
+}
