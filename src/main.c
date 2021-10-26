@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/26 13:24:19 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/26 17:09:46 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "parse.h"
 #include "build.h"
 #include "exec.h"
+
+int	g_state; //VARIABLE GLOBAL para indicar el estado
 
 //This function initialice and copy the env var to list 
 //(m_env)
@@ -47,6 +49,14 @@ static t_env	*copy_env(char **env)
 	//ft_expand(m_env, "hola$PWDxx la 2hola $");
 }
 
+static void	init_element(t_element *element, char *line)
+{
+	element->next = NULL;
+	element->prev = NULL;
+	element->str = ft_strdup(line);
+	element->type = 'G';
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	char		*str;
@@ -58,7 +68,8 @@ int	main(int argc, char **argv, char **env)
 	select_signal();
 	mute_unused(argc, argv);//Mute unused variales, argv and argc
 	m_env = copy_env(env);
-	//change_shlvl(m_env);
+	g_state = 0;
+	change_shlvl(m_env);
 	while (1)
 	{
 		str = readline("🔥ShellFromHell🔥: > ");
@@ -73,26 +84,12 @@ int	main(int argc, char **argv, char **env)
 		{
 			add_history(line);
 			check_fault_marks(line);
-			//printf("***%s***\n", line);
-			//line = ft_expand(m_env, line);///////////////////////////////////////////////////
-			//printf("***%s***\n", line);
 			element = malloc(sizeof(t_element));
-			//g_plist->p_element = element;
-			element->next = NULL;
-			element->prev = NULL;
-			element->str = ft_strdup(line);
-			element->type = 'G';
+			init_element(element, line);
 			rutine_parse(line, element, m_env);
 			change_order_cmds(element);///////////////////////////////////
 			main_exec(element, m_env);
-			///////////////////////////////////
-			//printf("++%s++\n", get_env(env, ""));//saca la variable de entorno que indíques
-			///////////////////////////////////
-			//////borrar
-			//ft_echo(element->next->arg);
-			//////borrar
-			//rutine_parse(line, element);
-			//print_list(element);
+			free (line);
 		}
 	}
 }

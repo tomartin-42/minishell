@@ -6,7 +6,11 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/10/26 11:53:12 by dpuente-         ###   ########.fr       */
+=======
+/*   Updated: 2021/10/26 11:03:29 by tomartin         ###   ########.fr       */
+>>>>>>> 42d7d69e8ed510659cea04b9d30e6fdf05763d72
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +72,8 @@ typedef struct s_plist{
 	t_element	*p_element;
 	char		*env;
 }	t_plist;
+
+extern int	g_state;
 
 t_element	*ft_lstlast(t_element *lst);
 void		ft_lstadd_back(t_element **lst, t_element *new);
