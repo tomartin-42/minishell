@@ -60,6 +60,7 @@ int	build_filt(t_command *command, t_env *env)
 	else if (!ft_strcmp(command->cmd->arg[0], "exit"))
 		ft_exit(command, env);// cambiar para devolve error value
 	//exit (error_num);
+	free (exp_cmd);
 	return (error_num);
 }
 

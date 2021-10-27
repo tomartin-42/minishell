@@ -55,7 +55,7 @@ static void	close_forks(t_element *element)
 void	execut_cmd_build_np(t_env *env, t_command *command)
 {
 	redir_files(command);
-	build_filt(command, env);
+	g_state = build_filt(command, env);
 }
 
 //The motor of execut comand (Buildings)
