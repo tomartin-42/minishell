@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:43:43 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/26 13:21:37 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/25 11:03:10 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*cmd_exp(char *old_exp)
 	return (exp_cmd);
 }
 
-int	build_filt(t_command *command, t_env *env)
+int	build_filt(t_command *command, t_env *env) 
 {
 	int		error_num;
 	char	*exp_cmd;

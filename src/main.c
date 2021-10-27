@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/26 17:09:46 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/26 11:38:46 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "parse.h"
 #include "build.h"
 #include "exec.h"
+#include "errorlib.h"
 
 int	g_state; //VARIABLE GLOBAL para indicar el estado
 
@@ -68,8 +69,8 @@ int	main(int argc, char **argv, char **env)
 	select_signal();
 	mute_unused(argc, argv);//Mute unused variales, argv and argc
 	m_env = copy_env(env);
-	g_state = 0;
 	change_shlvl(m_env);
+	g_state = 0;
 	while (1)
 	{
 		str = readline("🔥ShellFromHell🔥: > ");
@@ -83,13 +84,17 @@ int	main(int argc, char **argv, char **env)
 		if (ft_strlen(line) != 0)
 		{
 			add_history(line);
-			check_fault_marks(line);
-			element = malloc(sizeof(t_element));
-			init_element(element, line);
-			rutine_parse(line, element, m_env);
-			change_order_cmds(element);///////////////////////////////////
-			main_exec(element, m_env);
-			free (line);
+			if (main_error(line))
+				free (line);
+			else
+			{
+				check_fault_marks(line);
+				element = malloc(sizeof(t_element));
+				init_element(element, line);
+				rutine_parse(line, element, m_env);
+				main_exec(element, m_env);
+				free (line);
+			}
 		}
 	}
 }

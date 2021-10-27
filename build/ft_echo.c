@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 10:39:03 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/26 17:09:33 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/26 11:29:17 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,9 @@ int	infinity_n(char *args)
 	return (0);
 }
 
-void	print_echo(char **args, int pos, int space, bool flag)
+void	echo_out(char *string)// quitar, funcion inecesaria, usar directamente ft_putstr_fd();
 {
-	while (args[pos])
-	{
-		if (infinity_n(args[pos]))
-			flag = true;
-		else
-		{
-			if (space != 0)
-				write(1, " ", 1);
-			ft_putstr_fd(args[pos], 1);
-			space++;
-		}
-		pos++;
-	}
-	if (flag == false)
-		write(1, "\n", 1);
+	ft_putstr_fd(string, 1);
 }
 
 int	ft_echo(char **args)
@@ -62,7 +48,23 @@ int	ft_echo(char **args)
 	if (ft_strcmp(args[pos], "errno") == 0)
 		printf("%d\n", g_state);
 	else
-		print_echo(args, pos, space, flag);
+	{
+		while (args[pos])
+		{
+			if (infinity_n(args[pos]))
+				flag = true;
+			else
+			{
+				if (space != 0)
+					write(1, " ", 1);
+				echo_out(args[pos]);
+				space++;
+			}
+			pos++;
+		}
+		if (flag == false)
+			write(1, "\n", 1);
+	}
 	//if (flag == false)
 		//write(1, "\n", 1);
 	//exit (0);

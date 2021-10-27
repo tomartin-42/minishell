@@ -11,11 +11,14 @@
 /* ************************************************************************** */
 
 #include "parse.h"
+#include "errorlib.h"
 
 int	check_fault_marks(char *str)
 {
 	t_mark	chk;
+	int		err;
 
+	err = 0;
 	ini_var(&chk);
 	while(str[chk.i])
 	{
@@ -25,10 +28,9 @@ int	check_fault_marks(char *str)
 	}
 	if (chk.mark_s == true || chk.mark_d == true)
 	{
-		printf("ERROR comillas abiertas\n");
-		//free(str);
-		return (-1);
+		g_state = error_open_marks();
+		err = 1;
 	}
-	return (0);
+	return (err);
 }
 

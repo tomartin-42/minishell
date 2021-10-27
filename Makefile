@@ -6,7 +6,7 @@
 #    By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/10/26 13:07:18 by dpuente-         ###   ########.fr        #
+#    Updated: 2021/10/25 12:55:54 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,10 +36,10 @@ INC_DIR = ./includes/
 # Source files and object files
 SRC_FILES = main.c utils_list.c util_env.c expand.c util_env2.c utils_src.c \
 			get_env.c signal.c free_resources.c
-PARSE_FILES = main_parse.c procesing_parse.c parse_operation.c sec_parse_proc.c in_args.c reverse_cmds.c
+PARSE_FILES = main_parse.c procesing_parse.c parse_operation.c sec_parse_proc.c in_args.c
 HERED_FILES = main_hered.c
-BUILD_FILES = ft_export.c ft_export2.c ft_export3.c ft_echo.c ft_env.c ft_pwd.c ft_cd.c ft_cd_reverse.c ft_cd_utils.c super_tolower.c ft_exit.c ft_count_char.c ft_unset.c
-ERRORS_FILES = check_error.c errors.c errors_exec.c
+BUILD_FILES = ft_export.c ft_export2.c ft_export3.c ft_echo.c ft_env.c ft_pwd.c ft_cd.c super_tolower.c ft_exit.c ft_count_char.c ft_unset.c
+ERRORS_FILES = check_error.c errors.c errors_exec.c main_errors.c
 EXPANSION_FILES = env_ex.c str_ex.c expansion.c env_ex2.c
 EXEC_FILES = main_exec.c rutine.c path_find.c builds_filter.c cmd_execution.c
 INC_FILES = build.h errorlib.h exec.h hered.h minishell.h parse.h
