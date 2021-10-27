@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 16:26:09 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/24 18:14:10 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:45:16 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
 #include "errorlib.h"
-
 
 static void	dell_var_t_env(t_env *env, char *var)
 {
@@ -44,7 +43,5 @@ int	ft_unset(t_command *command, t_env *env)
 			dell_var_t_env(env, command->cmd->arg[i]);
 		i++;
 	}
-
 	return (ret);
 }
-

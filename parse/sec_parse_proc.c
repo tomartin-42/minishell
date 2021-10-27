@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 17:19:00 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/07 11:04:38 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/26 13:12:17 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	is_direct(t_element *element)
 		{
 			if (p_elem->str[0] == '/')
 				printf("🔥ShellFromHell🔥: > %s: is a directory\n", p_elem->str);
+			//printf("[%c]\n", p_elem->str[0]);
+			//else if (p_elem->str[0] == '<' || p_elem->str[0] == '>')
+			//	change_order_cmds(p_elem);
 		}
 		p_elem = p_elem->next;
 	}

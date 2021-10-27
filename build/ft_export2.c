@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 08:42:04 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/24 13:03:31 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:44:52 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ int	search_if_var(t_env *env, char *arg)
 	{
 		if (ft_strcmp(p_env->var[0], arg) == 0 && (p_env->global == true))
 			return (1);
-		else if (ft_strcmp(p_env->var[0], arg) == 0 && 
-			(p_env->global == false))
+		else if (ft_strcmp(p_env->var[0], arg) == 0
+			&& (p_env->global == false))
 			return (0);
 		p_env = p_env->next;
 	}
 	return (-1);
 }
 
-static void	promotion_local_to_global(t_env *env, char *arg)
+/*static void	promotion_local_to_global(t_env *env, char *arg)
 {
 	t_env	*p_env;
 
@@ -46,9 +46,9 @@ static void	promotion_local_to_global(t_env *env, char *arg)
 		}
 		p_env = p_env->next;
 	}
-}
+}*/
 
-void	without_equal_export(t_env *env, char *arg)
+/*void	without_equal_export(t_env *env, char *arg)
 {
 	int		i;
 	t_env	*new;
@@ -62,8 +62,25 @@ void	without_equal_export(t_env *env, char *arg)
 		new = new_env_node_global(new, arg);
 		ft_lstadd_back_env(&env, new);
 	}
+}*/
+
+void	without_equal_export(t_env *env, char *arg)
+{
+	int		i;
+	t_env	*new;
+
+	new = NULL;
+	i = search_if_var(env, arg);
+	if (i == 1 || i == 0)
+		;
+	else
+	{
+		new = new_env_node_global(new, arg);
+		ft_lstadd_back_env(&env, new);
+	}
 }
 
+/*
 //Funtion to chang value in global env var. Need past the line
 //with equal, search and sustitute the value
 static void	change_env_value(t_env **env, char *arg)
@@ -85,20 +102,26 @@ static void	change_env_value(t_env **env, char *arg)
 			p_env = p_env->next;
 		}
 	}
-}
+}*/
 
 void	with_equal_export(t_env *env, char *arg)
 {
 	int		i;
+	char	**sp_arg;
 	t_env	*new;
 
 	new = NULL;
-	i = search_if_var(env, arg);
-	if (i == -1)
+	sp_arg = ft_split(arg, '=');
+	i = search_if_var(env, sp_arg[0]);
+	if (i == 1 || i == 0)
+	{
+		chg_env_var(env, sp_arg[0], sp_arg[1]);
+		ft_free_dp(sp_arg);
+	}
+	else
 	{
 		new = new_env_node_global(new, arg);
 		ft_lstadd_back_env(&env, new);
+		ft_free_dp(sp_arg);
 	}
-	else if (i == 0)
-		change_env_value(&env, arg);
 }

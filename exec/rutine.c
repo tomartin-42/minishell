@@ -6,12 +6,13 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/25 11:03:16 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/26 11:44:33 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "build.h"
+#include "hered.h"
 
 static void	extract_cmd_and_arg(t_command *command)
 {
@@ -46,7 +47,7 @@ static void	close_forks(t_element *element)
 	while (i != 0)
 	{
 		waitpid(-1, &error, 0);
-		errno = WEXITSTATUS(error);
+		g_state = WEXITSTATUS(error);
 		i--;
 	}
 }
@@ -76,8 +77,8 @@ void	execut_cmd_build(t_env *env, t_command *command)
 			close(command->multi_cmd[1]->p_fd[0]);
 		}
 		redir_files(command);
-		errno = build_filt(command, env);
-		exit (errno);
+		g_state = build_filt(command, env);
+		exit (g_state);
 	}
 	else
 		close(command->multi_cmd[0]->p_fd[0]);
@@ -106,7 +107,8 @@ void	execut_cmd(char **env, t_command *command)
 		if (execve(command->cmd->arg[0],command->cmd->arg, env) == -1)
 		{
 			perror("Error"); 
-			exit(errno);
+			g_state = errno;
+			exit(g_state);
 		}
 	}
 	else

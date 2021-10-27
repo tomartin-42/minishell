@@ -17,20 +17,23 @@ static void	add_shlvl(t_env *env)
 {
 	t_env	*p_env;
 	int		i;
+	char	*num;
 
 	p_env = env;
 	while (p_env)
 	{
-		if (search_if_var(p_env, "SHLVL") == 1)
+		if (ft_strncmp(p_env->v_env, "SHLVL=", 6) == 0)
 		{
 			i = ft_atoi(p_env->var[1]);
 			i++;
 			free(p_env->v_env);
 			p_env->v_env = ft_strdup("SHLVL");
 			p_env->v_env = ft_super_strjoin(p_env->v_env, "=", 1);
-			p_env->v_env = ft_super_strjoin(p_env->v_env, ft_itoa(i), 1);
+			num = ft_itoa(i);
+			p_env->v_env = ft_super_strjoin(p_env->v_env, num, 1);
 			free(p_env->var[1]);
-			p_env->var[1] = ft_strdup(ft_itoa(i));
+			p_env->var[1] = ft_strdup(num);
+			free(num);
 		}
 		p_env = p_env->next;
 	}
@@ -39,16 +42,19 @@ static void	add_shlvl(t_env *env)
 void	change_shlvl(t_env *env)
 {
 	int		check;
-	t_env	aux_node;
+	t_env	*aux_node;
 	char	*aux;
 
+	aux_node = NULL;
 	check = search_if_var(env, "SHLVL");
 	if (check == 1)
 		add_shlvl(env);
 	else if (check == -1)
 	{
+		printf("HOLAAAAA\n");
 		aux = ft_strdup("SHLVL=1");
-		new_env_node_global(&aux_node, aux);
+		aux_node = new_env_node_global(aux_node, aux);
+		ft_lstadd_back_env(&env, aux_node);
 		free(aux);
 	}
 }

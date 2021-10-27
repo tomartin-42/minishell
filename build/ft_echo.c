@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 10:39:03 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/25 12:22:54 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/26 17:11:49 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_echo(char **args)
 	flag = false;
 	pos = 1;
 	if (ft_strcmp(args[pos], "errno") == 0)
-		printf("%d\n", errno);
+		printf("%d\n", g_state);
 	else
 		print_echo(args, pos, space, flag);
 	//if (flag == false)

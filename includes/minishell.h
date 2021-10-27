@@ -6,11 +6,11 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/25 12:10:35 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/26 17:13:14 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Table of type char ==================================================
+/* ======================================================================
  * C = Comand--
  * P = Pipe
  * S = String
@@ -69,6 +69,8 @@ typedef struct s_plist{
 	char		*env;
 }	t_plist;
 
+extern int	g_state;
+
 t_element	*ft_lstlast(t_element *lst);
 void		ft_lstadd_back(t_element **lst, t_element *new);
 void		print_list(t_element *element);
@@ -80,7 +82,7 @@ char		*expand_var(t_env *m_env, char *str);
 void		init_env_list(t_env **m_env, char *var);
 void		ft_lstadd_back_env(t_env **lst, t_env *new);
 t_env		*new_env_node_global(t_env *new, char *var);
-t_env		*new_env_node_local(t_env *new, char *var);
+t_env		*new_env_node_export(t_env *new, char *var);
 t_env		*ft_lstlast_env(t_env *lst);
 void		change_shlvl(t_env *env);
 void		chg_env_var(t_env *env, char *var, char *n_value);////change_single_env_var
@@ -95,4 +97,5 @@ void		select_signal(void);
 
 void		free_element(t_element *element);
 void		free_env_list(t_env *env);
+
 #endif

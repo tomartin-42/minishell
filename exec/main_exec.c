@@ -21,7 +21,9 @@ void	start_hered(t_element *element)
 	while(aux_ele)
 	{
 		if (aux_ele->type == 'H')
+		{
 			main_hered(aux_ele);
+		}
 		aux_ele = aux_ele->next;
 	}
 }
@@ -41,7 +43,7 @@ static void	open_to_read(t_element *element)
 
 static void	open_to_write(t_element *element)
 {
-	element->fd = open(element->arg[1], O_WRONLY | O_CREAT, 0644);	 
+	element->fd = open(element->arg[1], O_WRONLY | O_CREAT | O_TRUNC, 0644);	 
 	if (element->fd < 0)
 	{
 		printf("error %d\n", errno);
@@ -54,7 +56,7 @@ static void	open_to_write(t_element *element)
 
 static void	open_to_trunk(t_element *element)
 {
-	element->fd = open(element->arg[1], O_APPEND, 0644);
+	element->fd = open(element->arg[1], O_APPEND | O_RDWR | O_CREAT, 0644);
 	if (element->fd < 0)
 	{
 		printf("error %d\n", errno);
@@ -142,6 +144,7 @@ void	main_exec(t_element *element, t_env *env)
 	command.fd_stdout = dup(1);
 	command.pid_num = 0;
 	rutine_command(next_elem, env, &command);
+	close_hered(element);
 	free_element(element);
 }
 

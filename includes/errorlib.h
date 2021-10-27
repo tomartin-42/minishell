@@ -18,5 +18,6 @@
 int	error_unset_no_arg(void);
 int	error_unset_invalid_param(char *str);
 int	error_export_number(char *str);
+int	error_cmd_not_found(char *str);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   super_tolower.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 13:18:55 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/19 13:30:15 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/27 15:45:24 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 
 char	*super_tolower(char *str)
 {
-//	int size_str;
 	int	pos;
-	//new_str;
 
-//	size_str = ft_strlen(str);
-	
 	pos = 0;
 	while (str[pos] != '\0')
 	{
