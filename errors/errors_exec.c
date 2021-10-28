@@ -17,3 +17,10 @@ int	error_open_marks(void)
 	g_state = 42;
 	return (g_state);
 }
+
+int	error_undef_redir(void)
+{
+	ft_putstr_fd("SFH: error near unexpected token `newline'\n", 2);
+	g_state = 258;
+	return (g_state);
+}
