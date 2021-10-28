@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   procesing_parse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/09 15:46:17 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/28 11:23:15 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	pre_procesing(t_element *element)
 			change_truck(p_elem);
 		else if (p_elem->str[0] == '|')
 			p_elem->type = 'P';
-		else
+		else if (p_elem->str[0] != '<' && p_elem->str[0] != '>')
 			p_elem->type = 'C';
 		sec_procesing(p_elem);
 		check_env(p_elem);
