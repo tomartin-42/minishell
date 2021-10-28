@@ -6,21 +6,21 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 12:48:42 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/26 13:39:28 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/28 10:16:11 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-void	cmd_rotate(t_element *elemenet)
+void	cmd_rotate(t_element *element)
 {
 	t_element *tmp;
-	
+	tmp = element;	
 	//elemenet->type = 'C';
 	//elemenet->prev->type = 'O';
 	//elemenet = elemenet->prev;
 	
-	printf("HOLA->%s\n", elemenet->arg);
+//	printf("HOLA->%s\n", elemenet->arg);
 }
 
 void	change_order_cmds(t_element *element)
@@ -28,7 +28,7 @@ void	change_order_cmds(t_element *element)
 	t_element	*p_elem;
 
 	p_elem = element;
-	while (p_elem)
+	/*while (p_elem)
 	{
 		if (p_elem->type == 'C')
 		{
@@ -39,5 +39,5 @@ void	change_order_cmds(t_element *element)
 			}
 		}
 		p_elem = p_elem->next;
-	}
+	}*/
 }
