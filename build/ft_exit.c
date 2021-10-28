@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 12:31:56 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/27 17:22:07 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/28 10:55:56 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_exit(t_command *command, t_env *env)
 {
-	int	ret_error;
+	int ret_error;
 	int	pos;
-
+	
 	ret_error = 0;
 	pos = 0;
 	(void)env;
@@ -46,10 +46,14 @@ int	ft_exit(t_command *command, t_env *env)
 		if (command->cmd->arg[1] && command->cmd->arg[2] != NULL)
 			printf("exit\n🔥ShellFromHell🔥: exit: too many arguments\n");
 		else
-		{
-			printf("exit\n");
-			exit (ret_error);
-		}	
+			ret_error = 246;
+	}
+	if (command->cmd->arg[2])
+		printf("exit\n🔥ShellFromHell🔥: exit: too many arguments\n");
+	else
+	{
+		printf("exit\n");
+		exit (ret_error);	
 	}
 	return (0);
 }
