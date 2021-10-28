@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:43:43 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/26 13:21:37 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/28 08:17:26 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ char	*cmd_exp(char *old_exp)
 	return (exp_cmd);
 }
 
-int	build_filt(t_command *command, t_env *env)
+int	build_filt(t_command *command, t_env *env) 
 {
 	int		error_num;
 	char	*exp_cmd;
 
 	error_num = 0;
+	exp_cmd = NULL;
 	if (ft_strcmp(command->cmd->arg[0], "export"))
 	{
 		exp_cmd = cmd_exp(command->cmd->arg[0]);
@@ -60,6 +61,7 @@ int	build_filt(t_command *command, t_env *env)
 	else if (!ft_strcmp(command->cmd->arg[0], "exit"))
 		ft_exit(command, env);// cambiar para devolve error value
 	//exit (error_num);
+	free (exp_cmd);
 	return (error_num);
 }
 

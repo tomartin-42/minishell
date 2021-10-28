@@ -15,9 +15,12 @@
 
 # include "minishell.h"
 
+int	main_error(char *line);
+int check_fault_marks(char *line);
 int	error_unset_no_arg(void);
 int	error_unset_invalid_param(char *str);
 int	error_export_number(char *str);
 int	error_cmd_not_found(char *str);
+int	error_open_marks(void);
 
 #endif
