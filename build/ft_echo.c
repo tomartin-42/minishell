@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 10:39:03 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/26 11:29:17 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/28 08:43:52 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ int	ft_echo(char **args)
 	space = 0;
 	flag = false;
 	pos = 1;
+	if (!args[1])
+	{
+		write (1, "\n", 1);
+		return (0);
+	}
 	if (ft_strcmp(args[pos], "errno") == 0)
 		printf("%d\n", g_state);
 	else
