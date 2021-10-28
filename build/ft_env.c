@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 10:57:35 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/25 11:01:37 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/28 10:52:46 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,6 @@ int	ft_env(t_env *env)
 		write (1, "\n", 1);
 		env = env->next;
 	}
-	/*int	pos;
-
-	pos = 0;
-	if (!envs)
-		return (-1);
-	while (envs[pos])
-	{
-		ft_putstr_fd(envs[pos], 1);
-		write (1, "\n", 1);
-		pos++;
-	}*/
-	//exit (0);
 	return (0);
 }
+	//exit (0);
