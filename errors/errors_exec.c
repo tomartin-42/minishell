@@ -24,3 +24,10 @@ int	error_undef_redir(void)
 	g_state = 258;
 	return (g_state);
 }
+
+int	error_forbidden_char(void)
+{
+	ft_putstr_fd("SFH: Hey men!! Don't use forbudden chars!!! 😜 \n", 2);
+	g_state = 42;
+	return (g_state);
+}

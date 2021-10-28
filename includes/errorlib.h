@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 16:44:32 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/28 10:47:59 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/28 12:20:11 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	error_export_number(char *str);
 int	error_cmd_not_found(char *str);
 int	error_open_marks(void);
 int	error_undef_redir(void);
+int error_forbidden_char(void);
 int	check_undefined_redir(char *str);
+int	check_forbidden_chars(char *str);
 
 #endif
