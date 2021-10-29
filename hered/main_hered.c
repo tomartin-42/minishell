@@ -18,6 +18,7 @@ void	main_hered(t_element *element)
 	int		h_fd[2];
 
 	pipe (h_fd);
+	printf("**%s**\n", element->arg[1]);
 	while (1)
 	{
 		h_str = readline("> ");
