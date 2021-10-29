@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 08:42:04 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/28 10:56:00 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/29 17:59:40 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	with_equal_export(t_env *env, char *arg)
 	i = search_if_var(env, sp_arg[0]);
 	if (i == 1 || i == 0)
 	{
-		change_single_env_var(env, sp_arg[0], sp_arg[1]);
+		chg_env_var(env, sp_arg[0], sp_arg[1]);
 		ft_free_dp(sp_arg);
 	}
 	else

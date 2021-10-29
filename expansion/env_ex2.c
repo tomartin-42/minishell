@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 19:41:22 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/29 11:38:05 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/29 16:30:22 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@
 		}
 	}
 }*/
+void	loop_dollar_mark(int n, int x, t_element *pp_elem, t_element *p_elem)
+{
+	n = 0;
+	while (pp_elem->str[n] != '\0')
+	{
+		if (pp_elem->str[n] == '$')
+			n++;
+		p_elem->str[x] = pp_elem->str[n];
+		x++;
+		if (pp_elem->str[n] != '\0')
+			n++;
+	}
+	p_elem->str[x] = '\0';
+}
 
 void	dollar_mark(t_element *p_elem)
 {
@@ -51,18 +65,6 @@ void	dollar_mark(t_element *p_elem)
 	{
 		n++;
 		if (pp_elem->str[n] == '"' || pp_elem->str[n] == 39)
-		{
-			n = 0;
-			while (pp_elem->str[n] != '\0')
-			{
-				if (pp_elem->str[n] == '$')
-					n++;
-				p_elem->str[x] = pp_elem->str[n];
-				x++;
-				if (pp_elem->str[n] != '\0')
-					n++;
-			}
-			p_elem->str[x] = '\0';
-		}
+			loop_dollar_mark(n, x, pp_elem, p_elem);
 	}
 }

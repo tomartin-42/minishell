@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:43:43 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/28 08:17:26 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/29 17:46:15 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*cmd_exp(char *old_exp)
 	return (exp_cmd);
 }
 
-int	build_filt(t_command *command, t_env *env) 
+int	build_filt(t_command *command, t_env *env)
 {
 	int		error_num;
 	char	*exp_cmd;
@@ -40,27 +40,13 @@ int	build_filt(t_command *command, t_env *env)
 	{
 		exp_cmd = cmd_exp(command->cmd->arg[0]);
 		command->cmd->arg[0] = super_tolower(command->cmd->arg[0]);
-		if (!ft_strcmp(command->cmd->arg[0], "export"))//si entra es que habia un cmd export
+		if (!ft_strcmp(command->cmd->arg[0], "export"))
 		{
 			printf("🔥ShellFromHell🔥: %s: command not found\n", exp_cmd);
 			return (error_num);
 		}
 	}
-	if (!ft_strcmp(command->cmd->arg[0], "echo"))
-		error_num = ft_echo(command->cmd->arg);
-	else if (!ft_strcmp(command->cmd->arg[0], "env"))
-		error_num = ft_env(env);
-	else if (!ft_strcmp(command->cmd->arg[0], "pwd"))
-		error_num = ft_pwd(env);
-	else if (!ft_strcmp(command->cmd->arg[0], "export"))
-		ft_export(env, command->cmd->arg);
-	else if (!ft_strcmp(command->cmd->arg[0], "cd"))
-		error_num = ft_cd(command, env);
-	else if (!ft_strcmp(command->cmd->arg[0], "unset"))
-		error_num = ft_unset(command, env);
-	else if (!ft_strcmp(command->cmd->arg[0], "exit"))
-		ft_exit(command, env);// cambiar para devolve error value
-	//exit (error_num);
+	error_num = build_filt_complete(command, env, error_num);
 	free (exp_cmd);
 	return (error_num);
 }

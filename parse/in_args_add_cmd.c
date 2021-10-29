@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_error.c                                      :+:      :+:    :+:   */
+/*   in_args_add_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/26 16:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/29 17:48:31 by dpuente-         ###   ########.fr       */
+/*   Created: 2021/10/29 15:36:21 by dpuente-          #+#    #+#             */
+/*   Updated: 2021/10/29 15:46:28 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
-#include "errorlib.h"
 
-int	check_fault_marks(char *str)
+void	yes_C_B(int size_arg, t_element	*p_elem)
 {
-	t_mark	chk;
-	int		err;
-
-	err = 0;
-	ini_var(&chk);
-	while (str[chk.i])
+	size_arg = count_args(p_elem);
+	if (size_arg > 0)
 	{
-		check_open_mark(str, &chk.mark_s, &chk.mark_d, &chk.i);
-		chk.i++;
-		check_close_mark(str, &chk.mark_s, &chk.mark_d, &chk.i);
+		p_elem->arg = malloc(sizeof(char *) * (size_arg + 2));
+		arg_input(p_elem, size_arg);
 	}
-	if (chk.mark_s == true || chk.mark_d == true)
+	else
 	{
-		g_state = error_open_marks();
-		err = 1;
+		p_elem->arg = malloc(sizeof(char *) * 2);
+		p_elem->arg[0] = ft_strdup(p_elem->str);
+		p_elem->arg[1] = NULL;
 	}
-	return (err);
 }

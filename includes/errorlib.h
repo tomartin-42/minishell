@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errorlib.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 16:44:32 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/24 18:57:02 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/29 15:35:14 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "minishell.h"
 
 int	main_error(char *line);
-int check_fault_marks(char *line);
+int	check_fault_marks(char *line);
 int	error_unset_no_arg(void);
 int	error_unset_invalid_param(char *str);
 int	error_export_number(char *str);

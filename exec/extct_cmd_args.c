@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_error.c                                      :+:      :+:    :+:   */
+/*   extct_cmd_args.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/26 16:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/29 17:48:31 by dpuente-         ###   ########.fr       */
+/*   Created: 2021/10/29 16:07:17 by dpuente-          #+#    #+#             */
+/*   Updated: 2021/10/29 16:16:57 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "errorlib.h"
+#include "exec.h"
+#include "build.h"
+#include "hered.h"
 
-int	check_fault_marks(char *str)
+void	extract_cmd_and_arg(t_command *command)
 {
-	t_mark	chk;
-	int		err;
+	t_element	*p_elem;
 
-	err = 0;
-	ini_var(&chk);
-	while (str[chk.i])
+	p_elem = command->multi_cmd[0];
+	while (p_elem != command->multi_cmd[1])
 	{
-		check_open_mark(str, &chk.mark_s, &chk.mark_d, &chk.i);
-		chk.i++;
-		check_close_mark(str, &chk.mark_s, &chk.mark_d, &chk.i);
-	}
-	if (chk.mark_s == true || chk.mark_d == true)
-	{
-		g_state = error_open_marks();
-		err = 1;
-	}
-	return (err);
+		if (p_elem->type == 'C' || p_elem->type == 'B')
+		{
+			command->cmd = p_elem;
+			break ;
+		}
+		p_elem = p_elem->next;
+	}	
 }

@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_str.c                                       :+:      :+:    :+:   */
+/*   close_forks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/30 21:35:19 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/03 18:59:18 by davyd11          ###   ########.fr       */
+/*   Created: 2021/10/29 16:18:57 by dpuente-          #+#    #+#             */
+/*   Updated: 2021/10/29 16:19:29 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "exec.h"
 
-void	id_expand(t_element *element)
+void	close_forks(t_element *element)
 {
-	t_element *p_elem;
-	int n;
+	int			i;
+	t_element	*p_elem;
+	int			error;
 
 	p_elem = element;
-	n = 0;
+	i = 1;
 	while (p_elem)
 	{
-		while (p_elem->str[n] != '\0')
-		{
-			if(p_elem->str[n] == '"')
-			n++;
-		}
+		if (p_elem->type == 'P')
+			i++;
 		p_elem = p_elem->next;
+	}
+	while (i != 0)
+	{
+		waitpid(-1, &error, 0);
+		g_state = WEXITSTATUS(error);
+		i--;
 	}
 }

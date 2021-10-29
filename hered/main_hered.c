@@ -1,16 +1,16 @@
-/* ************************************************************************** */ /*                                                                            */
+/* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main_hered.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 08:12:14 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/29 07:34:51 by tomartin         ###   ########.fr       */
+/*   Created: 2021/09/29 07:34:51 by tomartin          #+#    #+#             */
+/*   Updated: 2021/10/29 16:00:47 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hered.h"
-
 //Generate and asing hered and fd. The fd is add to the elelment list
 void	main_hered(t_element *element)
 {
@@ -41,7 +41,7 @@ void	main_hered(t_element *element)
 
 void	close_hered(t_element *element)
 {
-	t_element *aux;
+	t_element	*aux;
 
 	aux = element;
 	while (aux)
