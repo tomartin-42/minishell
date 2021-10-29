@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/28 11:42:25 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/28 17:52:09 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(int argc, char **argv, char **env)
 
 	m_env = NULL;
 	select_signal();
-	mute_unused(argc, argv);//Mute unused variales, argv and argc
+	mute_unused(argc, argv);
 	m_env = copy_env(env);
 	change_shlvl(m_env);
 	g_state = 0;
@@ -92,7 +92,7 @@ int	main(int argc, char **argv, char **env)
 				element = malloc(sizeof(t_element));
 				init_element(element, line);
 				rutine_parse(line, element, m_env);
-				print_list(element);//////////////////////////////////////////
+				print_list(element);//////////////////////////////////////////borrar
 				main_exec(element, m_env);
 				free (line);
 			}

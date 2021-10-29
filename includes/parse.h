@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:50:17 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/11 17:55:54 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/29 11:37:39 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int		search_env(t_element *p_elem);
 //env_ex2.c//
 //void	special_cases(t_element *p_elem);
 void	dollar_mark(t_element *p_elem);
+//int		errno_dollar(char *str);
+//void	insert_middle_str(t_element *p_elem, char	*str_in);
 //void	find_env(t_env *p_env);
 ////////////////////
 //str_ex.c//
