@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:35:27 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/22 19:28:23 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/29 13:41:04 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	change_single_env_var(t_env *env, char *var, char *n_value)
 			aux = ft_strdup("=");
 			env->v_env = ft_super_strjoin(env->v_env, aux, 3);
 			env->v_env = ft_super_strjoin(env->v_env, env->var[1], 1);
-		//	printf("++%s--%s++\n", p_env->var[0], p_env->var[1]);////////////////
 		}
 		env = env->next;
 	}

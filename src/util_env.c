@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 09:51:06 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/11 10:14:55 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/29 13:41:24 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_env	*new_env_node_export(t_env *new, char *var)
 	return (new);
 }
 */
+
 t_env	*new_env_node_global(t_env *new, char *var)
 {
 	new = malloc(sizeof(t_env));
