@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   procesing_parse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/09 15:46:17 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/29 20:19:59 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static void	change_heredoc(t_element *p_elem)
 		p_elem->str = ft_strdup("<<");
 		p_elem->type = 'H';
 		p_elem->next->type = 'X';
+		p_elem->next->arg = malloc (sizeof(char *));
+		p_elem->next->arg[0] = ft_strdup("");
 	}			
 	else
 		p_elem->type = 'I';
@@ -50,6 +52,8 @@ static void	change_truck(t_element *p_elem)
 		p_elem->str = ft_strdup(">>");
 		p_elem->type = 'T';
 		p_elem->next->type = 'X';
+		p_elem->next->arg = malloc (sizeof(char *));
+		p_elem->next->arg[0] = ft_strdup("");
 	}
 	else
 		p_elem->type = 'O';

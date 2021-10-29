@@ -5,10 +5,13 @@ void	ft_free_dp(char **dp)
 	int	i;
 
 	i = 0;
-	while (dp[i] != NULL)
+	if (dp != NULL)
 	{
-		free(dp[i]);
-		i++;
+		while (dp[i] != NULL)
+		{
+			free(dp[i]);
+			i++;
+		}
+		free(dp);
 	}
-	free(dp);
 }
