@@ -136,7 +136,7 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 		command->multi_cmd[1] = get_last_pipe(command);
 		if (command->multi_cmd[1] != NULL)
 			pipe(command->multi_cmd[1]->p_fd);
-		command->env = extract_all_env_list(env);
+		command->env = extract_env_list(env);
 		extract_cmd_and_arg(command);
 		main_build_filt(element);
 		ft_lst_del_all_x(element);
