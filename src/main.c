@@ -54,6 +54,7 @@ static void	init_element(t_element *element, char *line)
 {
 	element->next = NULL;
 	element->prev = NULL;
+	element->arg = NULL;
 	element->str = ft_strdup(line);
 	element->type = 'G';
 }
