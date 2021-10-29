@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 08:30:08 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/29 17:59:40 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/29 19:55:10 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	back_path(int times, t_env *env);
 int		move_back(t_command *command, t_env *env);
 /////////////
 //util_env2.c//
-void	chg_env_var(t_env *env, char *var, char *n_value);//chg_env_var
+void	chg_env_var(t_env *env, char *var, char *n_value);
 /////////////
 //ft_exit.c//
 int		ft_exit(t_command *command, t_env *env);
@@ -55,3 +55,4 @@ int		ft_exit(t_command *command, t_env *env);
 int		ft_unset(t_command *command, t_env *env);
 void	print_env_vars(t_env *env);
 #endif
+	
