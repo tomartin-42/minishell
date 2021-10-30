@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   by: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   created: 2021/09/23 21:08:34 by tommy             #+#    #+#             */
-/*   Updated: 2021/10/09 16:43:55 by tomartin         ###   ########.fr       */
+/*   Created: 2021/09/23 21:08:34 by tommy             #+#    #+#             */
+/*   Updated: 2021/10/29 19:56:45 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	ft_lst_del_all_x(t_element *element)
 		p_elem = p_elem->next;
 		if (p_aux != NULL)
 		{
+			ft_free_dp(p_aux->arg);
 			free(p_aux->str);
 			free(p_aux);
 			p_aux = NULL;

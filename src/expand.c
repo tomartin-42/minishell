@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:33:34 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/07 12:09:45 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/29 12:28:42 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,29 @@ static char	*change_expand(t_env *env, char *str)
 	char	*var_value;
 
 	i = 0;
+	var_value = NULL;
 	while (str[i] != '$' && str[i] != '\0')
 		i++;
 	i++;
 	j = i;
 	while (str[j] != 39 && str[j] != '"' && str[j] != ' ' && str[j] != '\0')
 		j++;
-	//printf("%d - %d\n", i, j);
 	varx = ft_substr(str, i, (j - i));
-//	var_value = getenv(varx);
-	//printf("XXX%sXXX\n", varx);
-	var_value = ft_get_env(env, varx);
+	if (errno_dollar(str))
+	{
+		var_value = ft_get_env(env, varx);
+	}	
+	else if (!errno_dollar(str))
+		var_value = ft_itoa(g_state);
 	if (var_value == NULL)
 		return (ft_strdup(""));
-//	env = env;
 	free(varx);
 	return (var_value);
 }
 
 //This function remplace in the string the env var
 //it's the heart of ft_expand
-static char	*remplace_str(char *str, char *var_value)
+char	*remplace_str(char *str, char *var_value)
 {
 	int		i;
 	int		j;

@@ -31,7 +31,11 @@ void	copy_to_word(char *str, int *i, int *j, t_element *element)
 	if (new->str[0] != ' ')
 	{
 		if (ft_strlen(new->str) != 0)
+		{
 			ft_lstadd_back(&element, new);
+			//free(new->next);
+			//free(new);
+		}
 		else
 		{
 			free(new->next);
