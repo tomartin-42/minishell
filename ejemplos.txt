@@ -47,3 +47,9 @@ $? ->tomas
 
 export->futuro
 LEAKS ->futuro
+
+
+
+
+
+echo &pwd

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 08:42:04 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/24 13:03:31 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/28 10:56:00 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	search_if_var(t_env *env, char *arg)
 	{
 		if (ft_strcmp(p_env->var[0], arg) == 0 && (p_env->global == true))
 			return (1);
-		else if (ft_strcmp(p_env->var[0], arg) == 0 && 
-			(p_env->global == false))
+		else if (ft_strcmp(p_env->var[0], arg) == 0
+			&& (p_env->global == false))
 			return (0);
 		p_env = p_env->next;
 	}

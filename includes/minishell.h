@@ -6,11 +6,11 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/30 16:48:04 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/30 20:09:39 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Table of type char ==================================================
+/* ======================================================================
  * C = Comand--
  * P = Pipe
  * S = String
@@ -87,6 +87,13 @@ char		*ft_expand(t_env *m_env, char *str);
 //src/get_env.c//
 char		*get_env(char **envs, char *var);
 char		*get_t_env(t_env *env, char *var);
+int			errno_dollar(char *str);
+/////////////////
+//expand.c//
+char		*remplace_str(char *str, char *var_value);
+/////////////////
+////
+int			errno_dollar(char *str);
 /////////////////
 void		select_signal(void);
 

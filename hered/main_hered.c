@@ -33,7 +33,6 @@ static void	hered_expand(t_element *element, t_env *env)
 	int		h_fd[2];
 
 	pipe (h_fd);
-	(void)env;
 	while (1)
 	{
 		h_str = readline("> ");

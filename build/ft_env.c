@@ -29,3 +29,4 @@ int	ft_env(t_env *env)
 	}
 	return (0);
 }
+	//exit (0);

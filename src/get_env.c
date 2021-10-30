@@ -6,11 +6,26 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 18:32:38 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/20 17:51:10 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/29 11:38:54 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	errno_dollar(char *str)
+{
+	int	pos;
+
+	pos = 0;
+	while (str[pos] != '\0')
+	{
+		if (str[pos] == '$' && str[pos + 1]
+			&& str[pos + 1] == '?')
+			return (0);
+		pos++;
+	}
+	return (1);
+}
 
 char	*get_t_env(t_env *env, char *var)
 {

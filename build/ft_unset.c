@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 16:26:09 by tomartin          #+#    #+#             */
 /*   Updated: 2021/10/29 11:45:37 by tomartin         ###   ########.fr       */
@@ -45,4 +45,3 @@ int	ft_unset(t_command *command, t_env *env)
 	}
 	return (ret);
 }
-

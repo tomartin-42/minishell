@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 11:27:59 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/22 10:56:45 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:45:06 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int	ft_pwd(t_env *env)
 		exit (1);
 	while (p_env)
 	{
-		//printf("%s", p_env->var[0]);
-		//printf("%s\n", p_env->var[1]);
 		if (p_env->var[0] && p_env->var[1])
 		{
 			if (p_env->var[0][0] == 'P' && p_env->var[0][1] == 'W'
@@ -40,7 +38,6 @@ int	ft_pwd(t_env *env)
 		}
 		p_env = p_env->next;
 	}
-	//exit(0);
 	return (0);
 }
 /*	int	pos;
