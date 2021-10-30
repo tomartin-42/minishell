@@ -6,7 +6,7 @@
 /*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 12:31:56 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/30 17:11:04 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/30 18:26:31 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,10 @@ int	ft_exit (t_command *command, t_env *env)
 	}
 	else
 	{
-		ft_putstr_fd("exit\n", 1);
+		if (command->multi_cmd[0]->type == 'P')
+			;
+		else
+			ft_putstr_fd("exit\n", 1);
 		if (command->cmd->arg[1])
 		{
 			g_state = ft_atoi(command->cmd->arg[i]); 
