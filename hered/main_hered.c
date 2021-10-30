@@ -10,15 +10,30 @@
 /* ************************************************************************** */
 
 #include "hered.h"
+#include "parse.h"
+
+static char	*expand_str(char *str, t_env *env)
+{
+	t_element	str_elem;
+
+	str_elem.next = NULL;
+	str_elem.str = ft_strdup(str);
+	free(str);
+	expand_all(&str_elem, env, 1);
+	str = ft_strdup(str_elem.str);
+	free(str_elem.str);
+	return (str);
+}
 
 //Generate and asing hered and fd (EXPAND). 
 //The fd is add to the elelment list
-static void	hered_expand(t_element *element)
+static void	hered_expand(t_element *element, t_env *env)
 {
 	char	*h_str;
 	int		h_fd[2];
 
 	pipe (h_fd);
+	(void)env;
 	while (1)
 	{
 		h_str = readline("> ");
@@ -30,6 +45,7 @@ static void	hered_expand(t_element *element)
 		}
 		else
 		{
+			h_str = expand_str(h_str, env);
 			write (h_fd[1], h_str, ft_strlen(h_str));
 			write (h_fd[1], "\n", 1);
 			free(h_str);
@@ -69,7 +85,7 @@ static void	hered_no_expand(t_element *element)
 	close(h_fd[0]);
 }
 
-void	main_hered(t_element *element)
+void	main_hered(t_element *element, t_env *env)
 {
 	char	*aux;
 
@@ -82,7 +98,7 @@ void	main_hered(t_element *element)
 		hered_no_expand(element);
 	}
 	else
-		hered_expand(element);
+		hered_expand(element, env);
 }
 
 void	close_hered(t_element *element)
