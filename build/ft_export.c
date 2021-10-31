@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 10:19:48 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/24 19:13:25 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/31 20:21:11 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	**extract_env_list(t_env *env)
 
 	i = 0;
 	p_env = env;
-	while (p_env)
+	if (p_env)
 	{
 		if (p_env->visible == true)
 			i++;
@@ -57,7 +57,7 @@ char	**extract_env_list(t_env *env)
 	list[i] = NULL;
 	i = 0;
 	p_env = env;
-	while (p_env)
+	if (p_env)
 	{
 		if (p_env->visible == true)
 			list[i++] = ft_strdup(p_env->v_env);

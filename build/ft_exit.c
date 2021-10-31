@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 12:31:56 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/31 16:52:56 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/31 17:22:00 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	ft_exit (t_command *command, t_env *env)
 		ft_putstr_fd(command->cmd->arg[1], 2);
 		ft_putstr_fd(": numeric argument required\n", 2);
 		g_state = 2;
+		
 		exit (g_state);
 	}
 	else

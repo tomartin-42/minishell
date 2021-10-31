@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/28 10:53:34 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/31 19:34:19 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,16 @@ static t_env	*copy_env(char **env)
 	t_env	*m_env;
 	int		i;
 	t_env	*new;
+	char	*aux;
 
 	i = 0;
 	m_env = NULL;
+	new = NULL;
+	aux = ft_strdup("Specialthanksto=Jagonza and Carce-bo");
+	new = new_env_node_global(new, aux);
+	new->visible = false;
+	ft_lstadd_back_env(&m_env, new);
+	free(aux);
 	while (env[i])
 	{
 //		if (!m_env)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:33:34 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/29 12:28:42 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/31 20:27:41 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*ft_get_env(t_env *m_env, char *var_name)
 	value = ft_strdup("");
 	while (p_env)
 	{
-		if (ft_strcmp(p_env->var[0], var_name) == 0)
+		if (ft_strcmp(p_env->var[0], var_name) == 0 && p_env->visible == true)
 		{
 			free(value);
 			value = ft_strdup(p_env->var[1]);
