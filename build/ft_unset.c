@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 16:26:09 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/29 11:45:37 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/31 20:28:03 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,29 @@ static void	dell_var_t_env(t_env *env, char *var)
 		if (ft_strcmp(p_env->var[0], var) == 0)
 			p_env->visible = false;
 		p_env = p_env->next;
+	}
+}
+
+static void	clean_up_env_list(t_env *env)
+{
+	t_env	*prev;
+	t_env	*aux;
+
+	aux = env;
+	prev = aux;
+	aux = aux->next;
+	while (aux != NULL && aux->visible == true)
+	{
+		prev = aux;
+		aux = aux->next;
+	}
+	if (aux != NULL)
+	{
+		prev->next = aux->next;
+		free(aux->v_env);
+		free(aux->var[0]);
+		free(aux->var[1]);
+		free(aux);
 	}
 }
 
@@ -43,5 +66,6 @@ int	ft_unset(t_command *command, t_env *env)
 			dell_var_t_env(env, command->cmd->arg[i]);
 		i++;
 	}
+	clean_up_env_list(env);
 	return (ret);
 }

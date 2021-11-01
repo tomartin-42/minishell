@@ -1,12 +1,13 @@
 Makefile
 a
-b
 build
 ejemplos.txt
 errors
 exec
 expansion
 hered
+hola
+hola123
 includes
 leaks
 libft

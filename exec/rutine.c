@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/26 11:44:33 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/10/30 16:59:04 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ static t_element *get_last_pipe(t_command *command)
 
 void	rutine_command(t_element *element, t_env *env, t_command *command)
 {
-	start_hered(element);
+	start_hered(element, env);
 	while(command->multi_cmd[0])
 	{
 		command->multi_cmd[1] = get_last_pipe(command);

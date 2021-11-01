@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 12:31:56 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/28 10:55:56 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/31 17:22:00 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,15 @@ static int	is_number(char *str)
 	return (0);
 }
 
-/*static int	more_one_arg(t_command *cmd)
+static int	more_one_arg(t_command *cmd)
 {
 	int	i;
 
-	while (cmd->cmd->arg[i])
-	{
-		printf("**%s**\n", cmd->cmd->arg[0]);
-		printf("**%s**\n", cmd->cmd->arg[i]);
+	i = 0;
+	while (cmd->cmd->arg[i] != NULL)
 		i++;
-	}
 	return (i);
-}*/
+}
 
 int	ft_exit (t_command *command, t_env *env)
 {
@@ -90,29 +87,49 @@ int	ft_exit (t_command *command, t_env *env)
 
 	i = 1;
 	(void)env;
-/*	if (more_one_arg(command) >= 2)
+	if (more_one_arg(command) >= 3)
 	{
-		ft_putstr_fd("SFH: exit: too many arguments", 2);
+		ft_putstr_fd("SFH: exit: too many arguments\n", 2);
 		g_state = 2;
 		return (g_state);
-	}*/
+	}
 	if (command->cmd->arg[1] && is_number(command->cmd->arg[1]))
 	{
 		ft_putstr_fd("SFH: exit: ", 2);
 		ft_putstr_fd(command->cmd->arg[1], 2);
-		ft_putstr_fd(": numeric argument required", 2);
+		ft_putstr_fd(": numeric argument required\n", 2);
 		g_state = 2;
+		
 		exit (g_state);
 	}
 	else
 	{
-		ft_putstr_fd("exit\n", 2);
-		if (command->cmd->arg[1])
+		if (command->cmd->arg[1] && command->multi_cmd[0]->type == 'P')
 		{
-			exit (ft_atoi(command->cmd->arg[i]));
+			g_state = ft_atoi(command->cmd->arg[i]); 
+			free_element(command->p_elem);
+			exit(g_state);
+		}
+		else if (command->cmd->arg[1] && command->multi_cmd[0]->type != 'P')
+		{
+			g_state = ft_atoi(command->cmd->arg[i]); 
+			free_element(command->p_elem);
+			free_env_list(env); 
+			ft_putstr_fd("exit\n", 1);
+			exit(g_state);
+		}
+		else if (!command->cmd->arg[1] && command->multi_cmd[0]->type == 'P')
+		{
+			free_element(command->p_elem);
+			exit(0);
 		}
 		else
-			exit (0);
+		{
+			free_element(command->p_elem);
+			free_env_list(env); 
+			ft_putstr_fd("exit\n", 1);
+			exit(0);
+		}
 	}
 }
 
