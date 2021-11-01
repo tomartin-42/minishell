@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   in_args.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:02:31 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/29 15:49:27 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/01 10:23:23 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	add_args(t_element *element)
 	int			size_arg;
 
 	p_elem = element;
+	str_ex(p_elem);	//fixes the non expansion of strings
 	while (p_elem)
 	{
 		size_arg = 0;
