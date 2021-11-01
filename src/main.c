@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/01 13:11:04 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/01 15:10:12 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int	main(int argc, char **argv, char **env)
 				element = malloc(sizeof(t_element));
 				init_element(element, line);
 				rutine_parse(line, element, m_env);
-				print_list(element);//////////////////////////////////////////borrar
+				//print_list(element);//////////////////////////////////////////borrar
 				main_exec(element, m_env);
 				free (line);
 			}
