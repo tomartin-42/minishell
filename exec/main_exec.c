@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 13:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/31 16:09:14 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/01 16:54:07 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ void	main_exec(t_element *element, t_env *env)
 	t_element	*next_elem;
 
 	command.p_elem = element;
+	command.m_env = env;
 	next_elem = element->next;
 //	get_fd_pipes(next_elem);
 	get_special_pipes(next_elem, &command);

@@ -92,6 +92,7 @@ void	main_hered(t_element *element, t_env *env)
 {
 	char	*aux;
 
+	signal_hered();
 	if (element->arg[1][0] == '"' || element->arg[1][0] == 39)
 	{	
 		aux = ft_strtrim(element->arg[1], "\"\'");

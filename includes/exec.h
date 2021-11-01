@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 12:17:24 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/31 15:47:21 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/01 16:54:10 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_command{
 	int			fd_stdout;
 	int			pid_num;
 	t_element	*p_elem;
+	t_env		*m_env;
 }	t_command;
 
 void		main_exec(t_element *element, t_env *env);

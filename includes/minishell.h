@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/31 20:13:44 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/01 18:52:44 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,9 @@ char		*remplace_str(char *str, char *var_value);
 int			errno_dollar(char *str);
 /////////////////
 void		select_signal(void);
+void		signal_in_proces(void);
+void		signal_hered(void);
+void		exit_in_proces(int sig);
 
 void		free_element(t_element *element);
 void		free_env_list(t_env *env);
