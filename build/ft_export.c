@@ -47,7 +47,7 @@ char	**extract_env_list(t_env *env)
 
 	i = 0;
 	p_env = env;
-	if (p_env)
+	while (p_env)
 	{
 		if (p_env->visible == true)
 			i++;
@@ -57,7 +57,7 @@ char	**extract_env_list(t_env *env)
 	list[i] = NULL;
 	i = 0;
 	p_env = env;
-	if (p_env)
+	while (p_env)
 	{
 		if (p_env->visible == true)
 			list[i++] = ft_strdup(p_env->v_env);

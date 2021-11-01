@@ -26,6 +26,29 @@ static void	dell_var_t_env(t_env *env, char *var)
 	}
 }
 
+static void	clean_up_env_list(t_env *env)
+{
+	t_env	*prev;
+	t_env	*aux;
+
+	aux = env;
+	prev = aux;
+	aux = aux->next;
+	while (aux != NULL && aux->visible == true)
+	{
+		prev = aux;
+		aux = aux->next;
+	}
+	if (aux != NULL)
+	{
+		prev->next = aux->next;
+		free(aux->v_env);
+		free(aux->var[0]);
+		free(aux->var[1]);
+		free(aux);
+	}
+}
+
 int	ft_unset(t_command *command, t_env *env)
 {
 	int	i;
@@ -43,5 +66,6 @@ int	ft_unset(t_command *command, t_env *env)
 			dell_var_t_env(env, command->cmd->arg[i]);
 		i++;
 	}
+	clean_up_env_list(env);
 	return (ret);
 }
