@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:52:27 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/28 12:20:19 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:15:14 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main_error(char *line)
 		error_undef_redir();
 		return (1);
 	}
-	if (check_undefined_redir(line))
+	if (!check_forbidden_chars(line))
 	{
 		error_forbidden_char();
 		return (1);
