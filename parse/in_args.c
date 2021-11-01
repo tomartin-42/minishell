@@ -6,7 +6,7 @@
 /*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:02:31 by davyd11           #+#    #+#             */
-/*   Updated: 2021/11/01 10:23:23 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/11/01 12:07:57 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	arg_input(t_element *p_elem, int size_arg)
 		if (p_elem_arg != NULL)
 			p_elem_arg = p_elem_arg->next;
 		p_elem->arg[n] = ft_strdup(p_elem_arg->str);
+		//printf("cmds->%s\n", p_elem_arg->str);
 		n++;
 	}
 	p_elem->arg[n] = NULL;

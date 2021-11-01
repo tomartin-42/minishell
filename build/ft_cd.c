@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:18:27 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/29 18:14:39 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/01 12:15:12 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char	*join_paths(t_env *env, char *new_path)
 	return (s_path);
 }
 
+//join_cd_args->junta los args para ruta absoluta
 void	cd_pos_mas(bool o_pwd, t_command *command, t_env *env)
 {
 	if (o_pwd == true)
