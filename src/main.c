@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/28 10:53:34 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/01 12:25:22 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,16 @@ static t_env	*copy_env(char **env)
 	t_env	*m_env;
 	int		i;
 	t_env	*new;
+	char	*aux;
 
 	i = 0;
 	m_env = NULL;
+	new = NULL;
+	aux = ft_strdup("Specialthanksto=Jagonza and Carce-bo");
+	new = new_env_node_global(new, aux);
+	new->visible = false;
+	ft_lstadd_back_env(&m_env, new);
+	free(aux);
 	while (env[i])
 	{
 //		if (!m_env)
@@ -59,6 +66,11 @@ static void	init_element(t_element *element, char *line)
 	element->type = 'G';
 }
 
+static void	(t_env *env)
+{
+
+
+
 int	main(int argc, char **argv, char **env)
 {
 	char		*str;
@@ -68,9 +80,14 @@ int	main(int argc, char **argv, char **env)
 
 	m_env = NULL;
 	select_signal();
-	mute_unused(argc, argv);
-	m_env = copy_env(env);
-	change_shlvl(m_env);
+	if (*env == NULL)
+		printf("HOLA\n");
+	else 
+	{
+		mute_unused(argc, argv);
+		m_env = copy_env(env);
+		change_shlvl(m_env);
+	}
 	g_state = 0;
 	while (1)
 	{
