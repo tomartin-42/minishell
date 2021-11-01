@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/01 12:26:01 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/01 13:11:04 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,23 @@ static void	init_element(t_element *element, char *line)
 	element->type = 'G';
 }
 
-static void	(t_env *env)
+static void	secure_env(t_env *env)
 {
+	t_env	*new;
+	char	*aux;
 
-
+	new = NULL;
+	aux = getcwd(NULL, 0);
+	aux = ft_super_strjoin("PWD=", aux, 2);
+	new = new_env_node_global(new, aux);
+	ft_lstadd_back_env(&env, new);
+	free (aux);
+	aux = getcwd(NULL, 0);
+	aux = ft_super_strjoin("OLDPWD=", aux, 2);
+	new = new_env_node_global(new, aux);
+	ft_lstadd_back_env(&env, new);
+	free (aux);
+}
 
 int	main(int argc, char **argv, char **env)
 {
@@ -78,16 +91,14 @@ int	main(int argc, char **argv, char **env)
 	t_element	*element;
 	t_env		*m_env;
 
+	(void)argc;
+	(void)argv;
 	m_env = NULL;
 	select_signal();
+	m_env = copy_env(env);
+	change_shlvl(m_env);
 	if (*env == NULL)
-		printf("HOLA\n");
-	else 
-	{
-		mute_unused(argc, argv);
-		m_env = copy_env(env);
-		change_shlvl(m_env);
-	}
+		secure_env(m_env);
 	g_state = 0;
 	while (1)
 	{
