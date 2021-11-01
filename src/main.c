@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/31 19:34:19 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/01 12:17:36 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,14 @@ int	main(int argc, char **argv, char **env)
 
 	m_env = NULL;
 	select_signal();
-	mute_unused(argc, argv);
-	m_env = copy_env(env);
-	change_shlvl(m_env);
+	if (*env == NULL)
+		printf("HOLA\n");
+	else 
+	{
+		mute_unused(argc, argv);
+		m_env = copy_env(env);
+		change_shlvl(m_env);
+	}
 	g_state = 0;
 	while (1)
 	{
