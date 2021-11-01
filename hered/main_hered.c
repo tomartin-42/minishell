@@ -68,6 +68,8 @@ static void	hered_no_expand(t_element *element)
 	while (1)
 	{
 		h_str = readline("> ");
+		if (h_str == NULL)
+			break ;
 		if (!ft_strncmp(element->arg[1], h_str, ft_strlen(element->arg[1]))
 			&& ft_strlen(element->arg[1]) == ft_strlen(h_str))
 		{
