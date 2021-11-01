@@ -88,11 +88,14 @@ static void	hered_no_expand(t_element *element)
 	close(h_fd[0]);
 }
 
-void	main_hered(t_element *element, t_env *env)
+void	main_hered(t_element *element, t_env *env, int sig)
 {
 	char	*aux;
 
-	signal_hered();
+	if (sig == 1)
+		signal_hered();
+	else
+		;
 	if (element->arg[1][0] == '"' || element->arg[1][0] == 39)
 	{	
 		aux = ft_strtrim(element->arg[1], "\"\'");
