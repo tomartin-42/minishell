@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/29 13:56:11 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/01 12:27:22 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	init_element(t_element *element, char *line)
 {
 	element->next = NULL;
 	element->prev = NULL;
+	element->arg = NULL;
 	element->str = ft_strdup(line);
 	element->type = 'G';
 }

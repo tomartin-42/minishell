@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_ex.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 19:37:34 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/29 19:27:41 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/01 12:29:32 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	str_ex(t_element *element)
 			if (not_expand == 0 || not_expand == 1)
 			{
 				remove_marks(p_elem);
-				printf("[%s]\n", p_elem->str);
+				//printf("[%s]\n", p_elem->str);
 			}
 		}
 		p_elem = p_elem->next;

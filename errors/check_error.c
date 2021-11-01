@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 16:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/29 17:48:31 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/01 12:26:51 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,31 @@ int	check_fault_marks(char *str)
 		err = 1;
 	}
 	return (err);
+}
+
+int check_undefined_redir(char *str)
+{
+	bool	s_mark;
+	bool	d_mark;
+	bool	redir;
+	int		i;
+
+	s_mark = false;
+	d_mark = false;
+	redir = false;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '"')
+			d_mark = !d_mark;
+		if (str[i] == 39)
+			s_mark = !s_mark;
+		if ((str[i] == '<' || str[i] == '>') && 
+			(d_mark == false && s_mark == false))
+			redir = true;
+		if (!ft_strchr(" /t/><", str[i]))
+			redir = false;
+		i++;
+	}
+	return (redir); 
 }
