@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:18:27 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/01 12:15:12 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/11/02 11:04:26 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,18 +84,23 @@ int	ft_cd(t_command *command, t_env *env)
 
 	o_pwd = false;
 	pos = 0;
-	while (command->cmd->arg[pos])
-		pos++;
-	if (!check_oldpwd(env))
-		o_pwd = true;
-	if (command->cmd->arg[1])
-		remove_end_trash(command);
-	if (pos > 1)
-		cd_pos_mas(o_pwd, command, env);
-	else if (pos == 1)
-		cd_pos_igual(o_pwd, env);
-	if (command->multi_cmd[1] == NULL)
-		return (0);
+	if (check_pwd(env) == 0)
+	{
+		while (command->cmd->arg[pos])
+			pos++;
+		if (!check_oldpwd(env))
+			o_pwd = true;
+		if (command->cmd->arg[1])
+			remove_end_trash(command);
+		if (pos > 1)
+			cd_pos_mas(o_pwd, command, env);
+		else if (pos == 1)
+			cd_pos_igual(o_pwd, env);
+		if (command->multi_cmd[1] == NULL)
+			return (0);
+		else
+			exit (0);
+	}
 	else
-		exit (0);
+		return (0);
 }
