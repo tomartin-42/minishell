@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/02 11:48:17 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/02 12:03:53 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,27 @@ static void	secure_env(t_env *env)
 	free (aux);
 }
 
+void    valid_str(char *line, t_env *m_env, struct termios old)
+{
+    t_element   *element;
+	add_history(line);
+	if (main_error(line))
+		free (line);
+	else
+	{
+		check_fault_marks(line);
+		element = malloc(sizeof(t_element));
+		init_element(element, line);
+		rutine_parse(line, element, m_env);
+		//print_list(element);//////////////////////////////////////////borrar
+		main_exec(element, m_env);
+		tcsetattr(0, TCSANOW, &old);
+	//	system("leaks -q  minishell");
+		free (line);
+	}
+
+}
+
 void    valid_str(char *line, t_env *m_env)
 {
     t_element   *element;
@@ -101,19 +122,21 @@ int	main(int argc, char **argv, char **env)
 	char		*str;
 	char		*line;
 	t_env		*m_env;
+	struct termios	old;
 
 	(void)argc;
 	(void)argv;
+	tcgetattr(0, &old);
 	m_env = NULL;
-	select_signal();
 	m_env = copy_env(env);
 	change_shlvl(m_env);
 	if (*env == NULL)
 		secure_env(m_env);
 	g_state = 0;
+	select_signal();
 	while (1)
 	{
-		str = readline("🔥ShellFromHell🔥: > ");
+		str = readline("🔥ShellFromHell🔥:> ");
 		if (str == NULL)
 		{
 			printf("exit\n");
@@ -122,6 +145,6 @@ int	main(int argc, char **argv, char **env)
 		line = ft_strdup(str);
 		free(str);
 		if (ft_strlen(line) != 0)
-			valid_str(line, m_env);
+			valid_str(line, m_env, old);
 	}
 }

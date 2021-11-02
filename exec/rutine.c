@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rutine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/02 10:40:19 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/02 12:01:03 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,24 @@ void	exec_cmd_pid0(char **env, t_command *command)
 		close(command->multi_cmd[1]->p_fd[0]);
 	}
 	command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
+}
+
+void	execut_cmd_build_np(t_env *env, t_command *command)
+{
+	start_hered(command->p_elem, command->m_env, 0);
 	redir_files(command);
 	if (execve(command->cmd->arg[0], command->cmd->arg, env) == -1)
 	{
-		perror("Error");
-		g_state = errno;
-		exit(g_state);
+		signal_in_proces();
+		if (command->multi_cmd[1] && command->multi_cmd[1]->type == 'P')
+		{
+			dup2(command->multi_cmd[1]->p_fd[1], STDOUT_FILENO);
+			close(command->multi_cmd[1]->p_fd[0]);
+		}
+		start_hered(command->p_elem, command->m_env, 1);
+		redir_files(command);
+		g_state = build_filt(command, env);
+		exit (g_state);
 	}
 }
 //The motor of execut comand (No Buildings)
@@ -35,7 +47,7 @@ void	exec_cmd_pid0(char **env, t_command *command)
 void	execut_cmd(char **env, t_command *command)
 {
 	pid_t	pid;
-
+	
 	if (command->multi_cmd[0]->type == 'P')
 	{
 		dup2(command->multi_cmd[0]->p_fd[0], STDIN_FILENO);
@@ -63,7 +75,6 @@ static t_element	*get_last_pipe(t_command *command)
 
 void	rutine_command(t_element *element, t_env *env, t_command *command)
 {
-	start_hered(element, env);
 	while(command->multi_cmd[0])
 	{
 		command->multi_cmd[1] = get_last_pipe(command);

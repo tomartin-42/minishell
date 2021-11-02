@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 16:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/02 10:39:57 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/02 11:55:50 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ int check_forbidden_chars(char *str)
 {
 	bool	s_mark;
 	bool	d_mark;
-	bool	redir;
+	bool	answ;
 	int		i;
 
+	answ = true;
 	s_mark = false;
 	d_mark = false;
-	redir = false;
 	i = 0;
 	while (str[i] != '\0')
 	{
@@ -78,12 +78,10 @@ int check_forbidden_chars(char *str)
 			d_mark = !d_mark;
 		if (str[i] == 39)
 			s_mark = !s_mark;
-		if ((str[i] == '<' || str[i] == '>') && 
-			(d_mark == false && s_mark == false))
-			redir = true;
-		if (!ft_strchr("#\\*();:,", str[i]))
-			redir = false;
+		if (ft_strchr("#\\*();:,&!%", str[i])
+			&& (s_mark == false && d_mark == false))
+			answ = false;
 		i++;
 	}
-	return (redir); 
+	return (answ); 
 }
