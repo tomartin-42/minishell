@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:33:34 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/29 14:07:36 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/02 10:40:26 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*ft_get_env(t_env *m_env, char *var_name)
 	value = ft_strdup("");
 	while (p_env)
 	{
-		if (ft_strcmp(p_env->var[0], var_name) == 0)
+		if (ft_strcmp(p_env->var[0], var_name) == 0 && p_env->visible == true)
 		{
 			free(value);
 			value = ft_strdup(p_env->var[1]);

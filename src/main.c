@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/01 12:27:22 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/11/02 10:41:15 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,16 @@ static t_env	*copy_env(char **env)
 	t_env	*m_env;
 	int		i;
 	t_env	*new;
+	char	*aux;
 
 	i = 0;
 	m_env = NULL;
+	new = NULL;
+	aux = ft_strdup("Specialthanksto=Jagonza and Carce-bo");
+	new = new_env_node_global(new, aux);
+	new->visible = false;
+	ft_lstadd_back_env(&m_env, new);
+	free(aux);
 	while (env[i])
 	{
 		new = new_env_node_global(new, env[i]);
@@ -54,22 +61,22 @@ static void	init_element(t_element *element, char *line)
 	element->type = 'G';
 }
 
-void	valid_str(char *line, t_env *m_env)
+static void	secure_env(t_env *env)
 {
-	t_element	*element;
+	t_env	*new;
+	char	*aux;
 
-	add_history(line);
-	if (main_error(line))
-		free (line);
-	else
-	{
-		check_fault_marks(line);
-		element = malloc(sizeof(t_element));
-		init_element(element, line);
-		rutine_parse(line, element, m_env);
-		main_exec(element, m_env);
-		free (line);
-	}
+	new = NULL;
+	aux = getcwd(NULL, 0);
+	aux = ft_super_strjoin("PWD=", aux, 2);
+	new = new_env_node_global(new, aux);
+	ft_lstadd_back_env(&env, new);
+	free (aux);
+	aux = getcwd(NULL, 0);
+	aux = ft_super_strjoin("OLDPWD=", aux, 2);
+	new = new_env_node_global(new, aux);
+	ft_lstadd_back_env(&env, new);
+	free (aux);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -78,11 +85,14 @@ int	main(int argc, char **argv, char **env)
 	char		*line;
 	t_env		*m_env;
 
+	(void)argc;
+	(void)argv;
 	m_env = NULL;
 	select_signal();
-	mute_unused(argc, argv);
 	m_env = copy_env(env);
 	change_shlvl(m_env);
+	if (*env == NULL)
+		secure_env(m_env);
 	g_state = 0;
 	while (1)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 16:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/01 12:26:51 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/11/02 10:39:57 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,33 @@ int check_undefined_redir(char *str)
 			(d_mark == false && s_mark == false))
 			redir = true;
 		if (!ft_strchr(" /t/><", str[i]))
+			redir = false;
+		i++;
+	}
+	return (redir); 
+}
+
+int check_forbidden_chars(char *str)
+{
+	bool	s_mark;
+	bool	d_mark;
+	bool	redir;
+	int		i;
+
+	s_mark = false;
+	d_mark = false;
+	redir = false;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '"')
+			d_mark = !d_mark;
+		if (str[i] == 39)
+			s_mark = !s_mark;
+		if ((str[i] == '<' || str[i] == '>') && 
+			(d_mark == false && s_mark == false))
+			redir = true;
+		if (!ft_strchr("#\\*();:,", str[i]))
 			redir = false;
 		i++;
 	}

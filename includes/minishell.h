@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/29 11:41:27 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/31 20:13:44 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,6 @@ typedef struct s_element{
 	struct s_element	*next;
 	struct s_element	*prev;
 }	t_element;
-
-typedef struct s_plist{
-	t_env		*p_env;
-	t_element	*p_element;
-	char		*env;
-}	t_plist;
 
 extern int	g_state;
 

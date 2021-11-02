@@ -6,14 +6,14 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 13:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/29 17:03:03 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/02 10:40:01 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "hered.h"
 
-void	start_hered(t_element *element)
+void	start_hered(t_element *element, t_env *env)
 {
 	t_element	*aux_ele;
 
@@ -22,7 +22,7 @@ void	start_hered(t_element *element)
 	{
 		if (aux_ele->type == 'H')
 		{
-			main_hered(aux_ele);
+			main_hered(aux_ele, env);
 		}
 		aux_ele = aux_ele->next;
 	}
@@ -84,6 +84,7 @@ void	main_exec(t_element *element, t_env *env)
 	t_command	command;
 	t_element	*next_elem;
 
+	command.p_elem = element;
 	next_elem = element->next;
 	get_special_pipes(next_elem, &command);
 	command.multi_cmd[0] = next_elem;
