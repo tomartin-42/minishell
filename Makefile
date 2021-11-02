@@ -20,6 +20,7 @@ F_RL = -I ~/.brew/opt/readline/include -I ~/.brew/opt/readline/lib
 F_RL2 = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib \
 		-I /Users/$(USER)/.brew/opt/readline/include
 
+
 # Folders
 LIBFT_DIR = ./libft/
 SRC_DIR = ./src/
