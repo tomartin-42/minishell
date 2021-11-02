@@ -6,7 +6,7 @@
 /*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 16:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/01 16:57:32 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/02 09:42:44 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int check_forbidden_chars(char *str)
 			d_mark = !d_mark;
 		if (str[i] == 39)
 			s_mark = !s_mark;
-		if (ft_strchr("#\\*();:,&!%=", str[i])
+		if (ft_strchr("#\\*();:,&!%", str[i])
 			&& (s_mark == false && d_mark == false))
 			answ = false;
 		i++;

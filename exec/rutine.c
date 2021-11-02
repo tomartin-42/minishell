@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/01 19:14:19 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/02 09:46:58 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	execut_cmd_build(t_env *env, t_command *command)
 	pid = fork();
 	if (pid == 0)
 	{
+		signal_in_proces();
 		if (command->multi_cmd[1] && command->multi_cmd[1]->type == 'P')
 		{
 			dup2(command->multi_cmd[1]->p_fd[1], STDOUT_FILENO);
@@ -99,6 +100,7 @@ void	execut_cmd(char **env, t_command *command)
 	pid = fork();
 	if (pid == 0)
 	{
+		signal_in_proces();
 		if (command->multi_cmd[1] && command->multi_cmd[1]->type == 'P')
 		{
 			dup2(command->multi_cmd[1]->p_fd[1], STDOUT_FILENO);

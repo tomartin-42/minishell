@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/01 18:31:59 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/02 09:50:03 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,19 +90,21 @@ int	main(int argc, char **argv, char **env)
 	char		*line;
 	t_element	*element;
 	t_env		*m_env;
+	struct termios	old;
 
 	(void)argc;
 	(void)argv;
+	tcgetattr(0, &old);
 	m_env = NULL;
 	m_env = copy_env(env);
 	change_shlvl(m_env);
 	if (*env == NULL)
 		secure_env(m_env);
 	g_state = 0;
+	select_signal();
 	while (1)
 	{
-		select_signal();
-		str = readline("🔥ShellFromHell🔥: > ");
+		str = readline("🔥ShellFromHell🔥:> ");
 		if (str == NULL)
 		{
 			printf("exit\n");
@@ -122,8 +124,9 @@ int	main(int argc, char **argv, char **env)
 				init_element(element, line);
 				rutine_parse(line, element, m_env);
 				//print_list(element);//////////////////////////////////////////borrar
-				signal_in_proces();
 				main_exec(element, m_env);
+				tcsetattr(0, TCSANOW, &old);
+			//	system("leaks -q  minishell");
 				free (line);
 			}
 		}
