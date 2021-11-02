@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:02:31 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/13 18:59:51 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:29:08 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	add_args(t_element *element)
 		size_arg = 0;
 		if (p_elem->type == 'C' || p_elem->type == 'B')
 		{
-			size_arg = count_args(p_elem);
+			yes_C_B(size_arg, p_elem);
+			/* size_arg = count_args(p_elem);
 			if (size_arg > 0)
 			{
 				p_elem->arg = malloc(sizeof(char *) * (size_arg + 2));
@@ -80,7 +81,7 @@ void	add_args(t_element *element)
 				p_elem->arg = malloc(sizeof(char *) * 2);
 				p_elem->arg[0] = ft_strdup(p_elem->str);
 				p_elem->arg[1] = NULL;
-			}
+			} */
 		}
 		else if (p_elem->type == 'I' || p_elem->type == 'H'
 			|| p_elem->type == 'T' || p_elem->type == 'O')
