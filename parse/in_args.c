@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   in_args.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:02:31 by davyd11           #+#    #+#             */
-/*   Updated: 2021/11/01 12:07:57 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/13 18:59:51 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,12 @@ void	arg_input(t_element *p_elem, int size_arg)
 
 	n = 1;
 	p_elem_arg = p_elem;
-	p_elem->arg[0] = ft_strdup(p_elem->str);
-	while (n <= size_arg)
+	p_elem->arg[0] = ft_strdup(p_elem->str);//anade cmd al arg[0] para ejecuccion
+	while (n <= size_arg)//para quitar cmd from arg quitar =
 	{
 		if (p_elem_arg != NULL)
 			p_elem_arg = p_elem_arg->next;
 		p_elem->arg[n] = ft_strdup(p_elem_arg->str);
-		//printf("cmds->%s\n", p_elem_arg->str);
 		n++;
 	}
 	p_elem->arg[n] = NULL;
@@ -59,36 +58,45 @@ int	count_args(t_element *p_elem)
 	return (n);
 }
 
-void	not_C_B(int size_arg, t_element	*p_elem)
-{
-	size_arg = count_args(p_elem);
-	if (size_arg > 0)
-	{
-		p_elem->arg = malloc(sizeof(char *) * (size_arg + 2));
-		arg_input(p_elem, size_arg);
-	}
-	else
-	{
-		p_elem->arg = malloc(sizeof(char *) * 1);
-		p_elem->arg[0] = NULL;
-	}
-}
-
 void	add_args(t_element *element)
 {
 	t_element	*p_elem;
 	int			size_arg;
 
 	p_elem = element;
-	str_ex(p_elem);	//fixes the non expansion of strings
 	while (p_elem)
 	{
 		size_arg = 0;
 		if (p_elem->type == 'C' || p_elem->type == 'B')
-			yes_C_B(size_arg, p_elem);
+		{
+			size_arg = count_args(p_elem);
+			if (size_arg > 0)
+			{
+				p_elem->arg = malloc(sizeof(char *) * (size_arg + 2));
+				arg_input(p_elem, size_arg);
+			}
+			else
+			{
+				p_elem->arg = malloc(sizeof(char *) * 2);
+				p_elem->arg[0] = ft_strdup(p_elem->str);
+				p_elem->arg[1] = NULL;
+			}
+		}
 		else if (p_elem->type == 'I' || p_elem->type == 'H'
 			|| p_elem->type == 'T' || p_elem->type == 'O')
-			not_C_B(size_arg, p_elem);
+		{
+			size_arg = count_args(p_elem);
+			if (size_arg > 0)
+			{
+				p_elem->arg = malloc(sizeof(char *) * (size_arg + 2));
+				arg_input(p_elem, size_arg);
+			}
+			else
+			{
+				p_elem->arg = malloc(sizeof(char *) * 1);
+				p_elem->arg[0] = NULL;
+			}
+		}
 		else
 		{
 			p_elem->arg = malloc(sizeof(char *) * 1);

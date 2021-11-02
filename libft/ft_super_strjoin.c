@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_super_strjoin.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 19:39:22 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/29 15:51:46 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/09/28 18:35:55 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	gestion_free(char *s1, char *s2, int str_free)
 // str_free = 1 (free s1)
 // str_free = 2 (free s2)
 // str_free = 3 (free s1 and s2)
-
 char	*ft_super_strjoin(char *s1, char *s2, int str_free)
 {
 	int		i;

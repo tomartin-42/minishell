@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 12:17:24 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/02 11:56:01 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/01 19:11:37 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,6 @@ char		*find_exec_path(char **cmd, char **env);
 int			is_build(t_element *p_elem);
 void		main_build_filt(t_element *element);
 ////////////////////
-//build_filt_complete.c//
-int			build_filt_complete(t_command *command, t_env *env, int	error_num);
-////////////////////
-//close_forks.c//
-void		close_forks(t_element *element);
-////////////////////
-////
-void		open_to_read(t_element *element);
-void		open_to_write(t_element *element);
-void		open_to_trunk(t_element *element);
-////////////////////
 //cmd_exwcution.c//
 void		cmd_execution(t_element *element, t_command *command, t_env *env);
 int			build_filt(t_command *command, t_env *env);
@@ -57,9 +46,6 @@ void		execut_cmd_build(t_env *env, t_command *command);
 void		execut_cmd_build_np(t_env *env, t_command *command);
 void		execut_cmd(char **env, t_command *command);
 ///////////////////
-//extct_cmd_args.c//
-void		extract_cmd_and_arg(t_command *command);
-////////////////////
 //super_tolower.c//
 char		*super_tolower(char *str);
 /////////////

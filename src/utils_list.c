@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 21:08:34 by tommy             #+#    #+#             */
-/*   Updated: 2021/11/01 12:27:38 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/29 19:56:45 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	print_list(t_element *element)
 		printf("type -> [%c]\n", element->type);
 		if (element->type == 'H')
 			printf("arg[0] -> [%s]\n", element->arg[0]);
+	//	printf("arg[1] -> [%s]\n", element->arg[1]);
 		printf("==================================\n");
 		element = element->next;
 	}

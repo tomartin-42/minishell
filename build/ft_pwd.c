@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 11:27:59 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/01 10:31:48 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/27 15:45:06 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,29 @@ int	ft_pwd(t_env *env)
 	}
 	return (0);
 }
+/*	int	pos;
+	int	n;
+
+	pos = 0;
+	n = 4;
+	if (!envs)
+		return (1);
+	while (envs[pos]
+		&& (envs[pos][0] != 'P' && envs[pos][1] != 'W' && envs[pos][2] != 'D'))
+	{
+		pos++;
+	}
+	if (envs[pos])
+	{
+		if (envs[pos][0] == 'P' && envs[pos][1] == 'W' && envs[pos][2] == 'D')
+		{
+			while (envs[pos][n] != '\0')
+			{
+				write (1, &envs[pos][n], 1);
+				n++;
+			}
+			write(1, "\n", 1);
+		}
+	}
+	return (0);
+}*/

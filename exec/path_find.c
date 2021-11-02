@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_find.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 08:41:08 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/29 20:10:30 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/26 11:36:59 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,6 @@ static int	check_if_path_absolute(char *cmd)
 	else
 		return (KO);
 }
-
-//void	
-//{
-//}
 
 char	*find_exec_path(char **cmd, char **env)
 {

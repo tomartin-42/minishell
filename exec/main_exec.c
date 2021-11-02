@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 13:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/02 11:55:54 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/01 19:13:09 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	start_hered(t_element *element, t_env *env, int sig)
 {
 	t_element	*aux_ele;
 
-	aux_ele = element;
-	while (aux_ele)
+	aux_ele = element; 
+	while(aux_ele)
 	{
 		if (aux_ele->type == 'H')
 		{
@@ -28,7 +28,55 @@ void	start_hered(t_element *element, t_env *env, int sig)
 	}
 }
 
-static void	redir_hered(t_element *element)
+static void	open_to_read(t_element *element)
+{
+	element->fd = open(element->arg[1], O_RDONLY);
+	if (element->fd < 0)
+	{
+		g_state = errno;
+		printf("**%d**\n", errno);
+		perror("Error");
+		ft_putstr_fd(element->arg[1], 2);
+		exit (g_state);
+	}
+	else
+		dup2(element->fd, STDIN_FILENO);
+	close(element->fd);
+}
+
+static void	open_to_write(t_element *element)
+{
+	element->fd = open(element->arg[1], O_WRONLY | O_CREAT | O_TRUNC, 0644);	 
+	if (element->fd < 0)
+	{
+		g_state = errno;
+		printf("**%d**\n", errno);
+		perror("Error");
+		ft_putstr_fd(element->arg[1], 2);
+		exit (g_state);
+	}
+	else
+		dup2(element->fd, STDOUT_FILENO);
+	close(element->fd);
+}
+
+static void	open_to_trunk(t_element *element)
+{
+	element->fd = open(element->arg[1], O_APPEND | O_RDWR | O_CREAT, 0644);
+	if (element->fd < 0)
+	{
+		g_state = errno;
+		printf("**%d**\n", errno);
+		perror("Error");
+		ft_putstr_fd(element->arg[1], 2);
+		exit (g_state);
+	}
+	else
+		dup2(element->fd, STDOUT_FILENO);
+	close(element->fd);
+}
+
+static void redir_hered(t_element *element)
 {
 	dup2(element->fd, STDIN_FILENO);
 	close(element->fd);
@@ -52,6 +100,19 @@ void	redir_files(t_command *command)
 		p_elem = p_elem->next;
 	}
 }
+/*
+void  get_fd_pipes(t_element *element)
+{
+	t_element	*p_elem;
+
+	p_elem = element;
+	while (p_elem)
+	{
+		if (p_elem->type == 'P')
+			pipe(p_elem->p_fd);
+		p_elem = p_elem->next;
+	}
+}*/
 
 static void	get_special_pipes(t_element *element, t_command *command)
 {
@@ -87,6 +148,7 @@ void	main_exec(t_element *element, t_env *env)
 	command.p_elem = element;
 	command.m_env = env;
 	next_elem = element->next;
+//	get_fd_pipes(next_elem);
 	get_special_pipes(next_elem, &command);
 	command.multi_cmd[0] = next_elem;
 	command.fd_stdin = dup(0);
@@ -96,3 +158,4 @@ void	main_exec(t_element *element, t_env *env)
 	close_hered(element);
 	free_element(element);
 }
+

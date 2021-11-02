@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 08:30:08 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/01 12:15:24 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/25 11:03:36 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,8 @@ int		ft_env(t_env *env);
 //ft_cd.c//
 int		ft_cd(t_command *command, t_env	*env);
 /////////////
-//ft_cd_utils.c//
-//char	*join_cd_args(t_command *command);
-void	remove_end_trash(t_command *command);
-/////////////
-//ft_cd_reverse.c//
-void	chg_mv_env(t_env *env, char *pwd, int n_paths);
-void	back_path(int times, t_env *env);
-int		move_back(t_command *command, t_env *env);
-/////////////
 //util_env2.c//
-void	chg_env_var(t_env *env, char *var, char *n_value);
+void	change_single_env_var(t_env *env, char *var, char *n_value);
 /////////////
 //ft_exit.c//
 int		ft_exit(t_command *command, t_env *env);
@@ -56,4 +47,3 @@ int		ft_exit(t_command *command, t_env *env);
 int		ft_unset(t_command *command, t_env *env);
 void	print_env_vars(t_env *env);
 #endif
-	

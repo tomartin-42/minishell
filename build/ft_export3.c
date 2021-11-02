@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_export3.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/01 10:31:12 by davyd11           #+#    #+#             */
-/*   Updated: 2021/11/01 10:31:15 by davyd11          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "build.h"
 
 //Separate the env var in doble pointer name and value
@@ -18,7 +6,7 @@ char	**separate_env_var(char *var)
 	char	**var_dual;
 	int		i;
 	char	*aux;
-
+	
 	i = 0;
 	var_dual = malloc(sizeof(char *) * 2);
 	while (var[i] != '=' && var[i] != '\0')

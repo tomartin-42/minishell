@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   expand_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/23 20:50:22 by tomartin          #+#    #+#             */
-/*   Updated: 2021/05/27 09:15:17 by tomartin         ###   ########.fr       */
+/*   Created: 2021/09/30 21:35:19 by davyd11           #+#    #+#             */
+/*   Updated: 2021/10/03 18:59:18 by davyd11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "parse.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	id_expand(t_element *element)
 {
-	void	*p;
-	size_t	i;
-	void	*z;
+	t_element *p_elem;
+	int n;
 
-	i = nmemb * size;
-	p = malloc (i);
-	if (!p)
-		return (NULL);
-	z = p;
-	while (i > 0)
+	p_elem = element;
+	n = 0;
+	while (p_elem)
 	{
-		*(unsigned char *) z++ = '\0';
-		i--;
+		while (p_elem->str[n] != '\0')
+		{
+			if(p_elem->str[n] == '"')
+			n++;
+		}
+		p_elem = p_elem->next;
 	}
-	return (p);
 }

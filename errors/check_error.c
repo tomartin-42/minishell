@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 16:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/02 11:55:50 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/02 09:42:44 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_fault_marks(char *str)
 
 	err = 0;
 	ini_var(&chk);
-	while (str[chk.i])
+	while(str[chk.i])
 	{
 		check_open_mark(str, &chk.mark_s, &chk.mark_d, &chk.i);
 		chk.i++;

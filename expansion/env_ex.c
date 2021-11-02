@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:12:15 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/29 16:03:05 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/29 11:36:46 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ char	*remove_dollar(char *string)
 		env_str[x] = '\0';
 	}
 	return (env_str);
+	//free
 }
 
 void	env_ex(t_element *element, t_env *m_env)
@@ -96,19 +97,31 @@ void	env_ex(t_element *element, t_env *m_env)
 	not_expand = 0;
 	while (p_elem)
 	{
-		ret_expan = p_elem->str;
-		if (search_env(p_elem) == 1)
-		{
-			not_expand = dont_ex(p_elem);
-			if (not_expand == 0)
+//		if (p_elem->str[0] == '$')
+//		{
+			ret_expan = p_elem->str;
+			if (search_env(p_elem) == 1)
 			{
-				ret_expan = ft_expand(m_env, p_elem->str);
-				insert_list_str(p_elem, ret_expan);
-				dollar_mark(p_elem);
+				not_expand = dont_ex(p_elem);
+				if (not_expand == 0)
+				{
+					//if (p_elem->str[1] != '?')
+					//{
+						ret_expan = ft_expand(m_env, p_elem->str);
+						insert_list_str(p_elem, ret_expan);
+						dollar_mark(p_elem);
+					//}
+					/*else if (p_elem->str[1] == '?')
+					{
+						ret_expan = ;
+						insert_list_str(p_elem, ret_expan);
+						dollar_mark(p_elem);
+					}*/
+				}
+				if (search_marks(p_elem) > 0)
+					remove_marks(p_elem);
 			}
-			if (search_marks(p_elem) > 0)
-				remove_marks(p_elem);
-		}
+		//}
 		p_elem = p_elem->next;
 	}
 }
