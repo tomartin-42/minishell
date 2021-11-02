@@ -145,7 +145,6 @@ void	main_exec(t_element *element, t_env *env)
 	t_command	command;
 	t_element	*next_elem;
 
-	print_list(element);
 	command.p_elem = element;
 	command.m_env = env;
 	next_elem = element->next;

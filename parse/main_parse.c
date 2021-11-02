@@ -29,6 +29,7 @@ void	main_parse(char *str, t_element *element)
 	ini_var(&mk);
 	while (str[mk.i])
 	{
+	//	printf("xx%cxx\n",str[mk.i]);
 		check_open_mark(str, &mk.mark_s, &mk.mark_d, &mk.i);
 		if (ft_strchr("|<> ", str[mk.i]) && mk.mark_d == false
 			&& mk.mark_s == false)
@@ -36,15 +37,20 @@ void	main_parse(char *str, t_element *element)
 			if (ft_strchr("|<>", str[mk.i]))
 			{
 				mk.i--;
+			//	printf("UNO\n");
 				copy_to_word(str, &mk.i, &mk.j, element);
 				mk.i++;
 			}
+		//	printf("DOS\n");
 			copy_to_word(str, &mk.i, &mk.j, element);
 		}
 		if (str[mk.i] != '\0')
 			mk.i++;
 		check_close_mark(str, &mk.mark_s, &mk.mark_d, &mk.i);
 		if (str[mk.i] == '\0')
+		{
+		//	printf("TRES\n");
 			copy_to_word(str, &mk.i, &mk.j, element);
+		}
 	}
 }
