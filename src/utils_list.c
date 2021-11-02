@@ -63,7 +63,8 @@ void	ft_lst_del_all_x(t_element *element)
 		p_elem = p_elem->next;
 		if (p_aux != NULL)
 		{
-			ft_free_dp(p_aux->arg);
+			if (p_aux->str[0] != '<' && p_aux->str[0] != '>')
+				ft_free_dp(p_aux->arg);
 			free(p_aux->str);
 			free(p_aux);
 			p_aux = NULL;

@@ -18,8 +18,8 @@ static void	exit_proces(int sig)
 	(void)sig;
 	//printf("SIGINIT\n");
 	write(1, "\n", 1);
-	rl_replace_line("", 0);
-	rl_on_new_line();
+//	rl_replace_line("", 0);
+//	rl_on_new_line();
 //	rl_redisplay();
 }
 
@@ -61,9 +61,9 @@ static void	exit_in_hered(int sig)
 static void	quit_in_hered(int sig)
 {
 	(void)sig;
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay();
+//	rl_replace_line("", 0);
+//	rl_on_new_line();
+//	rl_redisplay();
 }
 
 void	signal_hered(void)
