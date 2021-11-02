@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/02 10:41:15 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/02 11:48:17 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,23 @@ static void	secure_env(t_env *env)
 	new = new_env_node_global(new, aux);
 	ft_lstadd_back_env(&env, new);
 	free (aux);
+}
+
+void    valid_str(char *line, t_env *m_env)
+{
+    t_element   *element;
+    add_history(line);
+    if (main_error(line))
+        free (line);
+    else
+    {
+        check_fault_marks(line);
+        element = malloc(sizeof(t_element));
+        init_element(element, line);
+        rutine_parse(line, element, m_env);
+        main_exec(element, m_env);
+        free (line);
+    }
 }
 
 int	main(int argc, char **argv, char **env)
