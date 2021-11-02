@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 12:03:16 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/01 12:15:17 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/10/25 12:04:17 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	remove_end_trash(t_command *command)
 	{
 		pos++;
 	}
-	if (p_command->cmd->arg[1][pos] == '/' && (!p_command->cmd->arg[1][pos + 1]
-		|| p_command->cmd->arg[1][pos + 1] == '/'))
+	if (p_command->cmd->arg[1][pos] == '/')
 		p_command->cmd->arg[1][pos] = '\0';
 }

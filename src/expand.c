@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:33:34 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/02 10:40:26 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/31 20:27:41 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ char	*remplace_str(char *str, char *var_value)
 		j++;
 	aux2 = ft_substr(str, i, (j - i));
 	aux = ft_super_strjoin(aux, aux2, 3);
+	//free(str);
 	str = ft_strdup(aux);
 	free(aux);
 	return (str);
@@ -113,6 +114,7 @@ char	*ft_expand(t_env *m_env, char *str)
 	char	*var_value;
 
 	str_exp = ft_strdup(str);
+//	free(str);
 	while (check_valid_dollar(str_exp))
 	{
 		var_value = change_expand(m_env, str_exp);
