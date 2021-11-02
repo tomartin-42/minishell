@@ -15,7 +15,7 @@
 NAME = minishell
 
 # Compiling flags
-FLAGS = -Wall -Wextra -Werror -g3 -O3#-fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 F_RL = -I ~/.brew/opt/readline/include -I ~/.brew/opt/readline/lib 
 F_RL2 = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib \
 		-I /Users/$(USER)/.brew/opt/readline/include
