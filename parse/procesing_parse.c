@@ -59,39 +59,108 @@ static void	change_truck(t_element *p_elem)
 		p_elem->type = 'O';
 }
 
-static void	change_position_list(t_element *p_elem, t_element *element)
+static void	change_position_list(t_element *e_move)
 {
 	t_element	*aux;
 
-	aux = p_elem;
-	while (aux->next == NULL || aux->type == 'P')
+	aux = e_move;
+	while (aux->next != NULL && aux->type != 'P')
+	{
 		aux = aux->next;
-	p_elem->prev->next = p_elem->next;
-	p_elem->next->prev = p_elem->prev;
+	}
 	if (aux->type == 'P')
 	{
-		p_elem->next = aux;
-  		p_elem->prev = aux->prev;	
+		aux->prev->next = e_move;
+		e_move->next = aux;
+  		e_move->prev = aux->prev;
+		aux->prev = e_move;	
+		print_list(e_move);
 	}
 	else
 	{
-		p_elem->next = NULL;
-		p_elem->prev = aux;
+		e_move->next = NULL;
+		e_move->prev = aux;
+		aux->next = e_move;
 	}
-	(void)element;
 }
 
+static int	need_order_cmd(t_element *element)
+{
+	t_element	*p_elem;
+	t_element	*p_next;
+	
+	p_elem = element;
+	p_next = element->next;
+	while (p_elem->next != NULL && p_next != NULL)
+	{
+		if ((p_elem->type == 'I' || p_elem->type == 'O' || p_elem->type == 'T'
+			|| p_elem->type == 'H' || p_elem->type == 'F') && (p_next->type == 'C' 
+			|| p_next->type == 'A'))
+			return (1);
+		p_elem = p_elem->next;
+		p_next = p_next->next;
+	}
+	return (0);
+}
+
+/*
+static int	need_order_arg(t_element *element)
+{
+	t_element	*p_elem;
+	bool		arg;
+	bool		file;
+
+	p_elem = element;
+	arg = true;
+	while (p_elem)
+	{
+		if (p_elem->type == 'A')
+			arg = false;
+		p_elem = p_elem->next;
+	}
+	p_elem = element;
+	while (p_elem)
+	{
+		if (p_elem->type == 'P')
+			arg = false;
+		if (p_elem->type == 'A')
+			arg = true;
+		if ((p_elem->type == 'I' || p_elem->type == 'O' || p_elem->type == 'T'
+			|| p_elem->type == 'H' || p_elem->type == 'F') && (arg == false))
+			return (1);
+		p_elem = p_elem->next;
+	}
+	return (0);
+}*/
+
+static	int check_order_list(t_element *element)
+{
+	int	cmd;
+	int	resp;	
+
+	resp = 0;
+	cmd = need_order_cmd(element);
+	printf("cmd %d\n", cmd);
+	resp = cmd;
+	return (resp);
+}
 
 static void	order_element_list(t_element *element)
 {
 	t_element	*p_elem;
+	t_element	*aux;
 
 	p_elem = element;
-	while (p_elem)
+	while (check_order_list(element))
 	{
 		if (p_elem->type == 'I' || p_elem->type == 'O' || p_elem->type == 'T'
 			|| p_elem->type == 'H' || p_elem->type == 'F')
-			change_position_list(p_elem, element);
+		{
+			p_elem->next->prev = p_elem->prev;
+			p_elem->prev->next = p_elem->next;
+			aux = p_elem;
+			change_position_list(aux);
+		}
 		p_elem = p_elem->next;
 	}
 }
@@ -130,6 +199,7 @@ void	pre_procesing(t_element *element)
 	}
 	ft_lst_del_all_x(element);
 	order_element_list(element);
+	print_list(element);
 	add_args(element);
 	//is_direct(element);
 	//expand_all(element);
