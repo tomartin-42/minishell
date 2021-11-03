@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/28 11:23:15 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/03 15:15:44 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	pre_procesing(t_element *element)
 		else if (p_elem->str[0] == '|')
 			p_elem->type = 'P';
 		else if (p_elem->str[0] != '<' && p_elem->str[0] != '>')
-			p_elem->type = 'C';
+			p_elem->type = 'A';
 		sec_procesing(p_elem);
 		check_env(p_elem);
 		p_elem = p_elem->next;

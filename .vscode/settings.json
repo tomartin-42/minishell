@@ -2,6 +2,7 @@
 	"files.associations": {
 		"build.h": "c",
 		"minishell.h": "c",
-		"exec.h": "c"
+		"exec.h": "c",
+		"parse.h": "c"
 	}
 }

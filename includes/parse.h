@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:50:17 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/29 15:48:45 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/03 14:58:38 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	check_env(t_element *p_elem);
 void	arg_token(t_element *p_elem);
 void	sec_procesing(t_element *p_elem);
 void	is_direct(t_element *element);
+int		thereis_command(t_element *element);
 ////////////////////
 //in_args.c//
 void	add_args(t_element *element);
