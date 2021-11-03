@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 09:06:47 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/03 09:17:38 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/03 10:23:22 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	copy_to_word(char *str, int *i, int *j, t_element *element)
 	aux_i = 0;
 	new = malloc(sizeof(t_element));
 //	printf("[[%d]]\n", *i - *j + 1);
-	new->str = malloc(*i - *j + 1);
-	while (*j < *i)
+	new->str = malloc(*i - *j + 2);
+	while (*j <= *i)
 	{
 		new->str[aux_i] = str[*j];
 //		printf("**%c**\n", new->str[aux_i]);
@@ -36,8 +36,8 @@ void	copy_to_word(char *str, int *i, int *j, t_element *element)
 	free(aux);
 //	printf("NEWS = %s\n", new->str);
 	new->next = NULL;
-	//if (new->str[0] != ' ')
-	//{
+//	if (new->str[0] != ' ')
+//	{
 		if (ft_strlen(new->str) != 0)
 		{
 //			printf("HOLA\n");
@@ -50,7 +50,7 @@ void	copy_to_word(char *str, int *i, int *j, t_element *element)
 			free(new->next);
 			free(new);
 		}
-	//}
+//	}
 }
 
 void	check_open_mark(char *str, bool *mark_s, bool *mark_d, int *i)
