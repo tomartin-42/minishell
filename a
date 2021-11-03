@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
 bash
 cat
@@ -34,3 +35,6 @@ test
 unlink
 wait4path
 zsh
+=======
+      18      18     121
+>>>>>>> master

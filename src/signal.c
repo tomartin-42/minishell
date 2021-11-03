@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 10:14:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/02 09:50:53 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/03 09:45:49 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,20 @@
 static void	exit_proces(int sig)
 {
 	(void)sig;
-	//printf("SIGINIT\n");
 	write(1, "\n", 1);
-//	rl_replace_line("", 0);
-//	rl_on_new_line();
-//	rl_redisplay();
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
 }
 
 //Ctrl + barra 
 static void	quit_proces(int sig)
 {
 	(void)sig;
-	write(2, "\n", 1);
+	rl_replace_line("", 0);
+	//printf("🔥ShellFromHell🔥:> ");
+	//write(1, "  ", 2);
+	//write(2, "\n", 1);
 	//write(2, "Quit\n", 5);
 }
 
@@ -37,12 +39,12 @@ void	select_signal(void)
 	signal(SIGQUIT, &quit_proces);
 }
 
-/*void	exit_in_proces(int sig)
+void	exit_in_proces(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
-}*/
+}
 
 void	signal_in_proces(void)
 {
