@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 09:06:47 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/03 10:23:22 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/03 10:57:21 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	copy_to_word(char *str, int *i, int *j, t_element *element)
 	new->str[aux_i] = '\0';
 	aux = ft_strtrim(new->str, " \t");
 	free(new->str);
-	new->str = ft_strdup(aux);
+	if (ft_strlen(aux) > 0)
+		new->str = ft_strdup(aux);
 	free(aux);
 //	printf("NEWS = %s\n", new->str);
 	new->next = NULL;
