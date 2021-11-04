@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/03 12:31:23 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/04 08:42:15 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,18 +87,19 @@ static void	change_position_list(t_element *e_move)
 static int	need_order_cmd(t_element *element)
 {
 	t_element	*p_elem;
-	t_element	*p_next;
 	
 	p_elem = element;
-	p_next = element->next;
-	while (p_elem->next != NULL && p_next != NULL)
+	while (p_elem->next != NULL)
 	{
 		if ((p_elem->type == 'I' || p_elem->type == 'O' || p_elem->type == 'T'
-			|| p_elem->type == 'H' || p_elem->type == 'F') && (p_next->type == 'C' 
-			|| p_next->type == 'A'))
+			|| p_elem->type == 'H' || p_elem->type == 'F')
+			 && (p_elem->next->type == 'C' || p_elem->next->type == 'A'))
+		{
+			printf("--%p--\n", p_elem);
 			return (1);
+		}
 		p_elem = p_elem->next;
-		p_next = p_next->next;
+		//printf("HOLA\n");
 	}
 	return (0);
 }
@@ -153,12 +154,15 @@ static void	order_element_list(t_element *element)
 	p_elem = element;
 	while (check_order_list(element))
 	{
+		printf("HOLA2\n");
 		if (p_elem->type == 'I' || p_elem->type == 'O' || p_elem->type == 'T'
 			|| p_elem->type == 'H' || p_elem->type == 'F')
 		{
+			printf("HOLAr\n");
 			p_elem->next->prev = p_elem->prev;
 			p_elem->prev->next = p_elem->next;
 			aux = p_elem;
+			p_elem = element;
 			change_position_list(aux);
 		}
 		p_elem = p_elem->next;
