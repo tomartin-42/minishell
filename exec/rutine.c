@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/03 15:27:49 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/04 16:30:25 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,10 +148,10 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 		command->multi_cmd[0] = command->multi_cmd[1];
 		ft_free_dp(command->env);
 	}
-		dup2(command->fd_stdin, STDIN_FILENO);
-		dup2(command->fd_stdout, STDOUT_FILENO);
-		if (check_pipes_or_cmd(element))
-			close_forks(element);
-		close(command->fd_stdin);
-		close(command->fd_stdout);
+	dup2(command->fd_stdin, STDIN_FILENO);
+	dup2(command->fd_stdout, STDOUT_FILENO);
+	if (check_pipes_or_cmd(element))
+		close_forks(element);
+	close(command->fd_stdin);
+	close(command->fd_stdout);
 }
