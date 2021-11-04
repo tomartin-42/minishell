@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:18:27 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/01 12:15:12 by davyd11          ###   ########.fr       */
+/*   Updated: 2021/11/04 17:48:04 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ void	cd_pos_mas(bool o_pwd, t_command *command, t_env *env)
 	if (!ft_strcmp(command->cmd->arg[1], "..")
 		|| (command->cmd->arg[1][0] == '.' && command->cmd->arg[1][1] == '.'))
 	{
-		move_back(command, env);
+		if (check_consec_dots(command->cmd->arg[1]))
+			printf("🔥ShellFromHell🔥:> cd: %s: No such file or directory\n", command->cmd->arg[1]);
+		else
+			move_back(command, env);
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 15:12:24 by tommy             #+#    #+#             */
-/*   Updated: 2021/11/03 10:16:44 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/04 17:03:51 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	rutine_parse(char *str, t_element *element, t_env *m_env)
 {
 	main_parse(str, element);
-	print_list(element);
-	printf("======================================\n");
+	//print_list(element);
+	//printf("======================================\n");
 	expand_all(element, m_env, 1);////
 	clean_element(element);
 	pre_procesing(element);

@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 13:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/03 10:14:07 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/04 17:04:08 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void	main_exec(t_element *element, t_env *env)
 	t_command	command;
 	t_element	*next_elem;
 
-	print_list(element);
+	//print_list(element);
 	command.p_elem = element;
 	command.m_env = env;
 	next_elem = element->next;
