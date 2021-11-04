@@ -53,3 +53,5 @@ LEAKS ->futuro
 
 
 echo &pwd
+
+echo pepe | > a //(deberia de solo crear el archivo puesto que no hay commando tras el pipe, pero resulta que introduce el output en el fichero a)

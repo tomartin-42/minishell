@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/03 15:27:55 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/04 17:04:35 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ int	main(int argc, char **argv, char **env)
 				//print_list(element);//////////////////////////////////////////borrar
 				main_exec(element, m_env);
 				tcsetattr(0, TCSANOW, &old);
-				system("leaks -q  minishell");
+				//system("leaks -q  minishell");
 				free (line);
 			}
 		}
