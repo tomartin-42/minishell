@@ -65,16 +65,13 @@ static void	change_position_list(t_element *e_move, t_element *p1)
 
 	aux = e_move;
 	while (aux->next != p1)
-	{
 		aux = aux->next;
-	}
-	if (p1->type == 'P')
+	if (p1 && p1->type == 'P')
 	{
-		aux->prev->next = e_move;
-		e_move->next = aux;
-  		e_move->prev = aux->prev;
-		aux->prev = e_move;	
-		print_list(e_move);
+		p1->prev->next = e_move;
+		e_move->next = p1;
+  		e_move->prev = p1->prev;
+		p1->prev = e_move;	
 	}
 	else
 	{
@@ -132,23 +129,22 @@ static void	order_element_list(t_element *element)
 	p_elem = element;
 	point[0] = p_elem;
 	point[1] = point[0];
-	while (point[0] != NULL)
+	while (point[1] != NULL && point[0] != NULL)
 	{
 		point[1] = get_next_pipe(point[0]);
-		printf("HOLA\n");
-		printf("---%p---\n",point[0]);
-		printf("---%p---\n",point[1]);
 		while (check_order_list(point[0], point[1]))
 		{
 			if (p_elem->type == 'I' || p_elem->type == 'O' || p_elem->type == 'T'
 				|| p_elem->type == 'H' || p_elem->type == 'F')
 			{
+				printf("HOLA1\n");
 				p_elem->next->prev = p_elem->prev;
 				p_elem->prev->next = p_elem->next;
 				aux = p_elem;
 				p_elem = point[0];
 				change_position_list(aux, point[1]);
 			}
+			printf("HOLA2\n");
 			p_elem = p_elem->next;
 		}
 		point[0] = point[1];
