@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/04 08:42:15 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/04 10:20:41 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,16 @@ static void	change_truck(t_element *p_elem)
 		p_elem->type = 'O';
 }
 
-static void	change_position_list(t_element *e_move)
+static void	change_position_list(t_element *e_move, t_element *p1)
 {
 	t_element	*aux;
 
 	aux = e_move;
-	while (aux->next != NULL && aux->type != 'P')
+	while (aux->next != p1)
 	{
 		aux = aux->next;
 	}
-	if (aux->type == 'P')
+	if (p1->type == 'P')
 	{
 		aux->prev->next = e_move;
 		e_move->next = aux;
@@ -84,88 +84,76 @@ static void	change_position_list(t_element *e_move)
 	}
 }
 
-static int	need_order_cmd(t_element *element)
+static int	need_order_cmd(t_element *p0, t_element *p1)
 {
 	t_element	*p_elem;
 	
-	p_elem = element;
-	while (p_elem->next != NULL)
+	p_elem = p0;
+	while (p_elem->next != p1)
 	{
 		if ((p_elem->type == 'I' || p_elem->type == 'O' || p_elem->type == 'T'
 			|| p_elem->type == 'H' || p_elem->type == 'F')
 			 && (p_elem->next->type == 'C' || p_elem->next->type == 'A'))
-		{
-			printf("--%p--\n", p_elem);
 			return (1);
-		}
 		p_elem = p_elem->next;
-		//printf("HOLA\n");
 	}
 	return (0);
 }
 
-/*
-static int	need_order_arg(t_element *element)
-{
-	t_element	*p_elem;
-	bool		arg;
-	bool		file;
-
-	p_elem = element;
-	arg = true;
-	while (p_elem)
-	{
-		if (p_elem->type == 'A')
-			arg = false;
-		p_elem = p_elem->next;
-	}
-	p_elem = element;
-	while (p_elem)
-	{
-		if (p_elem->type == 'P')
-			arg = false;
-		if (p_elem->type == 'A')
-			arg = true;
-		if ((p_elem->type == 'I' || p_elem->type == 'O' || p_elem->type == 'T'
-			|| p_elem->type == 'H' || p_elem->type == 'F') && (arg == false))
-			return (1);
-		p_elem = p_elem->next;
-	}
-	return (0);
-}*/
-
-static	int check_order_list(t_element *element)
+static	int check_order_list(t_element *p0, t_element *p1)
 {
 	int	cmd;
 	int	resp;	
 
 	resp = 0;
-	cmd = need_order_cmd(element);
+	cmd = need_order_cmd(p0, p1);
 	printf("cmd %d\n", cmd);
 	resp = cmd;
 	return (resp);
+}
+
+// Receive the start point to order and search the next point to order
+static t_element	*get_next_pipe(t_element *element)
+{
+	t_element	*p_elem;
+
+	p_elem = element;
+	while (p_elem && p_elem->type != 'P')
+		p_elem = p_elem->next;
+	return (p_elem);
 }
 
 static void	order_element_list(t_element *element)
 {
 	t_element	*p_elem;
 	t_element	*aux;
+	t_element	*point[2];
 
 	p_elem = element;
-	while (check_order_list(element))
+	point[0] = p_elem;
+	point[1] = point[0];
+	while (point[0] != NULL)
 	{
-		printf("HOLA2\n");
-		if (p_elem->type == 'I' || p_elem->type == 'O' || p_elem->type == 'T'
-			|| p_elem->type == 'H' || p_elem->type == 'F')
+		point[1] = get_next_pipe(point[0]);
+		printf("HOLA\n");
+		printf("---%p---\n",point[0]);
+		printf("---%p---\n",point[1]);
+		while (check_order_list(point[0], point[1]))
 		{
-			printf("HOLAr\n");
-			p_elem->next->prev = p_elem->prev;
-			p_elem->prev->next = p_elem->next;
-			aux = p_elem;
-			p_elem = element;
-			change_position_list(aux);
+			if (p_elem->type == 'I' || p_elem->type == 'O' || p_elem->type == 'T'
+				|| p_elem->type == 'H' || p_elem->type == 'F')
+			{
+				p_elem->next->prev = p_elem->prev;
+				p_elem->prev->next = p_elem->next;
+				aux = p_elem;
+				p_elem = point[0];
+				change_position_list(aux, point[1]);
+			}
+			p_elem = p_elem->next;
 		}
-		p_elem = p_elem->next;
+		point[0] = point[1];
+		if (point[0])
+			point[0] = point[0]->next;
 	}
 }
 //asig value to t_element->type in function of type bash's element
