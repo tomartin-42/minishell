@@ -17,16 +17,16 @@ static void	exit_proces(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1);
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay();
+//	rl_replace_line("", 0);
+//	rl_on_new_line();
+//	rl_redisplay();
 }
 
 //Ctrl + barra 
 static void	quit_proces(int sig)
 {
 	(void)sig;
-	rl_replace_line("", 0);
+//	rl_replace_line("", 0);
 	//printf("🔥ShellFromHell🔥:> ");
 	//write(1, "  ", 2);
 	//write(2, "\n", 1);
@@ -43,7 +43,7 @@ void	exit_in_proces(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1);
-	rl_replace_line("", 0);
+//	rl_replace_line("", 0);
 }
 
 void	signal_in_proces(void)
