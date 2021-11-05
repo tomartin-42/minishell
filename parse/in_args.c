@@ -35,6 +35,8 @@ static void	count_memory_need(int *memory_cmd, t_element *element)
 			memory_cmd[p_elem->cmd_num] += 1;
 		p_elem = p_elem->next;
 	}
+	for(int i=0; i < MAX_PIPE; i++)
+		printf("%d -> %d\n", i, memory_cmd[i]);
 }
 
 static void	reservate_memory(int *memory_cmd, t_element *element)
@@ -77,6 +79,7 @@ static void	search_cmd_to_add_end(t_element *element, t_element *p_elem, int i)
 		if (aux_elem->type == 'C' && (aux_elem->cmd_num == p_elem->cmd_num))
 		{
 			aux_elem->arg[i] = NULL;
+			printf("--%s--\n", aux_elem->str);
 			break ;
 		}
 		aux_elem = aux_elem->next;
@@ -104,6 +107,7 @@ static void	copy_arg_int_cmd(t_element *element)
 		}
 		if (p_elem->type == 'P' || p_elem->next == NULL)
 		{
+			printf("HOLA\n");
 			search_cmd_to_add_end(element, p_elem, num_arg);
 			num_arg = 0;
 		}

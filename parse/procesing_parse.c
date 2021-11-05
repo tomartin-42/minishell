@@ -93,7 +93,7 @@ static void	get_pipes_and_cmd_num(t_element *element)
 		{
 			p_elem->type = 'P';
 			cmd++;
-			p_elem->cmd_num = cmd;
+			p_elem->cmd_num = cmd - 1;
 		}
 		else
 			p_elem->cmd_num = cmd;
