@@ -162,6 +162,22 @@ static void	get_cmd_and_args(t_element *element)
 	}
 }
 
+
+static void	clean_spaces_in_str(t_element *element)
+{
+	t_element	*p_elem;
+	char		*aux;
+
+	p_elem = element;
+	while (p_elem)
+	{
+		aux = ft_strtrim(p_elem->str, " \t");
+		free (p_elem->str);
+		p_elem->str = ft_strdup(aux);
+		free(aux);
+		p_elem = p_elem->next;
+	}
+}
 //asig value to t_element->type in function of type bash's element
 //need reevaluate list because some type depend of previos valude in the list
 //(ej. <,< <<)
@@ -170,8 +186,9 @@ static void	get_cmd_and_args(t_element *element)
 ///////////////////////////////////////////////////////////////
 void	pre_procesing(t_element *element)
 {
-//	print_list(element);
-//	printf("*****************************************\n");
+	print_list(element);
+	printf("*****************************************\n");
+	clean_spaces_in_str(element);
 	get_string(element);
 	get_pipes_and_cmd_num(element);
 	get_trunk_file(element);
@@ -183,7 +200,8 @@ void	pre_procesing(t_element *element)
 //	print_list(element);
 	add_args(element);
 //	print_arg_list(element);
-//	print_list(element);
+	print_list(element);
+	printf("*****************************************\n");
 	//is_direct(element);
 	//expand_all(element);
 }

@@ -77,7 +77,7 @@ void	print_list(t_element *element)
 	p_elem = element;
 	while (p_elem)
 	{
-		printf("[%s]\n", p_elem->str);
+		printf("[|%s|]\n", p_elem->str);
 		printf("type -> [%c]\n", p_elem->type);
 	//	if (p_elem->type == 'H')
 	//		printf("arg[0] -> [%s]\n", p_elem->arg[0]);

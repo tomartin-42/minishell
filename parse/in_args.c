@@ -107,7 +107,6 @@ static void	copy_arg_int_cmd(t_element *element)
 		}
 		if (p_elem->type == 'P' || p_elem->next == NULL)
 		{
-			printf("HOLA\n");
 			search_cmd_to_add_end(element, p_elem, num_arg);
 			num_arg = 0;
 		}
