@@ -143,7 +143,7 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 		command->env = extract_env_list(env);
 		extract_cmd_and_arg(command);
 		main_build_filt(element);
-		ft_lst_del_all_x(element);
+		//ft_lst_del_all_x(element);
 		cmd_execution(element, command, env);
 		command->multi_cmd[0] = command->multi_cmd[1];
 		ft_free_dp(command->env);

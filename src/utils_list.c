@@ -63,8 +63,6 @@ void	ft_lst_del_all_x(t_element *element)
 		p_elem = p_elem->next;
 		if (p_aux != NULL)
 		{
-			if (p_aux->str[0] != '<' && p_aux->str[0] != '>')
-				ft_free_dp(p_aux->arg);
 			free(p_aux->str);
 			free(p_aux);
 			p_aux = NULL;
@@ -89,3 +87,28 @@ void	print_list(t_element *element)
 		p_elem = p_elem->next;
 	}
 }
+
+void	print_arg_list(t_element *element)
+{
+	t_element	*p_elem;
+	int		i;
+	
+	p_elem = element;
+	while (p_elem)
+	{
+		i = 0;
+		if (p_elem->type == 'C')
+		{
+			printf("cmd = %s\n", p_elem->str);
+			while (p_elem->arg[i] != NULL)
+			{
+				printf("arg %d = %s\n", i, p_elem->arg[i]);
+				i++;
+			}
+		}
+		p_elem = p_elem->next;
+	}
+	
+}
+
+

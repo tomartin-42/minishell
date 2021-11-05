@@ -47,7 +47,7 @@
 
 # define OK			1
 # define KO			0
-# define MAX_PIPE   256
+# define MAX_PIPE  10 
 
 typedef struct s_env{
 	char			*v_env;
@@ -73,6 +73,7 @@ extern int	g_state;
 t_element	*ft_lstlast(t_element *lst);
 void		ft_lstadd_back(t_element **lst, t_element *new);
 void		print_list(t_element *element);
+void		print_arg_list(t_element *element);
 void		ft_lst_del_all_x(t_element *elemnt);
 
 int			ft_access(char *fname);

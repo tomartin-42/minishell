@@ -170,8 +170,8 @@ static void	get_cmd_and_args(t_element *element)
 ///////////////////////////////////////////////////////////////
 void	pre_procesing(t_element *element)
 {
-	print_list(element);
-	printf("*****************************************\n");
+//	print_list(element);
+//	printf("*****************************************\n");
 	get_string(element);
 	get_pipes_and_cmd_num(element);
 	get_trunk_file(element);
@@ -182,7 +182,8 @@ void	pre_procesing(t_element *element)
 //	order_element_list(element);
 //	print_list(element);
 	add_args(element);
-	print_list(element);
+//	print_arg_list(element);
+//	print_list(element);
 	//is_direct(element);
 	//expand_all(element);
 }
