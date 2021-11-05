@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/05 10:47:01 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/05 11:56:15 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ void	pre_procesing(t_element *element)
 	get_cmd_and_args(element);
 //	ft_lst_del_all_x(element);
 //	order_element_list(element);
-	print_list(element);
+//	print_list(element);
 	add_args(element);
 	//is_direct(element);
 	//expand_all(element);
