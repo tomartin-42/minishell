@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/03 09:56:27 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/05 11:02:24 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static t_env	*copy_env(char **env)
 	i = 0;
 	m_env = NULL;
 	new = NULL;
-	aux = ft_strdup("Specialthanksto=Jagonza and Carce-bo");
+	aux = ft_strdup("Specialthanksto=Javgonza and Carce-bo");
 	new = new_env_node_global(new, aux);
 	new->visible = false;
 	ft_lstadd_back_env(&m_env, new);
@@ -101,7 +101,7 @@ int	main(int argc, char **argv, char **env)
 	if (*env == NULL)
 		secure_env(m_env);
 	g_state = 0;
-	select_signal();
+	//select_signal();
 	while (1)
 	{
 		str = readline("🔥ShellFromHell🔥:> ");
@@ -126,7 +126,7 @@ int	main(int argc, char **argv, char **env)
 				//print_list(element);//////////////////////////////////////////borrar
 				main_exec(element, m_env);
 				tcsetattr(0, TCSANOW, &old);
-				system("leaks -q  minishell");
+				//system("leaks -q  minishell");
 				free (line);
 			}
 		}

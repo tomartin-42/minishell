@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/02 09:31:42 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/05 11:48:53 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
  * G = All line
  * F = File
  * A = Argument
+ * ? = Unknown
  * E = ADD VAR
  * $ = CALL VAR
  * ======================================================================*/
@@ -46,6 +47,7 @@
 
 # define OK			1
 # define KO			0
+# define MAX_PIPE   256
 
 typedef struct s_env{
 	char			*v_env;
@@ -61,6 +63,7 @@ typedef struct s_element{
 	char				type;
 	int					fd;
 	int					p_fd[2];
+	int					cmd_num;
 	struct s_element	*next;
 	struct s_element	*prev;
 }	t_element;
