@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 11:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/06 11:12:21 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/06 19:09:46 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static void	reservate_memory(int *memory_cmd, t_element *element)
 	while (p_elem)
 	{
 		if (p_elem->type == 'C')
-			p_elem->arg = (char **)malloc(sizeof(char *) * (memory_cmd[p_elem->cmd_num]));
+			p_elem->arg = (char **)malloc(sizeof(char *) 
+			* (memory_cmd[p_elem->cmd_num]));
 		p_elem = p_elem->next;
 	}
 }
@@ -79,7 +80,6 @@ static void	search_cmd_to_add_end(t_element *element, t_element *p_elem, int i)
 		if (aux_elem->type == 'C' && (aux_elem->cmd_num == p_elem->cmd_num))
 		{
 			aux_elem->arg[i] = NULL;
-			printf("--%s--\n", aux_elem->str);
 			break ;
 		}
 		aux_elem = aux_elem->next;

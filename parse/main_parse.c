@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 15:12:24 by tommy             #+#    #+#             */
-/*   Updated: 2021/11/06 12:47:40 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/06 19:05:22 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,14 @@ static void	clear_space_in_list(t_element *element)
 	p_elem = element;
 	while(p_elem)
 	{
-		if (p_elem->str[0] == ' ' && ft_strlen(p_elem->str) == 1)
+		if (ft_strlen(p_elem->str) == 1 && p_elem->str[0] == ' ')
+			p_elem->type = 'X';
+		p_elem = p_elem->next;
+	}
+	p_elem = element;
+	while(p_elem)
+	{
+		if (ft_strlen(p_elem->str) == 0)
 			p_elem->type = 'X';
 		p_elem = p_elem->next;
 	}
@@ -42,7 +49,6 @@ void	main_parse(char *str, t_element *element)
 	t_mark	mk;
 
 	ini_var(&mk);
-	print_list(element);
 	while (str[mk.i])
 	{
 		check_open_mark(str, &mk.mark_s, &mk.mark_d, &mk.i);

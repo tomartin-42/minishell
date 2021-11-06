@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 09:06:47 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/06 12:47:21 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/06 18:59:52 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	copy_to_word(char *str, int *i, int *j, t_element *element)
 {
 	t_element	*new;
 	int			aux_i;
-	char		*aux;
+//	char		*aux;
 
 	aux_i = 0;
 	new = malloc(sizeof(t_element));
@@ -28,26 +28,26 @@ void	copy_to_word(char *str, int *i, int *j, t_element *element)
 		*j = *j + 1;
 	}
 	new->str[aux_i] = '\0';
-	aux = ft_strtrim(new->str, " ");
+//	aux = ft_strtrim(new->str, " ");
 //	free(new->str);
-	if (ft_strlen(aux) > 0)
-		new->str = ft_strdup(aux);
-	//free(aux);
+//	if (ft_strlen(aux) > 0)
+//		new->str = ft_strdup(aux);
+//	free(aux);
+//	printf("***%s***\n", new->str);
 	new->next = NULL;
 //	if (new->str[0] != ' ')
 //	{
-		if (ft_strlen(new->str) != 0)
-		{
+//		if (ft_strlen(new->str) != 0)
+//		{
 			ft_lstadd_back(&element, new);
 			//free(new->next);
 			//free(new);
-		}
-		else
-		{
-			;
-		//	free(new->next);
-		//	free(new);
-		}
+//		}
+//		else
+//		{
+//			free(new->next);
+//			free(new);
+//		}
 //	}
 }
 

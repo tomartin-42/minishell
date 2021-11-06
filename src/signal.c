@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 10:14:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/03 09:45:49 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/06 13:26:42 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@ static void	exit_proces(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1);
-//	rl_replace_line("", 0);
-//	rl_on_new_line();
-//	rl_redisplay();
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
 }
 
 //Ctrl + barra 
 static void	quit_proces(int sig)
 {
 	(void)sig;
-//	rl_replace_line("", 0);
-	//printf("🔥ShellFromHell🔥:> ");
-	//write(1, "  ", 2);
-	//write(2, "\n", 1);
-	//write(2, "Quit\n", 5);
+	rl_replace_line("", 0);
+	printf("🔥ShellFromHell🔥:> ");
+	write(1, "  ", 2);
+	write(2, "\n", 1);
+	write(2, "Quit\n", 5);
 }
 
 void	select_signal(void)
@@ -43,7 +43,7 @@ void	exit_in_proces(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1);
-//	rl_replace_line("", 0);
+	rl_replace_line("", 0);
 }
 
 void	signal_in_proces(void)
@@ -63,9 +63,9 @@ static void	exit_in_hered(int sig)
 static void	quit_in_hered(int sig)
 {
 	(void)sig;
-//	rl_replace_line("", 0);
-//	rl_on_new_line();
-//	rl_redisplay();
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
 }
 
 void	signal_hered(void)

@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/05 11:02:24 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/06 19:21:46 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 #include "exec.h"
 #include "errorlib.h"
 
-int	g_state; //VARIABLE GLOBAL para indicar el estado
+// Global variable for indicate the value state
+int	g_state; 
 
 //This function initialice and copy the env var to list 
 //(m_env)
@@ -126,8 +127,8 @@ int	main(int argc, char **argv, char **env)
 				//print_list(element);//////////////////////////////////////////borrar
 				main_exec(element, m_env);
 				tcsetattr(0, TCSANOW, &old);
-				//system("leaks -q  minishell");
 				free (line);
+				system("leaks -q  minishell");
 			}
 		}
 	}

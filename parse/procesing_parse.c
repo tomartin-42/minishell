@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/06 11:14:49 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/06 19:10:21 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ static void	get_pipes_and_cmd_num(t_element *element)
 		if (p_elem->str[0] == '|' && p_elem->type == '?')
 		{
 			p_elem->type = 'P';
+			p_elem->cmd_num = cmd;
 			cmd++;
-			p_elem->cmd_num = cmd - 1;
 		}
 		else
 			p_elem->cmd_num = cmd;
