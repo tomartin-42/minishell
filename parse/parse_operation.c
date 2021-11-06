@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 09:06:47 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/03 10:57:21 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/06 12:47:21 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	copy_to_word(char *str, int *i, int *j, t_element *element)
 	}
 	new->str[aux_i] = '\0';
 	aux = ft_strtrim(new->str, " ");
-	free(new->str);
+//	free(new->str);
 	if (ft_strlen(aux) > 0)
 		new->str = ft_strdup(aux);
-	free(aux);
+	//free(aux);
 	new->next = NULL;
 //	if (new->str[0] != ' ')
 //	{
@@ -44,8 +44,9 @@ void	copy_to_word(char *str, int *i, int *j, t_element *element)
 		}
 		else
 		{
-			free(new->next);
-			free(new);
+			;
+		//	free(new->next);
+		//	free(new);
 		}
 //	}
 }
