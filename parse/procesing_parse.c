@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/05 11:56:15 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/06 11:14:49 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,8 +186,8 @@ static void	clean_spaces_in_str(t_element *element)
 ///////////////////////////////////////////////////////////////
 void	pre_procesing(t_element *element)
 {
-	print_list(element);
-	printf("*****************************************\n");
+//	print_list(element);
+//	printf("*****************************************\n");
 	clean_spaces_in_str(element);
 	get_string(element);
 	get_pipes_and_cmd_num(element);
@@ -200,8 +200,8 @@ void	pre_procesing(t_element *element)
 //	print_list(element);
 	add_args(element);
 //	print_arg_list(element);
-	print_list(element);
-	printf("*****************************************\n");
+//	print_list(element);
+//	printf("*****************************************\n");
 	//is_direct(element);
 	//expand_all(element);
 }
