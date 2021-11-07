@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/07 17:16:53 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/07 20:09:46 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,9 @@ int	main(int argc, char **argv, char **env)
 	if (*env == NULL)
 		secure_env(m_env);
 	g_state = 0;
-	select_signal();
 	while (1)
 	{
+		select_signal();
 		str = readline("🔥ShellFromHell🔥:> ");
 		if (str == NULL)
 		{
@@ -128,7 +128,8 @@ int	main(int argc, char **argv, char **env)
 				main_exec(element, m_env);
 				tcsetattr(0, TCSANOW, &old);
 				free (line);
-				system("leaks -q  minishell");
+				free_element(element);
+			//	system("leaks -q  minishell");
 			}
 		}
 	}

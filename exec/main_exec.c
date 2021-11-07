@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 13:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/07 17:16:39 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/07 18:09:04 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,6 @@ void	main_exec(t_element *element, t_env *env)
 	command.pid_num = 0;
 	rutine_command(next_elem, env, &command);
 	close_hered(element);
-	free_element(element);
+//	free_element(element);
 }
 
