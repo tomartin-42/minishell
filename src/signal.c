@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 10:14:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/06 13:26:42 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/07 17:09:46 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ static void	exit_proces(int sig)
 static void	quit_proces(int sig)
 {
 	(void)sig;
-	rl_replace_line("", 0);
+	/*rl_replace_line("", 0);
 	printf("🔥ShellFromHell🔥:> ");
 	write(1, "  ", 2);
 	write(2, "\n", 1);
-	write(2, "Quit\n", 5);
+	write(2, "Quit\n", 5);*/
 }
 
 void	select_signal(void)

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 19:07:33 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/07 15:28:52 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/07 17:16:20 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ void	free_element(t_element *element)
 		free(aux->str);
 		if (aux->arg)
 		{
-			if (aux->type == 'C')
+			if (aux->type == 'C' || aux->type == 'B')
 				ft_free_dp(aux->arg);
 			else if (aux->type =='I' || aux->type == 'O' || aux->type == 'T' 
 				|| aux->type == 'H')
 			{
 				free(aux->arg[0]);
 				free(aux->arg[1]);
+				free(aux->arg);
 			}
 		}
 		free(aux);

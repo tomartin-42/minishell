@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/06 19:21:46 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/07 17:16:53 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	main(int argc, char **argv, char **env)
 	if (*env == NULL)
 		secure_env(m_env);
 	g_state = 0;
-	//select_signal();
+	select_signal();
 	while (1)
 	{
 		str = readline("🔥ShellFromHell🔥:> ");
