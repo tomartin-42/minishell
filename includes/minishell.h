@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/07 18:05:00 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/08 12:02:09 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 
 # define OK			1
 # define KO			0
-# define MAX_PIPE  10 
+# define MAX_PIPE	64 
 
 typedef struct s_env{
 	char			*v_env;

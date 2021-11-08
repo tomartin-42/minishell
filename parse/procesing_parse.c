@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/08 11:05:09 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/08 12:09:10 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	change_truck(t_element *p_elem)
 		p_elem->type = 'O';
 }
 
-//Asig type string to nodes of element
+//Asig type string to nodes of element, if not S add ? to type
 static void get_string(t_element *element)
 {
 	t_element	*p_elem;
@@ -151,12 +151,14 @@ static void	get_cmd_and_args(t_element *element)
 	{
 		if (p_elem->type == 'P')
 			cmd_state = false;
-		if (p_elem->type == '?' && cmd_state == false)
+		if ((p_elem->type == '?' || p_elem->type == 'S') 
+			&& cmd_state == false)
 		{
 			p_elem->type = 'C';
 			cmd_state = true;
 		}
-		else if (p_elem->type == '?' && cmd_state == true)
+		else if ((p_elem->type == '?' || p_elem->type == 'S') 
+			&& cmd_state == true)
 			p_elem->type = 'A';
 		p_elem = p_elem->next;
 	}
@@ -181,33 +183,13 @@ static void	clean_spaces_in_str(t_element *element)
 //asig value to t_element->type in function of type bash's element
 //need reevaluate list because some type depend of previos valude in the list
 //(ej. <,< <<)
-
-static void	clean_marks_in_str(t_element *element)
-{
-	t_element	*p_elem;
-	char		*aux;
-
-	p_elem = element;
-	while (p_elem)
-	{
-		aux = ft_strtrim(p_elem->str, "\" \'");
-		free(p_elem->str);
-		p_elem->str = ft_strdup(aux);
-		free(aux);
-		p_elem = p_elem->next;
-	}
-}
-
-
 ///////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////
 void	pre_procesing(t_element *element)
 {
-//	print_list(element);
-//	printf("*****************************************\n");
+	str_ex(element);
 	clean_spaces_in_str(element);
-	clean_marks_in_str(element);
 	get_string(element);
 	get_pipes_and_cmd_num(element);
 	get_trunk_file(element);
@@ -219,8 +201,6 @@ void	pre_procesing(t_element *element)
 //	print_list(element);
 	add_args(element);
 //	print_arg_list(element);
-//	print_list(element);
-//	printf("*****************************************\n");
 	//is_direct(element);
 	//expand_all(element);
 }
