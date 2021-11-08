@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/08 12:02:09 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/08 13:09:19 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void		select_signal(void);
 void		signal_in_proces(void);
 void		signal_hered(void);
 void		signal_build_hered(void);
+void		signal_ignorate(void);
 //void		exit_in_proces(int sig);
 
 void		free_element(t_element *element);

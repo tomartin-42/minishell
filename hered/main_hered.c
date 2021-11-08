@@ -93,7 +93,7 @@ void	main_hered(t_element *element, t_env *env, int sig)
 	char	*aux;
 
 	//if (sig == 1)
-	//	signal_hered();
+		signal_hered();
 	//else
 	//	signal_build_hered();
 	(void)sig;

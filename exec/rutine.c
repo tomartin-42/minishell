@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/07 20:35:45 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/08 13:13:28 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 		main_build_filt(element);
 		//ft_lst_del_all_x(element);
 		print_list(element);
+		signal_ignorate();
 		cmd_execution(element, command, env);
 		command->multi_cmd[0] = command->multi_cmd[1];
 		ft_free_dp(command->env);
