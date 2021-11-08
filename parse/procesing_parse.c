@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/08 09:44:41 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/08 13:58:42 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	change_truck(t_element *p_elem)
 		p_elem->type = 'O';
 }
 
-//Asig type string to nodes of element
+//Asig type string to nodes of element, if not S add ? to type
 static void get_string(t_element *element)
 {
 	t_element	*p_elem;
@@ -151,12 +151,14 @@ static void	get_cmd_and_args(t_element *element)
 	{
 		if (p_elem->type == 'P')
 			cmd_state = false;
-		if (p_elem->type == '?' && cmd_state == false)
+		if ((p_elem->type == '?' || p_elem->type == 'S') 
+			&& cmd_state == false)
 		{
 			p_elem->type = 'C';
 			cmd_state = true;
 		}
-		else if (p_elem->type == '?' && cmd_state == true)
+		else if ((p_elem->type == '?' || p_elem->type == 'S') 
+			&& cmd_state == true)
 			p_elem->type = 'A';
 		p_elem = p_elem->next;
 	}
@@ -186,8 +188,7 @@ static void	clean_spaces_in_str(t_element *element)
 ///////////////////////////////////////////////////////////////
 void	pre_procesing(t_element *element)
 {
-//	print_list(element);
-//	printf("*****************************************\n");
+	str_ex(element);
 	clean_spaces_in_str(element);
 	get_string(element);
 	get_pipes_and_cmd_num(element);
@@ -200,8 +201,6 @@ void	pre_procesing(t_element *element)
 //	print_list(element);
 	add_args(element);
 //	print_arg_list(element);
-//	print_list(element);
-//	printf("*****************************************\n");
 	//is_direct(element);
 	//expand_all(element);
 }

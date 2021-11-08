@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 11:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/08 11:07:23 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/08 14:02:18 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ void add_args(t_element *element)
 {
 	int	memory_cmd[MAX_PIPE];
 
-	print_list(element);///////////////////expand strings
+	//print_list(element);///////////////////expand strings
 	str_ex(element);
 	init_memory_cmd(memory_cmd);
 	count_memory_need(memory_cmd, element);

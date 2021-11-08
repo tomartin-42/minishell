@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 10:14:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/07 19:57:59 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/08 13:20:32 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	exit_in_hered(int sig)
 void	signal_hered(void)
 {
 	signal(SIGINT, &exit_in_hered); 
-//	signal(SIGQUIT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 static void	exit_build_hered(int sig)
@@ -79,4 +79,10 @@ static void	exit_build_hered(int sig)
 void	signal_build_hered(void)
 {
 	signal(SIGINT, &exit_build_hered);
+}
+
+void	signal_ignorate(void)
+{
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 }

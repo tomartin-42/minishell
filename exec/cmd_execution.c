@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:43:43 by davyd11           #+#    #+#             */
-/*   Updated: 2021/11/08 11:04:37 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/08 14:02:14 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void	cmd_execution(t_element *element, t_command *command, t_env *env)
 
 	pipe = false;
 	pipe = check_pipes_in_line(element);
-	printf("===========================\n");
-	print_list(element);
+	//printf("===========================\n");
+	//print_list(element);
 	if (command->cmd->type == 'B' && pipe == true)
 		execut_cmd_build(env, command);
 	else if (command->cmd->type == 'B' && pipe == false)
