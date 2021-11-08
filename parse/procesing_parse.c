@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/06 19:10:21 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/08 11:05:09 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,24 @@ static void	clean_spaces_in_str(t_element *element)
 //asig value to t_element->type in function of type bash's element
 //need reevaluate list because some type depend of previos valude in the list
 //(ej. <,< <<)
+
+static void	clean_marks_in_str(t_element *element)
+{
+	t_element	*p_elem;
+	char		*aux;
+
+	p_elem = element;
+	while (p_elem)
+	{
+		aux = ft_strtrim(p_elem->str, "\" \'");
+		free(p_elem->str);
+		p_elem->str = ft_strdup(aux);
+		free(aux);
+		p_elem = p_elem->next;
+	}
+}
+
+
 ///////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////
@@ -189,6 +207,7 @@ void	pre_procesing(t_element *element)
 //	print_list(element);
 //	printf("*****************************************\n");
 	clean_spaces_in_str(element);
+	clean_marks_in_str(element);
 	get_string(element);
 	get_pipes_and_cmd_num(element);
 	get_trunk_file(element);
