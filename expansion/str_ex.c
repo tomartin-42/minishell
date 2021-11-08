@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 19:37:34 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/29 12:10:30 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/08 13:34:40 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	remove_marks(t_element *p_elem)
 	string_len = ft_strlen(p_elem->str);
 	if (search_marks(p_elem) == 2)
 		mark = 39;
-	while (p_elem->str[n] != '\0' && string_len > 2)
+	while (p_elem->str[x] != '\0' && string_len > 2)
 	{
 		if (copy_point->str[n] == mark)
 			n++;
