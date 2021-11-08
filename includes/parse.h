@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:50:17 by davyd11           #+#    #+#             */
-/*   Updated: 2021/11/03 14:58:38 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/08 09:46:50 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	expand_all(t_element *element, t_env *m_env, int option);
 void	insert_list_str(t_element *p_elem, char *ret_expan);
 ////////////////////
 //in_args_add_cmd.c//
-void	yes_C_B(int size_arg, t_element	*p_elem);
+//void	yes_C_B(int size_arg, t_element	*p_elem);
 ////////////////////
 void	clean_element(t_element *element);
 void	pre_procesing(t_element *element);

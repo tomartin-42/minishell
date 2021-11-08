@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 21:08:34 by tommy             #+#    #+#             */
-/*   Updated: 2021/10/29 19:56:45 by tommy            ###   ########.fr       */
+/*   Updated: 2021/11/05 10:03:38 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void	ft_lst_del_all_x(t_element *element)
 		p_elem = p_elem->next;
 		if (p_aux != NULL)
 		{
-			if (p_aux->str[0] != '<' && p_aux->str[0] != '>')
-				ft_free_dp(p_aux->arg);
 			free(p_aux->str);
 			free(p_aux);
 			p_aux = NULL;
@@ -74,14 +72,43 @@ void	ft_lst_del_all_x(t_element *element)
 
 void	print_list(t_element *element)
 {
-	while (element)
+	t_element	*p_elem;
+
+	p_elem = element;
+	while (p_elem)
 	{
-		printf("[%s]\n", element->str);
-		printf("type -> [%c]\n", element->type);
-		if (element->type == 'H')
-			printf("arg[0] -> [%s]\n", element->arg[0]);
+		printf("[|%s|]\n", p_elem->str);
+		printf("type -> [%c]\n", p_elem->type);
+	//	if (p_elem->type == 'H')
+	//		printf("arg[0] -> [%s]\n", p_elem->arg[0]);
 	//	printf("arg[1] -> [%s]\n", element->arg[1]);
+		printf("cmd_num = %d\n", p_elem->cmd_num);
 		printf("==================================\n");
-		element = element->next;
+		p_elem = p_elem->next;
 	}
 }
+
+void	print_arg_list(t_element *element)
+{
+	t_element	*p_elem;
+	int		i;
+	
+	p_elem = element;
+	while (p_elem)
+	{
+		i = 0;
+		if (p_elem->type == 'C')
+		{
+			printf("cmd = %s\n", p_elem->str);
+			while (p_elem->arg[i] != NULL)
+			{
+				printf("arg %d = %s\n", i, p_elem->arg[i]);
+				i++;
+			}
+		}
+		p_elem = p_elem->next;
+	}
+	
+}
+
+

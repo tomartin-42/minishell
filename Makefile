@@ -6,7 +6,7 @@
 #    By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/11/03 15:27:45 by dpuente-         ###   ########.fr        #
+#    Updated: 2021/11/08 09:47:36 by dpuente-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME = minishell
 
 # Compiling flags
-FLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 F_RL = -I ~/.brew/opt/readline/include -I ~/.brew/opt/readline/lib 
 F_RL2 = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib \
 		-I /Users/$(USER)/.brew/opt/readline/include
@@ -37,7 +37,7 @@ INC_DIR = ./includes/
 # Source files and object files
 SRC_FILES = main.c utils_list.c util_env.c expand.c util_env2.c utils_src.c \
 			get_env.c signal.c free_resources.c
-PARSE_FILES = main_parse.c procesing_parse.c parse_operation.c sec_parse_proc.c in_args.c in_args_add_cmd.c
+PARSE_FILES = main_parse.c procesing_parse.c parse_operation.c sec_parse_proc.c in_args.c #in_args_add_cmd.c 
 HERED_FILES = main_hered.c
 BUILD_FILES = ft_export.c ft_export2.c ft_export3.c ft_echo.c ft_env.c ft_pwd.c ft_cd.c super_tolower.c ft_exit.c ft_count_char.c ft_unset.c ft_cd_utils.c ft_cd_reverse.c
 ERRORS_FILES = check_error.c errors.c errors_exec.c main_errors.c

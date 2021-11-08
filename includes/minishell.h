@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/02 13:29:33 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/08 09:45:00 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
  * G = All line
  * F = File
  * A = Argument
+ * ? = Unknown
  * E = ADD VAR
  * $ = CALL VAR
  * ======================================================================*/
@@ -46,6 +47,7 @@
 
 # define OK			1
 # define KO			0
+# define MAX_PIPE  10 
 
 typedef struct s_env{
 	char			*v_env;
@@ -61,6 +63,7 @@ typedef struct s_element{
 	char				type;
 	int					fd;
 	int					p_fd[2];
+	int					cmd_num;
 	struct s_element	*next;
 	struct s_element	*prev;
 }	t_element;
@@ -70,6 +73,7 @@ extern int	g_state;
 t_element	*ft_lstlast(t_element *lst);
 void		ft_lstadd_back(t_element **lst, t_element *new);
 void		print_list(t_element *element);
+void		print_arg_list(t_element *element);
 void		ft_lst_del_all_x(t_element *elemnt);
 
 int			ft_access(char *fname);
@@ -100,7 +104,7 @@ void		select_signal(void);
 void		signal_in_proces(void);
 void		signal_hered(void);
 void		signal_build_hered(void);
-void		exit_in_proces(int sig);
+//void		exit_in_proces(int sig);
 
 void		free_element(t_element *element);
 void		free_env_list(t_env *env);

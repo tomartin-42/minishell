@@ -5,104 +5,157 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/03 19:02:31 by davyd11           #+#    #+#             */
-/*   Updated: 2021/11/03 15:27:59 by dpuente-         ###   ########.fr       */
+/*   Created: 2021/11/05 11:07:52 by tomartin          #+#    #+#             */
+/*   Updated: 2021/11/08 11:07:23 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-int	file_input(t_element *p_elem)
+static	void init_memory_cmd(int *memory)
 {
-	if (p_elem != NULL && p_elem->next != NULL
-		&& p_elem->next->type == 'F')
+	int	i;
+
+	i = 0;
+	while (i < MAX_PIPE)
 	{
-		p_elem->arg[0] = p_elem->next->str;
-		return (0);
+		memory[i] = 1;
+		i++;
 	}
-	p_elem->arg[1] = NULL;
-	return (-1);
-}
+}	
 
-void	arg_input(t_element *p_elem, int size_arg)
-{
-	int			n;
-	t_element	*p_elem_arg;
-
-	n = 1;
-	p_elem_arg = p_elem;
-	p_elem->arg[0] = ft_strdup(p_elem->str);//anade cmd al arg[0] para ejecuccion
-	while (n <= size_arg)//para quitar cmd from arg quitar =
-	{
-		if (p_elem_arg != NULL)
-			p_elem_arg = p_elem_arg->next;
-		p_elem->arg[n] = ft_strdup(p_elem_arg->str);
-		n++;
-	}
-	p_elem->arg[n] = NULL;
-}
-
-int	count_args(t_element *p_elem)
-{
-	int	n;
-
-	n = 0;
-	if (p_elem)
-		p_elem = p_elem->next;
-	while (p_elem && (p_elem->type == 'A' || p_elem->type == 'E'
-			|| p_elem->type == '$' || p_elem->type == 'F'))
-	{
-		p_elem = p_elem->next;
-		n++;
-	}
-	return (n);
-}
-
-void	add_args(t_element *element)
+static void	count_memory_need(int *memory_cmd, t_element *element)
 {
 	t_element	*p_elem;
-	int			size_arg;
 
 	p_elem = element;
 	while (p_elem)
 	{
-		size_arg = 0;
-		if (p_elem->type == 'C' || p_elem->type == 'B')
+		if (p_elem->type == 'C' || p_elem->type == 'A')
+			memory_cmd[p_elem->cmd_num] += 1;
+		p_elem = p_elem->next;
+	}
+	//for(int i=0; i < MAX_PIPE; i++)
+	//	printf("%d -> %d\n", i, memory_cmd[i]);
+}
+
+static void	reservate_memory(int *memory_cmd, t_element *element)
+{
+	t_element	*p_elem;
+
+	(void)memory_cmd;
+	p_elem = element;
+	while (p_elem)
+	{
+		if (p_elem->type == 'C')
+			p_elem->arg = (char **)malloc(sizeof(char *)
+				* (memory_cmd[p_elem->cmd_num]));
+		p_elem = p_elem->next;
+	}
+}
+
+static void	search_cmd_to_add(t_element *element, t_element *p_elem, int i)
+{
+	t_element	*aux_elem;
+
+	aux_elem = element;
+	while (aux_elem)
+	{
+		if (aux_elem->type == 'C' && (aux_elem->cmd_num == p_elem->cmd_num))
 		{
-			yes_C_B(size_arg, p_elem);
-			/* size_arg = count_args(p_elem);
-			if (size_arg > 0)
-			{
-				p_elem->arg = malloc(sizeof(char *) * (size_arg + 2));
-				arg_input(p_elem, size_arg);
-			}
-			else
-			{
-				p_elem->arg = malloc(sizeof(char *) * 2);
-				p_elem->arg[0] = ft_strdup(p_elem->str);
-				p_elem->arg[1] = NULL;
-			} */
+			aux_elem->arg[i] = ft_strdup(p_elem->str);
+			break ;
 		}
-		else if (p_elem->type == 'I' || p_elem->type == 'H'
-			|| p_elem->type == 'T' || p_elem->type == 'O')
+		aux_elem = aux_elem->next;
+	}
+}
+
+static void	search_cmd_to_add_end(t_element *element, t_element *p_elem, int i)
+{
+	t_element	*aux_elem;
+
+	aux_elem = element;
+	while (aux_elem)
+	{
+		if (aux_elem->type == 'C' && (aux_elem->cmd_num == p_elem->cmd_num))
 		{
-			size_arg = count_args(p_elem);
-			if (size_arg > 0)
-			{
-				p_elem->arg = malloc(sizeof(char *) * (size_arg + 2));
-				arg_input(p_elem, size_arg);
-			}
-			else
-			{
-				p_elem->arg = malloc(sizeof(char *) * 1);
-				p_elem->arg[0] = NULL;
-			}
+			aux_elem->arg[i] = NULL;
+			break ;
 		}
-		else
+		aux_elem = aux_elem->next;
+	}
+}
+
+static void	copy_arg_int_cmd(t_element *element)
+{
+	t_element	*p_elem;
+	int			num_arg;
+
+	num_arg = 0;
+	p_elem = element;
+	while (p_elem)
+	{
+		if (p_elem->type == 'C')
 		{
-			p_elem->arg = malloc(sizeof(char *) * 1);
-			p_elem->arg[0] = NULL;
+			p_elem->arg[num_arg] = ft_strdup(p_elem->str);
+			num_arg++;
+		}
+		else if (p_elem->type == 'A')
+		{
+			search_cmd_to_add(element, p_elem, num_arg);
+			num_arg++;
+		}
+		if (p_elem->type == 'P' || p_elem->next == NULL)
+		{
+			search_cmd_to_add_end(element, p_elem, num_arg);
+			num_arg = 0;
 		}
 		p_elem = p_elem->next;
 	}
+}
+
+static void dell_all_arg(t_element *element)
+{
+	t_element	*p_elem;
+
+	p_elem = element;
+	while (p_elem)
+	{
+		if (p_elem->type == 'A')
+			p_elem->type = 'X';
+		p_elem = p_elem->next;
+	}
+	ft_lst_del_all_x(element);
+}
+
+static void	copy_arg_redir(t_element *element)
+{
+	t_element	*p_elem;
+
+	p_elem = element;
+	while (p_elem)
+	{
+		if (p_elem->type == 'I' || p_elem->type == 'O' 
+			|| p_elem->type == 'T' || p_elem->type == 'H')
+		{
+			p_elem->arg = malloc(sizeof(char *) * 2);
+			p_elem->arg[0] = ft_strdup(p_elem->str);
+			p_elem->arg[1] = ft_strdup(p_elem->next->str);
+		}
+		p_elem = p_elem->next;
+	}
+}
+
+void add_args(t_element *element)
+{
+	int	memory_cmd[MAX_PIPE];
+
+	print_list(element);///////////////////expand strings
+	str_ex(element);
+	init_memory_cmd(memory_cmd);
+	count_memory_need(memory_cmd, element);
+	reservate_memory(memory_cmd, element);
+	copy_arg_int_cmd(element);
+	dell_all_arg(element);
+	copy_arg_redir(element);
 }

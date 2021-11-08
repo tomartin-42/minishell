@@ -6,21 +6,21 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:18:27 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/04 17:48:04 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/08 09:54:20 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
 
 //opendir, readdir, closedi
-int	check_oldpwd(t_env *env)
+int	check_var(t_env *env, char *env_var)
 {
 	t_env	*p_env;
 
 	p_env = env;
 	while (p_env)
 	{
-		if (!ft_strcmp("OLDPWD", p_env->var[0]))
+		if (!ft_strcmp(env_var, p_env->var[0]))
 		{
 			if (p_env->var[0] && p_env->var[1])
 				return (0);
@@ -89,8 +89,10 @@ int	ft_cd(t_command *command, t_env *env)
 	pos = 0;
 	while (command->cmd->arg[pos])
 		pos++;
-	if (!check_oldpwd(env))
+	if (!check_var(env, "OLDPWD"))
 		o_pwd = true;
+	if (check_var(env, "PWD"))
+		return (0);
 	if (command->cmd->arg[1])
 		remove_end_trash(command);
 	if (pos > 1)

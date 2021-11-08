@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/04 17:04:35 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/08 09:45:21 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 #include "exec.h"
 #include "errorlib.h"
 
-int	g_state; //VARIABLE GLOBAL para indicar el estado
+// Global variable for indicate the value state
+int	g_state; 
 
 //This function initialice and copy the env var to list 
 //(m_env)
@@ -37,7 +38,7 @@ static t_env	*copy_env(char **env)
 	i = 0;
 	m_env = NULL;
 	new = NULL;
-	aux = ft_strdup("Specialthanksto=Jagonza and Carce-bo");
+	aux = ft_strdup("Specialthanksto=Javgonza and Carce-bo");
 	new = new_env_node_global(new, aux);
 	new->visible = false;
 	ft_lstadd_back_env(&m_env, new);
@@ -119,9 +120,9 @@ int	main(int argc, char **argv, char **env)
 	if (*env == NULL)
 		secure_env(m_env);
 	g_state = 0;
-	select_signal();
 	while (1)
 	{
+		select_signal();
 		str = readline("🔥ShellFromHell🔥:> ");
 		if (str == NULL)
 		{
@@ -144,8 +145,9 @@ int	main(int argc, char **argv, char **env)
 				//print_list(element);//////////////////////////////////////////borrar
 				main_exec(element, m_env);
 				tcsetattr(0, TCSANOW, &old);
-				//system("leaks -q  minishell");
 				free (line);
+				free_element(element);
+			//	system("leaks -q  minishell");
 			}
 		}
 	}

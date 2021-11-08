@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 13:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/04 17:04:08 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/08 09:44:54 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ void	redir_files(t_command *command)
 		p_elem = p_elem->next;
 	}
 }
-/*
-void  get_fd_pipes(t_element *element)
+
+/*void  get_fd_pipes(t_element *element)
 {
 	t_element	*p_elem;
 
@@ -145,7 +145,8 @@ void	main_exec(t_element *element, t_env *env)
 	t_command	command;
 	t_element	*next_elem;
 
-	//print_list(element);
+//	print_list(element);
+//	print_arg_list(element);
 	command.p_elem = element;
 	command.m_env = env;
 	next_elem = element->next;
@@ -157,6 +158,6 @@ void	main_exec(t_element *element, t_env *env)
 	command.pid_num = 0;
 	rutine_command(next_elem, env, &command);
 	close_hered(element);
-	free_element(element);
+//	free_element(element);
 }
 
