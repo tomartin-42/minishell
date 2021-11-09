@@ -37,8 +37,8 @@ static void	change_heredoc(t_element *p_elem)
 		p_elem->str = ft_strdup("<<");
 		p_elem->type = 'H';
 		p_elem->next->type = 'X';
-		p_elem->next->arg = malloc (sizeof(char *));
-		p_elem->next->arg[0] = ft_strdup("");
+	//	p_elem->next->arg = malloc (sizeof(char *));
+	//	p_elem->next->arg[0] = ft_strdup("");
 	}			
 	else
 		p_elem->type = 'I';
@@ -52,8 +52,8 @@ static void	change_truck(t_element *p_elem)
 		p_elem->str = ft_strdup(">>");
 		p_elem->type = 'T';
 		p_elem->next->type = 'X';
-		p_elem->next->arg = malloc (sizeof(char *));
-		p_elem->next->arg[0] = ft_strdup("");
+	 //	p_elem->next->arg = malloc (sizeof(char *));
+	//	p_elem->next->arg[0] = ft_strdup("");
 	}
 	else
 		p_elem->type = 'O';
@@ -196,10 +196,11 @@ void	pre_procesing(t_element *element)
 	get_hered_file(element);
 	get_cmd_and_args(element);
 //	print_list(element);
-//	ft_lst_del_all_x(element);
+	ft_lst_del_all_x(element);
 //	order_element_list(element);
 //	print_list(element);
 	add_args(element);
+//	ft_lst_del_all_x(element);
 //	print_arg_list(element);
 	//is_direct(element);
 	//expand_all(element);

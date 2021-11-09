@@ -64,6 +64,7 @@ typedef struct s_element{
 	int					fd;
 	int					p_fd[2];
 	int					cmd_num;
+	bool				hd_expand;
 	struct s_element	*next;
 	struct s_element	*prev;
 }	t_element;
