@@ -66,8 +66,8 @@ static void	exit_in_hered(int sig)
 
 void	signal_hered(void)
 {
-	signal(SIGINT, SIG_DFL); 
 	signal(SIGINT, &exit_in_hered); 
+	signal(SIGQUIT, SIG_IGN);
 }
 
 static void	exit_build_hered(int sig)

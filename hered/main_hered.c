@@ -91,8 +91,7 @@ static void	hered_no_expand(t_element *element)
 void	main_hered(t_element *element, t_env *env, int sig)
 {
 	//if (sig == 1)
-	//	signal_ignorate();
-	//	signal_hered();
+		signal_hered();
 	//else
 	//	signal_build_hered();
 	(void)sig;

@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/08 12:09:10 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/09 20:06:49 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	change_truck(t_element *p_elem)
 		p_elem->str = ft_strdup(">>");
 		p_elem->type = 'T';
 		p_elem->next->type = 'X';
-	 //	p_elem->next->arg = malloc (sizeof(char *));
+	//	p_elem->next->arg = malloc (sizeof(char *));
 	//	p_elem->next->arg[0] = ft_strdup("");
 	}
 	else
@@ -196,11 +196,10 @@ void	pre_procesing(t_element *element)
 	get_hered_file(element);
 	get_cmd_and_args(element);
 //	print_list(element);
-	ft_lst_del_all_x(element);
+//	ft_lst_del_all_x(element);
 //	order_element_list(element);
 //	print_list(element);
 	add_args(element);
-//	ft_lst_del_all_x(element);
 //	print_arg_list(element);
 	//is_direct(element);
 	//expand_all(element);

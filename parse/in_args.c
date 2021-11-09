@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 11:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/08 12:13:37 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/09 20:08:55 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,12 +141,7 @@ static void	copy_arg_redir(t_element *element)
 			p_elem->arg = malloc(sizeof(char *) * 2);
 			p_elem->arg[0] = ft_strdup(p_elem->str);
 			p_elem->arg[1] = ft_strdup(p_elem->next->str);
-			if (p_elem->type == 'H' && (p_elem->arg[1][0] == '"' 
-				|| p_elem->arg[1][0] == 39))
-				p_elem->hd_expand = false;
-			else
-				p_elem->hd_expand = true;
-
+			p_elem->hd_expand = p_elem->next->hd_expand;
 		}
 		p_elem = p_elem->next;
 	}

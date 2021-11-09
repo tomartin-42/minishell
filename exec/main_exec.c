@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 13:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/07 18:09:04 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/09 19:44:44 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	start_hered(t_element *element, t_env *env, int sig)
 	{
 		if (aux_ele->type == 'H')
 		{
+			printf("[[%d]]\n", aux_ele->hd_expand);
 			main_hered(aux_ele, env, sig);
 		}
 		aux_ele = aux_ele->next;
