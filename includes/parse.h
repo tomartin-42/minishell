@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:50:17 by davyd11           #+#    #+#             */
-/*   Updated: 2021/11/03 14:58:38 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/10 12:48:26 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,9 @@ void	check_env(t_element *p_elem);
 void	arg_token(t_element *p_elem);
 void	sec_procesing(t_element *p_elem);
 void	is_direct(t_element *element);
-int		thereis_command(t_element *element);
 ////////////////////
 //in_args.c//
 void	add_args(t_element *element);
-int		count_args(t_element *p_elem);
-void	arg_input(t_element *p_elem, int size_arg);
 ////////////////////
 //env_ex.c//
 void	env_ex(t_element *element, t_env *m_env);
@@ -53,9 +50,6 @@ void	str_ex(t_element *element);
 void	expand_all(t_element *element, t_env *m_env, int option);
 void	insert_list_str(t_element *p_elem, char *ret_expan);
 ////////////////////
-//in_args_add_cmd.c//
-void	yes_C_B(int size_arg, t_element	*p_elem);
-////////////////////
 void	clean_element(t_element *element);
 void	pre_procesing(t_element *element);
 void	post_procesing(t_element *element);
@@ -67,5 +61,7 @@ void	rutine_parse(char *str, t_element *element, t_env *m_env);
 //void	rutine_parse(char *str, t_element *elemnet);
 void	main_parse(char *str, t_element *elemen);
 void	copy_to_word(char *str, int *i, int *j, t_element *element);
+
+void	check_if_add_do_nothing(t_element *element);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:35:27 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/02 13:30:07 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/22 19:28:23 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	change_shlvl(t_env *env)
 }
 
 //This function get a env_var name and change the value
-void	chg_env_var(t_env *env, char *var, char *n_value)
+void	change_single_env_var(t_env *env, char *var, char *n_value)
 {
 	t_env	*p_env;
 	char	*aux;

@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hered.h                                            :+:      :+:    :+:   */
+/*   ft_do_nothing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 07:39:50 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/10 09:22:12 by tomartin         ###   ########.fr       */
+/*   Created: 2021/11/10 12:19:08 by tomartin          #+#    #+#             */
+/*   Updated: 2021/11/10 12:21:06 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HERED_H
-# define HERED_H
-
-# include "minishell.h"
-
-void	main_hered(t_element *elemento, t_env *env, int sig);
-void	close_hered(t_element *element);
-
-#endif
+int	ft_do_nothing(void);
+{
+	return (0);
+}

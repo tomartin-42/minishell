@@ -33,7 +33,8 @@ int	is_build(t_element *p_elem)
 		p_elem->type = 'B';
 		return (1);
 	}
-	else if (ft_strcmp(p_elem->str, "pwd") == 0)
+	else if (ft_strcmp(p_elem->str, "pwd") == 0 
+		|| ft_strcmp(p_elem->str, "do_nothing") == 0)
 	{
 		p_elem->type = 'B';
 		return (1);

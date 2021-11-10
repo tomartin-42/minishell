@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/04 16:30:25 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/10 11:51:24 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	close_forks(t_element *element)
 	}
 }
 
-/*void	execut_cmd_build_np(t_env *env, t_command *command)
+void	execut_cmd_build_np(t_env *env, t_command *command)
 {
 	start_hered(command->p_elem, command->m_env, 0);
 	redir_files(command);
@@ -72,20 +72,20 @@ void	execut_cmd_build(t_env *env, t_command *command)
 	pid = fork();
 	if (pid == 0)
 	{
-		signal_in_proces();
+	//	signal_in_proces();
 		if (command->multi_cmd[1] && command->multi_cmd[1]->type == 'P')
 		{
 			dup2(command->multi_cmd[1]->p_fd[1], STDOUT_FILENO);
 			close(command->multi_cmd[1]->p_fd[0]);
 		}
-		start_hered(command->p_elem, command->m_env, 1);
+		start_hered(command->p_elem, command->m_env, 2);
 		redir_files(command);
 		g_state = build_filt(command, env);
 		exit (g_state);
 	}
 	else
 		close(command->multi_cmd[0]->p_fd[0]);
-}*/
+}
 
 //The motor of execut comand (No Buildings)
 void	execut_cmd(char **env, t_command *command)
@@ -135,7 +135,7 @@ static t_element *get_last_pipe(t_command *command)
 
 void	rutine_command(t_element *element, t_env *env, t_command *command)
 {
-	while (command->multi_cmd[0])
+	while(command->multi_cmd[0])
 	{
 		command->multi_cmd[1] = get_last_pipe(command);
 		if (command->multi_cmd[1] != NULL)
@@ -143,15 +143,16 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 		command->env = extract_env_list(env);
 		extract_cmd_and_arg(command);
 		main_build_filt(element);
-		ft_lst_del_all_x(element);
+		print_list(element);
+		signal_ignorate();
 		cmd_execution(element, command, env);
 		command->multi_cmd[0] = command->multi_cmd[1];
 		ft_free_dp(command->env);
 	}
-	dup2(command->fd_stdin, STDIN_FILENO);
-	dup2(command->fd_stdout, STDOUT_FILENO);
-	if (check_pipes_or_cmd(element))
-		close_forks(element);
-	close(command->fd_stdin);
-	close(command->fd_stdout);
+		dup2(command->fd_stdin, STDIN_FILENO);
+		dup2(command->fd_stdout, STDOUT_FILENO);
+		if (check_pipes_or_cmd(element))
+			close_forks(element);
+		close(command->fd_stdin);
+		close(command->fd_stdout);
 }

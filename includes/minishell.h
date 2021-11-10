@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/02 13:29:33 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/09 20:08:52 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
  * G = All line
  * F = File
  * A = Argument
+ * ? = Unknown
  * E = ADD VAR
  * $ = CALL VAR
  * ======================================================================*/
@@ -46,6 +47,7 @@
 
 # define OK			1
 # define KO			0
+# define MAX_PIPE	64 
 
 typedef struct s_env{
 	char			*v_env;
@@ -61,6 +63,8 @@ typedef struct s_element{
 	char				type;
 	int					fd;
 	int					p_fd[2];
+	int					cmd_num;
+	bool				hd_expand;
 	struct s_element	*next;
 	struct s_element	*prev;
 }	t_element;
@@ -70,6 +74,7 @@ extern int	g_state;
 t_element	*ft_lstlast(t_element *lst);
 void		ft_lstadd_back(t_element **lst, t_element *new);
 void		print_list(t_element *element);
+void		print_arg_list(t_element *element);
 void		ft_lst_del_all_x(t_element *elemnt);
 
 int			ft_access(char *fname);
@@ -81,7 +86,7 @@ t_env		*new_env_node_global(t_env *new, char *var);
 t_env		*new_env_node_export(t_env *new, char *var);
 t_env		*ft_lstlast_env(t_env *lst);
 void		change_shlvl(t_env *env);
-void		chg_env_var(t_env *env, char *var, char *n_value);
+void		change_sigle_env_var(t_env *env, char *var, char *n_value);
 
 char		*ft_expand(t_env *m_env, char *str);
 
@@ -100,7 +105,8 @@ void		select_signal(void);
 void		signal_in_proces(void);
 void		signal_hered(void);
 void		signal_build_hered(void);
-void		exit_in_proces(int sig);
+void		signal_ignorate(void);
+//void		exit_in_proces(int sig);
 
 void		free_element(t_element *element);
 void		free_env_list(t_env *env);

@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/04 10:20:41 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/10 12:49:20 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	clean_element(t_element *element)
 
 static void	change_heredoc(t_element *p_elem)
 {
-	if (p_elem->next != NULL && p_elem->next->str[0] == '<')
+	if (p_elem->next->str[0] == '<')
 	{
 		free(p_elem->str);
 		p_elem->str = ft_strdup("<<");
 		p_elem->type = 'H';
 		p_elem->next->type = 'X';
-		p_elem->next->arg = malloc (sizeof(char *));
-		p_elem->next->arg[0] = ft_strdup("");
+	//	p_elem->next->arg = malloc (sizeof(char *));
+	//	p_elem->next->arg[0] = ft_strdup("");
 	}			
 	else
 		p_elem->type = 'I';
@@ -46,112 +46,177 @@ static void	change_heredoc(t_element *p_elem)
 
 static void	change_truck(t_element *p_elem)
 {
-	if (p_elem->next != NULL && p_elem->next->str[0] == '>')
+	if (p_elem->next->str[0] == '>')
 	{	
 		free(p_elem->str);
 		p_elem->str = ft_strdup(">>");
 		p_elem->type = 'T';
 		p_elem->next->type = 'X';
-		p_elem->next->arg = malloc (sizeof(char *));
-		p_elem->next->arg[0] = ft_strdup("");
+	//	p_elem->next->arg = malloc (sizeof(char *));
+	//	p_elem->next->arg[0] = ft_strdup("");
 	}
 	else
 		p_elem->type = 'O';
 }
 
-static void	change_position_list(t_element *e_move, t_element *p1)
-{
-	t_element	*aux;
-
-	aux = e_move;
-	while (aux->next != p1)
-		aux = aux->next;
-	if (p1 && p1->type == 'P')
-	{
-		p1->prev->next = e_move;
-		e_move->next = p1;
-  		e_move->prev = p1->prev;
-		p1->prev = e_move;	
-	}
-	else
-	{
-		e_move->next = NULL;
-		e_move->prev = aux;
-		aux->next = e_move;
-	}
-}
-
-static int	need_order_cmd(t_element *p0, t_element *p1)
-{
-	t_element	*p_elem;
-	
-	p_elem = p0;
-	while (p_elem->next != p1)
-	{
-		if ((p_elem->type == 'I' || p_elem->type == 'O' || p_elem->type == 'T'
-			|| p_elem->type == 'H' || p_elem->type == 'F')
-			 && (p_elem->next->type == 'C' || p_elem->next->type == 'A'))
-			return (1);
-		p_elem = p_elem->next;
-	}
-	return (0);
-}
-
-static	int check_order_list(t_element *p0, t_element *p1)
-{
-	int	cmd;
-	int	resp;	
-
-	resp = 0;
-	cmd = need_order_cmd(p0, p1);
-	printf("cmd %d\n", cmd);
-	resp = cmd;
-	return (resp);
-}
-
-// Receive the start point to order and search the next point to order
-static t_element	*get_next_pipe(t_element *element)
+//Asig type string to nodes of element, if not S add ? to type
+static void get_string(t_element *element)
 {
 	t_element	*p_elem;
 
 	p_elem = element;
-	while (p_elem && p_elem->type != 'P')
+	while (p_elem)
+	{
+		if (p_elem->str[0] == '"')
+			p_elem->type = 'S';
+		else if (p_elem->str[0] == 39)
+			p_elem->type = 'S';
+		else
+			p_elem->type = '?';
 		p_elem = p_elem->next;
-	return (p_elem);
+	}
 }
 
-static void	order_element_list(t_element *element)
+//Asig the cmd_num for each pipe and asig P to the pipes
+static void	get_pipes_and_cmd_num(t_element *element)
 {
 	t_element	*p_elem;
-	t_element	*aux;
-	t_element	*point[2];
+	int			cmd;
 
+	cmd = 1;
 	p_elem = element;
-	point[0] = p_elem;
-	point[1] = point[0];
-	while (point[1] != NULL && point[0] != NULL)
+	p_elem->type = 'G';
+	p_elem = p_elem->next;
+	while(p_elem)
 	{
-		point[1] = get_next_pipe(point[0]);
-		while (check_order_list(point[0], point[1]))
+		if (p_elem->str[0] == '|' && p_elem->type == '?')
 		{
-			if (p_elem->type == 'I' || p_elem->type == 'O' || p_elem->type == 'T'
-				|| p_elem->type == 'H' || p_elem->type == 'F')
-			{
-				printf("HOLA1\n");
-				p_elem->next->prev = p_elem->prev;
-				p_elem->prev->next = p_elem->next;
-				aux = p_elem;
-				p_elem = point[0];
-				change_position_list(aux, point[1]);
-			}
-			printf("HOLA2\n");
-			p_elem = p_elem->next;
+			p_elem->type = 'P';
+			p_elem->cmd_num = cmd;
+			cmd++;
 		}
-		point[0] = point[1];
-		if (point[0])
-			point[0] = point[0]->next;
+		else
+			p_elem->cmd_num = cmd;
+		p_elem = p_elem->next;
 	}
 }
+
+//Asig Trunc or output file to the nodes
+static void get_trunk_file(t_element *element)
+{
+	t_element	*p_elem;
+
+	p_elem = element;
+	while (p_elem)
+	{
+		if (p_elem->str[0] == '>' && p_elem->type == '?')
+		{
+			change_truck(p_elem);
+			ft_lst_del_all_x(element);
+			if (p_elem->next != NULL)
+				p_elem->next->type = 'F';
+		}
+		p_elem = p_elem->next;
+	}
+}
+
+//Asig Hered or input file to the nodes
+static void get_hered_file(t_element *element)
+{
+	t_element	*p_elem;
+
+	p_elem = element;
+	while (p_elem)
+	{
+		if (p_elem->str[0] == '<' && p_elem->type == '?')
+		{	
+			change_heredoc(p_elem);
+			ft_lst_del_all_x(element);
+			if (p_elem->next != NULL)
+				p_elem->next->type = 'F';
+		}
+		p_elem = p_elem->next;
+	}
+}
+
+//Asit cmd and arg in the nodes
+static void	get_cmd_and_args(t_element *element)
+{
+	t_element	*p_elem;
+	bool		cmd_state;
+
+	cmd_state = false;
+	p_elem = element;
+	while (p_elem)
+	{
+		if (p_elem->type == 'P')
+			cmd_state = false;
+		if ((p_elem->type == '?' || p_elem->type == 'S') 
+			&& cmd_state == false)
+		{
+			p_elem->type = 'C';
+			cmd_state = true;
+		}
+		else if ((p_elem->type == '?' || p_elem->type == 'S') 
+			&& cmd_state == true)
+			p_elem->type = 'A';
+		p_elem = p_elem->next;
+	}
+}
+
+
+static void	clean_spaces_in_str(t_element *element)
+{
+	t_element	*p_elem;
+	char		*aux;
+
+	p_elem = element;
+	while (p_elem)
+	{
+		aux = ft_strtrim(p_elem->str, " \t");
+		free (p_elem->str);
+		p_elem->str = ft_strdup(aux);
+		free(aux);
+		p_elem = p_elem->next;
+	}
+}
+
+static void add_do_nothing(t_element *element)
+{
+	t_element *new;
+
+	new = malloc(sizeof(t_element));
+	new->str = ft_strdup("do_nothing");
+	new->arg = malloc(sizeof(char *) * 2);
+	new->arg[0] = ft_strdup("do_nothing");
+	new->arg[1] = NULL; 
+	new->type = 'C';
+	new->cmd_num = 1;
+	new->next = NULL;
+	ft_lstadd_back(&element, new);
+}
+
+void	check_if_add_do_nothing(t_element *element)
+{
+	t_element	*p_elem;
+	bool		cmd;
+
+	p_elem = element;
+	cmd = false;
+	while (p_elem)
+	{
+		if (p_elem->type == 'C')
+		{
+			cmd = true;
+			break ;
+		}
+		p_elem = p_elem->next;
+	}
+	if (cmd == false)
+		add_do_nothing(element);
+}
+
+
 //asig value to t_element->type in function of type bash's element
 //need reevaluate list because some type depend of previos valude in the list
 //(ej. <,< <<)
@@ -160,37 +225,21 @@ static void	order_element_list(t_element *element)
 ///////////////////////////////////////////////////////////////
 void	pre_procesing(t_element *element)
 {
-	t_element	*p_elem;
-
-	p_elem = element;
-	print_list(element);
-	printf("*****************************************\n");
-	while (p_elem)
-	{
-		if (p_elem->type == 'X' || p_elem->type == 'G')
-			;
-		else if (p_elem->str[0] == '"')
-			p_elem->type = 'S';
-		else if (p_elem->str[0] == 39)
-			p_elem->type = 'S';
-		else if (p_elem->str[0] == '<')
-			change_heredoc(p_elem);
-		else if (p_elem->str[0] == '>')
-			change_truck(p_elem);
-		else if (p_elem->str[0] == '|')
-			p_elem->type = 'P';
-		else if (p_elem->prev && p_elem->prev->type == 'P')
-			p_elem->type = 'C';
-		else if (p_elem->str[0] != '<' && p_elem->str[0] != '>')
-			p_elem->type = 'A';
-		sec_procesing(p_elem);
-		check_env(p_elem);
-		p_elem = p_elem->next;
-	}
-	ft_lst_del_all_x(element);
-	order_element_list(element);
-	print_list(element);
+	str_ex(element);
+	clean_spaces_in_str(element);
+	get_string(element);
+	get_pipes_and_cmd_num(element);
+	get_trunk_file(element);
+	get_hered_file(element);
+	get_cmd_and_args(element);
+//	print_list(element);
+//	ft_lst_del_all_x(element);
+//	order_element_list(element);
 	add_args(element);
+	print_list(element);
+	check_if_add_do_nothing(element);
+	print_list(element);
+//	print_arg_list(element);
 	//is_direct(element);
 	//expand_all(element);
 }
