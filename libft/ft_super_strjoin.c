@@ -25,12 +25,13 @@ static void	gestion_free(char *s1, char *s2, int str_free)
 		free(s2);
 	}
 }
+
 // Implementation ft_split plus add free()
 // if str_free = 0 (no free)
 // str_free = 1 (free s1)
 // str_free = 2 (free s2)
 // str_free = 3 (free s1 and s2)
-char	*ft_super_strjoin(char *s1, char *s2, int str_free)
+char *ft_super_strjoin(char *s1, char *s2, int str_free)
 {
 	int		i;
 	int		j;

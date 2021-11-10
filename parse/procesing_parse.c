@@ -236,9 +236,7 @@ void	pre_procesing(t_element *element)
 //	ft_lst_del_all_x(element);
 //	order_element_list(element);
 	add_args(element);
-	print_list(element);
 	check_if_add_do_nothing(element);
-	print_list(element);
 //	print_arg_list(element);
 	//is_direct(element);
 	//expand_all(element);
