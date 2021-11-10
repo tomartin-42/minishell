@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/09 20:28:46 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/10 08:02:30 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	execut_cmd_build(t_env *env, t_command *command)
 			dup2(command->multi_cmd[1]->p_fd[1], STDOUT_FILENO);
 			close(command->multi_cmd[1]->p_fd[0]);
 		}
-		start_hered(command->p_elem, command->m_env, 1);
+		start_hered(command->p_elem, command->m_env, 2);
 		redir_files(command);
 		g_state = build_filt(command, env);
 		exit (g_state);

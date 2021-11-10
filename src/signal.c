@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 10:14:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/09 20:33:06 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/10 09:08:29 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	signal_in_proces(void)
 static void	exit_in_hered(int sig)
 {
 	(void)sig;
-	printf("SIG_HERED\n");
 	g_state = 130;
 	exit (130);
 }
@@ -71,15 +70,17 @@ void	signal_hered(void)
 	signal(SIGQUIT, SIG_IGN);
 }
 
-static void	exit_build_hered(int sig)
+/*static void	exit_build_hered(int sig)
 {
 	(void)sig;
 	g_state = 130;
-}
+}*/
 
 void	signal_build_hered(void)
 {
-	signal(SIGINT, &exit_build_hered);
+	//signal(SIGINT, &exit_build_hered);
+	signal(SIGINT,	SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 void	signal_ignorate(void)
