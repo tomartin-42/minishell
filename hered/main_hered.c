@@ -38,8 +38,8 @@ static void	hered_expand(t_element *element, t_env *env)
 		h_str = readline("> ");
 		if (h_str == NULL)
 			break ;
-		if (!ft_strncmp(element->arg[1], h_str, ft_strlen(element->arg[1]))
-			&& ft_strlen(element->arg[1]) == ft_strlen(h_str))
+		if ((!ft_strncmp(element->arg[1], h_str, ft_strlen(element->arg[1]))
+			&& ft_strlen(element->arg[1]) == ft_strlen(h_str)) || h_str[0] == '\03')
 		{
 			free(h_str);
 			break ;
