@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:50:17 by davyd11           #+#    #+#             */
-/*   Updated: 2021/10/29 11:37:39 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/10 12:48:26 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,7 @@ void	rutine_parse(char *str, t_element *element, t_env *m_env);
 //void	rutine_parse(char *str, t_element *elemnet);
 void	main_parse(char *str, t_element *elemen);
 void	copy_to_word(char *str, int *i, int *j, t_element *element);
+
+void	check_if_add_do_nothing(t_element *element);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/09 20:06:49 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/10 12:49:20 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,43 @@ static void	clean_spaces_in_str(t_element *element)
 		p_elem = p_elem->next;
 	}
 }
+
+static void add_do_nothing(t_element *element)
+{
+	t_element *new;
+
+	new = malloc(sizeof(t_element));
+	new->str = ft_strdup("do_nothing");
+	new->arg = malloc(sizeof(char *) * 2);
+	new->arg[0] = ft_strdup("do_nothing");
+	new->arg[1] = NULL; 
+	new->type = 'C';
+	new->cmd_num = 1;
+	new->next = NULL;
+	ft_lstadd_back(&element, new);
+}
+
+void	check_if_add_do_nothing(t_element *element)
+{
+	t_element	*p_elem;
+	bool		cmd;
+
+	p_elem = element;
+	cmd = false;
+	while (p_elem)
+	{
+		if (p_elem->type == 'C')
+		{
+			cmd = true;
+			break ;
+		}
+		p_elem = p_elem->next;
+	}
+	if (cmd == false)
+		add_do_nothing(element);
+}
+
+
 //asig value to t_element->type in function of type bash's element
 //need reevaluate list because some type depend of previos valude in the list
 //(ej. <,< <<)
@@ -198,8 +235,10 @@ void	pre_procesing(t_element *element)
 //	print_list(element);
 //	ft_lst_del_all_x(element);
 //	order_element_list(element);
-//	print_list(element);
 	add_args(element);
+	print_list(element);
+	check_if_add_do_nothing(element);
+	print_list(element);
 //	print_arg_list(element);
 	//is_direct(element);
 	//expand_all(element);

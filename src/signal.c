@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 10:14:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/10 11:46:42 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/10 12:02:03 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,19 @@ void	signal_hered(void)
 	signal(SIGQUIT, SIG_IGN);
 }
 
-static void	exit_build_hered(int sig)
+/*static void	exit_build_hered(int sig)
 {
 	(void)sig;
 	rl_replace_line("\03", 0);
 	rl_on_new_line();
 	rl_redisplay();
 	g_state = 130;
-}
+}*/
 
 void	signal_build_hered(void)
 {
 	//signal(SIGINT, &exit_build_hered);
-	signal(SIGINT,	&exit_build_hered);
+	signal(SIGINT,	SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 }
 
