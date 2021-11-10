@@ -181,7 +181,7 @@ static void	clean_spaces_in_str(t_element *element)
 	}
 }
 
-static void add_do_nothing(t_element *element)
+static t_element *add_do_nothing_node(void)
 {
 	t_element *new;
 
@@ -193,27 +193,47 @@ static void add_do_nothing(t_element *element)
 	new->type = 'C';
 	new->cmd_num = 1;
 	new->next = NULL;
-	ft_lstadd_back(&element, new);
+	return (new);
+	//ft_lstadd_back(&element, new);
+}
+
+static void	add_do_nothing(t_element *p_elem)
+{
+	t_element	*new;
+
+	new = add_do_nothing_node();
+	new->next = p_elem;
+	new->prev = p_elem->prev;
+	p_elem->prev->next = new;
+	p_elem->prev = new;
 }
 
 void	check_if_add_do_nothing(t_element *element)
 {
 	t_element	*p_elem;
 	bool		cmd;
+	t_element	*new;
 
 	p_elem = element;
 	cmd = false;
 	while (p_elem)
 	{
 		if (p_elem->type == 'C')
-		{
 			cmd = true;
-			break ;
+		if (p_elem->type == 'P') 
+		{
+			if (cmd == false) 
+				add_do_nothing(p_elem);
+			else
+				cmd = false;
 		}
 		p_elem = p_elem->next;
 	}
-	if (cmd == false)
-		add_do_nothing(element);
+	if (!p_elem && cmd == false)
+	{
+		new = add_do_nothing_node();
+		ft_lstadd_back(&element, new);
+	}
 }
 
 
