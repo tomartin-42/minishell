@@ -14,32 +14,32 @@
 
 int	error_unset_no_arg(void)
 {
-		ft_putstr_fd("unset: ", 2);
-		ft_putstr_fd("not enough arguments", 2);
-		ft_putstr_fd("\n", 2);	
-		g_state = 1;
-		return (g_state);
+	ft_putstr_fd("unset: ", 2);
+	ft_putstr_fd("not enough arguments", 2);
+	ft_putstr_fd("\n", 2);	
+	g_state = 1;
+	return (g_state);
 }
 
 int	error_unset_invalid_param(char *str)
 {
-		ft_putstr_fd("unset: ", 2);
-		ft_putstr_fd(str, 2);
-		ft_putstr_fd(": ", 2);
-		ft_putstr_fd("invalid parameter name", 2);
-		ft_putstr_fd("\n", 2);	
-		g_state = 1;
-		return (g_state);
+	ft_putstr_fd("unset: ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd("invalid parameter name", 2);
+	ft_putstr_fd("\n", 2);	
+	g_state = 1;
+	return (g_state);
 }
 
 int	error_export_number(char *str)
 {
-		ft_putstr_fd("export: ", 2);
-		ft_putstr_fd("not an identifier: ", 2);
-		ft_putstr_fd(str, 2);
-		ft_putstr_fd("\n", 2);	
-		g_state = 1;
-		return (g_state);
+	ft_putstr_fd("export: ", 2);
+	ft_putstr_fd("not an identifier: ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd("\n", 2);	
+	g_state = 1;
+	return (g_state);
 }
 
 

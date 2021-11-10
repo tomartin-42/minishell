@@ -82,5 +82,4 @@ char	*get_env(char **envs, char *var)
 		pos++;
 	}
 	return (NULL);
-	//free(ret_var);//no liberar aqui pero si fuera donde se utilice.
 }

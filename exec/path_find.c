@@ -96,9 +96,7 @@ char	*find_exec_path(char **cmd, char **env)
 		i++;
 	}
 	if (exec_paths[i] == NULL)
-	{
 		error_cmd_not_found(path);
-	}
 	ft_free_dp(exec_paths);
 	if (!path)
 		error_cmd_not_found("");
