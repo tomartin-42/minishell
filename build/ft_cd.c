@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:18:27 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/11 13:50:25 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 19:38:49 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,15 @@ void	example_name(t_env *env, char *pwd, int n_paths)
 		new_path[n] = '\0';
 		if (chdir(new_path) == 0)
 		{
-			change_single_env_var(env, "OLDPWD", pwd);
-			change_single_env_var(env, "PWD", new_path);
+			ch_env_var(env, "OLDPWD", pwd);
+			ch_env_var(env, "PWD", new_path);
 		}
 		free(new_path);
 	}
 	if (n_paths == 0)
 	{
 		new_path = NULL;
-		change_single_env_var(env, "PWD", "/");
+		ch_env_var(env, "PWD", "/");
 		chdir("/");
 	}
 }
@@ -144,11 +144,14 @@ int	ft_cd(t_command *command, t_env *env)
 	{
 		remove_end_trash(command);
 		if (o_pwd == true)
-			change_single_env_var(env, "OLDPWD", get_t_env(env, "PWD"));
+			ch_env_var(env, "OLDPWD", get_t_env(env, "PWD"));
 		if (!ft_strcmp(command->cmd->arg[1], "..")
 			|| (command->cmd->arg[1][0] == '.' && command->cmd->arg[1][1] == '.'))
 		{
-			move_back(command, env);
+			if (check_consec_dots(command->cmd->arg[1]))
+				printf("🔥🔥:> cd: %s: No such file or directory\n", command->cmd->arg[1]);
+			else
+				move_back(command, env);
 		}
 		else
 		{
@@ -156,9 +159,9 @@ int	ft_cd(t_command *command, t_env *env)
 				&& ft_strcmp(command->cmd->arg[1], "."))
 			{
 				if (command->cmd->arg[1][0] != '/')
-					change_single_env_var(env, "PWD", join_paths(env, command->cmd->arg[1]));
+					ch_env_var(env, "PWD", join_paths(env, command->cmd->arg[1]));
 				else if (command->cmd->arg[1][0] == '/')
-					change_single_env_var(env, "PWD", command->cmd->arg[1]);
+					ch_env_var(env, "PWD", command->cmd->arg[1]);
 			}
 		}
 	}
@@ -167,8 +170,8 @@ int	ft_cd(t_command *command, t_env *env)
 		if (chdir(home_path) == 0)
 		{
 			if (o_pwd == true)
-				change_single_env_var(env, "OLDPWD", get_t_env(env, "PWD"));
-			change_single_env_var(env, "PWD", home_path);
+				ch_env_var(env, "OLDPWD", get_t_env(env, "PWD"));
+			ch_env_var(env, "PWD", home_path);
 			chdir(home_path);
 		}
 	}
