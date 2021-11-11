@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 09:06:47 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/09 20:08:50 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/11 09:49:46 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	copy_to_word(char *str, int *i, int *j, t_element *element)
 	int			aux_i;
 //	char		*aux;
 
-	printf("--%s--\n", element->str);
 	aux_i = 0;
 	new = malloc(sizeof(t_element));
 	new->str = malloc(*i - *j + 2);

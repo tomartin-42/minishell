@@ -38,8 +38,8 @@ static void	hered_expand(t_element *element, t_env *env)
 		h_str = readline("> ");
 		if (h_str == NULL)
 			break ;
-		if ((!ft_strncmp(element->arg[1], h_str, ft_strlen(element->arg[1]))
-			&& ft_strlen(element->arg[1]) == ft_strlen(h_str)) || h_str[0] == '\03')
+		if (!ft_strncmp(element->arg[1], h_str, ft_strlen(element->arg[1]))
+			&& ft_strlen(element->arg[1]) == ft_strlen(h_str))
 		{
 			free(h_str);
 			break ;
@@ -88,15 +88,9 @@ static void	hered_no_expand(t_element *element)
 	close(h_fd[0]);
 }
 
-void	main_hered(t_element *element, t_env *env, int sig)
+void	main_hered(t_element *element, t_env *env)
 {
-	signal_ignorate();
-
-	if (sig == 1)
-		signal_hered();
-	else
-		signal_build_hered();
-	(void)sig;
+	signal_hered();
 	if (element->hd_expand == false)
 		hered_no_expand(element);
 	else

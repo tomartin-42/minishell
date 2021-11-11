@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 07:39:50 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/10 09:22:12 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/11 09:56:54 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "minishell.h"
 
-void	main_hered(t_element *elemento, t_env *env, int sig);
+void	main_hered(t_element *elemento, t_env *env);
 void	close_hered(t_element *element);
 
 #endif

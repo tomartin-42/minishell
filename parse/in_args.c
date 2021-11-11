@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 11:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/10 12:48:21 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/11 09:51:26 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ static void	count_memory_need(int *memory_cmd, t_element *element)
 			memory_cmd[p_elem->cmd_num] += 1;
 		p_elem = p_elem->next;
 	}
-	//for(int i=0; i < MAX_PIPE; i++)
-	//	printf("%d -> %d\n", i, memory_cmd[i]);
 }
 
 static void	reservate_memory(int *memory_cmd, t_element *element)
