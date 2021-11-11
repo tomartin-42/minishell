@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/11 13:56:36 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 19:58:09 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,10 +229,10 @@ void	check_if_add_do_nothing(t_element *element)
 		ft_lstadd_back(&element, new);
 	}
 }
+/* remove form first line str_ex(element); */
 
 void	pre_procesing(t_element *element)
 {
-	str_ex(element);
 	clean_spaces_in_str(element);
 	get_string(element);
 	get_pipes_and_cmd_num(element);

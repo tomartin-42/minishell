@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/11 15:55:19 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 20:22:19 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,26 @@ void	execut_cmd_build(t_env *env, t_command *command)
 		close(command->multi_cmd[0]->p_fd[0]);
 }
 
+static void	execut_cmd_pid0(char **env, t_command *command)
+{
+	signal_in_proces();
+	if (command->multi_cmd[1] && command->multi_cmd[1]->type == 'P')
+	{
+		dup2(command->multi_cmd[1]->p_fd[1], STDOUT_FILENO);
+		close(command->multi_cmd[1]->p_fd[0]);
+	}
+	command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
+	redir_files(command);
+	if (execve(command->cmd->arg[0], command->cmd->arg, env) == -1)
+	{
+		perror("Error");
+		g_state = errno;
+		exit(g_state);
+	}
+}
+
 //The motor of execut comand (No Buildings)
+
 void	execut_cmd(char **env, t_command *command)
 {
 	pid_t	pid;
@@ -98,26 +117,13 @@ void	execut_cmd(char **env, t_command *command)
 	pid = fork();
 	if (pid == 0)
 	{
-		signal_in_proces();
-		if (command->multi_cmd[1] && command->multi_cmd[1]->type == 'P')
-		{
-			dup2(command->multi_cmd[1]->p_fd[1], STDOUT_FILENO);
-			close(command->multi_cmd[1]->p_fd[0]);
-		}
-		command->cmd->arg[0] = find_exec_path(command->cmd->arg, command->env);
-		redir_files(command);
-		if (execve(command->cmd->arg[0],command->cmd->arg, env) == -1)
-		{
-			perror("Error");
-			g_state = errno;
-			exit(g_state);
-		}
+		execut_cmd_pid0(env, command);
 	}
 	else
 		close(command->multi_cmd[0]->p_fd[0]);
 }
 
-static t_element *get_last_pipe(t_command *command)
+static t_element	*get_last_pipe(t_command *command)
 {
 	t_element	*aux_elem;
 

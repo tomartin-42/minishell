@@ -6,7 +6,7 @@
 #    By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/11/11 19:10:29 by dpuente-         ###   ########.fr        #
+#    Updated: 2021/11/11 20:26:32 by dpuente-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,12 +37,12 @@ INC_DIR = ./includes/
 # Source files and object files
 SRC_FILES = main.c main_loop.c utils_list.c util_env.c expand.c util_env2.c utils_src.c \
 			get_env.c signal.c free_resources.c exit_process.c
-PARSE_FILES = main_parse.c procesing_parse.c parse_operation.c sec_parse_proc.c in_args.c parse_utils.c parse_utils_2.c copy_dell_args.c in_args_memory.c hered_expand_loop.c
+PARSE_FILES = main_parse.c procesing_parse.c parse_operation.c sec_parse_proc.c in_args.c parse_utils.c parse_utils_2.c copy_dell_args.c in_args_memory.c hered_expand_loop.c str_ex_utils.c
 HERED_FILES = main_hered.c
 BUILD_FILES = ft_export.c ft_export2.c ft_export3.c ft_echo.c ft_env.c ft_pwd.c ft_cd.c ft_cd_utils.c super_tolower.c ft_exit.c ft_count_char.c ft_unset.c
 ERRORS_FILES = check_error.c errors.c errors_exec.c main_errors.c
 EXPANSION_FILES = env_ex.c str_ex.c expansion.c env_ex2.c
-EXEC_FILES = main_exec.c rutine.c path_find.c builds_filter.c cmd_execution.c rutine_utils.c
+EXEC_FILES = main_exec.c rutine.c path_find.c builds_filter.c cmd_execution.c rutine_utils.c open_read_write_trunk.c
 INC_FILES = build.h errorlib.h exec.h hered.h minishell.h parse.h
 
 OBJ_FILES = $(SRC_FILES:.c=.o)

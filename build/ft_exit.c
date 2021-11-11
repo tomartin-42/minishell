@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 12:31:56 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/31 17:22:00 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/11 20:40:37 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,48 @@ static int	more_one_arg(t_command *cmd)
 	return (i);
 }
 
-int	ft_exit (t_command *command, t_env *env)
+static int	exit_else_no_pipe(t_command *command, t_env *env)
 {
 	int	i;
 
 	i = 1;
+	g_state = ft_atoi(command->cmd->arg[i]);
+	free_element(command->p_elem);
+	free_env_list(env);
+	ft_putstr_fd("exit\n", 1);
+	exit(g_state);
+}
+
+static int	exit_else(t_command *command, t_env *env)
+{
+	int	i;
+
+	i = 1;
+	if (command->cmd->arg[1] && command->multi_cmd[0]->type == 'P')
+	{
+		g_state = ft_atoi(command->cmd->arg[i]);
+		free_element(command->p_elem);
+		exit(g_state);
+	}
+	else if (command->cmd->arg[1] && command->multi_cmd[0]->type != 'P')
+		exit_else_no_pipe(command, env);
+	else if (!command->cmd->arg[1] && command->multi_cmd[0]->type == 'P')
+	{
+		free_element(command->p_elem);
+		exit(0);
+	}
+	else
+	{
+		free_element(command->p_elem);
+		free_env_list(env);
+		ft_putstr_fd("exit\n", 1);
+		exit(0);
+	}
+	return (0);
+}
+
+int	ft_exit(t_command *command, t_env *env)
+{
 	(void)env;
 	if (more_one_arg(command) >= 3)
 	{
@@ -58,31 +95,6 @@ int	ft_exit (t_command *command, t_env *env)
 	}
 	else
 	{
-		if (command->cmd->arg[1] && command->multi_cmd[0]->type == 'P')
-		{
-			g_state = ft_atoi(command->cmd->arg[i]); 
-			free_element(command->p_elem);
-			exit(g_state);
-		}
-		else if (command->cmd->arg[1] && command->multi_cmd[0]->type != 'P')
-		{
-			g_state = ft_atoi(command->cmd->arg[i]); 
-			free_element(command->p_elem);
-			free_env_list(env); 
-			ft_putstr_fd("exit\n", 1);
-			exit(g_state);
-		}
-		else if (!command->cmd->arg[1] && command->multi_cmd[0]->type == 'P')
-		{
-			free_element(command->p_elem);
-			exit(0);
-		}
-		else
-		{
-			free_element(command->p_elem);
-			free_env_list(env); 
-			ft_putstr_fd("exit\n", 1);
-			exit(0);
-		}
+		exit(exit_else(command, env));
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:50:17 by davyd11           #+#    #+#             */
-/*   Updated: 2021/11/11 19:23:36 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 19:47:14 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ void		dollar_mark(t_element *p_elem);
 //str_ex.c//
 void		remove_marks(t_element *p_elem);
 void		str_ex(t_element *element);
+////////////////////
+//str_ex_utils.c//
+void		remove_marks_loop(t_element *p_elem, int string_len, char mark);
 ////////////////////
 //expansion.c//
 void		expand_all(t_element *element, t_env *m_env, int option);

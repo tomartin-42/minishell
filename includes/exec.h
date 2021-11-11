@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 12:17:24 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/11 15:58:11 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 20:26:57 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,12 @@ void		execut_cmd_build_np(t_env *env, t_command *command);
 ///////////////////
 //super_tolower.c//
 char		*super_tolower(char *str);
-/////////////
+///////////////////
+//open_read_write_trunk.c//
+void		open_to_read(t_element *element);
+void		open_to_write(t_element *element);
+void		open_to_trunk(t_element *element);
+///////////////////
 //ft_count_wrd.c//
 int			ft_count_char(char *str, char	caracter);
 /////////////

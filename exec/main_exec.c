@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 13:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/11 19:26:53 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 20:27:59 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,51 +24,6 @@ void	start_hered(t_element *element, t_env *env)
 			main_hered(aux_ele, env);
 		aux_ele = aux_ele->next;
 	}
-}
-
-static void	open_to_read(t_element *element)
-{
-	element->fd = open(element->arg[1], O_RDONLY);
-	if (element->fd < 0)
-	{
-		g_state = errno;
-		perror("Error");
-		ft_putstr_fd(element->arg[1], 2);
-		exit (g_state);
-	}
-	else
-		dup2(element->fd, STDIN_FILENO);
-	close(element->fd);
-}
-
-static void	open_to_write(t_element *element)
-{
-	element->fd = open(element->arg[1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (element->fd < 0)
-	{
-		g_state = errno;
-		perror("Error");
-		ft_putstr_fd(element->arg[1], 2);
-		exit (g_state);
-	}
-	else
-		dup2(element->fd, STDOUT_FILENO);
-	close(element->fd);
-}
-
-static void	open_to_trunk(t_element *element)
-{
-	element->fd = open(element->arg[1], O_APPEND | O_RDWR | O_CREAT, 0644);
-	if (element->fd < 0)
-	{
-		g_state = errno;
-		perror("Error");
-		ft_putstr_fd(element->arg[1], 2);
-		exit (g_state);
-	}
-	else
-		dup2(element->fd, STDOUT_FILENO);
-	close(element->fd);
 }
 
 static void	redir_hered(t_element *element)
