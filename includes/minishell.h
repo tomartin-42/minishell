@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/11 10:35:29 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 14:04:35 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <stdbool.h>
+# include <signal.h>
 # include <unistd.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -73,7 +74,7 @@ extern int	g_state;
 
 t_element	*ft_lstlast(t_element *lst);
 void		ft_lstadd_back(t_element **lst, t_element *new);
-void		print_list(t_element *element);
+//void		print_list(t_element *element);
 void		print_arg_list(t_element *element);
 void		ft_lst_del_all_x(t_element *elemnt);
 
@@ -101,6 +102,15 @@ char		*remplace_str(char *str, char *var_value);
 ////
 int			errno_dollar(char *str);
 /////////////////
+//main.c//
+void		init_element(t_element *element, char *line);
+/////////////////
+//exit_process.c//
+void	exit_proces(int sig);
+/////////////////
+//main_loop,c//
+void		main_loop(struct termios old, t_env *m_env);
+/////////////////
 void		select_signal(void);
 void		signal_in_proces(void);
 void		signal_hered(void);
@@ -110,5 +120,6 @@ void		signal_ignorate(void);
 
 void		free_element(t_element *element);
 void		free_env_list(t_env *env);
+
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/11 10:35:39 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 13:56:36 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-//clean up spaces of element
+/* //clean up spaces of element
 void	clean_element(t_element *element)
 {
 	t_element	*p_elem;
@@ -37,8 +37,6 @@ static void	change_heredoc(t_element *p_elem)
 		p_elem->str = ft_strdup("<<");
 		p_elem->type = 'H';
 		p_elem->next->type = 'X';
-	//	p_elem->next->arg = malloc (sizeof(char *));
-	//	p_elem->next->arg[0] = ft_strdup("");
 	}			
 	else
 		p_elem->type = 'I';
@@ -52,15 +50,13 @@ static void	change_truck(t_element *p_elem)
 		p_elem->str = ft_strdup(">>");
 		p_elem->type = 'T';
 		p_elem->next->type = 'X';
-	//	p_elem->next->arg = malloc (sizeof(char *));
-	//	p_elem->next->arg[0] = ft_strdup("");
 	}
 	else
 		p_elem->type = 'O';
 }
 
 //Asig type string to nodes of element, if not S add ? to type
-static void get_string(t_element *element)
+static void	get_string(t_element *element)
 {
 	t_element	*p_elem;
 
@@ -87,7 +83,7 @@ static void	get_pipes_and_cmd_num(t_element *element)
 	p_elem = element;
 	p_elem->type = 'G';
 	p_elem = p_elem->next;
-	while(p_elem)
+	while (p_elem)
 	{
 		if (p_elem->str[0] == '|' && p_elem->type == '?')
 		{
@@ -99,9 +95,9 @@ static void	get_pipes_and_cmd_num(t_element *element)
 			p_elem->cmd_num = cmd;
 		p_elem = p_elem->next;
 	}
-}
+} */
 
-//Asig Trunc or output file to the nodes
+/* //Asig Trunc or output file to the nodes
 static void get_trunk_file(t_element *element)
 {
 	t_element	*p_elem;
@@ -164,7 +160,6 @@ static void	get_cmd_and_args(t_element *element)
 	}
 }
 
-
 static void	clean_spaces_in_str(t_element *element)
 {
 	t_element	*p_elem;
@@ -183,19 +178,18 @@ static void	clean_spaces_in_str(t_element *element)
 
 static t_element *add_do_nothing_node(void)
 {
-	t_element *new;
+	t_element	*new;
 
 	new = malloc(sizeof(t_element));
 	new->str = ft_strdup("do_nothing");
 	new->arg = malloc(sizeof(char *) * 2);
 	new->arg[0] = ft_strdup("do_nothing");
-	new->arg[1] = NULL; 
+	new->arg[1] = NULL;
 	new->type = 'C';
 	new->cmd_num = 1;
 	new->next = NULL;
 	return (new);
-	//ft_lstadd_back(&element, new);
-}
+} */
 
 static void	add_do_nothing(t_element *p_elem)
 {
@@ -220,9 +214,9 @@ void	check_if_add_do_nothing(t_element *element)
 	{
 		if (p_elem->type == 'C')
 			cmd = true;
-		if (p_elem->type == 'P') 
+		if (p_elem->type == 'P')
 		{
-			if (cmd == false) 
+			if (cmd == false)
 				add_do_nothing(p_elem);
 			else
 				cmd = false;
@@ -236,13 +230,6 @@ void	check_if_add_do_nothing(t_element *element)
 	}
 }
 
-
-//asig value to t_element->type in function of type bash's element
-//need reevaluate list because some type depend of previos valude in the list
-//(ej. <,< <<)
-///////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////////
 void	pre_procesing(t_element *element)
 {
 	str_ex(element);
@@ -252,12 +239,6 @@ void	pre_procesing(t_element *element)
 	get_trunk_file(element);
 	get_hered_file(element);
 	get_cmd_and_args(element);
-//	print_list(element);
-//	ft_lst_del_all_x(element);
-//	order_element_list(element);
 	add_args(element);
 	check_if_add_do_nothing(element);
-//	print_arg_list(element);
-	//is_direct(element);
-	//expand_all(element);
 }

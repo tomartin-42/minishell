@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:04:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/11 10:35:46 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 13:44:41 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 #include "exec.h"
 #include "errorlib.h"
 
-// Global variable for indicate the value state
-int	g_state; 
+int	g_state;
 
 //This function initialice and copy the env var to list 
 //(m_env)
@@ -27,7 +26,7 @@ void	mute_unused(int argc, char **argv)
 	argc = argc + 1 - 1;
 	argv[0] = argv[0];
 }
-/////RESTAURAR init_env_list SI SE DESCOMENTA LAS PARTES DE ESTA FUNCION//////////////
+
 static t_env	*copy_env(char **env)
 {
 	t_env	*m_env;
@@ -45,20 +44,14 @@ static t_env	*copy_env(char **env)
 	free(aux);
 	while (env[i])
 	{
-//		if (!m_env)
-//			init_env_list(&m_env, env[i]);
-//		else
-//		{
-			new = new_env_node_global(new, env[i]);
-			ft_lstadd_back_env(&m_env, new);
-//		}
+		new = new_env_node_global(new, env[i]);
+		ft_lstadd_back_env(&m_env, new);
 		i++;
 	}
 	return (m_env);
-	//ft_expand(m_env, "hola$PWDxx la 2hola $");
 }
 
-static void	init_element(t_element *element, char *line)
+void	init_element(t_element *element, char *line)
 {
 	element->next = NULL;
 	element->prev = NULL;
@@ -87,10 +80,7 @@ static void	secure_env(t_env *env)
 
 int	main(int argc, char **argv, char **env)
 {
-	char		*str;
-	char		*line;
-	t_element	*element;
-	t_env		*m_env;
+	t_env			*m_env;
 	struct termios	old;
 
 	(void)argc;
@@ -102,35 +92,5 @@ int	main(int argc, char **argv, char **env)
 	if (*env == NULL)
 		secure_env(m_env);
 	g_state = 0;
-	while (1)
-	{
-		select_signal();
-		str = readline("🔥ShellFromHell🔥:> ");
-		if (str == NULL)
-		{
-			printf("exit\n");
-			exit (0);
-		}
-		line = ft_strdup(str);
-		free(str);
-		if (ft_strlen(line) != 0)
-		{
-			add_history(line);
-			if (main_error(line))
-				free (line);
-			else
-			{
-				check_fault_marks(line);
-				element = malloc(sizeof(t_element));
-				init_element(element, line);
-				rutine_parse(line, element, m_env);
-				//print_list(element);//////////////////////////////////////////borrar
-				main_exec(element, m_env);
-				tcsetattr(0, TCSANOW, &old);
-				free (line);
-				free_element(element);
-			//	system("leaks -q  minishell");
-			}
-		}
-	}
+	main_loop(old, m_env);
 }

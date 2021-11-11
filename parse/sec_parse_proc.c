@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 17:19:00 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/11 10:35:44 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 14:06:03 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	sec_procesing(t_element *p_elem)
 		else if (p_elem->prev->type == 'G' && p_elem->type != 'C'
 			&& p_elem->str[0] != '<' && p_elem->str[0] != '>')
 		{
-			//printf("[%c]-[%s]\n", p_elem->type, p_elem->str);
 			p_elem->type = 'C';
 		}
 		else if (p_elem->prev->type == 'C' || p_elem->prev->type == 'A'

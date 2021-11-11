@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 10:14:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/11 10:05:21 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/11 14:03:34 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 //Ctrl + C
-static void	exit_proces(int sig)
+/* static void	exit_proces(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
-}
+} */
 
 void	select_signal(void)
 {
@@ -81,7 +81,7 @@ void	signal_hered(void)
 
 void	signal_build_hered(void)
 {
-	signal(SIGINT,	SIG_IGN);
+	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 }
 

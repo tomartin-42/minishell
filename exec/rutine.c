@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/11 10:34:13 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 13:19:26 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ void	rutine_command(t_element *element, t_env *env, t_command *command)
 		command->env = extract_env_list(env);
 		extract_cmd_and_arg(command);
 		main_build_filt(element);
-		print_list(element);
+		//print_list(element);
 		signal_ignorate();
 		cmd_execution(element, command, env);
 		command->multi_cmd[0] = command->multi_cmd[1];

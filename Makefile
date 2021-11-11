@@ -6,7 +6,7 @@
 #    By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/11/11 11:13:05 by dpuente-         ###   ########.fr        #
+#    Updated: 2021/11/11 14:06:49 by dpuente-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,9 +35,9 @@ EXEC_DIR= ./exec/
 INC_DIR = ./includes/
 
 # Source files and object files
-SRC_FILES = main.c utils_list.c util_env.c expand.c util_env2.c utils_src.c \
-			get_env.c signal.c free_resources.c
-PARSE_FILES = main_parse.c procesing_parse.c parse_operation.c sec_parse_proc.c in_args.c
+SRC_FILES = main.c main_loop.c utils_list.c util_env.c expand.c util_env2.c utils_src.c \
+			get_env.c signal.c free_resources.c exit_process.c
+PARSE_FILES = main_parse.c procesing_parse.c parse_operation.c sec_parse_proc.c in_args.c parse_utils.c parse_utils_2.c
 HERED_FILES = main_hered.c
 BUILD_FILES = ft_export.c ft_export2.c ft_export3.c ft_echo.c ft_env.c ft_pwd.c ft_cd.c ft_cd_utils.c super_tolower.c ft_exit.c ft_count_char.c ft_unset.c
 ERRORS_FILES = check_error.c errors.c errors_exec.c main_errors.c
@@ -114,6 +114,9 @@ fclean: clean
 
  # re rule
  re: fclean all
+
+ normi:
+	@norminette */*.c */*.h | grep "Error"
 
  # phony
  .PHONY: all clean fclean re

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_resources.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 19:07:33 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/07 17:16:20 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/11 14:01:32 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	free_element(t_element *element)
 		{
 			if (aux->type == 'C' || aux->type == 'B')
 				ft_free_dp(aux->arg);
-			else if (aux->type =='I' || aux->type == 'O' || aux->type == 'T'
+			else if (aux->type == 'I' || aux->type == 'O' || aux->type == 'T'
 				|| aux->type == 'H')
 			{
 				free(aux->arg[0]);

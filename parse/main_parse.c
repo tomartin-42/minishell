@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 15:12:24 by tommy             #+#    #+#             */
-/*   Updated: 2021/11/11 10:35:37 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 14:01:08 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ static void	clear_space_in_list(t_element *element)
 	t_element	*p_elem;
 
 	p_elem = element;
-	while(p_elem)
+	while (p_elem)
 	{
 		if (ft_strlen(p_elem->str) == 1 && p_elem->str[0] == ' ')
 			p_elem->type = 'X';
 		p_elem = p_elem->next;
 	}
 	p_elem = element;
-	while(p_elem)
+	while (p_elem)
 	{
 		if (ft_strlen(p_elem->str) == 0)
 			p_elem->type = 'X';
@@ -37,7 +37,7 @@ void	rutine_parse(char *str, t_element *element, t_env *m_env)
 {
 	main_parse(str, element);
 	clear_space_in_list(element);
-	expand_all(element, m_env, 1);////
+	expand_all(element, m_env, 1);
 	clean_element(element);
 	pre_procesing(element);
 	ft_lst_del_all_x(element);

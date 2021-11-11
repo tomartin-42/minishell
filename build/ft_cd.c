@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:18:27 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/11 11:41:44 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 13:50:25 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	example_name(t_env *env, char *pwd, int n_paths)
 	char	*new_path;
 	int		malloc_num;
 	int		n;
-	
+
 	malloc_num = 0;
 	n = 0;
 	while (n != n_paths + 1 && pwd[malloc_num] && n <= n_paths)
@@ -84,15 +84,13 @@ void	example_name(t_env *env, char *pwd, int n_paths)
 
 void	back_path(int times, t_env *env)
 {
-	int		pos;			// 
-	char	*current_path;	// pwd para manejarlo mejor
-	//int		size_pwd;		// size para reservar memoria del nuevo path mas reducido
-	int		number_paths;	// cantidad de / que hay en el PWD
+	int		pos;
+	char	*current_path;
+	int		number_paths;
 
 	pos = 0;
 	number_paths = 0;
 	current_path = get_t_env(env, "PWD");
-	//size_pwd = ft_strlen(current_path);
 	while (current_path[pos] != '\0')
 	{
 		if (current_path[pos] == '/')
@@ -108,15 +106,11 @@ void	back_path(int times, t_env *env)
 
 static int	move_back(t_command *command, t_env *env)
 {
-	//t_env		*p_env;
-	//t_command	*p_command;
 	int			pos;
 	int			dots;
 
 	pos = 0;
 	dots = 0;
-	//p_env = env;
-	//p_command = command;
 	while (command->cmd->arg[1][pos] != '\0')
 	{
 		if (command->cmd->arg[1][pos] != '/')
@@ -142,9 +136,9 @@ int	ft_cd(t_command *command, t_env *env)
 	home_path = get_t_env(env, "HOME");
 	while (command->cmd->arg[pos])
 		pos++;
-	if (!check_var(env, "OLDPWD"))//compureba que existe OLDPWD
+	if (!check_var(env, "OLDPWD"))
 		o_pwd = true;
-	if (check_var(env, "PWD"))//compureba que existe PWD
+	if (check_var(env, "PWD"))
 		return (0);
 	if (pos > 1)
 	{
@@ -159,7 +153,7 @@ int	ft_cd(t_command *command, t_env *env)
 		else
 		{
 			if (chdir(command->cmd->arg[1]) == 0
-				&& ft_strcmp(command->cmd->arg[1], ".")) // si habia un punto entraba y anadia . a pwd
+				&& ft_strcmp(command->cmd->arg[1], "."))
 			{
 				if (command->cmd->arg[1][0] != '/')
 					change_single_env_var(env, "PWD", join_paths(env, command->cmd->arg[1]));
@@ -178,7 +172,7 @@ int	ft_cd(t_command *command, t_env *env)
 			chdir(home_path);
 		}
 	}
-	if (command->multi_cmd[1] == NULL) 
+	if (command->multi_cmd[1] == NULL)
 		return (0);
 	else
 		exit (0);
