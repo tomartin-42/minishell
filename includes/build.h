@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 08:30:08 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/11 19:38:49 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 21:12:59 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ int		ft_env(t_env *env);
 /////////////
 //ft_cd.c//
 int		ft_cd(t_command *command, t_env	*env);
+void	back_path_edit(t_env *env, char *pwd, int n_paths);
+char	*join_paths(t_env *env, char *new_path);
+/////////////
+//ft_cd_pos.c//
+void	cd_pos_more_than_one(t_command *command, t_env *env, bool o_pwd);
+void	cd_pos_cero(t_env *env, char *home_path, bool o_pwd);
 /////////////
 //util_env2.c//
 void	ch_env_var(t_env *env, char *var, char *n_value);
@@ -47,6 +53,9 @@ int		ft_exit(t_command *command, t_env *env);
 //ft_cd_utils.c//
 void	remove_end_trash(t_command *command);
 int		check_consec_dots(char *arg);
+int		move_back(t_command *command, t_env *env);
+void	back_path(int times, t_env *env);
+int		check_var(t_env *env, char *env_var);
 /////////////
 int		ft_unset(t_command *command, t_env *env);
 
