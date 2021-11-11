@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:43:43 by davyd11           #+#    #+#             */
-/*   Updated: 2021/11/11 10:35:20 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 19:27:54 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*cmd_exp(char *old_exp)
 	return (exp_cmd);
 }
 
-int	build_filt(t_command *command, t_env *env) 
+int	build_filt(t_command *command, t_env *env)
 {
 	int		error_num;
 	char	*exp_cmd;
@@ -40,7 +40,7 @@ int	build_filt(t_command *command, t_env *env)
 	{
 		exp_cmd = cmd_exp(command->cmd->arg[0]);
 		command->cmd->arg[0] = super_tolower(command->cmd->arg[0]);
-		if (!ft_strcmp(command->cmd->arg[0], "export"))//si entra es que habia un cmd export
+		if (!ft_strcmp(command->cmd->arg[0], "export"))
 		{
 			printf("🔥ShellFromHell🔥: %s: command not found\n", exp_cmd);
 			return (error_num);
@@ -59,8 +59,7 @@ int	build_filt(t_command *command, t_env *env)
 	else if (!ft_strcmp(command->cmd->arg[0], "unset"))
 		error_num = ft_unset(command, env);
 	else if (!ft_strcmp(command->cmd->arg[0], "exit"))
-		ft_exit(command, env);// cambiar para devolve error value
-	//exit (error_num);
+		ft_exit(command, env);
 	free (exp_cmd);
 	return (error_num);
 }
@@ -99,13 +98,10 @@ void	cmd_execution(t_element *element, t_command *command, t_env *env)
 
 	pipe = false;
 	pipe = check_pipes_in_line(element);
-	//printf("===========================\n");
-	//print_list(element);
 	if (command->cmd->type == 'B' && pipe == true)
 		execut_cmd_build(env, command);
 	else if (command->cmd->type == 'B' && pipe == false)
 		execut_cmd_build_np(env, command);
 	else if (command->cmd->type == 'C')
 		execut_cmd(command->env, command);
-
 }

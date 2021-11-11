@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:50:17 by davyd11           #+#    #+#             */
-/*   Updated: 2021/11/11 13:59:44 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 19:23:36 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,20 @@ void		arg_token(t_element *p_elem);
 void		sec_procesing(t_element *p_elem);
 void		is_direct(t_element *element);
 ////////////////////
-//in_args.c//
+//in_args1.c//
 void		add_args(t_element *element);
+void		search_cmd_to_add_end(t_element *element, t_element *p_elem, int i);
+void		search_cmd_to_add(t_element *element, t_element *p_elem, int i);
+////////////////////
+//copy_dell_args.c//
+void		copy_arg_int_cmd(t_element *element);
+void		dell_all_arg(t_element *element);
+void		copy_arg_redir(t_element *element);
+////////////////////
+//in_args_memory.c//
+void		init_memory_cmd(int *memory);
+void		count_memory_need(int *mem_cmd, t_element *element);
+void		reservate_memory(int *mem_cmd, t_element *element);
 ////////////////////
 //env_ex.c//
 void		env_ex(t_element *element, t_env *m_env);
@@ -56,6 +68,19 @@ void		change_heredoc(t_element *p_elem);
 void		change_truck(t_element *p_elem);
 void		get_string(t_element *element);
 void		get_pipes_and_cmd_num(t_element *element);
+////////////////////
+//add_no_cmds.c//
+void		add_no_cmds(t_element *p_elem, int size_arg);
+////////////////////
+//add_cmds.c//
+void		add_cmds(t_element *p_elem, int size_arg);
+////////////////////
+//hered_expand_loop.c//
+void		hered_no_expand_loop_else(int *h_fd, char *h_str);
+void		hered_expand_loop_else(int *h_fd, char *h_str, t_env *env);
+////////////////////
+//main_hered.c//
+char		*expand_str(char *str, t_env *env);
 ////////////////////
 //parse_utils_2.c//
 t_element	*add_do_nothing_node(void);

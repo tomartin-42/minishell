@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 18:32:38 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/29 11:38:54 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 18:28:20 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,38 @@ char	*get_t_env(t_env *env, char *var)
 	return (NULL);
 }
 
+char	*env_content(char **envs, int pos, int w_p)
+{
+	int		len_env;
+	char	*ret_var;
+
+	len_env = 0;
+	w_p++;
+	while (envs[pos][w_p] != '\0')
+	{
+		len_env++;
+		w_p++;
+	}
+	ret_var = malloc(sizeof(char) * len_env + 1);
+	w_p = w_p - len_env;
+	len_env = 0;
+	while (envs[pos][w_p] != '\0')
+	{
+		ret_var[len_env] = envs[pos][w_p];
+		len_env++;
+		w_p++;
+	}
+	ret_var[len_env] = '\0';
+	return (ret_var);
+}
+
 char	*get_env(char **envs, char *var)
 {
 	int		pos;
 	int		w_p;
-	int		len_env;
-	char	*ret_var;
 
 	pos = 0;
 	w_p = 0;
-	len_env = 0;
 	while (envs[pos])
 	{
 		w_p = 0;
@@ -61,23 +83,7 @@ char	*get_env(char **envs, char *var)
 		}
 		if (envs[pos][w_p] == '=')
 		{
-			w_p++;
-			while (envs[pos][w_p] != '\0')
-			{
-				len_env++;
-				w_p++;
-			}
-			ret_var = malloc(sizeof(char) * len_env + 1);
-			w_p = w_p - len_env;
-			len_env = 0;
-			while (envs[pos][w_p] != '\0')
-			{
-				ret_var[len_env] = envs[pos][w_p];
-				len_env++;
-				w_p++;
-			}
-			ret_var[len_env] = '\0';
-			return (ret_var);
+			return (env_content(envs, pos, w_p));
 		}
 		pos++;
 	}

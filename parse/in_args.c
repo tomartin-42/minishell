@@ -6,13 +6,13 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 11:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/11 10:35:34 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 18:52:46 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static	void init_memory_cmd(int *memory)
+/* static void	init_memory_cmd(int *memory)
 {
 	int	i;
 
@@ -46,13 +46,14 @@ static void	reservate_memory(int *memory_cmd, t_element *element)
 	while (p_elem)
 	{
 		if (p_elem->type == 'C')
-			p_elem->arg = (char **)malloc(sizeof(char *)
-				* (memory_cmd[p_elem->cmd_num]));
+		{
+			p_elem->arg = (char **)malloc(sizeof(char *) * (memory_cmd[p_elem->cmd_num]));
+		}
 		p_elem = p_elem->next;
 	}
-}
+} */
 
-static void	search_cmd_to_add(t_element *element, t_element *p_elem, int i)
+void	search_cmd_to_add(t_element *element, t_element *p_elem, int i)
 {
 	t_element	*aux_elem;
 
@@ -68,7 +69,7 @@ static void	search_cmd_to_add(t_element *element, t_element *p_elem, int i)
 	}
 }
 
-static void	search_cmd_to_add_end(t_element *element, t_element *p_elem, int i)
+void	search_cmd_to_add_end(t_element *element, t_element *p_elem, int i)
 {
 	t_element	*aux_elem;
 
@@ -84,7 +85,7 @@ static void	search_cmd_to_add_end(t_element *element, t_element *p_elem, int i)
 	}
 }
 
-static void	copy_arg_int_cmd(t_element *element)
+/* static void	copy_arg_int_cmd(t_element *element)
 {
 	t_element	*p_elem;
 	int			num_arg;
@@ -143,13 +144,12 @@ static void	copy_arg_redir(t_element *element)
 		}
 		p_elem = p_elem->next;
 	}
-}
+} */
 
-void add_args(t_element *element)
+void	add_args(t_element *element)
 {
 	int	memory_cmd[MAX_PIPE];
 
-	//print_list(element);///////////////////expand strings
 	str_ex(element);
 	init_memory_cmd(memory_cmd);
 	count_memory_need(memory_cmd, element);

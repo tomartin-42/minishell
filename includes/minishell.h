@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/11 14:04:35 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 15:59:40 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int			errno_dollar(char *str);
 void		init_element(t_element *element, char *line);
 /////////////////
 //exit_process.c//
-void	exit_proces(int sig);
+void		exit_proces(int sig);
 /////////////////
 //main_loop,c//
 void		main_loop(struct termios old, t_env *m_env);
@@ -120,6 +120,5 @@ void		signal_ignorate(void);
 
 void		free_element(t_element *element);
 void		free_env_list(t_env *env);
-
 
 #endif

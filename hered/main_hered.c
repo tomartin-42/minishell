@@ -1,18 +1,18 @@
-/* ************************************************************************** */ /*                                                                            */
+/* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main_hered.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 08:12:14 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/29 07:34:51 by tomartin         ###   ########.fr       */
+/*   Created: 2021/09/29 07:34:51 by tomartin          #+#    #+#             */
+/*   Updated: 2021/11/11 19:23:24 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hered.h"
 #include "parse.h"
 
-static char	*expand_str(char *str, t_env *env)
+char	*expand_str(char *str, t_env *env)
 {
 	t_element	str_elem;
 
@@ -45,12 +45,7 @@ static void	hered_expand(t_element *element, t_env *env)
 			break ;
 		}
 		else
-		{
-			h_str = expand_str(h_str, env);
-			write (h_fd[1], h_str, ft_strlen(h_str));
-			write (h_fd[1], "\n", 1);
-			free(h_str);
-		}
+			hered_expand_loop_else(h_fd, h_str, env);
 	}
 	close(h_fd[1]);
 	element->fd = dup(h_fd[0]);
@@ -77,11 +72,7 @@ static void	hered_no_expand(t_element *element)
 			break ;
 		}
 		else
-		{
-			write (h_fd[1], h_str, ft_strlen(h_str));
-			write (h_fd[1], "\n", 1);
-			free(h_str);
-		}
+			hered_no_expand_loop_else(h_fd, h_str);
 	}
 	close(h_fd[1]);
 	element->fd = dup(h_fd[0]);
@@ -99,7 +90,7 @@ void	main_hered(t_element *element, t_env *env)
 
 void	close_hered(t_element *element)
 {
-	t_element *aux;
+	t_element	*aux;
 
 	aux = element;
 	while (aux)

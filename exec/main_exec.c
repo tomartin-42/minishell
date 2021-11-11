@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 13:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/11 10:35:24 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 19:26:53 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	start_hered(t_element *element, t_env *env)
 {
 	t_element	*aux_ele;
 
-	aux_ele = element; 
-	while(aux_ele)
+	aux_ele = element;
+	while (aux_ele)
 	{
 		if (aux_ele->type == 'H')
 			main_hered(aux_ele, env);
@@ -43,7 +43,7 @@ static void	open_to_read(t_element *element)
 
 static void	open_to_write(t_element *element)
 {
-	element->fd = open(element->arg[1], O_WRONLY | O_CREAT | O_TRUNC, 0644);	 
+	element->fd = open(element->arg[1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (element->fd < 0)
 	{
 		g_state = errno;
@@ -71,7 +71,7 @@ static void	open_to_trunk(t_element *element)
 	close(element->fd);
 }
 
-static void redir_hered(t_element *element)
+static void	redir_hered(t_element *element)
 {
 	dup2(element->fd, STDIN_FILENO);
 	close(element->fd);
@@ -95,19 +95,6 @@ void	redir_files(t_command *command)
 		p_elem = p_elem->next;
 	}
 }
-
-/*void  get_fd_pipes(t_element *element)
-{
-	t_element	*p_elem;
-
-	p_elem = element;
-	while (p_elem)
-	{
-		if (p_elem->type == 'P')
-			pipe(p_elem->p_fd);
-		p_elem = p_elem->next;
-	}
-}*/
 
 static void	get_special_pipes(t_element *element, t_command *command)
 {
@@ -140,13 +127,10 @@ void	main_exec(t_element *element, t_env *env)
 	t_command	command;
 	t_element	*next_elem;
 
-//	print_list(element);
-//	print_arg_list(element);
 	signal_ignorate();
 	command.p_elem = element;
 	command.m_env = env;
 	next_elem = element->next;
-//	get_fd_pipes(next_elem);
 	get_special_pipes(next_elem, &command);
 	command.multi_cmd[0] = next_elem;
 	command.fd_stdin = dup(0);
@@ -155,6 +139,4 @@ void	main_exec(t_element *element, t_env *env)
 	start_hered(command.p_elem, command.m_env);
 	rutine_command(next_elem, env, &command);
 	close_hered(element);
-//	free_element(element);
 }
-

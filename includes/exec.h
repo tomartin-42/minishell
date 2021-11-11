@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 12:17:24 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/11 09:40:56 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/11 15:58:11 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ void		execut_cmd_build(t_env *env, t_command *command);
 void		execut_cmd_build_np(t_env *env, t_command *command);
 void		execut_cmd(char **env, t_command *command);
 ///////////////////
+//rutine_utils.c//
+void		extract_cmd_and_arg(t_command *command);
+void		close_forks(t_element *element);
+void		execut_cmd_build_np(t_env *env, t_command *command);
+///////////////////
 //super_tolower.c//
 char		*super_tolower(char *str);
 /////////////
@@ -57,4 +62,5 @@ void		*return_p_function_build(char *elem);
 
 bool		check_pipes_in_line(t_element *element);
 bool		check_pipes_or_cmd(t_element *element);
+
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davyd11 <davyd11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 16:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/02 09:42:44 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/11 19:28:42 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_fault_marks(char *str)
 
 	err = 0;
 	ini_var(&chk);
-	while(str[chk.i])
+	while (str[chk.i])
 	{
 		check_open_mark(str, &chk.mark_s, &chk.mark_d, &chk.i);
 		chk.i++;
@@ -34,7 +34,7 @@ int	check_fault_marks(char *str)
 	return (err);
 }
 
-int check_undefined_redir(char *str)
+int	check_undefined_redir(char *str)
 {
 	bool	s_mark;
 	bool	d_mark;
@@ -51,17 +51,17 @@ int check_undefined_redir(char *str)
 			d_mark = !d_mark;
 		if (str[i] == 39)
 			s_mark = !s_mark;
-		if ((str[i] == '<' || str[i] == '>') && 
-			(d_mark == false && s_mark == false))
+		if ((str[i] == '<' || str[i] == '>')
+			&& (d_mark == false && s_mark == false))
 			redir = true;
 		if (!ft_strchr(" /t/><|", str[i]))
 			redir = false;
 		i++;
 	}
-	return (redir); 
+	return (redir);
 }
 
-int check_forbidden_chars(char *str)
+int	check_forbidden_chars(char *str)
 {
 	bool	s_mark;
 	bool	d_mark;
@@ -83,5 +83,5 @@ int check_forbidden_chars(char *str)
 			answ = false;
 		i++;
 	}
-	return (answ); 
+	return (answ);
 }
