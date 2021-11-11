@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:18:27 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/11 10:49:28 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 11:41:44 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,7 @@ char	*join_paths(t_env *env, char *new_path)
 	s_path = ft_strjoin(f_path, new_path);
 	return (s_path);
 }
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-void	remove_end_trash(t_command *command)
-{
-	t_command	*p_command;
-	int			pos;
 
-	p_command = command;
-	pos = 0;
-	while (p_command->cmd->arg[1][pos] && p_command->cmd->arg[1][pos] != '/')
-	{
-		pos++;
-	}
-	if (p_command->cmd->arg[1][pos] == '/')
-		p_command->cmd->arg[1][pos] = '\0';
-}
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -160,7 +144,7 @@ int	ft_cd(t_command *command, t_env *env)
 		pos++;
 	if (!check_var(env, "OLDPWD"))//compureba que existe OLDPWD
 		o_pwd = true;
-	if (check_var(env, "PWD"))//compureba que existe OLDPWD
+	if (check_var(env, "PWD"))//compureba que existe PWD
 		return (0);
 	if (pos > 1)
 	{
