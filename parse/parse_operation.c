@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 09:06:47 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/06 18:59:52 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/11 09:49:46 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	copy_to_word(char *str, int *i, int *j, t_element *element)
 //	free(aux);
 //	printf("***%s***\n", new->str);
 	new->next = NULL;
+	if (new->str[0] == '"' || new->str[0] == 39)
+		new->hd_expand = false;
+	else 
+		new->hd_expand = true;
 //	if (new->str[0] != ' ')
 //	{
 //		if (ft_strlen(new->str) != 0)

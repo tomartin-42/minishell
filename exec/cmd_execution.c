@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:43:43 by davyd11           #+#    #+#             */
-/*   Updated: 2021/11/08 14:02:14 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 10:35:20 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,5 @@ void	cmd_execution(t_element *element, t_command *command, t_env *env)
 		execut_cmd_build_np(env, command);
 	else if (command->cmd->type == 'C')
 		execut_cmd(command->env, command);
+
 }

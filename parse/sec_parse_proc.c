@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 17:19:00 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/08 09:45:15 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 10:35:44 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,43 +55,13 @@ void	check_env(t_element *p_elem)
 		}	
 	}
 }
-///////////////////////////////////////
-///////////////////////////////////////
-///////////////////////////////////////
 
-int	thereis_command(t_element *element)
-{
-	t_element	*p_elem;
-
-	p_elem = element;
-	//printf("Entra->%s[%c]\n", p_elem->str, p_elem->type);
-	while (p_elem->prev != NULL)
-		p_elem = p_elem->prev;
-	while (p_elem && p_elem->type != 'P')
-	{
-		//printf("->%s<-\n", p_elem->str);
-		if (p_elem->type == 'C')
-			return (1);
-		p_elem = p_elem->next;
-	}
-	return (0);
-}
-
-///////////////////////////////////////
-///////////////////////////////////////
-///////////////////////////////////////
 void	arg_token(t_element *p_elem)
 {
 	if (p_elem->type != 'T' && p_elem->type != 'O' && p_elem->type != 'I'
 		&& p_elem->type != 'H' && p_elem->type != 'P')
 	{
-		//printf("[%d]\n", thereis_command(p_elem));
-		if (p_elem->prev && p_elem->prev->type == 'F'
-			&& !thereis_command(p_elem))
-			p_elem->type = 'C';
-		else
-			p_elem->type = 'A';
-		//	print_list(p_elem);
+		p_elem->type = 'A';
 	}
 }
 
@@ -99,13 +69,14 @@ void	sec_procesing(t_element *p_elem)
 {
 	if (p_elem->prev != NULL)
 	{
-		if (p_elem->prev->type == 'O' && p_elem->type == 'A')
+		if (p_elem->prev->type == 'O' && p_elem->type == 'C')
 			p_elem->type = 'F';
 		else if (p_elem->prev->type == 'O' && p_elem->type == 'S')
 			p_elem->type = 'F';
 		else if (p_elem->prev->type == 'G' && p_elem->type != 'C'
 			&& p_elem->str[0] != '<' && p_elem->str[0] != '>')
 		{
+			//printf("[%c]-[%s]\n", p_elem->type, p_elem->str);
 			p_elem->type = 'C';
 		}
 		else if (p_elem->prev->type == 'C' || p_elem->prev->type == 'A'

@@ -25,6 +25,7 @@ static void	gestion_free(char *s1, char *s2, int str_free)
 		free(s2);
 	}
 }
+
 // Implementation ft_split plus add free()
 // if str_free = 0 (no free)
 // str_free = 1 (free s1)

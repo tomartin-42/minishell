@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 11:07:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/08 14:02:18 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 10:35:34 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ static void	count_memory_need(int *memory_cmd, t_element *element)
 			memory_cmd[p_elem->cmd_num] += 1;
 		p_elem = p_elem->next;
 	}
-	//for(int i=0; i < MAX_PIPE; i++)
-	//	printf("%d -> %d\n", i, memory_cmd[i]);
 }
 
 static void	reservate_memory(int *memory_cmd, t_element *element)
@@ -141,6 +139,7 @@ static void	copy_arg_redir(t_element *element)
 			p_elem->arg = malloc(sizeof(char *) * 2);
 			p_elem->arg[0] = ft_strdup(p_elem->str);
 			p_elem->arg[1] = ft_strdup(p_elem->next->str);
+			p_elem->hd_expand = p_elem->next->hd_expand;
 		}
 		p_elem = p_elem->next;
 	}

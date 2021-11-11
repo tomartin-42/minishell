@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 08:41:08 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/26 11:36:59 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/10 10:10:42 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,7 @@ char	*find_exec_path(char **cmd, char **env)
 		i++;
 	}
 	if (exec_paths[i] == NULL)
-	{
 		error_cmd_not_found(path);
-	}
 	ft_free_dp(exec_paths);
 	if (!path)
 		error_cmd_not_found("");

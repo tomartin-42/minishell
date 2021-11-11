@@ -54,7 +54,7 @@ int check_undefined_redir(char *str)
 		if ((str[i] == '<' || str[i] == '>') && 
 			(d_mark == false && s_mark == false))
 			redir = true;
-		if (!ft_strchr(" /t/><", str[i]))
+		if (!ft_strchr(" /t/><|", str[i]))
 			redir = false;
 		i++;
 	}

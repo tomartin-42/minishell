@@ -15,7 +15,7 @@
 //This function sustitute access();
 int	ft_access(char *fname)
 {
- 	int			fd;
+	int			fd;
 	int			is_file;
 	struct stat	s_stat;
 
@@ -30,4 +30,3 @@ int	ft_access(char *fname)
 	}
 	return (is_file);
 }
-

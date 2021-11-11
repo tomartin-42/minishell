@@ -14,7 +14,7 @@
 
 void	free_element(t_element *element)
 {
-	t_element *aux;
+	t_element	*aux;
 
 	while (element)
 	{
@@ -25,7 +25,7 @@ void	free_element(t_element *element)
 		{
 			if (aux->type == 'C' || aux->type == 'B')
 				ft_free_dp(aux->arg);
-			else if (aux->type =='I' || aux->type == 'O' || aux->type == 'T' 
+			else if (aux->type =='I' || aux->type == 'O' || aux->type == 'T'
 				|| aux->type == 'H')
 			{
 				free(aux->arg[0]);

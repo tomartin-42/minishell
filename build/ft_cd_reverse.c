@@ -6,31 +6,11 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:53:45 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/29 18:47:34 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/10/25 12:09:20 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
-
-void	n_paths_notzero(int malloc_num, char *new_path, char *pwd, t_env *env)
-{
-	int	n;
-
-	n = 0;
-	new_path = malloc(sizeof(char) * (malloc_num));
-	while (n < malloc_num - 1)
-	{
-		new_path[n] = pwd[n];
-		n++;
-	}
-	new_path[n] = '\0';
-	if (chdir(new_path) == 0)
-	{
-		chg_env_var(env, "OLDPWD", pwd);
-		chg_env_var(env, "PWD", new_path);
-	}
-	free(new_path);
-}
 
 void	chg_mv_env(t_env *env, char *pwd, int n_paths)
 {
@@ -40,7 +20,6 @@ void	chg_mv_env(t_env *env, char *pwd, int n_paths)
 
 	malloc_num = 0;
 	n = 0;
-	new_path = NULL;
 	while (n != n_paths + 1 && pwd[malloc_num] && n <= n_paths)
 	{
 		if (pwd[malloc_num] == '/')
@@ -49,9 +28,24 @@ void	chg_mv_env(t_env *env, char *pwd, int n_paths)
 	}
 	n = 0;
 	if (n_paths != 0)
-		n_paths_notzero(malloc_num, new_path, pwd, env);
+	{
+		new_path = malloc(sizeof(char) * (malloc_num));
+		while (n < malloc_num - 1)
+		{
+			new_path[n] = pwd[n];
+			n++;
+		}
+		new_path[n] = '\0';
+		if (chdir(new_path) == 0)
+		{
+			chg_env_var(env, "OLDPWD", pwd);
+			chg_env_var(env, "PWD", new_path);
+		}
+		free(new_path);
+	}
 	if (n_paths == 0)
 	{
+		new_path = NULL;
 		chg_env_var(env, "PWD", "/");
 		chdir("/");
 	}

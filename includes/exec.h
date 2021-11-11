@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 12:17:24 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/01 19:11:37 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/11 09:40:56 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_command{
 void		main_exec(t_element *element, t_env *env);
 void		rutine_command(t_element *element, t_env *env, t_command *command);
 void		redir_files(t_command *command);
-void		start_hered(t_element *element, t_env *env, int sig);
+void		start_hered(t_element *element, t_env *env);
 
 char		*find_exec_path(char **cmd, char **env);
 //build_filter.c//
