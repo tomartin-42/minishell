@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 12:17:24 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/11 20:26:57 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 21:29:12 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ char		*find_exec_path(char **cmd, char **env);
 //build_filter.c//
 int			is_build(t_element *p_elem);
 void		main_build_filt(t_element *element);
+////////////////////
+//cmd_exec_build_filt.v//
+int			cmd_exec_build_filt(t_command *command, t_env *env);
 ////////////////////
 //cmd_exwcution.c//
 void		cmd_execution(t_element *element, t_command *command, t_env *env);

@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:43:43 by davyd11           #+#    #+#             */
-/*   Updated: 2021/11/11 19:27:54 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/11 21:30:02 by dpuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,7 @@ int	build_filt(t_command *command, t_env *env)
 			return (error_num);
 		}
 	}
-	if (!ft_strcmp(command->cmd->arg[0], "echo"))
-		error_num = ft_echo(command->cmd->arg);
-	else if (!ft_strcmp(command->cmd->arg[0], "env"))
-		error_num = ft_env(env);
-	else if (!ft_strcmp(command->cmd->arg[0], "pwd"))
-		error_num = ft_pwd(env);
-	else if (!ft_strcmp(command->cmd->arg[0], "export"))
-		ft_export(env, command->cmd->arg);
-	else if (!ft_strcmp(command->cmd->arg[0], "cd"))
-		error_num = ft_cd(command, env);
-	else if (!ft_strcmp(command->cmd->arg[0], "unset"))
-		error_num = ft_unset(command, env);
-	else if (!ft_strcmp(command->cmd->arg[0], "exit"))
-		ft_exit(command, env);
+	error_num = cmd_exec_build_filt(command, env);
 	free (exp_cmd);
 	return (error_num);
 }
