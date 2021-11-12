@@ -6,14 +6,14 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 20:25:09 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/12 12:23:19 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/12 12:32:30 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "hered.h"
 
-/*static int	is_a_build(t_element *element)
+static int	is_a_build(t_element *element)
 {
 	t_element	*p_elem;
 
@@ -25,7 +25,7 @@
 		p_elem = p_elem->next;
 	}
 	return (1);
-}*/
+}
 
 void	open_to_read(t_element *element)
 {
@@ -37,8 +37,8 @@ void	open_to_read(t_element *element)
 		ft_putstr_fd(element->arg[1], 2);
 		ft_putstr_fd(": ", 2);
 		perror("");
-		//if (is_a_build(element))
-			//exit (g_state);
+		if (is_a_build(element))
+			exit (g_state);
 	}
 	else
 		dup2(element->fd, STDIN_FILENO);
@@ -55,8 +55,8 @@ void	open_to_write(t_element *element)
 		ft_putstr_fd(element->arg[1], 2);
 		ft_putstr_fd(": ", 2);
 		perror("");
-		//if (is_a_build(element))
-		//	exit (g_state);
+		if (is_a_build(element))
+			exit (g_state);
 	}
 	else
 		dup2(element->fd, STDOUT_FILENO);
@@ -73,8 +73,8 @@ void	open_to_trunk(t_element *element)
 		ft_putstr_fd(element->arg[1], 2);
 		ft_putstr_fd(": ", 2);
 		perror("");
-		//if (is_a_build(element))
-		//	exit (g_state);
+		if (is_a_build(element))
+			exit (g_state);
 	}
 	else
 		dup2(element->fd, STDOUT_FILENO);
