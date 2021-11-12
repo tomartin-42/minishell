@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 13:22:33 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/11 13:43:17 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/12 10:13:29 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ void	main_loop(struct termios old, t_env *m_env)
 		free(str);
 		if (ft_strlen(line) != 0)
 		{
-			valid_instruction(old, m_env, line);
+			if (line[0] == ' ' && ft_strlen(line) == 1)
+				;
+			else
+				valid_instruction(old, m_env, line);
 		}
 	}
 }
