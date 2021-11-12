@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 13:22:33 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/12 10:13:29 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/12 12:47:38 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,20 @@ void	main_loop(struct termios old, t_env *m_env)
 			printf("exit\n");
 			exit (0);
 		}
-		line = ft_strdup(str);
-		free(str);
-		if (ft_strlen(line) != 0)
+		if (ft_strlen(str) != 0)
 		{
-			if (line[0] == ' ' && ft_strlen(line) == 1)
-				;
-			else
-				valid_instruction(old, m_env, line);
+			line = ft_strdup(str);
+			free(str);
+			if (ft_strlen(line) != 0)
+			{
+				if (line[0] == ' ' && ft_strlen(line) == 1)
+					free (line);
+				else
+					valid_instruction(old, m_env, line);
+			}
 		}
+		else
+			free(str);
+		system ("leaks minishell -q");
 	}
 }

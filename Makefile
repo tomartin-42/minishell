@@ -6,7 +6,7 @@
 #    By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/11/12 12:13:52 by tomartin         ###   ########.fr        #
+#    Updated: 2021/11/12 12:37:23 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ RESET = \033[0m
 NAME = minishell
 
 # Compiling flags
-FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 F_RL = -I ~/.brew/opt/readline/include -I ~/.brew/opt/readline/lib 
 F_RL2 = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib \
 		-I /Users/$(USER)/.brew/opt/readline/include
