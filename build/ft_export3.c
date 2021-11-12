@@ -27,7 +27,8 @@ char	**separate_env_var(char *var)
 	aux = ft_strchr(var, '=');
 	aux++;
 	if (*aux == '\0')
-		var_dual[1] = ft_strdup("");
+		//var_dual[1] = ft_strdup("");
+		var_dual[1] = NULL;
 	else
 		var_dual[1] = ft_strdup(aux);
 	return (var_dual);

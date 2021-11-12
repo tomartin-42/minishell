@@ -68,6 +68,6 @@ void	main_loop(struct termios old, t_env *m_env)
 		}
 		else
 			free(str);
-		system ("leaks minishell -q");
+//		system ("leaks minishell -q");
 	}
 }

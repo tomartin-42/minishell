@@ -13,19 +13,6 @@
 #include "build.h"
 #include "errorlib.h"
 
-static void	dell_var_t_env(t_env *env, char *var)
-{
-	t_env	*p_env;
-
-	p_env = env;
-	while (p_env)
-	{
-		if (ft_strcmp(p_env->var[0], var) == 0)
-			p_env->visible = false;
-		p_env = p_env->next;
-	}
-}
-
 static void	clean_up_env_list(t_env *env)
 {
 	t_env	*prev;
@@ -41,11 +28,27 @@ static void	clean_up_env_list(t_env *env)
 	}
 	if (aux != NULL)
 	{
+		printf("HOLA\n");
 		prev->next = aux->next;
 		free(aux->v_env);
 		free(aux->var[0]);
 		free(aux->var[1]);
+		free(aux->var);
 		free(aux);
+	}
+}
+
+
+static void	dell_var_t_env(t_env *env, char *var)
+{
+	t_env	*p_env;
+
+	p_env = env;
+	while (p_env)
+	{
+		if (ft_strcmp(p_env->var[0], var) == 0)
+			p_env->visible = false;
+		p_env = p_env->next;
 	}
 }
 
@@ -63,9 +66,11 @@ int	ft_unset(t_command *command, t_env *env)
 		if (ft_strchr(command->cmd->arg[i], '=') && ret == 0)
 			ret = error_unset_invalid_param(command->cmd->arg[i]);
 		else
+		{
 			dell_var_t_env(env, command->cmd->arg[i]);
+			clean_up_env_list(env);
+		}
 		i++;
 	}
-	clean_up_env_list(env);
 	return (ret);
 }

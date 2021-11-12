@@ -48,6 +48,7 @@ void	free_env_list(t_env *env)
 		free(aux->v_env);
 		free(aux->var[0]);
 		free(aux->var[1]);
+		free(aux->var);
 		free(aux);
 	}
 }

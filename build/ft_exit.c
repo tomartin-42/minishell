@@ -94,7 +94,5 @@ int	ft_exit(t_command *command, t_env *env)
 		exit (g_state);
 	}
 	else
-	{
 		exit(exit_else(command, env));
-	}
 }
