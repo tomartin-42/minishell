@@ -28,7 +28,6 @@ static void	clean_up_env_list(t_env *env)
 	}
 	if (aux != NULL)
 	{
-		printf("HOLA\n");
 		prev->next = aux->next;
 		free(aux->v_env);
 		free(aux->var[0]);
