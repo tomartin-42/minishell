@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 13:22:33 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/12 12:47:38 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/12 12:51:24 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ void	valid_instruction(struct termios old, t_env *m_env, char *line)
 	}
 }
 
+static void	when_null(void)
+{
+	printf("exit\n");
+	exit (0);
+}
+
 void	main_loop(struct termios old, t_env *m_env)
 {
 	char			*str;
@@ -47,10 +53,7 @@ void	main_loop(struct termios old, t_env *m_env)
 		select_signal();
 		str = readline("🔥ShellFromHell🔥:> ");
 		if (str == NULL)
-		{
-			printf("exit\n");
-			exit (0);
-		}
+			when_null();
 		if (ft_strlen(str) != 0)
 		{
 			line = ft_strdup(str);
