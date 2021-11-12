@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:10:13 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/11 15:59:40 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/12 11:41:40 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ extern int	g_state;
 
 t_element	*ft_lstlast(t_element *lst);
 void		ft_lstadd_back(t_element **lst, t_element *new);
-//void		print_list(t_element *element);
-void		print_arg_list(t_element *element);
 void		ft_lst_del_all_x(t_element *elemnt);
 
 int			ft_access(char *fname);
@@ -120,5 +118,8 @@ void		signal_ignorate(void);
 
 void		free_element(t_element *element);
 void		free_env_list(t_env *env);
+/////////////////////
+void		print_list(t_element *element);
+void		print_arg_list(t_element *element);
 
 #endif

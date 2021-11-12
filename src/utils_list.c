@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 21:08:34 by tommy             #+#    #+#             */
-/*   Updated: 2021/11/12 10:13:33 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/12 11:42:35 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_lst_del_all_x(t_element *element)
 	}
 }
 
-/* void	print_list(t_element *element)
+ void	print_list(t_element *element)
 {
 	t_element	*p_elem;
 
@@ -105,4 +105,4 @@ void	print_arg_list(t_element *element)
 		}
 		p_elem = p_elem->next;
 	}
-}*/
+}

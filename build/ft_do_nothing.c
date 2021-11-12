@@ -6,11 +6,13 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 12:19:08 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/10 12:21:06 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/12 12:23:09 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_do_nothing(void);
+#include "build.h"
+
+int	ft_do_nothing(int state)
 {
-	return (0);
+	return (state);
 }
