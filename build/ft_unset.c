@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 16:26:09 by tomartin          #+#    #+#             */
-/*   Updated: 2021/10/31 20:28:03 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/13 14:35:02 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void	clean_up_env_list(t_env *env)
 		free(aux);
 	}
 }
-
 
 static void	dell_var_t_env(t_env *env, char *var)
 {

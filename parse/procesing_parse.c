@@ -3,193 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   procesing_parse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:07:23 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/11 19:58:09 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/13 16:43:38 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
-
-/* //clean up spaces of element
-void	clean_element(t_element *element)
-{
-	t_element	*p_elem;
-	char		*aux;
-
-	p_elem = element;
-	while (p_elem)
-	{
-		aux = ft_strtrim(p_elem->str, " ");
-		free(p_elem->str);
-		p_elem->str = ft_strdup(aux);
-		free(aux);
-		p_elem = p_elem->next;
-	}
-}
-
-static void	change_heredoc(t_element *p_elem)
-{
-	if (p_elem->next->str[0] == '<')
-	{
-		free(p_elem->str);
-		p_elem->str = ft_strdup("<<");
-		p_elem->type = 'H';
-		p_elem->next->type = 'X';
-	}			
-	else
-		p_elem->type = 'I';
-}
-
-static void	change_truck(t_element *p_elem)
-{
-	if (p_elem->next->str[0] == '>')
-	{	
-		free(p_elem->str);
-		p_elem->str = ft_strdup(">>");
-		p_elem->type = 'T';
-		p_elem->next->type = 'X';
-	}
-	else
-		p_elem->type = 'O';
-}
-
-//Asig type string to nodes of element, if not S add ? to type
-static void	get_string(t_element *element)
-{
-	t_element	*p_elem;
-
-	p_elem = element;
-	while (p_elem)
-	{
-		if (p_elem->str[0] == '"')
-			p_elem->type = 'S';
-		else if (p_elem->str[0] == 39)
-			p_elem->type = 'S';
-		else
-			p_elem->type = '?';
-		p_elem = p_elem->next;
-	}
-}
-
-//Asig the cmd_num for each pipe and asig P to the pipes
-static void	get_pipes_and_cmd_num(t_element *element)
-{
-	t_element	*p_elem;
-	int			cmd;
-
-	cmd = 1;
-	p_elem = element;
-	p_elem->type = 'G';
-	p_elem = p_elem->next;
-	while (p_elem)
-	{
-		if (p_elem->str[0] == '|' && p_elem->type == '?')
-		{
-			p_elem->type = 'P';
-			p_elem->cmd_num = cmd;
-			cmd++;
-		}
-		else
-			p_elem->cmd_num = cmd;
-		p_elem = p_elem->next;
-	}
-} */
-
-/* //Asig Trunc or output file to the nodes
-static void get_trunk_file(t_element *element)
-{
-	t_element	*p_elem;
-
-	p_elem = element;
-	while (p_elem)
-	{
-		if (p_elem->str[0] == '>' && p_elem->type == '?')
-		{
-			change_truck(p_elem);
-			ft_lst_del_all_x(element);
-			if (p_elem->next != NULL)
-				p_elem->next->type = 'F';
-		}
-		p_elem = p_elem->next;
-	}
-}
-
-//Asig Hered or input file to the nodes
-static void get_hered_file(t_element *element)
-{
-	t_element	*p_elem;
-
-	p_elem = element;
-	while (p_elem)
-	{
-		if (p_elem->str[0] == '<' && p_elem->type == '?')
-		{	
-			change_heredoc(p_elem);
-			ft_lst_del_all_x(element);
-			if (p_elem->next != NULL)
-				p_elem->next->type = 'F';
-		}
-		p_elem = p_elem->next;
-	}
-}
-
-//Asit cmd and arg in the nodes
-static void	get_cmd_and_args(t_element *element)
-{
-	t_element	*p_elem;
-	bool		cmd_state;
-
-	cmd_state = false;
-	p_elem = element;
-	while (p_elem)
-	{
-		if (p_elem->type == 'P')
-			cmd_state = false;
-		if ((p_elem->type == '?' || p_elem->type == 'S') 
-			&& cmd_state == false)
-		{
-			p_elem->type = 'C';
-			cmd_state = true;
-		}
-		else if ((p_elem->type == '?' || p_elem->type == 'S') 
-			&& cmd_state == true)
-			p_elem->type = 'A';
-		p_elem = p_elem->next;
-	}
-}
-
-static void	clean_spaces_in_str(t_element *element)
-{
-	t_element	*p_elem;
-	char		*aux;
-
-	p_elem = element;
-	while (p_elem)
-	{
-		aux = ft_strtrim(p_elem->str, " \t");
-		free (p_elem->str);
-		p_elem->str = ft_strdup(aux);
-		free(aux);
-		p_elem = p_elem->next;
-	}
-}
-
-static t_element *add_do_nothing_node(void)
-{
-	t_element	*new;
-
-	new = malloc(sizeof(t_element));
-	new->str = ft_strdup("do_nothing");
-	new->arg = malloc(sizeof(char *) * 2);
-	new->arg[0] = ft_strdup("do_nothing");
-	new->arg[1] = NULL;
-	new->type = 'C';
-	new->cmd_num = 1;
-	new->next = NULL;
-	return (new);
-} */
 
 static void	add_do_nothing(t_element *p_elem)
 {
@@ -229,8 +50,8 @@ void	check_if_add_do_nothing(t_element *element)
 		ft_lstadd_back(&element, new);
 	}
 }
-/* remove form first line str_ex(element); */
 
+/* remove form first line str_ex(element); */
 void	pre_procesing(t_element *element)
 {
 	clean_spaces_in_str(element);

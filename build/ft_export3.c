@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 08:34:15 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/12 08:34:18 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/13 14:34:20 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	**separate_env_var(char *var)
 	aux = ft_strchr(var, '=');
 	aux++;
 	if (*aux == '\0')
-		//var_dual[1] = ft_strdup("");
 		var_dual[1] = NULL;
 	else
 		var_dual[1] = ft_strdup(aux);
