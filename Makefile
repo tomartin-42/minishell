@@ -6,7 +6,7 @@
 #    By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/11/12 12:37:23 by tomartin         ###   ########.fr        #
+#    Updated: 2021/11/13 12:26:56 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ RESET = \033[0m
 NAME = minishell
 
 # Compiling flags
-FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 F_RL = -I ~/.brew/opt/readline/include -I ~/.brew/opt/readline/lib 
 F_RL2 = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib \
 		-I /Users/$(USER)/.brew/opt/readline/include
@@ -59,7 +59,8 @@ BUILD_FILES = ft_export.c ft_export2.c ft_export3.c ft_echo.c ft_env.c \
 ERRORS_FILES = check_error.c errors.c errors_exec.c main_errors.c
 EXPANSION_FILES = env_ex.c str_ex.c expansion.c env_ex2.c
 EXEC_FILES = main_exec.c rutine.c path_find.c builds_filter.c \
-			 cmd_execution.c rutine_utils.c open_read_write_trunk.c
+			 cmd_execution.c rutine_utils.c open_read_write_trunk.c \
+			 open_read_write_trunk_np.c
 INC_FILES = (build.h errorlib.h exec.h hered.h minishell.h parse.h
 
 OBJ_FILES = $(SRC_FILES:.c=.o)

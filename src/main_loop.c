@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 13:22:33 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/12 12:51:24 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/13 11:27:39 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ void	main_loop(struct termios old, t_env *m_env)
 		}
 		else
 			free(str);
-//		system ("leaks minishell -q");
+		system ("leaks minishell -q");
 	}
 }

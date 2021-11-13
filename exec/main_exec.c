@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 13:22:59 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/11 20:27:59 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/13 12:23:36 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	start_hered(t_element *element, t_env *env)
 	}
 }
 
-static void	redir_hered(t_element *element)
+void	redir_hered(t_element *element)
 {
 	dup2(element->fd, STDIN_FILENO);
 	close(element->fd);

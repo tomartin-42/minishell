@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 12:17:24 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/11 21:29:12 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/13 12:23:56 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,12 @@ void		*return_p_function_build(char *elem);
 
 bool		check_pipes_in_line(t_element *element);
 bool		check_pipes_or_cmd(t_element *element);
+
+void		open_to_read_np(t_element *element);
+void		open_to_write_np(t_element *element);
+void		open_to_trunk_np(t_element *element);
+void		redir_files_np(t_command *command);
+
+void		redir_hered(t_element *element);
 
 #endif

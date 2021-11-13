@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 16:13:19 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/29 16:13:47 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/13 13:54:38 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	execut_cmd_build_np(t_env *env, t_command *command)
 {
-	redir_files(command);
+	redir_files_np(command);
 	g_state = build_filt(command, env);
 }
 
