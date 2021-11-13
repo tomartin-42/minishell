@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 10:34:47 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/10/30 16:43:00 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/13 14:22:30 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	insert_list_str(t_element *p_elem, char *ret_expan)
 			n++;
 		}
 		p_elem->str[n] = '\0';
+		free(ret_expan);
 	}
 }
 
