@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 16:51:20 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/14 19:13:21 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/14 20:19:14 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	change_cd_oldpwd(t_env *env, char *old_pwd)
 	{
 		old_pwd = ft_super_strjoin("OLDPWD=", old_pwd, 2);
 		with_equal_export(env, old_pwd);
+		free (old_pwd);
 	}
 }
 
@@ -78,7 +79,9 @@ int	ft_cd(t_command *command, t_env *env)
 		change_cd_pwd(env);
 	}
 	else
+	{
 		ret = error_cd(command);
-	free (old_pwd);
+		free (old_pwd);
+	}
 	return (ret);
 }
