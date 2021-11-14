@@ -6,15 +6,15 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 16:51:20 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/14 19:09:45 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/14 19:13:21 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
 
-static void change_cd_pwd(t_env *env)
+static void	change_cd_pwd(t_env *env)
 {
-	char *new_pwd;
+	char	*new_pwd;
 
 	new_pwd = NULL;
 	if (search_if_var(env, "PWD") != -1)
@@ -26,7 +26,7 @@ static void change_cd_pwd(t_env *env)
 	}
 }
 
-static void change_cd_oldpwd(t_env *env, char *old_pwd)
+static void	change_cd_oldpwd(t_env *env, char *old_pwd)
 {
 	if (search_if_var(env, "OLDPWD") != -1)
 	{
@@ -44,7 +44,7 @@ static void	error_pwd_args(t_command *command, char *old_pwd)
 	g_state = 1;
 }
 
-static int error_cd(t_command *command)
+static int	error_cd(t_command *command)
 {
 	g_state = errno;
 	ft_putstr_fd("cd: ", 2);
@@ -54,7 +54,6 @@ static int error_cd(t_command *command)
 	ft_putstr_fd("\n", 2);
 	return (g_state);
 }
-
 
 int	ft_cd(t_command *command, t_env *env)
 {
@@ -83,4 +82,3 @@ int	ft_cd(t_command *command, t_env *env)
 	free (old_pwd);
 	return (ret);
 }
-
