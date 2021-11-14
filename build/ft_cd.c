@@ -3,90 +3,84 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/14 17:18:27 by dpuente-          #+#    #+#             */
-/*   Updated: 2021/11/13 16:39:22 by tomartin         ###   ########.fr       */
+/*   Created: 2021/11/14 16:51:20 by tomartin          #+#    #+#             */
+/*   Updated: 2021/11/14 19:09:45 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
 
-char	*join_paths(t_env *env, char *new_path)
+static void change_cd_pwd(t_env *env)
 {
-	char	*f_path;
-	char	*s_path;
+	char *new_pwd;
 
-	f_path = ft_strjoin(get_t_env(env, "PWD"), "/");
-	s_path = ft_strjoin(f_path, new_path);
-	return (s_path);
+	new_pwd = NULL;
+	if (search_if_var(env, "PWD") != -1)
+	{
+		new_pwd = getcwd(NULL, 0);
+		new_pwd = ft_super_strjoin("PWD=", new_pwd, 2);
+		with_equal_export(env, new_pwd);
+		free (new_pwd);
+	}
 }
 
-void	n_path_true(t_env *env, char *pwd, int malloc_num)
+static void change_cd_oldpwd(t_env *env, char *old_pwd)
 {
-	int		n;
-	char	*new_path;
-
-	n = 0;
-	new_path = malloc(sizeof(char) * (malloc_num));
-	while (n < malloc_num - 1)
+	if (search_if_var(env, "OLDPWD") != -1)
 	{
-		new_path[n] = pwd[n];
-		n++;
+		old_pwd = ft_super_strjoin("OLDPWD=", old_pwd, 2);
+		with_equal_export(env, old_pwd);
 	}
-	new_path[n] = '\0';
-	if (chdir(new_path) == 0)
-	{
-		ch_env_var(env, "OLDPWD", pwd);
-		ch_env_var(env, "PWD", new_path);
-	}
-	free(new_path);
 }
 
-void	back_path_edit(t_env *env, char *pwd, int n_paths)
+static void	error_pwd_args(t_command *command, char *old_pwd)
 {
-	int		malloc_num;
-	int		n;
-
-	malloc_num = 0;
-	n = 0;
-	while (n != n_paths + 1 && pwd[malloc_num] && n <= n_paths)
-	{
-		if (pwd[malloc_num] == '/')
-			n++;
-		malloc_num++;
-	}
-	n = 0;
-	if (n_paths != 0)
-		n_path_true(env, pwd, malloc_num);
-	if (n_paths == 0)
-	{
-		ch_env_var(env, "PWD", "/");
-		chdir("/");
-	}
+	free (old_pwd);
+	ft_putstr_fd("cd: string not in pwd: ", 2);
+	ft_putstr_fd(command->cmd->arg[1], 2);
+	ft_putstr_fd("\n", 2);
+	g_state = 1;
 }
+
+static int error_cd(t_command *command)
+{
+	g_state = errno;
+	ft_putstr_fd("cd: ", 2);
+	ft_putstr_fd(strerror(g_state), 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(command->cmd->arg[1], 2);
+	ft_putstr_fd("\n", 2);
+	return (g_state);
+}
+
 
 int	ft_cd(t_command *command, t_env *env)
 {
-	int				pos;
-	char			*home_path;
-	bool			o_pwd;
+	int		n_param;
+	int		ret;
+	char	*old_pwd;
 
-	o_pwd = false;
-	pos = 0;
-	home_path = get_t_env(env, "HOME");
-	while (command->cmd->arg[pos])
-		pos++;
-	if (!check_var(env, "OLDPWD"))
-		o_pwd = true;
-	if (check_var(env, "PWD"))
-		return (0);
-	if (pos > 1)
-		cd_pos_more_than_one(command, env, o_pwd);
-	else if (pos == 1)
-		cd_pos_cero(env, home_path, o_pwd);
-	if (command->multi_cmd[1] == NULL)
-		return (0);
+	n_param = 0;
+	ret = 0;
+	old_pwd = getcwd(NULL, 0);
+	while (command->cmd->arg[n_param] != NULL)
+		n_param++;
+	if (n_param > 2)
+	{
+		error_pwd_args(command, old_pwd);
+		return (g_state);
+	}
+	ret = chdir(command->cmd->arg[1]);
+	if (ret == 0)
+	{
+		change_cd_oldpwd(env, old_pwd);
+		change_cd_pwd(env);
+	}
 	else
-		exit (0);
+		ret = error_cd(command);
+	free (old_pwd);
+	return (ret);
 }
+

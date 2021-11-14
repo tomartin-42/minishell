@@ -6,7 +6,7 @@
 /*   By: dpuente- <dpuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:35:27 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/11 19:38:49 by dpuente-         ###   ########.fr       */
+/*   Updated: 2021/11/14 18:14:03 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,10 @@ void	ch_env_var(t_env *env, char *var, char *n_value)
 		if (ft_strcmp(env->var[0], var) == 0)
 		{
 			free(env->var[1]);
-			env->var[1] = ft_strdup(n_value);
+			if (n_value)
+				env->var[1] = ft_strdup(n_value);
+			else
+				env->var[1] = ft_strdup("");
 			free(env->v_env);
 			env->v_env = ft_strdup(env->var[0]);
 			aux = ft_strdup("=");

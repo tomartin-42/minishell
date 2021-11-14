@@ -6,7 +6,7 @@
 #    By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/11/13 16:38:47 by tomartin         ###   ########.fr        #
+#    Updated: 2021/11/14 18:35:56 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,8 +52,12 @@ PARSE_FILES = main_parse.c procesing_parse.c parse_operation.c \
 			  copy_dell_args.c in_args_memory.c hered_expand_loop.c \
 			  str_ex_utils.c
 HERED_FILES = main_hered.c
-BUILD_FILES = ft_export.c ft_export2.c ft_export3.c ft_echo.c ft_env.c \
+#BUILD_FILES = ft_export.c ft_export2.c ft_export3.c ft_echo.c ft_env.c \
 			  ft_pwd.c ft_cd.c ft_cd_utils.c ft_cd_pos.c super_tolower.c \
+			  ft_exit.c ft_count_char.c ft_unset.c cmd_exec_build_filt.c \
+			  ft_do_nothing.c
+BUILD_FILES = ft_export.c ft_export2.c ft_export3.c ft_echo.c ft_env.c \
+			  ft_pwd.c ft_cd.c super_tolower.c \
 			  ft_exit.c ft_count_char.c ft_unset.c cmd_exec_build_filt.c \
 			  ft_do_nothing.c
 ERRORS_FILES = check_error.c errors.c errors_exec.c main_errors.c
