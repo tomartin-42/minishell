@@ -6,33 +6,29 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 16:51:20 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/14 20:19:14 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/14 20:28:12 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
 
-static void	change_cd_pwd(t_env *env)
+static void	change_cd_pwd(t_env *env, char *old_pwd)
 {
 	char	*new_pwd;
 
 	new_pwd = NULL;
+	if (search_if_var(env, "OLDPWD") != -1)
+	{
+		old_pwd = ft_super_strjoin("OLDPWD=", old_pwd, 2);
+		with_equal_export(env, old_pwd);
+		free (old_pwd);
+	}
 	if (search_if_var(env, "PWD") != -1)
 	{
 		new_pwd = getcwd(NULL, 0);
 		new_pwd = ft_super_strjoin("PWD=", new_pwd, 2);
 		with_equal_export(env, new_pwd);
 		free (new_pwd);
-	}
-}
-
-static void	change_cd_oldpwd(t_env *env, char *old_pwd)
-{
-	if (search_if_var(env, "OLDPWD") != -1)
-	{
-		old_pwd = ft_super_strjoin("OLDPWD=", old_pwd, 2);
-		with_equal_export(env, old_pwd);
-		free (old_pwd);
 	}
 }
 
@@ -74,10 +70,7 @@ int	ft_cd(t_command *command, t_env *env)
 	}
 	ret = chdir(command->cmd->arg[1]);
 	if (ret == 0)
-	{
-		change_cd_oldpwd(env, old_pwd);
-		change_cd_pwd(env);
-	}
+		change_cd_pwd(env, old_pwd);
 	else
 	{
 		ret = error_cd(command);
