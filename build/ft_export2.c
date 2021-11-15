@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 08:42:04 by tomartin          #+#    #+#             */
-/*   Updated: 2021/11/13 16:40:17 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/11/15 09:58:49 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,30 +46,6 @@ void	without_equal_export(t_env *env, char *arg)
 		ft_lstadd_back_env(&env, new);
 	}
 }
-
-/*
-//Funtion to chang value in global env var. Need past the line
-//with equal, search and sustitute the value
-static void	change_env_value(t_env **env, char *arg)
-{
-	t_env	*p_env;
-	char	**values;
-
-	p_env = (*env);
-	values = separate_env_var(arg);
-	while (p_env)
-	{
-		if (ft_strcmp(values[0], p_env->var[0]) == 0)
-		{
-			free(p_env->v_env);
-			p_env->v_env = ft_strdup(arg);
-			free(p_env->var[0]);
-			free(p_env->var[1]);
-			p_env->var = separate_env_var(arg);
-			p_env = p_env->next;
-		}
-	}
-}*/
 
 void	with_equal_export(t_env *env, char *arg)
 {
